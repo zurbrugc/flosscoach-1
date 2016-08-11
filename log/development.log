@@ -1,0 +1,2188 @@
+
+
+Started GET "/" for ::1 at 2016-08-02 14:59:28 -0300
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.2.5) lib/active_record/migration.rb:392:in `check_pending!'
+  activerecord (4.2.5) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (14.5ms)
+  [1m[36m (9.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20160514214340)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "birth" date, "email" varchar, "username" varchar, "encrypted_password" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160514214340"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateLanguages (20160514214351)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "languages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160514214351"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateProjects (20160514214412)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "project_page_url" varchar, "issues_tracker_url" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160514214412"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateTools (20160514214422)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "tools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160514214422"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateOperationalSystems (20160514214431)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "operational_systems" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160514214431"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddUsersIdToProjects (20160522020834)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_projects_on_user_id" ON "projects" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160522020834"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddLanguageIdToProject (20160526181729)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "projects" ADD "language_id" integer[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_projects_on_language_id" ON "projects" ("language_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160526181729"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddToolIdToProject (20160526181912)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "projects" ADD "tool_id" integer[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_projects_on_tool_id" ON "projects" ("tool_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160526181912"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddOperationalSystemIdToProject (20160526182007)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "operational_system_id" integer
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_tool_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_tool_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_projects_on_operational_system_id" ON "projects" ("operational_system_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160526182007"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddAboutToProjects (20160620154305)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "about" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154305"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddIssueToProjects (20160620154318)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "issue" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154318"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddTechnicalSkillToProjects (20160620154330)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "technical_skill" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154330"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddSoftSkillToProjects (20160620154339)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "soft_skill" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154339"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddContributionToProjects (20160620154352)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "contribution" text
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154352"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddWorkspaceSetupToProjects (20160620154404)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "workspace_setup" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154404"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddResourceToProjects (20160620154414)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "resource" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154414"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddDocumentationToProjects (20160620154425)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "documentation" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154425"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddSearchResourceToProjects (20160620154435)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "projects" ADD "search_resource" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154435"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddSendContributionToProjects (20160620154446)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "projects" ADD "send_contribution" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620154446"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddLinkToProjects (20160620221903)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "link" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160620221903"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddColumnPhotoUrlToUser (20160718144726)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "photo_url" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160718144726"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddColumnFbTokenToUser (20160718150747)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "fb_token" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160718150747"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddColumnProviderToUser (20160718152831)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "provider" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160718152831"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddColumnUidToUser (20160718152844)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "users" ADD "uid" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160718152844"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddColumnDescriptionToUser (20160718210432)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160718210432"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddImageUrlToProject (20160802151248)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "projects" ADD "image_url" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160802151248"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_operational_system_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_operational_system_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_tool_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_tool_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_language_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_projects_on_user_id' AND type='index'
+[0m
+
+
+Started GET "/" for ::1 at 2016-08-02 14:59:44 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LoginController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered login/index.html.erb within layouts/application (13.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 8431ms (Views: 8393.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/css/animsition.self-c370cd7ae60c2e6edc2ca6fb5f84271cd6b007020bde574beeabe8ce2c4a3928.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/brand-icons/brand-icons.self-1e1d3c9d79f9c6dae04cdc0a96c1235b5cead25dd4e217ae0110961e77b35f81.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/asScrollable.self-28584fd4a945f8ed756ff4d2fb0374ba76c81c4fd44e495889c035c94e8fbe63.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/bootstrap.o.extend.min.self-565c837c399b84a02c3ed56fff72002d05e85ca656823796e42130a58e57216d.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/bootstrap.min.self-d91e6dfd5cf71bf25e5092b5bc021e5ffae018a598e8b69fc06a084f69fb1d9c.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/buttons.self-fbff40b2b46223165509a69193b4c4a1df46f048e30f35bb8cb89d45b0c8b093.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/chartist.self-e6f4f106ac165d309679ee9093e66d19d94b7e0f5f3d4e6c4ab469ac86dab45e.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/chartist-plugin-tooltip.self-1147e04494c3a8b8346bf4ddbf197874ddd78d51391aac0c862af11dcf154d04.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/dropify.self-38117dd837afc86670a438d16cedef7dd8aec5b09dddd0a976d195ba7612d42d.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/flag-icon.self-7e0994beeb497a8a92b6503bd1d91ea360ffe182a62eb3bdaf3173bbb67cea74.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/forgot-password.self-4b605c3291372b0946dd49027d01b61a6676b3cb625bca02da10da4ff719803c.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/gallery.self-43964f1d6be475ff954b93dd425590f9c840e965c4973cc18e6d1ea75c5f9c11.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/gridstack.self-2120450f84fdd5e6c41df7852f30bdd7822a351bec45ffc1c088f7b818dcae43.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/introjs.self-c481cfa0b95e72b44e2bd623b83aed143983e4d40064996e4d292a7270668920.css?body=1" for ::1 at 2016-08-02 14:59:52 -0300
+
+
+Started GET "/assets/css/jquery-jvectormap.self-e17107bfa3d7efe424e9f98ed49f2e1603e0f9eaf5e80b781e7c30a71edefdd8.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/modals.self-b69f00bef142d715a192bff08ed065887c8056b25cb7a3afb119fe0978698275.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/jquery.fileupload.self-1d9e21abf5270f8d41feefa51ef177965496a18de659c7797eef33b1658656b3.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/login-v2.self-80b429d99410b8ed860039fe27ebe6210228f627c66a5496a770843488088b20.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/panel-portlets.self-ade724626cb364a6d93c21d7b977b20dc0efccdcad870cddf5d7ed138e53cff9.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/profile.min.self-c8f49d39eeb9b6f41751b05aa44b8bb8e02605cbbc3df7a2372f6f11e2775749.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/site.min.self-9ead9c34685e19357d0d06b69d2db2c47a2f91fe234d30b264364a60b060b3eb.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/register-v2.self-97a4e1921e5e0340d14bfbb6e0989c2973d033bb6a625c5239aee4dd069a09ad.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/slidePanel.self-60d4533714169cb40970d4048332e31ab5eeddbd7604be8ebb8bbe196010a5b0.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/summernote.self-7985c88b3c412253a4d9a07b3fef5bfe299e6e111d29ce93a2464193a2a8cb98.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/switchery.self-552956e299d4d4c6e5154b30ce3caaa060861084f295dedfe83fccd8090eed5e.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/toolbar.min.self-1e3cfdf4f24f2b68e37fdad5c1fb99a693281429d5121065b3e706a18f11046d.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/v1.self-49fdad96fd17fab0047c13859be87ea83a4e06820a122533454aaf82642bf88d.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/user.self-08da173be71bb9cd98d433c246a83f2fb10de248068dcc865b694b033bab005b.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/web-icons/web-icons.self-45f46729b88913dd3323d163df8845dc22dc712c073588fb342f926c2622811c.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/css/webui-popover.min.self-9ebcb5dac39aed62db1abd61f464eb227a9d1bc4b74d72bdafd40ec3bdc1ff28.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/facebook_login.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.self-91713c616e5e09ac2837ab3fa45463a6661ec13fceef6c23906958a82e1db497.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.min.self-afe30d6e07127426c6d25b20e995104de3d51de5b2a47e640bff9cd18df0232f.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.self-2ec0e43d03e50777c7355aa621943630083737930b6733019b738a8b06c2ee8d.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.min.self-e7160116e0bf65c9de10ff0600f20b116b83b0c85a78101586fc39618efc8f13.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.self-a5935fff525ab0b6d89a16c651819d6fe9ce118ae4fd39e4832994ff9b0f7cbe.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.min.self-b4c973233c3b9912047d0b5e3a20d363ee4b1f1ad01e9e0f0e0d4b52c50b820e.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.self-41aa472ac4895ae34a1a0d661899da00584bf9c3afe62c2a6d857a5eb626ecfa.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.min.self-14898c48c641304c442b405dc7bb54e932db63dd2a518106e908e366d3534596.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.self-82f654133eda06c2a415c84002f50e8a611d73fd755fcf7599dc5ad192f4c774.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.min.self-dcb569f5dabd0ccfd1559a85d8f13b952a8e8d0793f8af74ebf264de2650f0be.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.self-a32dbba2c6dd652f29e5356a278d37d78b82a80828cbc1885c817cd5ab444a5a.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.min.self-666b1f5221a381650c923669c6058aa4e1f73ae8fe7bd3f143fd60b90ae5c51d.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.self-d22d94015a62ce312648e23acc03dad8e2185ea4d486405ac41d5c59a2d5f3a3.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.min.self-35c02a86fa95865f0c90e28e7c2a8acda140edfb3f952bdd8c6b2f9b8600222e.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.self-7837eac800226d48302bd10468ef2a64f1e82da2eed866873569afb08516a98c.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/themify/themify.self-a13ff6a960655a24cde9877b0baf6e1cebbc27937a4e658a9042d15cacee2eb7.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/themify/themify.min.self-1f350efb54f7a98db8506f814e9bad3548b6766df9e99187f13fbeee7142ba59.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.min.self-cbfcb4fcbdc437884c3bc497ca5d5a8e057f4400f74ec5893983453eef992f89.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.self-efb3351bfa26d4126a9c9af8f827f496e2eed6ed049b7665739b040385b3f68d.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.min.self-b1300a74e39ec0f69af2dc8b9724068782bfe46b8d70523b02cb44b75a14cc69.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/languages.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/login.self-a84e3c1959d14232765af03d96a6e8e58299d16a53ecc0990366d2af378eee77.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/operational_systems.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/projects.self-bf3bf1a2c52411f05f99b47aa3518939e24ad673af658c703c2ef64a76499560.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/red.self-5d919aec6b5abda411120f058c06941553d625f0b1027d152b65362df48dfd59.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/scaffold.self-505f44bba8c644c7b0340dddeb379e98412308f10a03a912b860187ff05691f1.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/tools.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/users.self-f881d724c52604905862d3e27edac1e698f0cf64ed7d4e07cd68db8bdfa4f922.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/application.self-c4991312985bccd133f1f21ab2f6a5d0129a8416a91037313b14f05d7d2e7dde.css?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/modernizr.self-50d91a59409b0763cb78a29e8971bb40b280f67693a658137dfc846a0bcd3ff3.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/breakpoints.self-d2a0b565dfbac31a14406efaedd401e31e7a78053a621898343b780728867f74.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery.self-47e5b5a44928730f4e54a90ebab218ce5d156f086cdc2db94dd6a90d9bdb4426.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/bootstrap.self-25f7b25439e49c9a381e6b196bc7a973fb08c95450e7efde3a1e22a73aa71031.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery-asScroll.self-c62cbee9bae60be3b33f97b8a7f3767df2b7a96394b025ab288556aa2b5a3ffa.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/animsition.self-27ff05418b7a47a197d9aa5b7f0f523d0bd57710aa279879b582c8be8ac9a4ef.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery.asScrollable.all.self-e054ab5779200cc40fc005f21a8e1dce424587e26c5bd0319f7b8681e8cb9d5e.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery.mousewheel.self-9c651ebc21ea658b05f7567c2e310bb59ffd59877d5116e3a049a95c4c74e6c2.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery-asHoverScroll.self-36df27914264d945b8a918715d3a2d0c61e51980d34458e686644d7cd95e0d98.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/switchery.min.self-fe55621bc2159165d1f24a467b6b136f45fe3b320a8c400d2bf50c46812e83b3.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/intro.self-1dafcc2788cef7bba11ec173d0989f4d52350d7e36898f863cbce1b163797e49.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/screenfull.self-464c3a64a70f62bc48758d0838d69d4202adc154f537dd2a46885c23c1300732.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/login.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery-slidePanel.self-8405aab9eee852db83fccf195c89f8a22a4bfba1bdd21b218329bebda4af1493.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery.placeholder.self-c8383ffc1e2e14a9e5a16f91ac46fcfd39a26cda87cfc4a2f30d8d92cfa75d11.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/lodash.self-2910610f591514a64f1d8d17acd5c729d38dbcf165a5596dc9cae3a45d4ce000.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/isotope.pkgd.min.self-3bfd510f090c8b0c9b4140101efa8f8c2e9433ad68e537c264a1a717a90db3b2.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery-ui.min.self-1f37fd37d8db0404488ac8f6505560e48d1364ef1c81e384ac695e143049ab0f.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/draggabilly.pkgd.self-73c5b6d83a8ceb0e977b9c042f6d1bce0c6226979d6801b7e3e7d1efa0c2d349.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/plugin/jquery-asProgress.self-49446c956a74f2543a2d2589824624c8fd3e824e747de533ac7beb566c8352e2.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/core.self-82bef7fddb4b8e7e7b95ca83eaf7e61cf753990dba241213707a8ad043a34250.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/menu.self-f048b42a0c8d9053d5d4e3da9aeca273a956a8aa80ad648ea0c0ae40e1e649dd.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/menubar.self-187ba2ab320d2ae7e13823cd0c7ad8a892d90f98b39dd214439b07a93270ec9e.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/gridmenu.self-719b7e9c7441e4128e97478d6ebac3fb0d3f2f42b6b80a589366458abb877b66.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/site.self-3a06853897a296077ec21c39a63009c9885e67d3f9f72d3d46effa560d0cdca7.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/sidebar.self-50a88ba50545245fa35dd91407f8795048da79e05dbd1dd94e11f6681aa5987e.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/fonts/brand-icons/brand-icons.woff2?v=0.3.3" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/config-tour.self-2c87e00f7700e70a5532ce16e8bc6f8d21cf32204701b9c6420f153f9b9d3b5d.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/config-colors.self-b588319a119647898076b5150fffa63311f60136fd112decce15f8514be64f65.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/animsition.self-688b9b4131d42b65a048cd0fff3941d33ec9fcd8b11165093502a1697833259d.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/switchery.self-656353ab5d386b4dcca010ac2ff18116eb99add843322c1d52c70c62e7b7c4fe.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/js/jquery-placeholder.self-de5297b0a6bcb181c1efb500a0c429711fc2d816847ceec7e48a6642383c7663.js?body=1" for ::1 at 2016-08-02 14:59:53 -0300
+
+
+Started GET "/assets/components/tabs.self-ef8ef20828d5e4e2e278aaa4761b70cea464e5f912ca6465f94b308e74fd4fa7.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/js/jquery.asPaginator.min.self-4300c543e86980e49a3a1562dddf0709406347f7ccbf7db2214736de6ccf312d.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/responsive-tabs.self-8ff55949543263bc1bc1e27db57e670fb6b10d34447cd9063f35f4f0c232b523.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/panel.self-a50cffe8963b587496608e3bc31bca1d6b34b421262305db2ab550e8876567f2.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/aspaginator.self-43ca1f1a88b7224d8dc4f9239ba86002d6101ef3466cd1b3a2484c50e4d845d4.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/asprogress.self-f42eacad5a45e86be55cf6e737564a08f87b501e1c1773ca1a120ad5fc053efd.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/components/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started GET "/assets/application.self-48e5e7d595b571168c15de82f3eacb4925c2c0e9cdb5529b3649d6e78dfa5f82.js?body=1" for ::1 at 2016-08-02 14:59:54 -0300
+
+
+Started POST "/users/login" for ::1 at 2016-08-02 14:59:59 -0300
+Processing by LoginController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yAf8zKr1bPW+/reS1AqezQYDHuIO2QgG9ctARZ0h/3iSIlbI+1catXcp08/yzlDve2fVB3Xzy0cw/CPtWvx0qg==", "user"=>{"email"=>"rafaelsm.br@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "rafaelsm.br@gmail.com"]]
+  Rendered login/index.html.erb within layouts/application (0.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 223ms (Views: 221.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-02 14:59:59 -0300
+
+
+Started GET "/assets/fonts/brand-icons/brand-icons.woff2?v=0.3.3" for ::1 at 2016-08-02 14:59:59 -0300
+
+
+Started GET "/users/new" for ::1 at 2016-08-02 15:00:11 -0300
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (1.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 198ms (Views: 196.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/users.self-682108a22f11c0650db8a6f5c34fc3bd091bd162d361a5d7898115d7d9bc8d47.js?body=1" for ::1 at 2016-08-02 15:00:11 -0300
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-02 15:00:11 -0300
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-02 15:00:21 -0300
+
+
+Started POST "/users" for ::1 at 2016-08-02 15:00:22 -0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M9MIvET3PZbJedRJ4e+q/GoD7VU1R9SsBz23eFzy8WJp9qK4FVVL1gCusBTHK2TeF2cmsE5tF+3CCtTQmy96sA==", "user"=>{"name"=>"rafael", "email"=>"rafaelsm.br@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "terms"=>"1"}, "commit"=>"Sign Up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'rafaelsm.br@gmail.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name", "email", "encrypted_password", "photo_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "rafael"], ["email", "rafaelsm.br@gmail.com"], ["encrypted_password", "$2a$10$7tJAiM5MEqhLlqLWGQaSMuUnodj7D6cFuDO95d9L4OOjQMRbCsOrW"], ["photo_url", "assets/avatar.jpeg"], ["created_at", "2016-08-02 18:00:22.148345"], ["updated_at", "2016-08-02 18:00:22.148345"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+DEPRECATION WARNING: `#deliver` is deprecated and will be removed in Rails 5. Use `#deliver_now` to deliver immediately or `#deliver_later` to deliver through Active Job. (called from create at /Users/rafael/flosscoach/app/controllers/users_controller.rb:30)
+  Rendered usuario_mailer/newuser.html.erb within layouts/mailer (1.4ms)
+  Rendered usuario_mailer/newuser.text.erb within layouts/mailer (0.3ms)
+
+UsuarioMailer#newuser: processed outbound mail in 197.1ms
+
+Sent mail to rafaelsm.br@gmail.com (6677.2ms)
+Date: Tue, 02 Aug 2016 15:00:22 -0300
+From: projetoheroku@gmail.com
+To: rafaelsm.br@gmail.com
+Message-ID: <57a0dfb65a380_84b3fecdac41a2462511@MBP-de-Rafael-2.mail>
+Subject: New user
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_57a0dfb6583c3_84b3fecdac41a24624d0";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_57a0dfb6583c3_84b3fecdac41a24624d0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+rafael, your account has been activated. You may now start adding your projects: http://52.40.29.0/
+
+----==_mimepart_57a0dfb6583c3_84b3fecdac41a24624d0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Flosscoach</title>
+<style type="text/css">
+	/* -------------------------------------
+    GLOBAL
+    A very basic CSS reset
+------------------------------------- */
+* {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  width: 100% !important;
+  height: 100%;
+  line-height: 1.6em;
+  /* 1.6em * 14px = 22.4px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 22px;*/
+}
+
+/* Let's make sure all tables have defaults */
+table td {
+  vertical-align: top;
+}
+
+/* -------------------------------------
+    BODY & CONTAINER
+------------------------------------- */
+body {
+  background-color: #f6f6f6;
+}
+
+.body-wrap {
+  background-color: #f6f6f6;
+  width: 100%;
+}
+
+.container {
+  display: block !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  /* makes it centered */
+  clear: both !important;
+}
+
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: block;
+  padding: 20px;
+}
+
+/* -------------------------------------
+    HEADER, FOOTER, MAIN
+------------------------------------- */
+.main {
+  background-color: #fff;
+  border: 1px solid #e9e9e9;
+  border-radius: 3px;
+}
+
+.content-wrap {
+  padding: 20px;
+}
+
+.content-block {
+  padding: 0 0 20px;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.footer {
+  width: 100%;
+  clear: both;
+  color: #999;
+  padding: 20px;
+}
+.footer p, .footer a, .footer td {
+  color: #999;
+  font-size: 12px;
+}
+
+/* -------------------------------------
+    TYPOGRAPHY
+------------------------------------- */
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #000;
+  margin: 40px 0 0;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 500;
+  /* 1.2em * 32px = 38.4px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 38px;*/
+}
+
+h2 {
+  font-size: 24px;
+  /* 1.2em * 24px = 28.8px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 29px;*/
+}
+
+h3 {
+  font-size: 18px;
+  /* 1.2em * 18px = 21.6px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 22px;*/
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+p, ul, ol {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+p li, ul li, ol li {
+  margin-left: 5px;
+  list-style-position: inside;
+}
+
+/* -------------------------------------
+    LINKS & BUTTONS
+------------------------------------- */
+a {
+  color: #348eda;
+  text-decoration: underline;
+}
+
+.btn-primary {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #348eda;
+  border: solid #348eda;
+  border-width: 10px 20px;
+  line-height: 2em;
+  /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 28px;*/
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+/* -------------------------------------
+    OTHER STYLES THAT MIGHT BE USEFUL
+------------------------------------- */
+.last {
+  margin-bottom: 0;
+}
+
+.first {
+  margin-top: 0;
+}
+
+.aligncenter {
+  text-align: center;
+}
+
+.alignright {
+  text-align: right;
+}
+
+.alignleft {
+  text-align: left;
+}
+
+.clear {
+  clear: both;
+}
+
+/* -------------------------------------
+    ALERTS
+    Change the class depending on warning email, good email or bad email
+------------------------------------- */
+.alert {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+}
+.alert a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+.alert.alert-warning {
+  background-color: #FF9F00;
+}
+.alert.alert-bad {
+  background-color: #D0021B;
+}
+.alert.alert-good {
+  background-color: #68B90F;
+}
+
+/* -------------------------------------
+    INVOICE
+    Styles for the billing table
+------------------------------------- */
+.invoice {
+  margin: 40px auto;
+  text-align: left;
+  width: 80%;
+}
+.invoice td {
+  padding: 5px 0;
+}
+.invoice .invoice-items {
+  width: 100%;
+}
+.invoice .invoice-items td {
+  border-top: #eee 1px solid;
+}
+.invoice .invoice-items .total td {
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  font-weight: 700;
+}
+
+/* -------------------------------------
+    RESPONSIVE AND MOBILE FRIENDLY STYLES
+------------------------------------- */
+@media only screen and (max-width: 640px) {
+  body {
+    padding: 0 !important;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 800 !important;
+    margin: 20px 0 5px !important;
+  }
+
+  h1 {
+    font-size: 22px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  .container {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .content {
+    padding: 0 !important;
+  }
+
+  .content-wrap {
+    padding: 10px !important;
+  }
+
+  .invoice {
+    width: 100% !important;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+
+<table class="body-wrap">
+	<tr>
+		<td></td>
+		<td class="container" width="600">
+			<div class="content">
+				<table class="main" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="alert alert-warning">
+							Congratulations!!! rafael
+						</td>
+					</tr>
+					<tr>
+						<td class="content-wrap">
+							<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td class="content-block">
+Your account has been created successfully and is ready to use
+
+Dear rafael, 
+If you can see this, your account has been successfully created. 
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				</div>
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+</body>
+</html>
+
+  </body>
+</html>
+
+----==_mimepart_57a0dfb6583c3_84b3fecdac41a24624d0--
+
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 6981ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/projects" for ::1 at 2016-08-02 15:00:29 -0300
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (6.8ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+Completed 200 OK in 436ms (Views: 406.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/avatar.jpeg" for ::1 at 2016-08-02 15:00:29 -0300
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-02 15:00:29 -0300
+
+
+Started POST "/projects" for ::1 at 2016-08-02 15:00:41 -0300
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ggvS8oFHqtB4LvkyEIHnGjZPJgGhQpj43zhLEP+a9ojYLnj20OXckLH5nW82RSk4Syvt5NpoW7kaDyi4OEd9Wg==", "project"=>{"name"=>"firefox", "description"=>"teste"}, "commit"=>"Create project"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "projects" ("name", "description", "user_id", "about", "image_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "firefox"], ["description", "teste"], ["user_id", 1], ["about", "The award-winning, free Web browser is better than ever. Browse the Web with confidence - Firefox protects you from viruses, spyware and pop-ups. Enjoy improvements to performance, ease of use and privacy. It's easy to import your favorites and settings and get started. Download Firefox now and get the most out of the Web.\n\nOhloh Note: There's more to Firefox! See the Mozilla Core and Mozilla Chrome projects for complete coverage."], ["image_url", "https://s3.amazonaws.com/cloud.ohloh.net/attachments/41453/logo-only_med.png"], ["created_at", "2016-08-02 18:00:42.765598"], ["updated_at", "2016-08-02 18:00:42.765598"]]
+  [1m[35m (9.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/projects/1
+Completed 302 Found in 1624ms (ActiveRecord: 9.5ms)
+
+
+Started GET "/projects/1" for ::1 at 2016-08-02 15:00:42 -0300
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."user_id" = ? AND "projects"."id" = ? LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mLanguage Load (0.1ms)[0m  [1mSELECT  "languages".* FROM "languages" WHERE "languages"."id" IS NULL  ORDER BY "languages"."id" ASC LIMIT 1[0m
+  [1m[35mTool Load (0.1ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" IS NULL  ORDER BY "tools"."id" ASC LIMIT 1
+  [1m[36mOperationalSystem Load (0.1ms)[0m  [1mSELECT  "operational_systems".* FROM "operational_systems" WHERE "operational_systems"."id" IS NULL  ORDER BY "operational_systems"."id" ASC LIMIT 1[0m
+  Rendered projects/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+Completed 200 OK in 235ms (Views: 221.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/projects/assets/avatar.jpeg" for ::1 at 2016-08-02 15:00:43 -0300
+
+ActionController::RoutingError (No route matches [GET] "/projects/assets/avatar.jpeg"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (49.3ms)
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-02 15:00:43 -0300
+
+
+Started GET "/assets/fonts/font-awesome/fontawesome-webfont.woff2?v=4.6.1" for ::1 at 2016-08-02 15:00:43 -0300
+
+
+Started GET "/projects" for ::1 at 2016-08-02 15:00:57 -0300
+Processing by ProjectsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+Completed 200 OK in 161ms (Views: 158.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/avatar.jpeg" for ::1 at 2016-08-02 15:00:58 -0300
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-02 15:00:58 -0300
+
+
+Started GET "/" for ::1 at 2016-08-02 16:32:03 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LoginController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 93ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/projects" for ::1 at 2016-08-02 16:32:04 -0300
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.8ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (14.3ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+Completed 200 OK in 3033ms (Views: 2990.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/avatar.jpeg" for ::1 at 2016-08-02 16:32:07 -0300
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-02 16:32:07 -0300
+
+
+Started GET "/projects/1" for ::1 at 2016-08-02 16:32:11 -0300
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."user_id" = ? AND "projects"."id" = ? LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mLanguage Load (0.4ms)[0m  [1mSELECT  "languages".* FROM "languages" WHERE "languages"."id" IS NULL  ORDER BY "languages"."id" ASC LIMIT 1[0m
+  [1m[35mTool Load (0.4ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" IS NULL  ORDER BY "tools"."id" ASC LIMIT 1
+  [1m[36mOperationalSystem Load (0.5ms)[0m  [1mSELECT  "operational_systems".* FROM "operational_systems" WHERE "operational_systems"."id" IS NULL  ORDER BY "operational_systems"."id" ASC LIMIT 1[0m
+  Rendered projects/show.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+Completed 200 OK in 199ms (Views: 181.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/projects/assets/avatar.jpeg" for ::1 at 2016-08-02 16:32:12 -0300
+
+ActionController::RoutingError (No route matches [GET] "/projects/assets/avatar.jpeg"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (45.5ms)
+
+
+Started GET "/assets/fonts/font-awesome/fontawesome-webfont.woff2?v=4.6.1" for ::1 at 2016-08-02 16:32:12 -0300
+
+
+Started GET "/projects/1" for ::1 at 2016-08-02 16:32:44 -0300
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."user_id" = ? AND "projects"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 1]]
+  [1m[35mLanguage Load (0.2ms)[0m  SELECT  "languages".* FROM "languages" WHERE "languages"."id" IS NULL  ORDER BY "languages"."id" ASC LIMIT 1
+  [1m[36mTool Load (0.1ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" IS NULL  ORDER BY "tools"."id" ASC LIMIT 1[0m
+  [1m[35mOperationalSystem Load (0.1ms)[0m  SELECT  "operational_systems".* FROM "operational_systems" WHERE "operational_systems"."id" IS NULL  ORDER BY "operational_systems"."id" ASC LIMIT 1
+  Rendered projects/show.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+Completed 200 OK in 197ms (Views: 191.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/css/animsition.self-c370cd7ae60c2e6edc2ca6fb5f84271cd6b007020bde574beeabe8ce2c4a3928.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/bootstrap.o.extend.min.self-565c837c399b84a02c3ed56fff72002d05e85ca656823796e42130a58e57216d.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/bootstrap.min.self-d91e6dfd5cf71bf25e5092b5bc021e5ffae018a598e8b69fc06a084f69fb1d9c.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/buttons.self-fbff40b2b46223165509a69193b4c4a1df46f048e30f35bb8cb89d45b0c8b093.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/brand-icons/brand-icons.self-1e1d3c9d79f9c6dae04cdc0a96c1235b5cead25dd4e217ae0110961e77b35f81.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/asScrollable.self-28584fd4a945f8ed756ff4d2fb0374ba76c81c4fd44e495889c035c94e8fbe63.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/chartist-plugin-tooltip.self-1147e04494c3a8b8346bf4ddbf197874ddd78d51391aac0c862af11dcf154d04.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/chartist.self-e6f4f106ac165d309679ee9093e66d19d94b7e0f5f3d4e6c4ab469ac86dab45e.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/dropify.self-38117dd837afc86670a438d16cedef7dd8aec5b09dddd0a976d195ba7612d42d.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/flag-icon.self-7e0994beeb497a8a92b6503bd1d91ea360ffe182a62eb3bdaf3173bbb67cea74.css?body=1" for ::1 at 2016-08-02 16:32:44 -0300
+
+
+Started GET "/assets/css/forgot-password.self-4b605c3291372b0946dd49027d01b61a6676b3cb625bca02da10da4ff719803c.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/gallery.self-43964f1d6be475ff954b93dd425590f9c840e965c4973cc18e6d1ea75c5f9c11.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/gridstack.self-2120450f84fdd5e6c41df7852f30bdd7822a351bec45ffc1c088f7b818dcae43.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/introjs.self-c481cfa0b95e72b44e2bd623b83aed143983e4d40064996e4d292a7270668920.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/jquery-jvectormap.self-e17107bfa3d7efe424e9f98ed49f2e1603e0f9eaf5e80b781e7c30a71edefdd8.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/jquery.fileupload.self-1d9e21abf5270f8d41feefa51ef177965496a18de659c7797eef33b1658656b3.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/login-v2.self-80b429d99410b8ed860039fe27ebe6210228f627c66a5496a770843488088b20.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/panel-portlets.self-ade724626cb364a6d93c21d7b977b20dc0efccdcad870cddf5d7ed138e53cff9.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/profile.min.self-c8f49d39eeb9b6f41751b05aa44b8bb8e02605cbbc3df7a2372f6f11e2775749.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/modals.self-b69f00bef142d715a192bff08ed065887c8056b25cb7a3afb119fe0978698275.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/register-v2.self-97a4e1921e5e0340d14bfbb6e0989c2973d033bb6a625c5239aee4dd069a09ad.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/site.min.self-9ead9c34685e19357d0d06b69d2db2c47a2f91fe234d30b264364a60b060b3eb.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/slidePanel.self-60d4533714169cb40970d4048332e31ab5eeddbd7604be8ebb8bbe196010a5b0.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/summernote.self-7985c88b3c412253a4d9a07b3fef5bfe299e6e111d29ce93a2464193a2a8cb98.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/switchery.self-552956e299d4d4c6e5154b30ce3caaa060861084f295dedfe83fccd8090eed5e.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/toolbar.min.self-1e3cfdf4f24f2b68e37fdad5c1fb99a693281429d5121065b3e706a18f11046d.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/user.self-08da173be71bb9cd98d433c246a83f2fb10de248068dcc865b694b033bab005b.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/v1.self-49fdad96fd17fab0047c13859be87ea83a4e06820a122533454aaf82642bf88d.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/web-icons/web-icons.self-45f46729b88913dd3323d163df8845dc22dc712c073588fb342f926c2622811c.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/css/webui-popover.min.self-9ebcb5dac39aed62db1abd61f464eb227a9d1bc4b74d72bdafd40ec3bdc1ff28.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/facebook_login.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.self-91713c616e5e09ac2837ab3fa45463a6661ec13fceef6c23906958a82e1db497.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.min.self-afe30d6e07127426c6d25b20e995104de3d51de5b2a47e640bff9cd18df0232f.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.self-2ec0e43d03e50777c7355aa621943630083737930b6733019b738a8b06c2ee8d.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.min.self-e7160116e0bf65c9de10ff0600f20b116b83b0c85a78101586fc39618efc8f13.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.self-a5935fff525ab0b6d89a16c651819d6fe9ce118ae4fd39e4832994ff9b0f7cbe.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.min.self-b4c973233c3b9912047d0b5e3a20d363ee4b1f1ad01e9e0f0e0d4b52c50b820e.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.self-41aa472ac4895ae34a1a0d661899da00584bf9c3afe62c2a6d857a5eb626ecfa.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.min.self-14898c48c641304c442b405dc7bb54e932db63dd2a518106e908e366d3534596.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.self-82f654133eda06c2a415c84002f50e8a611d73fd755fcf7599dc5ad192f4c774.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.min.self-dcb569f5dabd0ccfd1559a85d8f13b952a8e8d0793f8af74ebf264de2650f0be.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.self-a32dbba2c6dd652f29e5356a278d37d78b82a80828cbc1885c817cd5ab444a5a.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.min.self-666b1f5221a381650c923669c6058aa4e1f73ae8fe7bd3f143fd60b90ae5c51d.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.self-d22d94015a62ce312648e23acc03dad8e2185ea4d486405ac41d5c59a2d5f3a3.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.min.self-35c02a86fa95865f0c90e28e7c2a8acda140edfb3f952bdd8c6b2f9b8600222e.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.min.self-cbfcb4fcbdc437884c3bc497ca5d5a8e057f4400f74ec5893983453eef992f89.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.self-7837eac800226d48302bd10468ef2a64f1e82da2eed866873569afb08516a98c.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/themify/themify.self-a13ff6a960655a24cde9877b0baf6e1cebbc27937a4e658a9042d15cacee2eb7.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/themify/themify.min.self-1f350efb54f7a98db8506f814e9bad3548b6766df9e99187f13fbeee7142ba59.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.self-efb3351bfa26d4126a9c9af8f827f496e2eed6ed049b7665739b040385b3f68d.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.min.self-b1300a74e39ec0f69af2dc8b9724068782bfe46b8d70523b02cb44b75a14cc69.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/languages.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/login.self-a84e3c1959d14232765af03d96a6e8e58299d16a53ecc0990366d2af378eee77.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/projects.self-bf3bf1a2c52411f05f99b47aa3518939e24ad673af658c703c2ef64a76499560.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/operational_systems.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/red.self-5d919aec6b5abda411120f058c06941553d625f0b1027d152b65362df48dfd59.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/scaffold.self-505f44bba8c644c7b0340dddeb379e98412308f10a03a912b860187ff05691f1.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/tools.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/users.self-f881d724c52604905862d3e27edac1e698f0cf64ed7d4e07cd68db8bdfa4f922.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/application.self-c4991312985bccd133f1f21ab2f6a5d0129a8416a91037313b14f05d7d2e7dde.css?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/modernizr.self-50d91a59409b0763cb78a29e8971bb40b280f67693a658137dfc846a0bcd3ff3.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/animsition.self-27ff05418b7a47a197d9aa5b7f0f523d0bd57710aa279879b582c8be8ac9a4ef.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/breakpoints.self-d2a0b565dfbac31a14406efaedd401e31e7a78053a621898343b780728867f74.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/jquery-asScroll.self-c62cbee9bae60be3b33f97b8a7f3767df2b7a96394b025ab288556aa2b5a3ffa.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/jquery.mousewheel.self-9c651ebc21ea658b05f7567c2e310bb59ffd59877d5116e3a049a95c4c74e6c2.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/jquery-asHoverScroll.self-36df27914264d945b8a918715d3a2d0c61e51980d34458e686644d7cd95e0d98.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/switchery.min.self-fe55621bc2159165d1f24a467b6b136f45fe3b320a8c400d2bf50c46812e83b3.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/screenfull.self-464c3a64a70f62bc48758d0838d69d4202adc154f537dd2a46885c23c1300732.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/jquery.placeholder.self-c8383ffc1e2e14a9e5a16f91ac46fcfd39a26cda87cfc4a2f30d8d92cfa75d11.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/jquery-asProgress.self-49446c956a74f2543a2d2589824624c8fd3e824e747de533ac7beb566c8352e2.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/isotope.pkgd.min.self-3bfd510f090c8b0c9b4140101efa8f8c2e9433ad68e537c264a1a717a90db3b2.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/core.self-82bef7fddb4b8e7e7b95ca83eaf7e61cf753990dba241213707a8ad043a34250.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/draggabilly.pkgd.self-73c5b6d83a8ceb0e977b9c042f6d1bce0c6226979d6801b7e3e7d1efa0c2d349.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/site.self-3a06853897a296077ec21c39a63009c9885e67d3f9f72d3d46effa560d0cdca7.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/gridmenu.self-719b7e9c7441e4128e97478d6ebac3fb0d3f2f42b6b80a589366458abb877b66.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/sidebar.self-50a88ba50545245fa35dd91407f8795048da79e05dbd1dd94e11f6681aa5987e.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/menu.self-f048b42a0c8d9053d5d4e3da9aeca273a956a8aa80ad648ea0c0ae40e1e649dd.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/menubar.self-187ba2ab320d2ae7e13823cd0c7ad8a892d90f98b39dd214439b07a93270ec9e.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/config-colors.self-b588319a119647898076b5150fffa63311f60136fd112decce15f8514be64f65.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/config-tour.self-2c87e00f7700e70a5532ce16e8bc6f8d21cf32204701b9c6420f153f9b9d3b5d.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/animsition.self-688b9b4131d42b65a048cd0fff3941d33ec9fcd8b11165093502a1697833259d.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/switchery.self-656353ab5d386b4dcca010ac2ff18116eb99add843322c1d52c70c62e7b7c4fe.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.asPaginator.min.self-4300c543e86980e49a3a1562dddf0709406347f7ccbf7db2214736de6ccf312d.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery-placeholder.self-de5297b0a6bcb181c1efb500a0c429711fc2d816847ceec7e48a6642383c7663.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/responsive-tabs.self-8ff55949543263bc1bc1e27db57e670fb6b10d34447cd9063f35f4f0c232b523.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/asprogress.self-f42eacad5a45e86be55cf6e737564a08f87b501e1c1773ca1a120ad5fc053efd.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/panel.self-a50cffe8963b587496608e3bc31bca1d6b34b421262305db2ab550e8876567f2.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/tabs.self-ef8ef20828d5e4e2e278aaa4761b70cea464e5f912ca6465f94b308e74fd4fa7.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/aspaginator.self-43ca1f1a88b7224d8dc4f9239ba86002d6101ef3466cd1b3a2484c50e4d845d4.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/application.self-48e5e7d595b571168c15de82f3eacb4925c2c0e9cdb5529b3649d6e78dfa5f82.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/gridstack.self-2a56083bd12f664ee9bd16b53c8b34e7c6fe3a7d91033617d1565ed1d72cc0c9.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/gridstack.self-9d79f33c288a8e65103fa48ac936c4a34946410fe48bb53f8ce120b6c83d8fd3.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/components/summernote.self-c2d8173020bf864006fbdc65656df4e6b92fd953e34151108b133c339a1def08.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/editor-summernote.self-ed9e02dc175d0b39918f552fcac2bf1b3b18fad5d31208c3070316bfd6cd4920.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/plugin/zsummernote-iframe.self-feda49f71b0954a48de80fa322f29d2b1bd928adf96a7b4f3ce1a84a089058f6.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/tmpl.self-a8d99bb23ed6a938a41905961508a9c087e8b84454e2ee217466f7d50f4967c8.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/canvas-to-blob.self-8bc94a45a2213bd0b994c8340dff33754a3dea0963cbdbe1d7a643570038af12.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/load-image.all.min.self-1fcf285a875cb5c873a95b81d9d757163d87f72840d17cab633233fb619bd69a.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-image.self-17ba0c88e45300a5dc7c01413a3da07b28b2ae841fcd22ba93e3c50f997ab5ee.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-audio.self-f4a39f4b95d17c6f777258564f8fa563ba75368a43163d090a7494e7523c623c.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-process.self-69bb38ce308d5a22b8b2e96550f62a46704c8a204cecb18a8d449c81268f2dd2.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-video.self-7d0c1888cad62b161fd980eef98269ac6977c0cb9affa9fd3202c2221a94f80c.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-validate.self-950050c5bc37f6061bb71c43af1194f0d3f9b0476f6a4cdb66802bb975ecf07f.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-ui.self-5c30a23c63f6de0161169ef36fe326e9fd2270db4b167fc88892d7a80559997f.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/buttons.self-ac660d777e48e342729566ba9bd64e14b648c58d4a21d7bc33cb4f03a357b58b.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/dropify.min.self-99f960440e8677935c748f28ae3125c753c7a127bad03a155e4a6af59505844d.js?body=1" for ::1 at 2016-08-02 16:32:45 -0300
+
+
+Started GET "/assets/js/dropify.self-46a18f7c0b2431aea08391797f6810444372398e56394bf2cfa2a21080f36f38.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/uploads.self-a65f5e3038c45a2ad052f8b987104b6a0aa9de697986d6fcffe5a1147e5aaf74.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/jquery.webui-popover.min.self-121eb5b5762e8e942e8cdb639cdce9ab4034a0eeab3050effff610ccbe853984.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/jquery.toolbar.min.self-1a26f3cbe5849b2938196882c5c7550a9e408e0e9c69be222fc6d38065ea897a.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/webui-popover.self-e8cc0afeef1a7b2d2bb5be27c65ee6945a1237ffb5aa2247ba02b9825390dc78.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/toolbar.self-9c869fccf73c7425f6f71bb91ad71ebc03c951c417be40348a1d0f0f6b291283.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/projects.self-503f0e78a8ff521b035e05fa97abe6eeec391905a5f28629acccaf2efdcc4c7b.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/jquery.self-47e5b5a44928730f4e54a90ebab218ce5d156f086cdc2db94dd6a90d9bdb4426.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/placeholder-2af47fb3de8ceeafb57a6a633260054780332f767f4c9d8f358c79520d7ab306.png" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/projects/assets/avatar.jpeg" for ::1 at 2016-08-02 16:32:46 -0300
+
+ActionController::RoutingError (No route matches [GET] "/projects/assets/avatar.jpeg"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (48.3ms)
+
+
+Started GET "/assets/plugin/bootstrap.self-25f7b25439e49c9a381e6b196bc7a973fb08c95450e7efde3a1e22a73aa71031.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/jquery.asScrollable.all.self-e054ab5779200cc40fc005f21a8e1dce424587e26c5bd0319f7b8681e8cb9d5e.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/intro.self-1dafcc2788cef7bba11ec173d0989f4d52350d7e36898f863cbce1b163797e49.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/lodash.self-2910610f591514a64f1d8d17acd5c729d38dbcf165a5596dc9cae3a45d4ce000.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/jquery-slidePanel.self-8405aab9eee852db83fccf195c89f8a22a4bfba1bdd21b218329bebda4af1493.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/jquery-ui.min.self-1f37fd37d8db0404488ac8f6505560e48d1364ef1c81e384ac695e143049ab0f.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/plugin/summernote.min.self-8b645802eece79e0df21a865776daffcae0ff8797186c4052822d03461b265db.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/assets/js/jquery.fileupload.self-916bc75778034f7b1faf5ba1bd6ab8d24ad11aff851e6d25b37f81774d35b547.js?body=1" for ::1 at 2016-08-02 16:32:46 -0300
+
+
+Started GET "/" for ::1 at 2016-08-09 20:32:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LoginController#index as HTML
+  Rendered login/index.html.erb within layouts/application (28.6ms)
+Completed 200 OK in 2852ms (Views: 2834.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/css/animsition.self-c370cd7ae60c2e6edc2ca6fb5f84271cd6b007020bde574beeabe8ce2c4a3928.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/bootstrap.o.extend.min.self-565c837c399b84a02c3ed56fff72002d05e85ca656823796e42130a58e57216d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/bootstrap.min.self-d91e6dfd5cf71bf25e5092b5bc021e5ffae018a598e8b69fc06a084f69fb1d9c.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/chartist.self-e6f4f106ac165d309679ee9093e66d19d94b7e0f5f3d4e6c4ab469ac86dab45e.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/dropify.self-38117dd837afc86670a438d16cedef7dd8aec5b09dddd0a976d195ba7612d42d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/chartist-plugin-tooltip.self-1147e04494c3a8b8346bf4ddbf197874ddd78d51391aac0c862af11dcf154d04.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/forgot-password.self-4b605c3291372b0946dd49027d01b61a6676b3cb625bca02da10da4ff719803c.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/asScrollable.self-28584fd4a945f8ed756ff4d2fb0374ba76c81c4fd44e495889c035c94e8fbe63.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/buttons.self-fbff40b2b46223165509a69193b4c4a1df46f048e30f35bb8cb89d45b0c8b093.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/brand-icons/brand-icons.self-1e1d3c9d79f9c6dae04cdc0a96c1235b5cead25dd4e217ae0110961e77b35f81.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/gridstack.self-2120450f84fdd5e6c41df7852f30bdd7822a351bec45ffc1c088f7b818dcae43.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/flag-icon.self-7e0994beeb497a8a92b6503bd1d91ea360ffe182a62eb3bdaf3173bbb67cea74.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/gallery.self-43964f1d6be475ff954b93dd425590f9c840e965c4973cc18e6d1ea75c5f9c11.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/introjs.self-c481cfa0b95e72b44e2bd623b83aed143983e4d40064996e4d292a7270668920.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/jquery-jvectormap.self-e17107bfa3d7efe424e9f98ed49f2e1603e0f9eaf5e80b781e7c30a71edefdd8.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/jquery.fileupload.self-1d9e21abf5270f8d41feefa51ef177965496a18de659c7797eef33b1658656b3.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/register-v2.self-97a4e1921e5e0340d14bfbb6e0989c2973d033bb6a625c5239aee4dd069a09ad.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/modals.self-b69f00bef142d715a192bff08ed065887c8056b25cb7a3afb119fe0978698275.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/panel-portlets.self-ade724626cb364a6d93c21d7b977b20dc0efccdcad870cddf5d7ed138e53cff9.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/profile.min.self-c8f49d39eeb9b6f41751b05aa44b8bb8e02605cbbc3df7a2372f6f11e2775749.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/login-v2.self-80b429d99410b8ed860039fe27ebe6210228f627c66a5496a770843488088b20.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/site.min.self-9ead9c34685e19357d0d06b69d2db2c47a2f91fe234d30b264364a60b060b3eb.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/slidePanel.self-60d4533714169cb40970d4048332e31ab5eeddbd7604be8ebb8bbe196010a5b0.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/summernote.self-7985c88b3c412253a4d9a07b3fef5bfe299e6e111d29ce93a2464193a2a8cb98.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/switchery.self-552956e299d4d4c6e5154b30ce3caaa060861084f295dedfe83fccd8090eed5e.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/toolbar.min.self-1e3cfdf4f24f2b68e37fdad5c1fb99a693281429d5121065b3e706a18f11046d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/user.self-08da173be71bb9cd98d433c246a83f2fb10de248068dcc865b694b033bab005b.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/v1.self-49fdad96fd17fab0047c13859be87ea83a4e06820a122533454aaf82642bf88d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/web-icons/web-icons.self-45f46729b88913dd3323d163df8845dc22dc712c073588fb342f926c2622811c.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/css/webui-popover.min.self-9ebcb5dac39aed62db1abd61f464eb227a9d1bc4b74d72bdafd40ec3bdc1ff28.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/facebook_login.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.self-91713c616e5e09ac2837ab3fa45463a6661ec13fceef6c23906958a82e1db497.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/7-stroke/7-stroke.min.self-afe30d6e07127426c6d25b20e995104de3d51de5b2a47e640bff9cd18df0232f.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.self-2ec0e43d03e50777c7355aa621943630083737930b6733019b738a8b06c2ee8d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/font-awesome/font-awesome.min.self-e7160116e0bf65c9de10ff0600f20b116b83b0c85a78101586fc39618efc8f13.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.self-a5935fff525ab0b6d89a16c651819d6fe9ce118ae4fd39e4832994ff9b0f7cbe.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/glyphicons/glyphicons.min.self-b4c973233c3b9912047d0b5e3a20d363ee4b1f1ad01e9e0f0e0d4b52c50b820e.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.self-41aa472ac4895ae34a1a0d661899da00584bf9c3afe62c2a6d857a5eb626ecfa.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/ionicons/ionicons.min.self-14898c48c641304c442b405dc7bb54e932db63dd2a518106e908e366d3534596.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.self-82f654133eda06c2a415c84002f50e8a611d73fd755fcf7599dc5ad192f4c774.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/material-design/material-design.min.self-dcb569f5dabd0ccfd1559a85d8f13b952a8e8d0793f8af74ebf264de2650f0be.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.min.self-666b1f5221a381650c923669c6058aa4e1f73ae8fe7bd3f143fd60b90ae5c51d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/mfglabs/mfglabs.self-a32dbba2c6dd652f29e5356a278d37d78b82a80828cbc1885c817cd5ab444a5a.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.self-d22d94015a62ce312648e23acc03dad8e2185ea4d486405ac41d5c59a2d5f3a3.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/octicons/octicons.min.self-35c02a86fa95865f0c90e28e7c2a8acda140edfb3f952bdd8c6b2f9b8600222e.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.self-7837eac800226d48302bd10468ef2a64f1e82da2eed866873569afb08516a98c.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/open-iconic/open-iconic.min.self-cbfcb4fcbdc437884c3bc497ca5d5a8e057f4400f74ec5893983453eef992f89.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/themify/themify.self-a13ff6a960655a24cde9877b0baf6e1cebbc27937a4e658a9042d15cacee2eb7.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/themify/themify.min.self-1f350efb54f7a98db8506f814e9bad3548b6766df9e99187f13fbeee7142ba59.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.self-efb3351bfa26d4126a9c9af8f827f496e2eed6ed049b7665739b040385b3f68d.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/weather-icons/weather-icons.min.self-b1300a74e39ec0f69af2dc8b9724068782bfe46b8d70523b02cb44b75a14cc69.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/languages.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/login.self-a84e3c1959d14232765af03d96a6e8e58299d16a53ecc0990366d2af378eee77.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/operational_systems.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/projects.self-bf3bf1a2c52411f05f99b47aa3518939e24ad673af658c703c2ef64a76499560.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/red.self-5d919aec6b5abda411120f058c06941553d625f0b1027d152b65362df48dfd59.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/scaffold.self-505f44bba8c644c7b0340dddeb379e98412308f10a03a912b860187ff05691f1.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/tools.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/users.self-f881d724c52604905862d3e27edac1e698f0cf64ed7d4e07cd68db8bdfa4f922.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/application.self-c4991312985bccd133f1f21ab2f6a5d0129a8416a91037313b14f05d7d2e7dde.css?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/modernizr.self-50d91a59409b0763cb78a29e8971bb40b280f67693a658137dfc846a0bcd3ff3.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/breakpoints.self-d2a0b565dfbac31a14406efaedd401e31e7a78053a621898343b780728867f74.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery.self-47e5b5a44928730f4e54a90ebab218ce5d156f086cdc2db94dd6a90d9bdb4426.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/bootstrap.self-25f7b25439e49c9a381e6b196bc7a973fb08c95450e7efde3a1e22a73aa71031.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/animsition.self-27ff05418b7a47a197d9aa5b7f0f523d0bd57710aa279879b582c8be8ac9a4ef.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery-asScroll.self-c62cbee9bae60be3b33f97b8a7f3767df2b7a96394b025ab288556aa2b5a3ffa.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery.asScrollable.all.self-e054ab5779200cc40fc005f21a8e1dce424587e26c5bd0319f7b8681e8cb9d5e.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery.mousewheel.self-9c651ebc21ea658b05f7567c2e310bb59ffd59877d5116e3a049a95c4c74e6c2.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery-asHoverScroll.self-36df27914264d945b8a918715d3a2d0c61e51980d34458e686644d7cd95e0d98.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/intro.self-1dafcc2788cef7bba11ec173d0989f4d52350d7e36898f863cbce1b163797e49.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/switchery.min.self-fe55621bc2159165d1f24a467b6b136f45fe3b320a8c400d2bf50c46812e83b3.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/screenfull.self-464c3a64a70f62bc48758d0838d69d4202adc154f537dd2a46885c23c1300732.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery-slidePanel.self-8405aab9eee852db83fccf195c89f8a22a4bfba1bdd21b218329bebda4af1493.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery.placeholder.self-c8383ffc1e2e14a9e5a16f91ac46fcfd39a26cda87cfc4a2f30d8d92cfa75d11.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/isotope.pkgd.min.self-3bfd510f090c8b0c9b4140101efa8f8c2e9433ad68e537c264a1a717a90db3b2.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery-ui.min.self-1f37fd37d8db0404488ac8f6505560e48d1364ef1c81e384ac695e143049ab0f.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/jquery-asProgress.self-49446c956a74f2543a2d2589824624c8fd3e824e747de533ac7beb566c8352e2.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/lodash.self-2910610f591514a64f1d8d17acd5c729d38dbcf165a5596dc9cae3a45d4ce000.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/core.self-82bef7fddb4b8e7e7b95ca83eaf7e61cf753990dba241213707a8ad043a34250.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/site.self-3a06853897a296077ec21c39a63009c9885e67d3f9f72d3d46effa560d0cdca7.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/plugin/draggabilly.pkgd.self-73c5b6d83a8ceb0e977b9c042f6d1bce0c6226979d6801b7e3e7d1efa0c2d349.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/menu.self-f048b42a0c8d9053d5d4e3da9aeca273a956a8aa80ad648ea0c0ae40e1e649dd.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/menubar.self-187ba2ab320d2ae7e13823cd0c7ad8a892d90f98b39dd214439b07a93270ec9e.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/gridmenu.self-719b7e9c7441e4128e97478d6ebac3fb0d3f2f42b6b80a589366458abb877b66.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/sidebar.self-50a88ba50545245fa35dd91407f8795048da79e05dbd1dd94e11f6681aa5987e.js?body=1" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/fonts/brand-icons/brand-icons.woff2?v=0.3.3" for ::1 at 2016-08-09 20:32:04 -0300
+
+
+Started GET "/assets/js/config-colors.self-b588319a119647898076b5150fffa63311f60136fd112decce15f8514be64f65.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/config-tour.self-2c87e00f7700e70a5532ce16e8bc6f8d21cf32204701b9c6420f153f9b9d3b5d.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/animsition.self-688b9b4131d42b65a048cd0fff3941d33ec9fcd8b11165093502a1697833259d.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/switchery.self-656353ab5d386b4dcca010ac2ff18116eb99add843322c1d52c70c62e7b7c4fe.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/jquery.asPaginator.min.self-4300c543e86980e49a3a1562dddf0709406347f7ccbf7db2214736de6ccf312d.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/js/jquery-placeholder.self-de5297b0a6bcb181c1efb500a0c429711fc2d816847ceec7e48a6642383c7663.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/tabs.self-ef8ef20828d5e4e2e278aaa4761b70cea464e5f912ca6465f94b308e74fd4fa7.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/responsive-tabs.self-8ff55949543263bc1bc1e27db57e670fb6b10d34447cd9063f35f4f0c232b523.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/asprogress.self-f42eacad5a45e86be55cf6e737564a08f87b501e1c1773ca1a120ad5fc053efd.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/panel.self-a50cffe8963b587496608e3bc31bca1d6b34b421262305db2ab550e8876567f2.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/aspaginator.self-43ca1f1a88b7224d8dc4f9239ba86002d6101ef3466cd1b3a2484c50e4d845d4.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/slidepanel.self-ab97b887f48f326d891a7bd3a850c0ba5a3d1a7c2834a30d711ab734d85f1a41.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/components/asscrollable.self-05292b61d8872a8136b5e9a0de9c2ebe3c31b06ade1decdb5d06ba3a93706919.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/application.self-48e5e7d595b571168c15de82f3eacb4925c2c0e9cdb5529b3649d6e78dfa5f82.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/login.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-09 20:32:05 -0300
+
+
+Started GET "/" for ::1 at 2016-08-09 20:34:37 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LoginController#index as HTML
+  Rendered login/index.html.erb within layouts/application (56.9ms)
+Completed 200 OK in 1946ms (Views: 1928.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-09 20:34:39 -0300
+
+
+Started GET "/assets/fonts/brand-icons/brand-icons.woff2?v=0.3.3" for ::1 at 2016-08-09 20:34:39 -0300
+
+
+Started POST "/users/login" for ::1 at 2016-08-09 20:34:51 -0300
+Processing by LoginController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PRG4PeH4BnZxjpsqC4D8Jteg7JpIR2V7y4e2ww7apQtbXtkxmkepAxVElnuO+Pud4DBzmHCkh37AEL2XrJDqmw==", "user"=>{"email"=>"rafaelsm.br@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "rafaelsm.br@gmail.com"]]
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 88ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/projects" for ::1 at 2016-08-09 20:34:51 -0300
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (1.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (11.5ms)
+  Rendered layouts/_navigation.html.erb (2.7ms)
+Completed 200 OK in 336ms (Views: 299.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/plugin/summernote.min.self-8b645802eece79e0df21a865776daffcae0ff8797186c4052822d03461b265db.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/plugin/gridstack.self-2a56083bd12f664ee9bd16b53c8b34e7c6fe3a7d91033617d1565ed1d72cc0c9.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/components/summernote.self-c2d8173020bf864006fbdc65656df4e6b92fd953e34151108b133c339a1def08.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/components/gridstack.self-9d79f33c288a8e65103fa48ac936c4a34946410fe48bb53f8ce120b6c83d8fd3.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/tmpl.self-a8d99bb23ed6a938a41905961508a9c087e8b84454e2ee217466f7d50f4967c8.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/plugin/zsummernote-iframe.self-feda49f71b0954a48de80fa322f29d2b1bd928adf96a7b4f3ce1a84a089058f6.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/editor-summernote.self-ed9e02dc175d0b39918f552fcac2bf1b3b18fad5d31208c3070316bfd6cd4920.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/canvas-to-blob.self-8bc94a45a2213bd0b994c8340dff33754a3dea0963cbdbe1d7a643570038af12.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/load-image.all.min.self-1fcf285a875cb5c873a95b81d9d757163d87f72840d17cab633233fb619bd69a.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload.self-916bc75778034f7b1faf5ba1bd6ab8d24ad11aff851e6d25b37f81774d35b547.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-process.self-69bb38ce308d5a22b8b2e96550f62a46704c8a204cecb18a8d449c81268f2dd2.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-image.self-17ba0c88e45300a5dc7c01413a3da07b28b2ae841fcd22ba93e3c50f997ab5ee.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/placeholder-2af47fb3de8ceeafb57a6a633260054780332f767f4c9d8f358c79520d7ab306.png" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/avatar.jpeg" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-audio.self-f4a39f4b95d17c6f777258564f8fa563ba75368a43163d090a7494e7523c623c.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-video.self-7d0c1888cad62b161fd980eef98269ac6977c0cb9affa9fd3202c2221a94f80c.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-validate.self-950050c5bc37f6061bb71c43af1194f0d3f9b0476f6a4cdb66802bb975ecf07f.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.fileupload-ui.self-5c30a23c63f6de0161169ef36fe326e9fd2270db4b167fc88892d7a80559997f.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/dropify.min.self-99f960440e8677935c748f28ae3125c753c7a127bad03a155e4a6af59505844d.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/dropify.self-46a18f7c0b2431aea08391797f6810444372398e56394bf2cfa2a21080f36f38.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/buttons.self-ac660d777e48e342729566ba9bd64e14b648c58d4a21d7bc33cb4f03a357b58b.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/uploads.self-a65f5e3038c45a2ad052f8b987104b6a0aa9de697986d6fcffe5a1147e5aaf74.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.webui-popover.min.self-121eb5b5762e8e942e8cdb639cdce9ab4034a0eeab3050effff610ccbe853984.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/jquery.toolbar.min.self-1a26f3cbe5849b2938196882c5c7550a9e408e0e9c69be222fc6d38065ea897a.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/webui-popover.self-e8cc0afeef1a7b2d2bb5be27c65ee6945a1237ffb5aa2247ba02b9825390dc78.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/js/toolbar.self-9c869fccf73c7425f6f71bb91ad71ebc03c951c417be40348a1d0f0f6b291283.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started GET "/assets/projects.self-503f0e78a8ff521b035e05fa97abe6eeec391905a5f28629acccaf2efdcc4c7b.js?body=1" for ::1 at 2016-08-09 20:34:52 -0300
+
+
+Started POST "/projects" for ::1 at 2016-08-09 20:35:13 -0300
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ayNreHTLVFLjijW5TMi9YJSEBb1t/LZiJTQeWd5iPoINbAp0D3T7J4dAOOjJsLrboxSav1UfVGcuoxUNfChxEg==", "project"=>{"name"=>"firefox", "description"=>"teste 2"}, "openhub_check"=>"1", "commit"=>"Create project"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "projects" ("name", "description", "user_id", "about", "image_url", "link", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "firefox"], ["description", "teste 2"], ["user_id", 1], ["about", "The award-winning, free Web browser is better than ever. Browse the Web with confidence - Firefox protects you from viruses, spyware and pop-ups. Enjoy improvements to performance, ease of use and privacy. It's easy to import your favorites and settings and get started. Download Firefox now and get the most out of the Web.\n\nOhloh Note: There's more to Firefox! See the Mozilla Core and Mozilla Chrome projects for complete coverage. <br>\n                       <iframe src='https://www.openhub.net/p/firefox/widgets/project_factoids_stats' \n                       scrolling='no' marginheight='0' marginwidth='0' \n                       style='height: 220px; width: 370px; border: none'></iframe>"], ["image_url", "https://s3.amazonaws.com/cloud.ohloh.net/attachments/41453/logo-only_med.png"], ["link", "OpenHub URL: <a href='https://www.openhub.net/p/firefox'>https://www.openhub.net/p/firefox</a><br>\n                        Homepage Url: <a href='http://www.firefox.com/'>http://www.firefox.com/</a><br>\n                        Download URL: <a href='http://getfirefox.com/'>http://getfirefox.com/</a>"], ["created_at", "2016-08-09 23:35:15.692329"], ["updated_at", "2016-08-09 23:35:15.692329"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/projects/2
+Completed 302 Found in 2372ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/projects/2" for ::1 at 2016-08-09 20:35:15 -0300
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."user_id" = ? AND "projects"."id" = ? LIMIT 1  [["user_id", 1], ["id", 2]]
+  [1m[36mLanguage Load (0.5ms)[0m  [1mSELECT  "languages".* FROM "languages" WHERE "languages"."id" IS NULL  ORDER BY "languages"."id" ASC LIMIT 1[0m
+  [1m[35mTool Load (0.5ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" IS NULL  ORDER BY "tools"."id" ASC LIMIT 1
+  [1m[36mOperationalSystem Load (1.0ms)[0m  [1mSELECT  "operational_systems".* FROM "operational_systems" WHERE "operational_systems"."id" IS NULL  ORDER BY "operational_systems"."id" ASC LIMIT 1[0m
+  Rendered projects/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+Completed 200 OK in 247ms (Views: 228.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/projects/assets/avatar.jpeg" for ::1 at 2016-08-09 20:35:16 -0300
+
+ActionController::RoutingError (No route matches [GET] "/projects/assets/avatar.jpeg"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (52.8ms)
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-09 20:35:16 -0300
+
+
+Started GET "/assets/fonts/font-awesome/fontawesome-webfont.woff2?v=4.6.1" for ::1 at 2016-08-09 20:35:16 -0300
+
+
+Started GET "/" for ::1 at 2016-08-11 11:57:14 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LoginController#index as HTML
+  Rendered login/index.html.erb within layouts/application (31.6ms)
+Completed 200 OK in 2651ms (Views: 2631.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/login.jpg" for ::1 at 2016-08-11 11:57:17 -0300
+
+
+Started GET "/assets/fonts/brand-icons/brand-icons.woff2?v=0.3.3" for ::1 at 2016-08-11 11:57:17 -0300
+
+
+Started POST "/users/login" for ::1 at 2016-08-11 11:57:29 -0300
+Processing by LoginController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9ZZ2A+NhDxAO5Ij/2zejqQiJ8HruUO4t4Xd2/CP6O/1XwDSWOALFQuJkhltqVab/ZjPSGgd27NLyOptEz+AGIg==", "user"=>{"email"=>"rafaelsm.br@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "rafaelsm.br@gmail.com"]]
+Redirected to http://localhost:3000/projects
+Completed 302 Found in 87ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/projects" for ::1 at 2016-08-11 11:57:29 -0300
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.9ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (13.6ms)
+  Rendered layouts/_navigation.html.erb (2.4ms)
+Completed 200 OK in 304ms (Views: 255.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-11 11:57:30 -0300
+
+
+Started GET "/assets/placeholder-2af47fb3de8ceeafb57a6a633260054780332f767f4c9d8f358c79520d7ab306.png" for ::1 at 2016-08-11 11:57:30 -0300
+
+
+Started GET "/assets/avatar.jpeg" for ::1 at 2016-08-11 11:57:30 -0300
+
+
+Started GET "/projects/1" for ::1 at 2016-08-11 11:57:37 -0300
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."user_id" = ? AND "projects"."id" = ? LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mLanguage Load (0.6ms)[0m  [1mSELECT  "languages".* FROM "languages" WHERE "languages"."id" IS NULL  ORDER BY "languages"."id" ASC LIMIT 1[0m
+  [1m[35mTool Load (0.6ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" IS NULL  ORDER BY "tools"."id" ASC LIMIT 1
+  [1m[36mOperationalSystem Load (0.4ms)[0m  [1mSELECT  "operational_systems".* FROM "operational_systems" WHERE "operational_systems"."id" IS NULL  ORDER BY "operational_systems"."id" ASC LIMIT 1[0m
+  Rendered projects/show.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+Completed 200 OK in 274ms (Views: 245.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/projects/assets/avatar.jpeg" for ::1 at 2016-08-11 11:57:37 -0300
+
+ActionController::RoutingError (No route matches [GET] "/projects/assets/avatar.jpeg"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (64.0ms)
+
+
+Started GET "/assets/fonts/web-icons/web-icons.woff2?v=0.2.3" for ::1 at 2016-08-11 11:57:37 -0300
+
+
+Started GET "/assets/fonts/font-awesome/fontawesome-webfont.woff2?v=4.6.1" for ::1 at 2016-08-11 11:57:38 -0300
