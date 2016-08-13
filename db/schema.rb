@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160802151248) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.string   "issues_tracker_url"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "user_id"
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20160802151248) do
     t.integer  "tool_id"
     t.integer  "operational_system_id"
     t.text     "about"
-    t.text     "issue"
     t.text     "technical_skill"
     t.text     "soft_skill"
     t.text     "contribution"

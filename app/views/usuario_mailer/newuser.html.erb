@@ -301,7 +301,7 @@ a {
 				<table class="main" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="alert alert-warning">
-							Congratulations!!! <%= @name %>
+							<p>Congratulations!!! Dear <%= @name %>,</p>
 						</td>
 					</tr>
 					<tr>
@@ -309,10 +309,9 @@ a {
 							<table width="100%" cellpadding="0" cellspacing="0">
 								<tr>
 									<td class="content-block">
-Your account has been created successfully and is ready to use
-
-Dear <%= @name %>, 
-If you can see this, your account has been successfully created. 
+<p>Your account has been created successfully and is ready to use.</p>
+<p>You may now start adding your projects, <a href="<%= @link %>">click here</a></p>
+<p>If you can see this, your account has been successfully created. Thank you.</p>
 									</td>
 								</tr>
 							</table>

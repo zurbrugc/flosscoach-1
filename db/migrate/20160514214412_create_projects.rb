@@ -4,7 +4,6 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :project_page_url
-      t.string :issues_tracker_url
 
       t.timestamps null: false
     end

@@ -5,8 +5,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @project = current_user.projects.build
-    @projects = current_user.projects.search(params[:search])
+    @projects = Project.all.search(params[:search])
+    if current_user
+      @myproject = current_user.projects.build
+    else
+      @myproject = Project.all.search("nenhum")
+    end
   end
 
   # GET /projects/1
@@ -27,9 +31,10 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @languages = Language.all
-    @tools = Tool.all
-    @operationalsystems = OperationalSystem.all
+    @codigourl = params[:id]
+    @language = Language.where(:id => @project.language_id).first
+    @tool = Tool.where(:id => @project.tool_id).first
+    @operationalsystem = OperationalSystem.where(:id => @project.operational_system_id).first
   end
 
   # POST /projects
@@ -77,12 +82,13 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = current_user.projects.find(params[:id])
+      @project = Project.all.find(params[:id])
+      #@project = current_user.projects.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def project_params
-      params.require(:project).permit(:name, :description, :project_page_url, :issues_tracker_url, :about, :issue, :technical_skill, :soft_skill, :contribution, :workspace_setup, :resource, :documentation, :search_resource, :link, :send_contribution, :user_id, :tool_id, :language_id, :operational_system_id)
+      params.require(:project).permit(:name, :description, :project_page_url, :about, :issue, :technical_skill, :soft_skill, :contribution, :workspace_setup, :resource, :documentation, :search_resource, :link, :send_contribution, :user_id, :tool_id, :language_id, :operational_system_id)
     end
 
     def authorize_project

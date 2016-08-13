@@ -4,7 +4,6 @@ class LanguagesController < ApplicationController
   # GET /languages
   def index
     @languages = Language.all
-   # @client = Project.find(:one ,1,  :params => {:api_key => 'a8b2141ce1264ca5e99e49e1cb37dbb589949bc910cc6d71a938c8db7f51136c'})
   end
 
   # GET /languages/1
