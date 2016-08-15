@@ -14,3 +14,9 @@
 	.dropify-wrapper input{
 		z-index:0;
 	}
+
+
+	.step{
+		border-bottom:1px solid white;
+
+	}

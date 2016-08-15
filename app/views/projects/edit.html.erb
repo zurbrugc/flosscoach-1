@@ -111,7 +111,7 @@
       </div>  
 
 
-      <div class="grid-stack-item" data-gs-x="0" data-gs-y="5" data-gs-width="12" data-gs-height="6" data-type="how-to-start">
+      <div class="grid-stack-item" data-gs-x="0" data-gs-y="5" data-gs-width="12" data-gs-height="7" data-type="how-to-start">
         <div class="grid-stack-item-content panel panel-bordered">
           <div class="panel-heading">
             <h3 class="panel-title">Basic Contribution Flow to Follow</h3>
@@ -124,6 +124,51 @@
           </div>    
           
           <div id="contribution" class="panel-body click2edit">
+                       <div class="steps steps-vertical">
+                    <div class="step done">
+                      <span class="step-number">1</span>
+                      <div class="step-desc">
+                        <span class="step-title">Learn about the project and skills</span>
+                        <p>First you need to learn about the project. Search on it and see if it really interests you propose.</p>
+                      </div>
+                    </div>
+                    <div class="step done">
+                      <span class="step-number">2</span>
+                      <div class="step-desc">
+                        <span class="step-title">Setup you local workspace</span>
+                        <p>Install the development environment on your machine.</p>
+                      </div>
+                    </div>
+
+                    <div class="step done">
+                      <span class="step-number">3</span>
+                      <div class="step-desc">
+                        <span class="step-title">Find a task to start with</span>
+                        <p>Search a task for beginners to start contributing</p>
+                      </div>
+                    </div>
+
+                    <div class="step done">
+                      <span class="step-number">4</span>
+                      <div class="step-desc">
+                        <span class="step-title">Study and change the code</span>
+                        <p>Don't forget to test your code!</p>
+                      </div>
+                    </div>
+                    <div class="step done">
+                      <span class="step-number">5</span>
+                      <div class="step-desc">
+                        <span class="step-title">Submit your contribution</span>
+                        <p>Congratulations, you have successfully contributed to the project.</p>
+                      </div>
+                    </div>
+                    <div class="step error">
+                      <div class="step-desc text-center">
+                        <span class="step-title text-center">Have a question?</span>
+                        <p>Get support from the community.</p>
+                      </div>
+                    </div>
+                  </div>
             <%= @project.contribution.html_safe  if @project.contribution %>
           </div>
         </div>
