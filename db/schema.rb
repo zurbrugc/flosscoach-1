@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802151248) do
+ActiveRecord::Schema.define(version: 20160823212618) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160802151248) do
     t.string   "project_page_url"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.integer  "user_id"
     t.integer  "language_id"
     t.integer  "tool_id"
     t.integer  "operational_system_id"
@@ -51,7 +50,13 @@ ActiveRecord::Schema.define(version: 20160802151248) do
   add_index "projects", ["language_id"], name: "index_projects_on_language_id"
   add_index "projects", ["operational_system_id"], name: "index_projects_on_operational_system_id"
   add_index "projects", ["tool_id"], name: "index_projects_on_tool_id"
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
+  add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id"
 
   create_table "tools", force: :cascade do |t|
     t.string   "name"
@@ -72,6 +77,23 @@ ActiveRecord::Schema.define(version: 20160802151248) do
     t.string   "provider"
     t.string   "uid"
     t.string   "description"
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string   "title",                      null: false
+    t.string   "tab",                        null: false
+    t.string   "slug"
+    t.integer  "pos_x",                      null: false
+    t.integer  "pos_y",                      null: false
+    t.integer  "width",                      null: false
+    t.integer  "height",                     null: false
+    t.boolean  "closeable",   default: true
+    t.boolean  "resizeable",  default: true
+    t.boolean  "retractable", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "content"
+    t.integer  "project_id"
   end
 
 end
