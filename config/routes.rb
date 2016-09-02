@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :projects do
+    resources :users, :controller => "projects/users"
+  end
+
+
+
   resources :operational_systems
   resources :tools
   resources :projects
@@ -14,6 +20,10 @@ Rails.application.routes.draw do
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'omni_auth_login#destroy'
+
+
+
+
 
 
 end

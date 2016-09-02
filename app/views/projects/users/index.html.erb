@@ -1,0 +1,58 @@
+<div class="page-content">
+
+        <div class="text-center">
+          <h3>
+            Explore Flosscoach
+          </h3>
+          <p class="lead">
+            Discover projects, groups and technologies. Share your projects with others
+          </p>
+          <br>
+        </div>
+
+      <!-- Panel -->
+      <div class="panel">
+        <div class="panel-body">
+          <h3 class="text-center">Adminsitrators of <%= @project.name %> project </h4>
+          <hr>
+          <ul class="list-group list-group-full">
+          <% @project.owners.each  do |member| %>
+          <%= link_to user_path(member) do %>
+              <li class="list-group-item">
+                <div class="media">
+                  <div class="media-left">
+                    <span class="avatar">
+                      <img class="img-responsive" src="<%= member.photo_url %>" alt="Photo of <%= member.name %>">
+                      </span>
+                  </div>
+                  <div class="media-body">
+
+                    <h4 class="media-heading"><%= member.name %></h4>
+
+                    <small>Administrator</small>
+                  </div>
+                  <div class="media-right">
+                    <span class="status status-lg status-online"></span>
+                  </div>
+                </div>
+              </li>
+                         <% end %>
+
+           <% end %>
+
+                </ul>
+        </div>
+      </div>
+      <!-- End Panel -->
+
+        <%= link_to new_project_user_path do %>
+        <button class="btn btn-floating btn-success" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
+          <i class="icon wb-plus" aria-hidden="true"></i>
+        </button>
+        <% end %>
+<!-- POPUP -->
+
+
+
+
+</div>
