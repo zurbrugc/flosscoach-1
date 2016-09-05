@@ -11,7 +11,7 @@
 
   # GET /users/1
   def show
-
+redirect_to project_users_path, notice: 'Done.'
   end
 
   # GET /users/new
@@ -52,8 +52,11 @@
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    @project = Project.all.find(params[:project_id])
+    @user = @project.owners.find(params[:id])
+    if @project.owners.delete(@user)
+      redirect_to project_users_path, notice: 'Done.'
+    end
   end
 
   private
@@ -66,4 +69,10 @@
     def user_params
       params.require(:user).permit!
     end
+
+    def set_project
+      @project = Project.all.find(params[:project_id])
+      #@project = current_user.projects.find(params[:id])
+    end
+
 end

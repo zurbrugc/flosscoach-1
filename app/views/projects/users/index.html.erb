@@ -14,29 +14,35 @@
       <div class="panel">
         <div class="panel-body">
           <h3 class="text-center">Adminsitrators of <%= @project.name %> project </h4>
-          <hr>
           <ul class="list-group list-group-full">
           <% @project.owners.each  do |member| %>
-          <%= link_to user_path(member) do %>
               <li class="list-group-item">
                 <div class="media">
                   <div class="media-left">
                     <span class="avatar">
+                              <%= link_to user_path(member) do %>
+
                       <img class="img-responsive" src="<%= member.photo_url %>" alt="Photo of <%= member.name %>">
+                                                                 <% end %>
+
                       </span>
                   </div>
                   <div class="media-body">
+          <%= link_to user_path(member) do %>
 
                     <h4 class="media-heading"><%= member.name %></h4>
+                                           <% end %>
 
                     <small>Administrator</small>
+            
                   </div>
+
                   <div class="media-right">
-                    <span class="status status-lg status-online"></span>
+                    <%= link_to '' ,project_user_path(@project, member),
+                      data: {:confirm => 'Are you sure?'}, :class => "status status-lg wb-close" , :method => :delete %>     
                   </div>
                 </div>
               </li>
-                         <% end %>
 
            <% end %>
 
