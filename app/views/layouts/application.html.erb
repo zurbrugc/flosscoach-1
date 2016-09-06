@@ -1,84 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Flosscoach</title>
-  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <head>
+    <title>Flosscoach</title>
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
 
-  <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
 
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    <%= javascript_include_tag 'js/modernizr' %>
+    <%= javascript_include_tag 'js/breakpoints' %>
 
-	<%= javascript_include_tag 'js/modernizr' %>
-	<%= javascript_include_tag 'js/breakpoints' %>
+    <script>
+      Breakpoints();
+    </script>
 
-  <script>
-  Breakpoints();
-  </script>
-  
-  <style>
-  .grid-stack-item-content {
-    font-size: 14px!important;
-    text-align: left!important;
-  }
+    <style>
+      .grid-stack-item-content {
+        font-size: 14px!important;
+        text-align: left!important;
+      }
 
-  .nav-tabs-line>li>a {
-      position: relative;
-      display: block;
-      padding: 10px 10px!important;
-  }
+      .nav-tabs-line>li>a {
+        position: relative;
+        display: block;
+        padding: 10px 10px!important;
+      }
 
-  .list-group a:hover{
-    text-decoration:none;
-  }
+      .list-group a:hover {
+        text-decoration:none;
+      }
+    </style>
 
-  </style>
+  </head>
+  <body class="<%= yield :body_class %>">
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-</head>
-<body>
+    <% if current_user %>
 
-<% if current_user %>
+      <%= render 'layouts/navigation' %>
 
-  <%= render 'layouts/navigation' %>
-  
-  <!-- Page -->
-  <div class="page animsition">
+      <!-- Page -->
+      <div class="page animsition">
 
-      <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
-      <% if alert %><p class="alert alert-error"><%= alert %></p><% end %>
-    
+        <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
+        <% if alert %><p class="alert alert-error"><%= alert %></p><% end %>
+
+        <%= yield %>
+
+      </div>
+      <!-- End Page -->
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="site-footer-legal">© 2016 <a href="#">Flosscoach</a></div>
+      </footer>
+
+    <% else %>
+
       <%= yield %>
 
-  </div>
-  <!-- End Page -->
+    <% end %>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="site-footer-legal">© 2016 <a href="#">Flosscoach</a></div>
-  </footer>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag params[:controller] %>
 
+    <script>
+      (function(document, window, $) {
+        'use strict';
+        var Site = window.Site;
+        $(document).ready(function() {
+          Site.run();
+        });
+      })(document, window, jQuery);
+    </script>
 
-  <% else %>
-
-    <%= yield %>
-
-<% end %>
-
-
-<%= javascript_include_tag 'application' %>
-<%= javascript_include_tag params[:controller] %>
-
-  <script>
-  (function(document, window, $) {
-    'use strict';
-    var Site = window.Site;
-    $(document).ready(function() {
-      Site.run();
-    });
-  })(document, window, jQuery);
-  </script>
-
-
-
-</body>
+  </body>
 </html>
