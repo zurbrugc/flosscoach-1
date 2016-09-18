@@ -1,10 +1,10 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_TOKEN"], 
+    provider :facebook, "#{Rails.application.secrets.FACEBOOK_KEY}", "#{Rails.application.secrets.FACEBOOK_TOKEN}", 
     :scope => "email, public_profile"
 
-    provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_TOKEN"]
+    provider :twitter, "#{Rails.application.secrets.TWITTER_KEY}", "#{Rails.application.secrets.TWITTER_TOKEN}"
 
-    provider :github, ENV["GITHUB_KEY"], ENV["GITHUB_TOKEN"]
+    provider :github, "#{Rails.application.secrets.GITHUB_KEY}", "#{Rails.application.secrets.GITHUB_TOKEN}"
 
 
 end

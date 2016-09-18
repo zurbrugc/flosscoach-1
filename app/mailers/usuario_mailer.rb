@@ -1,5 +1,5 @@
 class UsuarioMailer < ApplicationMailer
-	default from: ENV["EMAIL_ADDRESS"]
+	default from: "projetoheroku@gmail.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
