@@ -14,7 +14,6 @@
 
   window.edit = function(botao) {
     var container = botao.parents(".grid-stack-item-content");
-
     var title = container.find(".panel-heading");
     var box = container.find(".panel-body");
     var editIcon = title.find("a.wb-edit");
@@ -23,18 +22,17 @@
            ['group', [ 'iframe' ]]
       ],
         oninit: function() {
-          // Linha de baixo vai o HTML do botão.
+          // Se já não tiver sido inserido um botão de salvar nesta widget
           if($(".note-toolbar").has(".btn-salvar").length == 0){
-
+            // HTML do botão
             var noteBtn = '<button type="button" class="btn btn-outline btn-primary btn-salvar">Save</button>';
-            
             var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
+
             $(fileGroup).appendTo($('.note-toolbar'));
 
             $( ".btn-salvar" ).on( "click", function( event ) {
-              var cc = $( this ).parent().parent().parent().parent().children(".click2edit")
-              salvar_alteracao( cc.attr('id'),cc.code() );
-
+              var widget = $( this ).parent().parent().parent().parent().children(".click2edit")
+              save_text_widget(widget);
               toggleGridEditable(editIcon.get(0));
             });
           }

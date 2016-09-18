@@ -1,0 +1,34 @@
+<div class="page-content">
+
+        <div class="text-center">
+          <h3>
+            Add adminsitrators to project <%= @project.name %>
+          </h3>
+
+          <br>
+        </div>
+
+      <!-- Panel -->
+      <div class="panel">
+        <div class="panel-body">
+        <h4>Please insert the e-mail of the user on the box below.</h4>
+         <%= form_tag project_users_path(@project), method: :post do %>
+          <div class="form-group">
+            <div class="input-search">
+              <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                <%= text_field_tag :email, "", :class => "form-control", :placeholder => "Please put here the user e-mail..." %>
+
+              <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
+              data-toggle="collapse" aria-label="Close"></button>
+            </div>
+          </div>
+  <%= submit_tag "Add owner", :class => "btn btn-primary" %>
+  <% end %>         
+        </div>
+      </div>
+      <!-- End Panel -->
+
+
+
+
+</div>

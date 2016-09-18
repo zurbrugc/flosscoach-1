@@ -32,204 +32,152 @@
    
     </div>
     <div class="page-content container-fluid tab-content">
-    <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" 
-    data-gs-animate="yes" role="tabpanel" >
-      <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="3">
+    <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
+    <!-- TAB ABOUT -->
+    <% @project.widgets.from_tab_about.each do |widget| %>
+      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
+
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" >Links</h3>
+              <h3 class="panel-title" ><%= widget.title %></h3>
               <div class="panel-actions">
+
+              <% if widget.retractable? %>
               <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
               aria-hidden="true"></a>
+              <% end %>
+             
+              <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% end %>
+
               </div>
             </div>
-              <div id="link" class="panel-body">
-                <%= @project.link.html_safe if @project.link %>
+              <div id="<%= widget.slug %>" class="panel-body click2edit">
+                <%= widget.content.html_safe %>
               </div>
           </div>
         </div>    
-  
-
-        <div class="grid-stack-item" data-gs-x="4" data-gs-y="0" data-gs-width="8" data-gs-height="5">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">About</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>
-          <div id="about" class="panel-body">
-            <%= @project.about.html_safe if @project.about %>
-          </div>
-        </div>
-      </div>
-
-
+    <% end %>
     </div>
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start" 
       data-gs-animate="yes" role="tabpanel" >
-       <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="6" data-gs-height="4" >
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Technical skills required</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>    
-          
-          <div id="technical_skill" class="panel-body">
-            <%= @project.technical_skill.html_safe if @project.technical_skill %>
-          </div>
-        </div>
-        
-      </div>
-       <div class="grid-stack-item" data-gs-x="6" data-gs-y="0" data-gs-width="6" data-gs-height="4">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Soft skills required</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>    
-          
-          <div id="soft_skill" class="panel-body">
-            <%= @project.soft_skill.html_safe  if @project.soft_skill %>
-          </div>
-        </div>
-        
-      </div>  
+      <% @project.widgets.from_tab_how_to_start.each do |widget| %>
+      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
+          <div class="grid-stack-item-content panel panel-bordered" >
+            <div class="panel-heading">
+              <h3 class="panel-title" ><%= widget.title %></h3>
+              <div class="panel-actions">
 
-      <div class="grid-stack-item" data-gs-x="0" data-gs-y="5" data-gs-width="12" data-gs-height="6" data-type="how-to-start">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Basic Contribution Flow to Follow</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% if widget.retractable? %>
+              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+              aria-hidden="true"></a>
+              <% end %>
+
+             
+              <% if widget.closeable? %>
+              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% end %>
+
+              </div>
             </div>
-          </div>    
-          
-          <div id="contribution" class="panel-body">
-            <%= @project.contribution.html_safe  if @project.contribution %>
+              <div id="<%= widget.slug %>" class="panel-body click2edit">
+                <%= widget.content.html_safe %>
+              </div>
           </div>
-        </div>
-        
-      </div>      
+        </div>    
+    <% end %>
     </div>
        
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace" 
       data-gs-animate="yes" role="tabpanel" >
 
-      <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="5" data-gs-height="4">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Workspace Setup</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+            <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
+      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
+
+          <div class="grid-stack-item-content panel panel-bordered" >
+            <div class="panel-heading">
+              <h3 class="panel-title" ><%= widget.title %></h3>
+              <div class="panel-actions">
+
+              <% if widget.retractable? %>
+              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+              aria-hidden="true"></a>
+              <% end %>
+
+             
+              <% if widget.closeable? %>
+              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% end %>
+
+              </div>
             </div>
-          </div>    
-          
-          <div id="workspace_setup" class="panel-body">
-            <%= @project.workspace_setup.html_safe if @project.workspace_setup %>
+              <div id="<%= widget.slug %>" class="panel-body click2edit">
+                <%= widget.content.html_safe %>
+              </div>
           </div>
-        </div>
-        
-      </div>        
-   <div class="grid-stack-item" data-gs-x="5" data-gs-y="0" data-gs-width="7" data-gs-height="5">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Resources provided by the project</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>    
-          
-          <div id="resource" class="panel-body">
-            <%= @project.resource.html_safe if @project.resource %>
-          </div>
-        </div>
-        
-      </div>    
+        </div>    
+    <% end %>
 
       </div>  
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-code" 
       data-gs-animate="yes" role="tabpanel" >
+<% @project.widgets.from_tab_know_the_code.each do |widget| %>
+      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
-  <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="5" data-gs-height="4" data-type="know-code">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Code documentation</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>    
-          
-          <div id="documentation" class="panel-body">
-            <%= @project.documentation.html_safe if @project.documentation %>
-          </div>
-        </div>
-        
-      </div>  
-  <div class="grid-stack-item" data-gs-x="5" data-gs-y="0" data-gs-width="5" data-gs-height="4" data-type="know-code">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Searchable Resources</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-            </div>
-          </div>    
-          
-          <div id="search_resource" class="panel-body">
-            <%= @project.search_resource.html_safe if @project.search_resource %>
-          </div>
-        </div>
-        
-      </div>  
+          <div class="grid-stack-item-content panel panel-bordered" >
+            <div class="panel-heading">
+              <h3 class="panel-title" ><%= widget.title %></h3>
+              <div class="panel-actions">
 
+              <% if widget.retractable? %>
+              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+              aria-hidden="true"></a>
+              <% end %>
+
+             
+              <% if widget.closeable? %>
+              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% end %>
+
+              </div>
+            </div>
+              <div id="<%= widget.slug %>" class="panel-body click2edit">
+                <%= widget.content.html_safe %>
+              </div>
+          </div>
+        </div>    
+    <% end %>
     </div>
 
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send_contribution" data-gs-animate="yes" role="tabpanel" >
+<% @project.widgets.from_tab_send_contribution.each do |widget| %>
+      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
-      <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="8" data-gs-height="4">
-        <div class="grid-stack-item-content panel panel-bordered">
-          <div class="panel-heading">
-            <h3 class="panel-title">Submitting your contribution</h3>
-            <div class="panel-actions">
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
-            <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+          <div class="grid-stack-item-content panel panel-bordered" >
+            <div class="panel-heading">
+              <h3 class="panel-title" ><%= widget.title %></h3>
+              <div class="panel-actions">
+
+              <% if widget.retractable? %>
+              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+              aria-hidden="true"></a>
+              <% end %>
+             
+              <% if widget.closeable? %>
+              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+              <% end %>
+
+              </div>
             </div>
-          </div>    
-          
-          <div id="send_contribution" class="panel-body">
-            <%= @project.send_contribution.html_safe if @project.send_contribution %>
+              <div id="<%= widget.slug %>" class="panel-body click2edit">
+                <%= widget.content.html_safe %>
+              </div>
           </div>
-        </div>
-        
-      </div>  
+        </div>    
+    <% end %>
       
       </div>
-      
+ 
       </div>
-      <!-- End Panel -->
-
-
-
-
