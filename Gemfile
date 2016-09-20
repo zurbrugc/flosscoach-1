@@ -26,3 +26,9 @@ gem 'bcrypt-ruby', '~> 3.0'
 gem 'react-rails'
 
 gem 'summernote-rails'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
+gem 'simplecov', :require => false, :group => :test
