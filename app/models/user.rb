@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 	validates_confirmation_of :password, :if => :password
 	validates_acceptance_of :terms
 
+	before_create :confirmation_token
 	def password=(new_password)
 		@password = new_password
 		self.encrypted_password = BCrypt::Password.create(@password)
@@ -25,6 +26,11 @@ class User < ActiveRecord::Base
 
 
 
+	def email_activate
+	    self.email_confirmed = true
+	    self.confirm_token = nil
+	    save!(:validate => false)
+	  end
 
 	#TODO: Refactor
 	def self.find_or_create_with_omniauth(auth)
@@ -37,4 +43,14 @@ class User < ActiveRecord::Base
 	    user.save!
 	    user
 	end
+
+
+	private
+	def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
+
+
 end

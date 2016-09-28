@@ -27,15 +27,27 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.photo_url ||= "/assets/avatar.jpeg"
     if @user.save
-      UsuarioMailer.newuser(@user).deliver
-      session[:user_id] = @user.id
-      redirect_to projects_path
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:notice] = "Please confirm your email address to continue"
+      redirect_to root_url
       #redirect_to @user
     else
       render :new
     end
   end
 
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:notice] = "Welcome to the FlossCOACH! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to root_url
+    else
+      flash[:alert] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+  end
   # PATCH/PUT /users/1
   def update
 
@@ -55,6 +67,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = current_user

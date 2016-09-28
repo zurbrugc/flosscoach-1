@@ -28,7 +28,14 @@
             <p><%= alert %></p>
           </div>
         <% end %>
-
+       <% if notice %>
+          <div class="summary-errors alert alert-success alert-dismissible">
+            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+              <span aria-hidden="true">×</span>
+            </button>
+            <p><%= notice %></p>
+          </div>
+        <% end %>
         <div class="form-group">
           <label class="sr-only" for="user_email">Email</label>
           <input type="email" class="form-control" id="user_email" name="user[email]" placeholder="Email">
