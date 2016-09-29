@@ -27,8 +27,11 @@ gem 'react-rails'
 
 gem 'summernote-rails'
 
-group :development, :test do
+group :test do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.5'
+  gem 'selenium-webdriver', '2.53.0'
+  gem 'simplecov', :require => false, :group => :test
 end
-
-gem 'simplecov', :require => false, :group => :test
