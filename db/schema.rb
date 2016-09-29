@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823212618) do
+ActiveRecord::Schema.define(version: 20160928050449) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20160823212618) do
     t.string   "provider"
     t.string   "uid"
     t.string   "description"
+    t.boolean  "email_confirmed"
+    t.string   "confirm_token"
   end
 
   create_table "widgets", force: :cascade do |t|

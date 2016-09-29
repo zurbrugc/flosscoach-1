@@ -1,0 +1,5 @@
+Hello <%= @user.name %>,
+
+Thanks for registering on FlossCOACH! To confirm your registration click the URL below.
+
+<%= confirm_email_user_url(@user.confirm_token) %>
