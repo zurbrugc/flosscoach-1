@@ -11,7 +11,7 @@
 
   # GET /users/1
   def show
-redirect_to project_users_path, notice: 'Done.'
+    redirect_to project_users_path, notice: 'Done.'
   end
 
   # GET /users/new

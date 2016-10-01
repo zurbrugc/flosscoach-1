@@ -54,6 +54,7 @@ class ProjectsController < ApplicationController
   end
 
   # PATCH/PUT /projects/1
+  # TODO: Refactor
   def update
     if(params[:widget])
       widget = @project.widgets.find_by_slug(widget_params[:slug])

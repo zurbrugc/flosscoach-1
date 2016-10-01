@@ -1,8 +1,12 @@
 require "bcrypt"
 
 class User < ActiveRecord::Base
-  	has_and_belongs_to_many :projects
+	has_many :owner_projects
+  	has_many :projects, through: :owner_projects
 	
+	has_many :favoriter_projects
+	has_many :favorited_projects, through: :favoriter_projects, :source => :project
+
 	validates_presence_of :email, :name
 	validates_presence_of :password,  :if => :password
 	validates_uniqueness_of :email

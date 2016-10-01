@@ -207,3 +207,21 @@ function insertIframe(obj){
     });
 
   }      
+
+function favorite_project(id){
+   
+    var obj={}
+    obj['_method']="post"
+
+    $.ajax({
+    type: "POST",
+    dataType: "script",
+    url: "users/favorite_project/" + id ,
+    contentType: 'application/json',
+    data: JSON.stringify(obj)
+    }).done(function( msg )
+    {
+        alert( "Data Saved: ", msg );
+    });
+
+  }      

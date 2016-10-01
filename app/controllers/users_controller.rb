@@ -36,6 +36,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def favorite_project
+    project = Project.find_by_id(params[:project_id])
+    current_user.favorited_projects << project
+    current_user.save
+    redirect_to projects_url
+  end
+  
+  def disfavorite_project
+    project = Project.find_by_id(params[:project_id])
+    current_user.favorited_projects.delete(project)
+    redirect_to projects_url
+  end
+
   def confirm_email
     user = User.find_by_confirm_token(params[:id])
     if user
