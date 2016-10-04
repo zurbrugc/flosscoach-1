@@ -179,18 +179,20 @@
                         <% end %>
 
 	                      <div class="media-body">
+                        <% if current_user %>
                           <div class="pull-right">
                           <% if !current_user.favorited_projects.include?(project) %>
-                          <%= link_to "/users/favorite_project/#{project.id}", :method => :post do %>
+                          <%= link_to "/users/favorite_project/#{project.id}", :method => :post, :remote => true do %>
                            <button type="button" class="btn btn-outline btn-default btn-sm">Favorite this project</button>
                            <% end %>
                            <% else %>
-                                                     <%= link_to "/users/disfavorite_project/#{project.id}", :method => :post do %>
-                          <button type="button" class="btn btn-success btn-default btn-sm"><i class="icon wb-check" aria-hidden="true"></i>Project favorited</button>
+                                                     <%= link_to "/users/disfavorite_project/#{project.id}", :method => :post, :remote => true do %>
+                          <button type="button"  class="btn btn-success btn-default btn-sm"><i class="icon wb-check" aria-hidden="true"></i>Project favorited</button>
                                                      <% end %>
 
                           <% end %>
                         </div>
+                        <% end %>
 
                           <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
 	                        <h4 class="media-heading">
@@ -212,7 +214,7 @@
 
               <div class="tab-pane animation-fade" id="my_contacts" role="tabpanel">
                 <ul class="list-group">
-
+                <% if current_user %>
                 <% current_user.favorited_projects.each do |project| %>
                   <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
                     <li class="list-group-item">
@@ -234,6 +236,8 @@
                                                      <% end %>
 
                           <% end %>
+                                                    <% end %>
+
                         </div>
 
 
