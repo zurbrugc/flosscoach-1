@@ -1,6 +1,6 @@
 pt-BR:
 
-  # _navigation.html
+  # layouts/_navigation.html
   Projects: "Projetos"
   Profile: "Perfil"
   Settings: "Configurações"
@@ -68,7 +68,7 @@ pt-BR:
   FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS): "Os criadores de FLOSS Coach são pesquisadores que querem ajudar novos contribuintes para Software Livre e de Código Aberto (FLOSS)."
   Full Name: "Nome Completo"
   Have account already? Please go to: "Já possui uma conta?"
-  Have you ever thought about contributing to an Open Source Project: "Já pensou que contribuir para um projeto de código aberto"
+  Have you ever thought about contributing to an Open Source Project: "Já pensou em contribuir para um projeto de código aberto"
   Have you tried: "Já tentou"
   Haven't an account yet: "Ainda não possui uma conta"
   Name: "Nome"
@@ -90,4 +90,19 @@ pt-BR:
   no login needed: "não necessita de cadastro"
   notice: "notícia"
   or login with: "ou entre com"
-  prohibited this user from being saved: "impedem o usuário de ser cadastrados:"
+  prohibited this user from being saved: "impedir o usuário de ser cadastrados"
+
+  # user/index.html.erb
+  Projects created: "Projetos criados"
+  Recent activities: "Atividades recentes"
+  Your projects: "Seus projetos"
+  Activities in your projects: "Atividades em seus projetos"
+
+  # user/_navigation.html
+  Toggle Search: "Trocar pesquisa"
+  posted an updated: "Postou uma atualização"
+  active 14 minutes ago: "Ativo há 14 minutos"
+  Insert a description: "Insira uma descrição"
+
+  # user/show.html.erb
+  Show more: "Mostrar mais"

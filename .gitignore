@@ -12,4 +12,3 @@ cache
 locale
 
 public/system/
-db/schema.rb

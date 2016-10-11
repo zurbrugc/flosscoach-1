@@ -17,7 +17,7 @@
 
     <div class="page-login-main">
       <h3 class="font-size-24"><%= t('Sign In')%></h3>
-      <p><%= t('Please') ++ t('visit us') ++ "!" ++ t('Check our prototype and give us your feedback') %></p>
+      <p><%= t('Please') ++ ", " ++ t('visit us') ++ "! " ++ t('Check our prototype and give us your feedback') %></p>
 
       <%= form_for(User.new, url: users_login_path) do |f| %>
         <% if alert %>
