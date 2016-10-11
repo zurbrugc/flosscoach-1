@@ -27,10 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.photo_url ||= "/assets/avatar.jpeg"
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver
-      flash[:notice] = "Please confirm your email address to continue"
-      redirect_to root_url
-      #redirect_to @user
+      redirect_to projects_path
     else
       render :new
     end
