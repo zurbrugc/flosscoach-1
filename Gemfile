@@ -35,3 +35,5 @@ group :test do
   gem 'selenium-webdriver', '2.53.0'
   gem 'simplecov', :require => false, :group => :test
 end
+
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
