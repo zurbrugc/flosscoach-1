@@ -26,7 +26,7 @@
           <a data-toggle="tab" href="#know-code">Know the code</a>
         </li>
         <li>
-          <a data-toggle="tab" href="#send_contribution">Send contribution</a>
+          <a data-toggle="tab" href="#send-contribution">Send contribution</a>
         </li>
         <li>
           <%= link_to 'Owners', project_users_path(@project) %>
@@ -159,7 +159,7 @@
     <% end %>
     </div>
 
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send_contribution" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send-contribution" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
 <% @project.widgets.from_tab_send_contribution.each do |widget| %>
       <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 

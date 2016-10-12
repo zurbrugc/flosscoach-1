@@ -12,11 +12,11 @@ class Widget < ActiveRecord::Base
 
 
 
-	scope :from_tab_about, -> {where("tab= ?", "about")}
-	scope :from_tab_how_to_start, -> {where("tab= ?", "how_to_start")}
-	scope :from_tab_configure_workspace, -> {where("tab= ?", "configure_workspace")}
-	scope :from_tab_know_the_code, -> {where("tab= ?", "know_the_code")}
-	scope :from_tab_send_contribution, -> {where("tab= ?", "send_contribution")}
+	scope :from_tab_about, -> {where("lower(trim(tab))= ?", "about")}
+	scope :from_tab_how_to_start, -> {where("lower(trim(tab))= ?", "how_to_start")}
+	scope :from_tab_configure_workspace, -> {where("lower(trim(tab))= ?", "configure_workspace")}
+	scope :from_tab_know_the_code, -> {where("lower(trim(tab))= ?", "know_the_code")}
+	scope :from_tab_send_contribution, -> {where("lower(trim(tab))= ?", "send_contribution")}
 
 
 	
