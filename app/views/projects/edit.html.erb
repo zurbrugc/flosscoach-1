@@ -14,25 +14,25 @@
 
       <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist" >
         <li class="active">
-          <a data-toggle="tab" href="#about_aba">About</a>
+          <a data-toggle="tab" href="#about_aba"><%=t('About')%></a>
         </li>
         <li>
-          <a data-toggle="tab"  href="#how-to-start">How to start</a>
+          <a data-toggle="tab"  href="#how-to-start"><%=t('How to start')%></a>
         </li>
         <li>
-          <a data-toggle="tab" href="#config-workspace">Configure workspace</a>
+          <a data-toggle="tab" href="#config-workspace"><%=t('Configure workspace')%></a>
         </li>
         <li>
-          <a data-toggle="tab" href="#know-code">Know the code</a>
+          <a data-toggle="tab" href="#know-code"><%=t('Know the code')%></a>
         </li>
         <li>
-          <a data-toggle="tab" href="#send_contribution">Send contribution</a>
+          <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
         </li>
         <li>
-          <%= link_to 'Owners', project_users_path(@project) %>
+          <%= link_to t('Owners'), project_users_path(@project) %>
         </li>
-       </ul>  
-   
+       </ul>
+
     </div>
     <div class="page-content container-fluid tab-content">
     <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
@@ -42,7 +42,7 @@
 
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" ><%= widget.title %></h3>
+              <h3 class="panel-title" ><%= t(widget.title) %></h3>
               <div class="panel-actions">
 
               <% if widget.retractable? %>
@@ -51,7 +51,7 @@
               <% end %>
 
               <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-             
+
               <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
               <% end %>
@@ -62,17 +62,18 @@
                 <%= widget.content.html_safe %>
               </div>
           </div>
-        </div>    
+        </div>
     <% end %>
     </div>
-    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start" 
+    <!-- TAB HOW TO START-->
+    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
       <% @project.widgets.from_tab_how_to_start.each do |widget| %>
       <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" ><%= widget.title %></h3>
+              <h3 class="panel-title" ><%= t(widget.title) %></h3>
               <div class="panel-actions">
 
               <% if widget.retractable? %>
@@ -81,7 +82,7 @@
               <% end %>
 
               <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-             
+
               <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
               <% end %>
@@ -92,11 +93,11 @@
                 <%= widget.content.html_safe %>
               </div>
           </div>
-        </div>    
+        </div>
     <% end %>
     </div>
-       
-    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace" 
+    <!--TAB CONFIGURE WORKSPACE-->
+    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
             <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
@@ -104,7 +105,7 @@
 
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" ><%= widget.title %></h3>
+              <h3 class="panel-title" ><%= t(widget.title) %></h3>
               <div class="panel-actions">
 
               <% if widget.retractable? %>
@@ -113,7 +114,7 @@
               <% end %>
 
               <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-             
+
               <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
               <% end %>
@@ -124,18 +125,18 @@
                 <%= widget.content.html_safe %>
               </div>
           </div>
-        </div>    
+        </div>
     <% end %>
-
-      </div>  
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-code" 
+      </div>
+      <!-- TAB KNOW THE CODE -->
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-code"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
 <% @project.widgets.from_tab_know_the_code.each do |widget| %>
       <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" ><%= widget.title %></h3>
+              <h3 class="panel-title" ><%= t(widget.title) %></h3>
               <div class="panel-actions">
 
               <% if widget.retractable? %>
@@ -144,7 +145,7 @@
               <% end %>
 
               <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-             
+
               <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
               <% end %>
@@ -155,17 +156,17 @@
                 <%= widget.content.html_safe %>
               </div>
           </div>
-        </div>    
+        </div>
     <% end %>
     </div>
-
+      <!-- TAB SEND CONTRIBUTION -->
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send_contribution" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
 <% @project.widgets.from_tab_send_contribution.each do |widget| %>
       <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
 
           <div class="grid-stack-item-content panel panel-bordered" >
             <div class="panel-heading">
-              <h3 class="panel-title" ><%= widget.title %></h3>
+              <h3 class="panel-title" ><%= t('widget.title') %></h3>
               <div class="panel-actions">
 
               <% if widget.retractable? %>
@@ -174,7 +175,7 @@
               <% end %>
 
               <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-             
+
               <% if widget.closeable? %>
               <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
               <% end %>
@@ -185,14 +186,10 @@
                 <%= widget.content.html_safe %>
               </div>
           </div>
-        </div>    
+        </div>
     <% end %>
-      
+
       </div>
- 
+
       </div>
       <!-- End Panel -->
-
-
-
-

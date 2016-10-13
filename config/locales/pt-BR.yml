@@ -1,8 +1,60 @@
 pt-BR:
-  
+
   # _navigation.html
   Projects: "Projetos"
   Profile: "Perfil"
   Settings: "Configurações"
   Logout: "Sair"
   Search: "Pesquisar..."
+
+  #projects/index.html.erb
+  Explore Flosscoach: "Explore o Flosscoach"
+  Discover projects, groups and technologies: "Descubra projetos, grupos e tecnologias."
+  Share your projects with others: "Compartilhe seus projetos com outros."
+  Search Projects: "Pesquisar Projetos"
+  Trending: "Tendências"
+  Most favorites: "Mais favoritados"
+  All: "Todos"
+  Order By: "Ordenar Por"
+  Last Active: "Último Ativo"
+  Groups: "Grupos"
+  Register Date: "Data de Registro"
+
+  #projects/new
+  Create new project: "Criar novo projeto"
+  Name: "Nome"
+  Description: "Descrição"
+  I want to get data from OpenHub: "Desejo obter dados do OpenHub"
+  Create project: "Criar projeto"
+  Edit project: "Editar projeto"
+
+  #projects/edit.html.erb
+  You need to login to continue: "Você precisa logar para continuar"
+  Project was successfully created: "O projeto foi criado com sucesso"
+  About: "Sobre"
+  How to start: "Como começar"
+  Configure workspace: "Configurar espaço de trabalho"
+  Know the code: "Conhecer o código"
+  Send contribution: "Enviar contribuição"
+  Owners: "Proprietários"
+  Fill with text: "Preencha com texto"
+  Technical skills: "Competências técnicas"
+  Soft skills required: "Competências de software requeridas"
+  Basic contribution flow to follow: "Fluxo de contribuição básico para seguir"
+  Workspace setup: "Configuração do workspace"
+  Resources provided by project: "Recursos providos pelo projeto"
+  Submitting your contribution: "Submetendo sua contribuição"
+  Code documentation: "Documentação do código"
+  Searcheable resources: "Recursos pesquisáveis"
+
+  #projects/users/index.html.erb
+  Administrators of: "Administradores do "
+  project: ""
+  Administrator: "Administrador"
+  Are you sure?: "Você tem certeza?"
+
+  #projects/users/new.html.erb
+  Add administrators to project: "Adicionar administradores ao "
+  Please insert the e-mail of the user on the box below: "Por favor, insira o e-mail do usuário no box abaixo"
+  Please put here the user e-mail: "Por favor, insira o e-mail..."
+  Add owner: "Adicionar administrador"
