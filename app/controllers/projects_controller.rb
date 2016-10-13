@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @codigourl = params[:id]
     @language = Language.where(:id => @project.language_id).first
     @tool = Tool.where(:id => @project.tool_id).first
-    @operationalsystem = OperationalSystem.where(:id => @project.operational_system_id).first
+    @operatingsystem = OperatingSystem.where(:id => @project.operating_system_id).first
   end
 
   # GET /projects/new
@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build
     @languages = Language.all
     @tools = Tool.all
-    @operationalsystems = OperationalSystem.all
+    @operatingsystems = OperatingSystem.all
   end
 
   # GET /projects/1/edit
