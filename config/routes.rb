@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :operational_systems
+  resources :operating_systems
   resources :tools
   resources :projects
   resources :languages
