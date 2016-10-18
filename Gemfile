@@ -26,7 +26,9 @@ gem 'bcrypt-ruby', '~> 3.0'
 gem 'react-rails'
 
 gem 'summernote-rails'
-
+#Active Admin
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
