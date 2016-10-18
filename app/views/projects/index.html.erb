@@ -104,7 +104,7 @@
     </div>
   </div>
 
-<% end %>  
+<% end %>
 
 
 
@@ -289,7 +289,7 @@
               <%= check_box_tag 'openhub_check' %> I want to get data from OpenHub
               <br>
               <%= f.submit (!@myproject.persisted? ? "Create project" : "Edit project") , :class => "btn btn-primary btn-outline" %>
-                      
+
             </div>
           <% end %>
           </div>
@@ -297,11 +297,14 @@
       </div>
     </div>
   </div>
+<% else %>
+
+<footer class="site-footer">
+	<div class="site-footer-legal">© 2016 <a href="#">Flosscoach</a> </div>
+	<p align="Right"> <a href="?locale=pt-BR">Br</a> <a href="?locale=en">En</a>
+
+</footer>
+
 <% end %>
 
-
 </div>
-
-
-
-
