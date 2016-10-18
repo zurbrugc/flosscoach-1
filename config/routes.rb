@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   resources :projects do
     resources :users, :controller => "projects/users"
   end
