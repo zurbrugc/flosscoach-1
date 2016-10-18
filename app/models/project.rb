@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
 
 	belongs_to :languages 
-	belongs_to :operating_systems 
+	belongs_to :operational_systems 
 	belongs_to :tools
 	has_many :widgets
 
