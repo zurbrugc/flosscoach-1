@@ -26,6 +26,8 @@ gem 'bcrypt-ruby', '~> 3.0'
 gem 'react-rails'
 
 gem 'summernote-rails'
+#github api
+gem 'github_api', '~> 0.14.5'
 
 group :test do
   gem 'cucumber-rails', :require => false
