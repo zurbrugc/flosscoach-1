@@ -22,3 +22,7 @@ pt-BR:
   Sign Up: "Cadastrar"
   Have account already? Please go to: "Já possui uma conta?"
   Sign In: "Entrar"
+
+  #users/edit.html
+  Editing Profile: "Editando Perfil"
+  Submit: "Confirmar"
