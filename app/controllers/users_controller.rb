@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.photo_url ||= "/assets/avatar.jpeg"
     if @user.save
-      redirect_to projects_path
+      redirect_to root_url
     else
       render :new
     end
