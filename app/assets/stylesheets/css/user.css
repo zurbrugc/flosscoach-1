@@ -1,10 +1,17 @@
+.fields-form {
+  padding-left: 450px;
+  padding-right: 450px;
+}
+
 .page-content form {
   margin-bottom: 40px;
 }
+
 .page-content .list-group-item {
   padding: 25px 0;
   border-top-color: #e4eaec;
 }
+
  .page-content .list-group-item:first-child {
   border-top-color: transparent;
 }

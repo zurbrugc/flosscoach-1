@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :edit]
   skip_before_filter :verify_authenticity_token, only: [:update]
 
 
@@ -49,14 +49,16 @@ class UsersController < ApplicationController
     end
   end
   # PATCH/PUT /users/1
-  def update
 
-    if @user.update_attributes(user_params)
-      respond_to do |format|
-        format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
-      end    
-    else
-      render :edit
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -69,15 +71,14 @@ class UsersController < ApplicationController
   private
 
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = current_user
+  end
 
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit!
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = current_user
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit!
-    end
 end
