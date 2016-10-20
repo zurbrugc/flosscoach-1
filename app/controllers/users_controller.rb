@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :edit]
   skip_before_filter :verify_authenticity_token, only: [:update]
+  before_action :block_acess, only: [:new]
 
 
   # GET /users
@@ -74,6 +75,12 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = current_user
+  end
+
+  def block_acess
+    if current_user
+      redirect_to root_url
+    end
   end
 
   # Only allow a trusted parameter "white list" through.
