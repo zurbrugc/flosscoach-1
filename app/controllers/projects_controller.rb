@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
     @codigourl = params[:id]
     @language = Language.where(:id => @project.language_id).first
     @tool = Tool.where(:id => @project.tool_id).first
-    @operationalsystem = OperationalSystem.where(:id => @project.operational_system_id).first
+    @operatingsystem = OperatingSystem.where(:id => @project.operating_system_id).first
   end
 
   # GET /projects/new
@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build
     @languages = Language.all
     @tools = Tool.all
-    @operationalsystems = OperationalSystem.all
+    @operatingsystems = OperatingSystem.all
   end
 
   # GET /projects/1/edit
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @codigourl = params[:id]
     @language = Language.where(:id => @project.language_id).first
     @tool = Tool.where(:id => @project.tool_id).first
-    @operationalsystem = OperationalSystem.where(:id => @project.operational_system_id).first
+    @operatingsystem = OperatingSystem.where(:id => @project.operating_system_id).first
   end
 
   # POST /projects
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
     @project.widgets = make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: t('Project was successfully created.')
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new
@@ -96,7 +96,7 @@ class ProjectsController < ApplicationController
 
     def authorize_project
       unless current_user
-        redirect_to root_path, alert: "You need to login to continue."
+        redirect_to root_path, alert: t('You need to login to continue.')
       end
     end
 

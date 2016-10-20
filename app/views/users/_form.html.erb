@@ -13,10 +13,10 @@
     </ul>
   </div>
   <% end %>
-  
+
   <div class="form-group">
-    <label class="sr-only" for="user_name">Full Name</label>
-    <input type="text" class="form-control" id="user_name" name="user[name]" placeholder="Name">
+    <label class="sr-only" for="user_name"> Full Name </label>
+    <input type="text" class="form-control" id="user_name" name="user[name]" placeholder="<%=t('Name')%>">
   </div>
 
   <div class="form-group">
@@ -26,15 +26,15 @@
 
   <div class="form-group">
     <label class="sr-only" for="user_password">Password</label>
-    <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="Password">
+    <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="<%= t('Password') %>">
   </div>
 
   <div class="form-group">
     <label class="sr-only" for="user_password_confirmation">Retype Password</label>
-    <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Confirm Password">
+    <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]" placeholder="<%= t('Retype Password') %>">
   </div>
 
-  <%= f.submit 'Submit', class: 'btn btn-primary btn-block' %>
+  <%= f.submit t('Submit'), class: 'btn btn-primary btn-block' %>
 
   <% end %>
 </div>
