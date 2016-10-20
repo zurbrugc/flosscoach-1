@@ -33,6 +33,7 @@ ratings:
   - "**.php"
   - "**.py"
 exclude_paths:
+- "**.html.erb"
 - app/assets/
 - config/
 - db/
