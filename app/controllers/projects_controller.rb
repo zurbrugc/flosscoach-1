@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
     @project.widgets = make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: t('Project was successfully created.')
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new
@@ -94,7 +94,7 @@ class ProjectsController < ApplicationController
 
     def authorize_project
       unless current_user
-        redirect_to root_path, alert: "You need to login to continue."
+        redirect_to root_path, alert: t('You need to login to continue.')
       end
     end
 
@@ -103,7 +103,7 @@ class ProjectsController < ApplicationController
       if(ohp)
         widgets << make_widget_about("#{ohp.description} <br>
                          <iframe src='https://www.openhub.net/p/#{ohp.vanity_url}/widgets/
-                         project_factoids_stats' scrolling='no' marginheight='0' marginwidth='0' 
+                         project_factoids_stats' scrolling='no' marginheight='0' marginwidth='0'
                          style='height: 220px; width: 370px; border: none'></iframe>")
         widgets << make_widget_links("OpenHub URL: <a href='#{ohp.html_url}'>#{ohp.html_url}</a><br>
                           Homepage Url: <a href='#{ohp.homepage_url}'>#{ohp.homepage_url}</a><br>
@@ -123,7 +123,7 @@ class ProjectsController < ApplicationController
 
       widgets
     end
-      
+
 
     #Auto builds for widgets
     def make_widget_about(pre_content = "Fill with text")
@@ -142,7 +142,7 @@ class ProjectsController < ApplicationController
       widget
     end
 
-    def make_widget_links(pre_content = "Fill with text")
+    def make_widget_links(pre_content = t('Fill with text'))
       widget = Widget.new
       widget.title = "Links"
       widget.slug = "links"
@@ -160,7 +160,7 @@ class ProjectsController < ApplicationController
 
     def make_widget_technical_skills(pre_content = "Fill with text")
       widget = Widget.new
-      widget.title = "Technical Skills"
+      widget.title = "Technical skills"
       widget.slug = "technical_skills"
       widget.tab = "how_to_start"
       widget.pos_x = 0
@@ -318,7 +318,7 @@ class ProjectsController < ApplicationController
 
     def make_widget_send_contribution(pre_content = "Fill with text")
       widget = Widget.new
-      widget.title = "Submitting yout contribution"
+      widget.title = "Submitting your contribution"
       widget.slug = "send_contribution"
       widget.tab = "know_the_code "
       widget.pos_x = 5

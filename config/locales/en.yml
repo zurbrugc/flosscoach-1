@@ -22,6 +22,55 @@
 en:
   hello: "Hello world"
 
+  #projects/index.html.erb
+  Explore Flosscoach: "Explore Flosscoach"
+  Discover projects, groups and technologies: "Discover projects, groups and technologies."
+  Share your projects with others: "Share your projects with others"
+  Search Projects: "Search Projects"
+  Trending: "Trending"
+  Most favorites: "Most favorites"
+  All: "All"
+  Order By: "Order By"
+  Last Active: "Last Active"
+  Groups: "Groups"
+  Register Date: "Register Date"
+  Create new project: "Create new project"
+  Name: "Name"
+  Description: "Description"
+  I want to get data from OpenHub: "I want to get data from OpenHub"
+  Create project: "Create project"
+  Edit project: "Edit project"
+
+  #projects/edit.html.erb
+  You need to login to continue: "You need to login to continue"
+  Project was successfully created: "Project was successfully created"
+  About: "About"
+  How to start: "How to start"
+  Configure workspace: "Configure workspace"
+  Know the code: "Know the code"
+  Send contribution: "Send contribution"
+  Owners: "Owners"
+  Fill with text: "Fill with text"
+  Technical skills: "Technical skills"
+  Soft skills required: "Soft skills required"
+  Workspace setup: "Workspace setup"
+  Resources provided by project: "Resources provided by project"
+  Submitting your contribution: "Submitting your contribution"
+  Code documentation: "Code documentation"
+  Searcheable resources: "Searcheable resources"
+
+  #projects/users/index.html.erb
+  Administrators of: "Administrators of "
+  project: "project"
+  Administrator: "Administrator"
+  Are you sure?: "Are you sure?"
+
+  #projects/users/new.html.erb
+  Add administrators to project: "Add administrators to project"
+  Please insert the e-mail of the user on the box below: "Please insert the e-mail of the user on the box below"
+  Please put here the user e-mail: "Please put here the user e-mail"
+  Add owner : "Add owner"
+
   # users/new.html
   FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS): "  FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS)"
   Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?: "Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?"
