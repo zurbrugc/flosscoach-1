@@ -28,12 +28,12 @@ ratings:
   - "**.slim"
   - "**.css"
   - "**.inc"
-  - "**.js"
   - "**.jsx"
   - "**.module"
   - "**.php"
   - "**.py"
 exclude_paths:
+- app/assets/
 - config/
 - db/
 - features/
