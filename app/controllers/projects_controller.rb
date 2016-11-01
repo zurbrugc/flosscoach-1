@@ -34,7 +34,6 @@ class ProjectsController < ApplicationController
     @codigourl = params[:id]
     @language = Language.where(:id => @project.language_id).first
     @tool = Tool.where(:id => @project.tool_id).first
-    @operationalsystem = OperationalSystem.where(:id => @project.operational_system_id).first
   end
 
   # POST /projects
