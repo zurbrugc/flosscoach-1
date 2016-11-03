@@ -39,3 +39,8 @@ group :test do
 end
 
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
+ #static analysis tools
+gem 'rubocop', :require => false #run: rubocop
+gem "rubycritic", :require => false #run: rubycritic
+gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
