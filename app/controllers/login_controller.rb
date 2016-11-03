@@ -6,17 +6,20 @@ class LoginController < ApplicationController
     end
   end
 
+  def check_confirmed_email(user)
+    if user.email_confirmed?
+      session[:user_id] = user.id
+      redirect_to projects_path
+    else
+      flash.now[:alert] = "Please verify your e-mail and confirm your registration."
+      render action: "index"
+    end
+  end
+
   def create
     user = User.find_by_email(params[:user][:email])
     if user && user.valid_password?(params[:user][:password])
-      if user.email_confirmed?
-        session[:user_id] = user.id
-        redirect_to projects_path
-      else
-        flash.now[:alert] = "Please verify your e-mail and confirm your registration."
-        render action: "index"       
-      end
-      #redirect_to @user
+      check_confirmed_email(user)
     else
       flash.now[:alert] = "Invalid e-mail or password."
       render action: "index"
@@ -36,5 +39,5 @@ class LoginController < ApplicationController
       render :index
     end
   end
-
+  
 end
