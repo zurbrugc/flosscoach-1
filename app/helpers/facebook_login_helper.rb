@@ -1,2 +1,0 @@
-module FacebookLoginHelper
-end
