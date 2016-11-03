@@ -4,7 +4,8 @@ class Project < ActiveRecord::Base
 	belongs_to :operating_systems 
 	belongs_to :tools
 	has_many :widgets
-
+  validates :name, uniqueness: true
+  
   	has_and_belongs_to_many :owners, class_name: 'User'
 
 def self.search(search)
