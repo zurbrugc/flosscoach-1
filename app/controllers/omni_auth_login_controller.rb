@@ -1,4 +1,5 @@
 class OmniAuthLoginController < ApplicationController
+
   def index
     if current_user
       redirect_to projects_path
@@ -20,4 +21,5 @@ class OmniAuthLoginController < ApplicationController
     session.delete(:user_id)
     render action: "index"
   end
+
 end

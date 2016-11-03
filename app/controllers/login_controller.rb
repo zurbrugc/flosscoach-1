@@ -1,4 +1,5 @@
 class LoginController < ApplicationController
+
   def index
     if current_user
       redirect_to projects_path
@@ -7,7 +8,6 @@ class LoginController < ApplicationController
 
   def create
     user = User.find_by_email(params[:user][:email])
-
     if user && user.valid_password?(params[:user][:password])
       if user.email_confirmed?
         session[:user_id] = user.id
@@ -36,7 +36,5 @@ class LoginController < ApplicationController
       render :index
     end
   end
-
-
 
 end

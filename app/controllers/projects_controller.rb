@@ -40,7 +40,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-
     ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
     @project.image_url = ohp.medium_logo_url if ohp else "/assets/placeholder.png"
     @project.widgets = make_all_widgets(ohp)
@@ -58,12 +57,11 @@ class ProjectsController < ApplicationController
     if(params[:widget])
       widget = @project.widgets.find_by_slug(widget_params[:slug])
       widget.update_attributes(widget_params)
-
     elsif @project.update_attributes(project_params)
       #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
-      end
+    end
     else
     #  render :edit
     end
@@ -74,7 +72,6 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

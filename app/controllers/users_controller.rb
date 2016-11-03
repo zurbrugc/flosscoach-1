@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :block_acess, only: [:new]
 
-
   # GET /users
   def index
     redirect_to user_path(current_user)
@@ -70,7 +69,6 @@ class UsersController < ApplicationController
   end
 
   private
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

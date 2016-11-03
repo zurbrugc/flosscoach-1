@@ -22,7 +22,6 @@ class ToolsController < ApplicationController
   # POST /tools
   def create
     @tool = Tool.new(tool_params)
-
     if @tool.save
       redirect_to @tool, notice: 'Tool was successfully created.'
     else
@@ -46,13 +45,15 @@ class ToolsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tool
-      @tool = Tool.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tool
+    @tool = Tool.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def tool_params
-      params.require(:tool).permit(:name)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def tool_params
+    params.require(:tool).permit(:name)
+  end
+
 end
