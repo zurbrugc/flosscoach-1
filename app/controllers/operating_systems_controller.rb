@@ -8,6 +8,7 @@ class OperatingSystemsController < ApplicationController
 
   # GET /operating_systems/1
   def show
+
   end
 
   # GET /operating_systems/new
@@ -17,12 +18,12 @@ class OperatingSystemsController < ApplicationController
 
   # GET /operating_systems/1/edit
   def edit
+
   end
 
   # POST /operating_systems
   def create
     @operating_system = OperatingSystem.new(operating_system_params)
-
     if @operating_system.save
       redirect_to @operating_system, notice: 'Operating system was successfully created.'
     else
@@ -55,4 +56,5 @@ class OperatingSystemsController < ApplicationController
     def operating_system_params
       params.require(:operating_system).permit(:name)
     end
+
 end
