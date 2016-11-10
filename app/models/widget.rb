@@ -21,7 +21,6 @@ class Widget < ActiveRecord::Base
     self.closeable =  false
     self.resizeable =  true
     self.retractable = true
-    self.content = "Fill with text"
   end
 
 end
