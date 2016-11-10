@@ -53,6 +53,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        current_user.photo_url = @user.photo.url
+        current_user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -83,7 +85,8 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit!
+    params.require(:user).permit(:photo)
+    #params.require(:user).permit!
   end
 
 end
