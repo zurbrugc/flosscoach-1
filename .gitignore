@@ -11,4 +11,5 @@ Gemfile.lock
 cache
 locale
 
-.gitgnore
+public/system/
+

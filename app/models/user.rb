@@ -2,7 +2,12 @@ require "bcrypt"
 
 class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
-    
+  has_attached_file :photo, styles:
+    { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment :photo, content_type:
+    { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   validates_presence_of :email, :name
   validates_presence_of :password,  :if => :password
   validates_uniqueness_of :email
@@ -10,8 +15,9 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
 
+
   before_create :confirmation_token
-  
+
   def password=(new_password)
     @password = new_password
     self.encrypted_password = BCrypt::Password.create(@password)
@@ -34,9 +40,9 @@ class User < ActiveRecord::Base
   #TODO: Refactor
   def self.find_or_create_with_omniauth(auth)
     user = self.find_or_create_by(:provider => auth.provider,:uid => auth.uid)
-    user.assign_attributes({ name: user.name || auth.info.name, 
-      email: user.email || auth.info.email || "#{auth.info.name}@flosscoach.com", 
-      photo_url: user.photo_url || auth.info.image, 
+    user.assign_attributes({ name: user.name || auth.info.name,
+      email: user.email || auth.info.email || "#{auth.info.name}@flosscoach.com",
+      photo_url: user.photo_url || auth.info.image,
       fb_token: auth.credentials.token,
       password: "abababbbb", password_confirmation: "abababbbb"})
     user.save!
