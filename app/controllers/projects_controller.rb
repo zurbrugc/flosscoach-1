@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
     @project.widgets = make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to @project, notice: t('Project was successfully created.')
+      redirect_to edit_project_path(@project), notice: t('Project was successfully created.')
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
       #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
-    end
+      end
     else
     #  render :edit
     end

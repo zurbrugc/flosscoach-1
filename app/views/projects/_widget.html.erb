@@ -1,0 +1,48 @@
+<div class="grid-stack-item" 
+    data-gs-id="<%= widget.slug %>" 
+    data-gs-x="<%= widget.pos_x %>" 
+    data-gs-y="<%= widget.pos_y %>" 
+    data-gs-width="<%= widget.width %>" 
+    data-gs-height="<%= widget.height %>" 
+    data-gs-no-resize="" 
+    data-gs-no-move="" 
+    data-gs-locked="">
+
+  <div class="grid-stack-item-content panel panel-bordered" >
+    <div class="panel-heading">
+      <h3 class="panel-title" ><%= t(widget.title) %></h3>
+      <div class="panel-actions">
+        <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.slug %>' data-toggle="modal"></a>
+
+        <% if widget.retractable? %>
+        <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
+        <% end %>
+
+        <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
+
+        <% if widget.closeable? %>
+        <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+        <% end %>
+
+      </div>
+    </div>
+    <div id="<%= widget.slug %>" class="panel-body click2edit">
+      <%= widget.content.html_safe %>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="comments<%= widget.slug %>" aria-hidden="false"  aria-labelledby="comments<%= widget.slug %>" role="dialog" tabindex="-1" style="display: none;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="exampleOptionalLarge">Comments</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'comments', :widget => widget, :comments => widget.comments %>
+      </div>
+    </div>
+  </div>
+</div>

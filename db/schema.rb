@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928050449) do
+ActiveRecord::Schema.define(version: 20161116050758) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "reply_to_id"
+    t.integer  "user_id"
+    t.integer  "widget_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -19,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160928050449) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "operational_systems", force: :cascade do |t|
+  create_table "operating_systems", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,11 +38,11 @@ ActiveRecord::Schema.define(version: 20160928050449) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "language_id"
     t.integer  "tool_id"
-    t.integer  "operational_system_id"
+    t.integer  "operating_system_id"
     t.text     "about"
     t.text     "technical_skill"
     t.text     "soft_skill"
@@ -48,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160928050449) do
   end
 
   add_index "projects", ["language_id"], name: "index_projects_on_language_id"
-  add_index "projects", ["operational_system_id"], name: "index_projects_on_operational_system_id"
+  add_index "projects", ["operating_system_id"], name: "index_projects_on_operating_system_id"
   add_index "projects", ["tool_id"], name: "index_projects_on_tool_id"
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -70,8 +79,8 @@ ActiveRecord::Schema.define(version: 20160928050449) do
     t.string   "email"
     t.string   "username"
     t.string   "encrypted_password"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "photo_url"
     t.string   "fb_token"
     t.string   "provider"
@@ -79,6 +88,12 @@ ActiveRecord::Schema.define(version: 20160928050449) do
     t.string   "description"
     t.boolean  "email_confirmed"
     t.string   "confirm_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "widgets", force: :cascade do |t|
