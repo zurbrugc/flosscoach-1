@@ -10,7 +10,11 @@ end
 
 class OpenHubProject < ActiveResource::Base
 
-  self.site = "https://www.openhub.net/"
+  # Get Open Hub url from yml file
+  yml = YAML.load_file('app/models/open_hub_project.yml')
+  # Set the Open Hub site url
+  self.site = yml['open_hub_url']
+
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"
 
