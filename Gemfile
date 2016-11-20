@@ -24,7 +24,7 @@ gem 'therubyracer',  platforms: :ruby
 
 gem 'bcrypt-ruby', '~> 3.0'
 gem 'react-rails'
-
+gem 'responders'
 gem 'summernote-rails'
 #github api
 gem 'github_api', '~> 0.14.5'
@@ -36,6 +36,7 @@ group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'selenium-webdriver', '2.53.0'
   gem 'simplecov', :require => false, :group => :test
+
 end
 
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
@@ -47,3 +48,7 @@ gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
 
 # Gem to upload images
 gem 'paperclip'
+
+group :development, :test do
+  gem "factory_girl_rails"
+end

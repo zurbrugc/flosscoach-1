@@ -1,17 +1,12 @@
+<div class="comments">
 <% if comments.empty? %>
   <b>No comments no show.</b>
 <% else %>
 <% comments.each do |comment| %>
-  <%= render "comment", :comment => comment %>
+	<% reply ||= true %>
+  <%= render "comment", :comment => comment ,  :reply =>  reply %>
+
 <% end %>
 
 <% end %>
-<form class="comments-add margin-top-35" action="#" method="post">
-  <h3 class="margin-bottom-35">Leave A Reply</h3>
-  <div class="form-group">
-    <textarea class="form-control" rows="5" placeholder="Comment here"></textarea>
-  </div>
-  <div class="form-group">
-    <button type="button" class="btn btn-primary">Comment</button>
-  </div>
-</form>
+</div>

@@ -1,0 +1,11 @@
+<%= form_tag project_path, method: "comment", class:"comments-add margin-top-35", remote: true do %>
+  <h3 class="margin-bottom-35">Leave A Reply</h3>
+  <div class="form-group">
+  <%= text_area_tag :content,"", class: 'form-control', rows: 5, placeholder: "Comment here" %> 
+  </div>
+
+  <%= hidden_field_tag :widget_id , widget.id %> 
+  <div class="form-group">
+    <%= submit_tag "Comment", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -2,22 +2,42 @@
 <div class="comment media">
   <div class="media-left">
     <a class="avatar avatar-lg" href="javascript:void(0)">
-      <img src="../../global/portraits/8.jpg" alt="...">
+
+      <img src="<%= comment.user.photo_url %>" alt="<%= comment.user.name %>">
     </a>
   </div>
   <div class="comment-body media-body">
-    <a class="comment-author" href="javascript:void(0)">Jonas</a>
+    <a class="comment-author" href="javascript:void(0)"><%= comment.user.name %></a>
     <div class="comment-meta">
-      <span class="date">5 days ago</span>
+      <span class="date"><%= time_ago_in_words comment.created_at %> ago</span>
     </div>
     <div class="comment-content">
-      <p>Lorem ipsum Ullamco fugiat esse culpa consequat velit veniam
-        incididunt incididunt nostrud labore nostrud sit dolore in
-        nulla sit non laborum.</p>
+      <p><%= comment.content %></p>
     </div>
     <div class="comment-actions">
-      <a class="text-like icon wb-heart" href="javascript:void(0)" role="button"></a>
-      <!-- <a href="javascript:void(0)" role="button">Reply</a> -->
+      <% if reply %>
+      <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
+      <% end %>
     </div>
+      <% if reply %>
+
+    <%= form_tag project_path, method: "comment", class:"comment-reply", style:'display:none', remote: true do %>
+        <h3 class="margin-bottom-35">Leave A Reply</h3>
+        <div class="form-group">
+        <%= text_area_tag :content,"", class: 'form-control', rows: 5, placeholder: "Comment here" %> 
+        </div>
+
+        <%= hidden_field_tag :reply_to_id , comment.id %> 
+        <div class="form-group">
+          <%= submit_tag "Comment", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
+        </div>
+      <% end %>
+       <% if !comment.replies.empty? %>
+     <%= render 'comments', :comments => comment.replies,  :reply => false%>
+     <% end %>
+      <% end %>
+
   </div>
+
 </div>

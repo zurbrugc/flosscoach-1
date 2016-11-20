@@ -12,6 +12,7 @@
 //
 
 //= require plugin/jquery
+//= require jquery_ujs
 //= require plugin/bootstrap
 //= require plugin/animsition
 //= require plugin/jquery-asScroll

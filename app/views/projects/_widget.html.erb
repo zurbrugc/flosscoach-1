@@ -41,7 +41,8 @@
         <h4 class="modal-title" id="exampleOptionalLarge">Comments</h4>
       </div>
       <div class="modal-body">
-        <%= render 'comments', :widget => widget, :comments => widget.comments %>
+        <%= render 'comments', :widget => widget, :comments => widget.comments.is_not_reply, :reply => true%>
+      <%= render 'form_comment', :widget => widget, :comments => widget.comments %>
       </div>
     </div>
   </div>

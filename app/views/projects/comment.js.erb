@@ -1,0 +1,9 @@
+
+$("#comments<%= @widget.slug %> .modal-body .comments").html("<%= escape_javascript(render 'comments', :widget => @widget, :comments => @widget.comments.is_not_reply) %>");
+  $(".btn-reply").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply").show();
+  })      
+
+    $(".btn-reply-close").click(function(){
+      $(this).parents(".comment-body:first").find(".comment-reply").hide();
+  })    

@@ -206,4 +206,12 @@ function insertIframe(obj){
         alert( "Data Saved: ", msg );
     });
 
-  }      
+  }
+
+  $(".btn-reply").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply:first").show();
+  })      
+
+    $(".btn-reply-close").click(function(){
+      $(this).parents(".comment-body:first").find(".comment-reply:first").hide();
+  })    

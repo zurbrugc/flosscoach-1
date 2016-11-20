@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :tools
   resources :projects
   resources :languages
-  
+  post "/projects/:id" => "projects#comment", defaults: { format: 'js' }
   get "/users/login" => "login#index"
   post "/users/login" => "login#create"
   get "/users/logout" => "login#logout"
