@@ -207,3 +207,44 @@ function insertIframe(obj){
     });
 
   }      
+
+function favorite_project(id){
+   
+    var obj={}
+    obj['_method']="post"
+
+    $.ajax({
+    type: "POST",
+    dataType: "script",
+    url: "users/favorite_project/" + id ,
+    contentType: 'application/json',
+    data: JSON.stringify(obj)
+    }).done(function( msg )
+    {
+        alert( "Data Saved: ", msg );
+    });
+
+  }      
+
+$("button.btn-default").parent().on('ajax:complete',function(data, status, xhr){
+  var botao = $(this).find("button.btn-default");
+ if(botao.hasClass( "btn-success" )){
+    botao.html("Favorite this project");
+    botao.removeClass("btn-success");
+    botao.addClass("btn-outline");
+
+    var hrefAtual = $(this).attr("href");
+      $(this).attr("href", hrefAtual.replace("disfavorite", "favorite"));
+  }else{
+        botao.html('<i class="icon wb-check" aria-hidden="true"></i>Project favorited');
+        botao.addClass("btn-success");
+        botao.removeClass("btn-outline");
+
+        var hrefAtual = $(this).attr("href");
+        $(this).attr("href", hrefAtual.replace("favorite", "disfavorite"));
+
+  }
+
+});
+
+
