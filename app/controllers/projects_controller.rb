@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
     @project.image_url = ohp ? ohp.medium_logo_url : "/assets/placeholder.png"
-    @project.widgets = make_all_widgets(ohp)
+    @project.widgets << make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
       redirect_to edit_project_path(@project), notice: t('Project was successfully created.')
@@ -122,5 +122,5 @@ class ProjectsController < ApplicationController
     end
       
 
-
+    
 end
