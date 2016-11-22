@@ -14,7 +14,7 @@ class OpenHubProject < ActiveResource::Base
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"
 
-  @headers = { 'api_key' => "#{Rails.application.secrets.OPENHUB_KEY}" }
+  @headers = { 'api_key' => "a8b2141ce1264ca5e99e49e1cb37dbb589949bc910cc6d71a938c8db7f51136c" }
 
   def self.find_by_id(id)
     self.find(id, :params => {'api_key' => "a8b2141ce1264ca5e99e49e1cb37dbb589949bc910cc6d71a938c8db7f51136c" })
