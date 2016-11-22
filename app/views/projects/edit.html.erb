@@ -29,7 +29,7 @@
           <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
         </li>
         <li>
-          <%= link_to t('Owners'), project_users_path(@project) %>
+          <a data-toggle="tab" href="#owners"><%= t('Owners')%></a>
         </li>
        </ul>
 
@@ -70,6 +70,12 @@
         <% end %>
 
       </div>
+
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="owners" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+    <%= render 'widget_owner' %>
+
+      </div>
+
 
       </div>
       <!-- End Panel -->
