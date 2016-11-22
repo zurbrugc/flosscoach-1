@@ -1,4 +1,4 @@
-require 'spec_helper'
+=begin require 'spec_helper'
 
 describe WidgetsHelper do
   before do
@@ -61,8 +61,8 @@ describe WidgetsHelper do
   describe "#make_all_widgets" do
     it "returns an array with all widget" do
       widgets = helper.make_all_widgets(nil)
-
       expect(widgets.count).to eq(10)
     end
   end
 end
+=end
