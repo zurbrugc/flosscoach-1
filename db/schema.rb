@@ -11,23 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018043454) do
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-
+ActiveRecord::Schema.define(version: 20161110000251) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -52,11 +37,11 @@ ActiveRecord::Schema.define(version: 20161018043454) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "language_id"
     t.integer  "tool_id"
-    t.integer  "operational_system_id"
+    t.integer  "operating_system_id"
     t.text     "about"
     t.text     "technical_skill"
     t.text     "soft_skill"
@@ -71,7 +56,7 @@ ActiveRecord::Schema.define(version: 20161018043454) do
   end
 
   add_index "projects", ["language_id"], name: "index_projects_on_language_id"
-  add_index "projects", ["operational_system_id"], name: "index_projects_on_operational_system_id"
+  add_index "projects", ["operating_system_id"], name: "index_projects_on_operating_system_id"
   add_index "projects", ["tool_id"], name: "index_projects_on_tool_id"
 
   create_table "tools", force: :cascade do |t|
@@ -86,8 +71,8 @@ ActiveRecord::Schema.define(version: 20161018043454) do
     t.string   "email"
     t.string   "username"
     t.string   "encrypted_password"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "photo_url"
     t.string   "fb_token"
     t.string   "provider"
@@ -96,6 +81,8 @@ ActiveRecord::Schema.define(version: 20161018043454) do
     t.boolean  "email_confirmed"
     t.string   "confirm_token"
     t.boolean  "admin"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "widgets", force: :cascade do |t|

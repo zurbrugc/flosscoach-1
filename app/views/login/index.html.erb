@@ -49,6 +49,7 @@
         <%= f.submit 'Sign In', class: 'btn btn-primary btn-block' %>
 
       <% end %>
+<p><%= link_to "Forgot your password?", new_password_reset_path %></p>
 
       <div class='social-login'>
         <h4>or login with...</h4>
@@ -72,7 +73,6 @@
       </div>
 
       <hr>
-
       <p>Haven't an account yet? Please, <%= link_to 'Sign Up', new_user_path %>!</p>
         <footer>
           <p align="Right"> <a href="?locale=pt-BR">Br</a> <a href="?locale=en">En</a>

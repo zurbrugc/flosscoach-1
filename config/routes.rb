@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   ActiveAdmin.routes(self)
+
+  resources :password_resets
+
   resources :projects do
     resources :users, :controller => "projects/users"
   end
