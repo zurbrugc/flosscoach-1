@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161110000251) do
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -33,6 +34,17 @@ ActiveRecord::Schema.define(version: 20161110000251) do
     t.datetime "updated_at", null: false
     t.integer  "project_id"
     t.integer  "user_id"
+=======
+ActiveRecord::Schema.define(version: 20161116050758) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "reply_to_id"
+    t.integer  "user_id"
+    t.integer  "widget_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+>>>>>>> origin/widget-comments
   end
 
   create_table "languages", force: :cascade do |t|
@@ -101,13 +113,21 @@ ActiveRecord::Schema.define(version: 20161110000251) do
     t.string   "description"
     t.boolean  "email_confirmed"
     t.string   "confirm_token"
+<<<<<<< HEAD
     t.boolean  "admin"
+=======
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+>>>>>>> origin/widget-comments
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+<<<<<<< HEAD
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+=======
+>>>>>>> origin/widget-comments
   end
 
   create_table "widgets", force: :cascade do |t|

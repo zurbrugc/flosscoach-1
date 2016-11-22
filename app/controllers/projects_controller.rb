@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   include WidgetsHelper
+  respond_to :html, :js, :json
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :authorize_project, only: [:new, :create, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: [:update]
+  skip_before_filter :verify_authenticity_token, only: [:update, :comment]
 
   # GET /projects
   def index
@@ -41,11 +42,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
-    @project.image_url = ohp.medium_logo_url if ohp else "/assets/placeholder.png"
+    @project.image_url = ohp ? ohp.medium_logo_url : "/assets/placeholder.png"
     @project.widgets = make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to @project, notice: t('Project was successfully created.')
+      redirect_to edit_project_path(@project), notice: t('Project was successfully created.')
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new
@@ -62,9 +63,30 @@ class ProjectsController < ApplicationController
       #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
-    end
+      end
     else
     #  render :edit
+    end
+  end
+  
+  def comment
+    comment = Comment.new(comment_params)
+    comment.user = current_user
+    if comment_params[:widget_id]
+      @widget = Widget.find(comment_params[:widget_id])
+      @widget.comments << comment
+      comment.widget = @widget
+    elsif comment_params[:reply_to_id]
+      comment_dad = Comment.find(comment_params[:reply_to_id])
+      comment_dad.replies << comment
+      @widget = comment_dad.widget
+    end
+    respond_to do |format|
+    if comment.save
+      flash.now[:notice] = "Comment was successfully saved."
+        format.js
+        format.html
+      end
     end
   end
 
@@ -82,6 +104,11 @@ class ProjectsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+
+    def comment_params
+      params.permit(:content, :widget_id, :reply_to_id)
+    end
+
     def project_params
       params.require(:project).permit!
     end

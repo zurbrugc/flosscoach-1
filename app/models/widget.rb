@@ -16,6 +16,8 @@ class Widget < ActiveRecord::Base
   scope :from_tab_configure_workspace, -> {where("tab= ?", "configure_workspace")}
   scope :from_tab_know_the_code, -> {where("tab= ?", "know_the_code")}
   scope :from_tab_send_contribution, -> {where("tab= ?", "send_contribution")}
+  
+  has_many :comments
 
   def set_defaults
     self.closeable =  false

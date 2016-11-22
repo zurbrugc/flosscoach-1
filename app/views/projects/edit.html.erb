@@ -38,127 +38,32 @@
     <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
     <!-- TAB ABOUT -->
     <% @project.widgets.from_tab_about.each do |widget| %>
-      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-
-          <div class="grid-stack-item-content panel panel-bordered" >
-            <div class="panel-heading">
-              <h3 class="panel-title" ><%= t(widget.title) %></h3>
-              <div class="panel-actions">
-
-              <% if widget.retractable? %>
-              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-              aria-hidden="true"></a>
-              <% end %>
-
-              <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-
-              <% if widget.closeable? %>
-              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-              <% end %>
-
-              </div>
-            </div>
-              <div id="<%= widget.slug %>" class="panel-body click2edit">
-                <%= widget.content.html_safe %>
-              </div>
-          </div>
-        </div>
+      <%= render 'widget', :widget => widget %>
     <% end %>
     </div>
     <!-- TAB HOW TO START-->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
       <% @project.widgets.from_tab_how_to_start.each do |widget| %>
-      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
-
-          <div class="grid-stack-item-content panel panel-bordered" >
-            <div class="panel-heading">
-              <h3 class="panel-title" ><%= t(widget.title) %></h3>
-              <div class="panel-actions">
-
-              <% if widget.retractable? %>
-              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-              aria-hidden="true"></a>
-              <% end %>
-
-              <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-
-              <% if widget.closeable? %>
-              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-              <% end %>
-
-              </div>
-            </div>
-              <div id="<%= widget.slug %>" class="panel-body click2edit">
-                <%= widget.content.html_safe %>
-              </div>
-          </div>
-        </div>
-    <% end %>
+        <%= render 'widget', :widget => widget %>
+      <% end %>
     </div>
     <!--TAB CONFIGURE WORKSPACE-->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
-            <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
-      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
-
-          <div class="grid-stack-item-content panel panel-bordered" >
-            <div class="panel-heading">
-              <h3 class="panel-title" ><%= t(widget.title) %></h3>
-              <div class="panel-actions">
-
-              <% if widget.retractable? %>
-              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-              aria-hidden="true"></a>
-              <% end %>
-
-              <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-
-              <% if widget.closeable? %>
-              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-              <% end %>
-
-              </div>
-            </div>
-              <div id="<%= widget.slug %>" class="panel-body click2edit">
-                <%= widget.content.html_safe %>
-              </div>
-          </div>
-        </div>
-    <% end %>
-      </div>
+      <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
+        <%= render 'widget', :widget => widget %>
+      <% end %>
+    </div>
       <!-- TAB KNOW THE CODE -->
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-code"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-<% @project.widgets.from_tab_know_the_code.each do |widget| %>
-      <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
-
-          <div class="grid-stack-item-content panel panel-bordered" >
-            <div class="panel-heading">
-              <h3 class="panel-title" ><%= t(widget.title) %></h3>
-              <div class="panel-actions">
-
-              <% if widget.retractable? %>
-              <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-              aria-hidden="true"></a>
-              <% end %>
-
-              <a class="panel-action icon wb-edit" data-toggle="panel-edit" onclick="toggleGridEditable(this)"  aria-hidden="true"></a>
-
-              <% if widget.closeable? %>
-              <a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
-              <% end %>
-
-              </div>
-            </div>
-              <div id="<%= widget.slug %>" class="panel-body click2edit">
-                <%= widget.content.html_safe %>
-              </div>
-          </div>
-        </div>
+    <% @project.widgets.from_tab_know_the_code.each do |widget| %>
+      <%= render 'widget', :widget => widget %>
     <% end %>
     </div>
+<<<<<<< HEAD
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send-contribution" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
 <% @project.widgets.from_tab_send_contribution.each do |widget| %>
       <div class="grid-stack-item" data-gs-x="<%= widget.pos_x %>" data-gs-y="<%= widget.pos_y %>" data-gs-width="<%= widget.width %>" data-gs-id="<%= widget.slug %>"  data-gs-height="<%= widget.height %>">
@@ -188,6 +93,13 @@
         </div>
     <% end %>
 
+=======
+      <!-- TAB SEND CONTRIBUTION -->
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="send_contribution" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+        <% @project.widgets.from_tab_send_contribution.each do |widget| %>
+          <%= render 'widget', :widget => widget %>
+        <% end %>
+>>>>>>> origin/widget-comments
       </div>
 
       </div>

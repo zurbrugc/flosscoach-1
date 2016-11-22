@@ -206,6 +206,7 @@ function insertIframe(obj){
         alert( "Data Saved: ", msg );
     });
 
+<<<<<<< HEAD
   }      
 
 function favorite_project(id){
@@ -248,3 +249,14 @@ $("button.btn-default").parent().on('ajax:complete',function(data, status, xhr){
 });
 
 
+=======
+  }
+
+  $(".btn-reply").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply:first").show();
+  })      
+
+    $(".btn-reply-close").click(function(){
+      $(this).parents(".comment-body:first").find(".comment-reply:first").hide();
+  })    
+>>>>>>> origin/widget-comments

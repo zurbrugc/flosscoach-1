@@ -1,0 +1,12 @@
+<div class="comments">
+<% if comments.empty? %>
+  <b>No comments no show.</b>
+<% else %>
+<% comments.each do |comment| %>
+	<% reply ||= true %>
+  <%= render "comment", :comment => comment ,  :reply =>  reply %>
+
+<% end %>
+
+<% end %>
+</div>
