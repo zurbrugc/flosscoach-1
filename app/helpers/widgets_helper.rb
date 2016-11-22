@@ -218,7 +218,7 @@ module WidgetsHelper
       widget = Widget.new
       widget.title = "Submitting yout contribution"
       widget.slug = "send_contribution"
-      widget.tab = "know_the_code "
+      widget.tab = "send_contribution"
       widget.pos_x = 5
       widget.pos_y = 0
       widget.width = 5
