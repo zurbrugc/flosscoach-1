@@ -134,7 +134,7 @@ searcheable_resources:
 send_contribution:
     title: "Submitting yout contribution"
     slug: "send_contribution"
-    tab: "know_the_code "
+    tab: "send_contribution"
     pos_x: 5
     pos_y: 0
     width: 5
