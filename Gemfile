@@ -26,8 +26,13 @@ gem 'bcrypt-ruby', '~> 3.0'
 gem 'react-rails'
 
 gem 'summernote-rails'
+
 #github api
 gem 'github_api', '~> 0.14.5'
+
+#Active Admin
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 group :test do
   gem 'cucumber-rails', :require => false

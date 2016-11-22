@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def authenticate_admin_user!
+      unless current_user && current_user.admin?
+        redirect_to(root_url, notice: "You need to be authenticated")
+     end
+  end
 
   def current_user
     @current_user ||= if session[:user_id]

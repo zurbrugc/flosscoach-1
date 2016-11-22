@@ -5,9 +5,6 @@ class Project < ActiveRecord::Base
   has_many :widgets
   has_and_belongs_to_many :owners, class_name: 'User'
 
-	belongs_to :languages 
-	belongs_to :operational_systems 
-	belongs_to :tools
 	has_many :widgets
 
 	has_many :owner_projects
