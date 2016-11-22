@@ -64,7 +64,11 @@
     <% end %>
     </div>
       <!-- TAB SEND CONTRIBUTION -->
-
+    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack"  data-gs-width="12" id="send_contribution" data-gs-animate="yes"  role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
+        <% @project.widgets.from_tab_send_contribution.each do |widget| %>
+          <%= render 'widget', :widget => widget %>
+        <% end %>
+      </div>
 
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="owners" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
     <%= render 'widget_owner' %>
