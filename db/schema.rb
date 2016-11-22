@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161110000251) do
+ActiveRecord::Schema.define(version: 20161122044947) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -29,14 +28,6 @@ ActiveRecord::Schema.define(version: 20161110000251) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
-  create_table "favoriter_projects", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "project_id"
-    t.integer  "user_id"
-=======
-ActiveRecord::Schema.define(version: 20161116050758) do
-
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "reply_to_id"
@@ -44,7 +35,13 @@ ActiveRecord::Schema.define(version: 20161116050758) do
     t.integer  "widget_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
->>>>>>> origin/widget-comments
+  end
+
+  create_table "favoriter_projects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "project_id"
+    t.integer  "user_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -92,6 +89,11 @@ ActiveRecord::Schema.define(version: 20161116050758) do
   add_index "projects", ["operating_system_id"], name: "index_projects_on_operating_system_id"
   add_index "projects", ["tool_id"], name: "index_projects_on_tool_id"
 
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
   create_table "tools", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -113,21 +115,13 @@ ActiveRecord::Schema.define(version: 20161116050758) do
     t.string   "description"
     t.boolean  "email_confirmed"
     t.string   "confirm_token"
-<<<<<<< HEAD
     t.boolean  "admin"
-=======
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
->>>>>>> origin/widget-comments
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-<<<<<<< HEAD
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-=======
->>>>>>> origin/widget-comments
   end
 
   create_table "widgets", force: :cascade do |t|

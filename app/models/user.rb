@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
   before_create :confirmation_token
+
+	has_many :favoriter_projects
+	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   def password=(new_password)
     @password = new_password
     self.encrypted_password = BCrypt::Password.create(@password)
