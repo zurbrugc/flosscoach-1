@@ -38,7 +38,10 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
-    @project.image_url = ohp ? ohp.medium_logo_url : "/assets/placeholder.png"
+    @project.image_url = "/assets/placeholder.png"
+    if ohp && ohp.try(:medium_logo_url)
+      @project.image_url = ohp.medium_logo_url
+    end
     @project.widgets << make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
@@ -122,5 +125,5 @@ class ProjectsController < ApplicationController
     end
       
 
-    
+
 end
