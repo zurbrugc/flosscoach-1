@@ -2,7 +2,7 @@ log/*
 /db/development.sqlite3
 /db/test.sqlite3
 /tmp
-/config/secrets.yml
+config/secrets.yml
 /coverage/*
 Gemfile.lock
 /db/*.sqlite3

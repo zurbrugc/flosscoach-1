@@ -14,14 +14,14 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address                => "smtp.gmail.com",
-    :port                   => 587,
-    :user_name              => "projetoheroku",
-    :password               => "flosscoachbr@",
+    :address                => Rails.application.secrets.EMAIL_SMTP,
+    :port                   => Rails.application.secrets.EMAIL_PORT,
+    :user_name              => Rails.application.secrets.EMAIL,
+    :password               => Rails.application.secrets.EMAIL_PASS,
     :authentication         => 'plain',
     :enable_starttls_auto   => true
   }

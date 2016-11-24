@@ -63,11 +63,12 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'flosscoach.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address                => "smtp.gmail.com",
-    :port                   => 587,
-    :user_name              => "projetoheroku",
+    :address                => Rails.application.secrets.EMAIL_SMTP,
+    :port                   => Rails.application.secrets.EMAIL_PORT,
+    :user_name              => Rails.application.secrets.EMAIL,
     :password               => Rails.application.secrets.EMAIL_PASS,
     :authentication         => 'plain',
     :enable_starttls_auto   => true
