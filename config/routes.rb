@@ -3,13 +3,18 @@ Rails.application.routes.draw do
     resources :users, :controller => "projects/users"
   end
 
+  #resources :projects do
+  #  put :favorite, on: :member
+  #end
 
+  post "/projects/:id/" => "projects#favorite"
 
+  #resources :favorite_project
   resources :operating_systems
   resources :tools
   resources :projects
   resources :languages
-  
+
   get "/users/login" => "login#index"
   post "/users/login" => "login#create"
   get "/users/logout" => "login#logout"

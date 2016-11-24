@@ -9,6 +9,11 @@
                   data-default-file='<%= @project.image_url if @project %>' data-plugin="dropify"/>
               </div>
     </figure>
+    <% if check_favorite_project(current_user.id, @project.id) %>
+      <%= button_to "Unfavorite", :method=> "unfavorite" %>
+    <% else %>
+      <%= button_to "Favorite", :method=> "favorite" %>
+    <% end %>
     <h1  class="page-title" data-plugin="summernote" data-air-mode="true"><%= @project.name %></h1>
     <p class='description' data-plugin="summernote" data-air-mode="true"><%= @project.description %></p>
 

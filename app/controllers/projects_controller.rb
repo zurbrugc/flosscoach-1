@@ -77,6 +77,18 @@ class ProjectsController < ApplicationController
     redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
 
+  # User can favorite or unfavorite a project
+  def favorite
+    favorite_project = FavoriteProject.create_favorite_project(current_user.id, params[:id])
+    redirect_to :back
+  end
+
+  def unfavorite
+    favorite_project = FavoriteProject.find_by(user_id: current_user.id, project_id: params[:id])
+    favorite_project.destroy
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
