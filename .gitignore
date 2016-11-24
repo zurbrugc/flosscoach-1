@@ -1,5 +1,6 @@
 log/*
 /db/development.sqlite3
+/db/schema.rb
 /db/test.sqlite3
 /tmp
 config/secrets.yml
