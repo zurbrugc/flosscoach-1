@@ -8,8 +8,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
-    @favorite_projects = []
-    @favorite_projects << FavoriteProject.find_by(user_id: current_user.id)
+    @proj = []
+    favorite_projects = FavoriteProject.where(user_id: current_user.id)
+    favorite_projects.each do |favorite_project|
+      @proj << favorite_project.project
+    end
+
     if current_user
       @myproject = current_user.projects.build
     else
