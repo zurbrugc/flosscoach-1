@@ -147,7 +147,7 @@
               <li class="active" role="presentation"><a data-toggle="tab" href="#all_contacts" aria-controls="all_contacts"
                 role="tab"><%=t('Trending')%></a></li>
               <li role="presentation"><a data-toggle="tab" href="#my_contacts" aria-controls="my_contacts"
-                role="tab"><%=t('Most favorites')%></a></li>
+                role="tab"><%=t('Favorites')%></a></li>
               <li role="presentation"><a data-toggle="tab" href="#google_contacts" aria-controls="google_contacts"
                 role="tab"><%=t('All')%></a></li>
               <li class="dropdown" role="presentation">
@@ -195,28 +195,29 @@
               <div class="tab-pane animation-fade" id="my_contacts" role="tabpanel">
                 <ul class="list-group">
 
-                <% @projects.each do |project| %>
-                  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
+                <% if has_user_favorite_project(current_user.id) %>
+                  <% @favorite_projects.each do |favorite_project| %>
+                    <% link_to edit_project_path(favorite_project.project.id)  do %>
                     <li class="list-group-item">
                       <div class="media">
                         <div class="media-left">
                           <div class="avatar avatar-online">
-                            <img src="<%= project.image_url %>" alt="<%= project.name %> image"/>
+                            <img src="<%= favorite_project.project.image_url %>" alt="<%= favorite_project.project.name %> image"/>
                           </div>
                         </div>
                         <div class="media-body">
                           <h4 class="media-heading">
-                            <%= project.name %>
+                            <%= favorite_project.project.name %>
                           </h4>
                           <p>
-                            <%= project.description %>
+                            <%= favorite_project.project.description %>
                           </p>
                         </div>
                       </div>
                     </li>
                   <% end %>
                 <% end %>
-
+              <% end %>
                 </ul>
               </div>
 

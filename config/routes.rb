@@ -3,11 +3,14 @@ Rails.application.routes.draw do
     resources :users, :controller => "projects/users"
   end
 
-  #resources :projects do
-  #  put :favorite, on: :member
-  #end
-
-  post "/projects/:id/" => "projects#favorite"
+  resources :projects do
+    member do
+        post :favorite
+        post :unfavorite
+    end
+  end
+  #post "/projects/:id/" => "projects#favorite", :as => :projects_unfavorite
+  #delete "/projects/:id" =>"projects#unfavorite", :as => :projects_favorite
 
   #resources :favorite_project
   resources :operating_systems

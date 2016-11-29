@@ -10,9 +10,12 @@
               </div>
     </figure>
     <% if check_favorite_project(current_user.id, @project.id) %>
-      <%= button_to "Unfavorite", :method=> "unfavorite" %>
+      <%= button_to "Unfavorite", unfavorite_project_path(@project), {class: 'btn btn-primary btn-danger pull-right'}  %>
     <% else %>
-      <%= button_to "Favorite", :method=> "favorite" %>
+      <%= button_to "Favorite", favorite_project_path(@project), {class: 'btn btn-primary btn-danger pull-right'}  %>
+    <% end %>
+    <% if is_favorited(@project.id) %>
+      <%= button_to "Favorited: #{@project.favorite_projects.count} time".pluralize(@project.favorite_projects.count), {},  class: 'btn btn-primary btn-danger pull-right btn-primary-spacing'  %>
     <% end %>
     <h1  class="page-title" data-plugin="summernote" data-air-mode="true"><%= @project.name %></h1>
     <p class='description' data-plugin="summernote" data-air-mode="true"><%= @project.description %></p>

@@ -6,5 +6,5 @@ class FavoriteProject < ActiveRecord::Base
     favorite_project = FavoriteProject.new(user_id: user_id, project_id: project_id)
     favorite_project.save
   end
-  
+
 end

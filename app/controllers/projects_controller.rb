@@ -8,6 +8,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
+    @favorite_projects = []
+    @favorite_projects << FavoriteProject.find_by(user_id: current_user.id)
     if current_user
       @myproject = current_user.projects.build
     else
@@ -85,9 +87,10 @@ class ProjectsController < ApplicationController
 
   def unfavorite
     favorite_project = FavoriteProject.find_by(user_id: current_user.id, project_id: params[:id])
-    favorite_project.destroy
+    print favorite_project.delete()
     redirect_to :back
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
