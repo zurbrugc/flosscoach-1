@@ -60,6 +60,10 @@ class ProjectsController < ApplicationController
     elsif @project.update_attributes(project_params)
       #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
+        # @project.image_url = @project.image_project.url
+        @project.image_url = /(\/*\/*\/*\/*\/*\/*\/*[[:alnum:]]|_|-|\.|jpg|jpeg|gif)*/.match(@project.image_project.url)
+        @project.save
+        format.html {redirect_to @project, notice: 'Project successfully updated'}
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
     end
     else

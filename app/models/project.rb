@@ -3,7 +3,14 @@ class Project < ActiveRecord::Base
   belongs_to :operating_systems 
   belongs_to :tools
   has_many :widgets
+  has_many :favoriter_projects
+  has_many :fans, through: :favoriter_projects, :source => :user
   has_and_belongs_to_many :owners, class_name: 'User'
+  has_attached_file :image_project, styles: 
+    { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment :image_project, content_type:
+    { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
 
   def self.search(search)
     if search
