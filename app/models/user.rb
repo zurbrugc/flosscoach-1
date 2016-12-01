@@ -2,6 +2,9 @@ require "bcrypt"
 
 class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
+  has_many :favorite_projects
+  has_many :favorites, through: :favorite_projects, source: :project
+
   has_attached_file :photo, styles:
     { medium: "300x300>", thumb: "100x100>" }
 

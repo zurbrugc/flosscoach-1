@@ -8,6 +8,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
+    @proj = []
+    favorite_projects = FavoriteProject.where(user_id: current_user.id)
+    favorite_projects.each do |favorite_project|
+      @proj << favorite_project.project
+    end
+
     if current_user
       @myproject = current_user.projects.build
     else
@@ -76,6 +82,19 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
+
+  # User can favorite or unfavorite a project
+  def favorite
+    favorite_project = FavoriteProject.create_favorite_project(current_user.id, params[:id])
+    redirect_to :back
+  end
+
+  def unfavorite
+    favorite_project = FavoriteProject.find_by(user_id: current_user.id, project_id: params[:id])
+    print favorite_project.delete()
+    redirect_to :back
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -178,7 +178,7 @@ a:hover{
 }
 
 .btn-primary{
-  background: #63a5a1;
+  /*background: #63a5a1;*/
 }
 .btn-floating {
   background: #64a5a1;
@@ -193,4 +193,10 @@ a:hover{
 
 .btn-outline.btn-primary:hover{
   background:#5fa89f;
+}
+
+.btn-primary-spacing
+{
+  margin-right: 5px;
+  margin-bottom: 5px !important;
 }
