@@ -17,7 +17,7 @@ class Widget < ActiveRecord::Base
   scope :from_tab_know_the_code, -> {where("tab= ?", "know_the_code")}
   scope :from_tab_send_contribution, -> {where("tab= ?", "send_contribution")}
   
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   def set_defaults
     self.closeable =  false

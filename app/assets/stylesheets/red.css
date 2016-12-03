@@ -180,7 +180,8 @@ a:hover{
 .btn-primary{
   background: #63a5a1;
 }
-.btn-floating {
+.btn-primary.btn-floating,
+.btn-success.btn-floating {
   background: #64a5a1;
 
 }

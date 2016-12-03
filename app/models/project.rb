@@ -1,8 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  has_many :widgets
+  has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
-
 
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user

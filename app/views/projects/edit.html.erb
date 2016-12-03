@@ -29,7 +29,7 @@
           <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
         </li>
         <li>
-          <a data-toggle="tab" href="#owners"><%= t('Owners')%></a>
+          <a data-toggle="tab" href="#manage"><%= t('Manage')%></a>
         </li>
        </ul>
 
@@ -70,9 +70,14 @@
         <% end %>
       </div>
 
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="owners" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-    <%= render 'widget_owner' %>
-
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+        <%= render 'widget_owner' %>
+        <%= link_to project_path(@project),
+            data: {:confirm => 'Are you sure?'}, :method => :delete do %>
+        <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
+          <i class="icon wb-trash" aria-hidden="true"></i>
+        </button>     
+        <% end %>
       </div>
 
 
