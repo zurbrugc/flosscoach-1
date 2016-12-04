@@ -1,5 +1,6 @@
 <div class="grid-stack-item" 
     data-gs-id="<%= widget.slug %>" 
+    data-gs-id-number="<%= widget.id %>" 
     data-gs-x="<%= widget.pos_x %>" 
     data-gs-y="<%= widget.pos_y %>" 
     data-gs-width="<%= widget.width %>" 
@@ -10,7 +11,7 @@
 
   <div class="grid-stack-item-content panel panel-bordered" >
     <div class="panel-heading">
-      <h3 class="panel-title" ><%= t(widget.title) %></h3>
+      <h3 class="panel-title widget-title" data-plugin="summernote" data-air-mode="true" ><%= t(widget.title) %></h3>
       <div class="panel-actions">
         <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.slug %>' data-toggle="modal"></a>
 

@@ -54,6 +54,9 @@ $(".page-title").on("summernote.change", function(e) {
 $(".description").on("summernote.change", function(e) {
   save_description_project($(this).text());
 });
+$(".widget-title").on("summernote.change", function(e) {
+  update_widget_title($(this).parents(".grid-stack-item"), $(this).text());
+});
 
   function toggleGridEditable(obj){
     // clear any active button if set before
@@ -116,24 +119,16 @@ serializeWidgetMap(items)
   })();
 
 
-function saveInsert(obj){
-  alert("TODO");
-}
-
-function insertIframe(obj){
-      box = $(obj).parents(".grid-stack-item")
-
-  alert("TODO");
-}
-
 
 
   function save_text_widget(widget){
     var widget = $(widget); 
-    var obj={}
+    var obj={};
     
-    obj['_method']="put"
-    obj['widget'] = {"slug" : widget.attr("id"), "content" : widget.code()}
+    obj['_method']="put";
+    obj['widget'] = {"id": widget.attr("data-gs-id-number"), 
+                      "slug" : widget.attr("id"), 
+                      "content" : widget.code()};
     $.ajax({
     type: "PUT",
     dataType: "script",
@@ -169,6 +164,25 @@ function insertIframe(obj){
 
   }       
 
+  function update_widget_title(widget, new_title){
+   
+    var obj={};
+    obj['_method']="put";
+    obj['widget'] = {"id": widget.attr("data-gs-id-number"), "title" : new_title};
+
+    $.ajax({
+    type: "PUT",
+    dataType: "script",
+    url: window.location.href.replace("/edit", ""),
+    contentType: 'application/json',
+    data: JSON.stringify(obj)
+    }).done(function( msg )
+    {
+        alert( "Data Saved: ", msg );
+    });
+
+
+  }  
   function save_name_project(new_name){
    
     var obj={}
@@ -208,6 +222,7 @@ function insertIframe(obj){
 
 
   }      
+
 
 function favorite_project(id){
    

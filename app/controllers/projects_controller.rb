@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
   # TODO: Refactor
   def update
     if(params[:widget])
-      widget = @project.widgets.find_by_slug(widget_params[:slug])
+      widget = @project.widgets.find_by_id(widget_params[:id])
       widget.update_attributes(widget_params)
     elsif @project.update_attributes(project_params)
       #redirect_to @project, notice: 'Project was successfully updated.'
