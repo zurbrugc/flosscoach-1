@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122044947) do
+ActiveRecord::Schema.define(version: 20161204124553) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -67,27 +67,10 @@ ActiveRecord::Schema.define(version: 20161122044947) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "language_id"
-    t.integer  "tool_id"
-    t.integer  "operating_system_id"
-    t.text     "about"
-    t.text     "technical_skill"
-    t.text     "soft_skill"
-    t.text     "contribution"
-    t.text     "workspace_setup"
-    t.text     "resource"
-    t.text     "documentation"
-    t.text     "search_resource"
-    t.text     "send_contribution"
-    t.text     "link"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "image_url"
   end
-
-  add_index "projects", ["language_id"], name: "index_projects_on_language_id"
-  add_index "projects", ["operating_system_id"], name: "index_projects_on_operating_system_id"
-  add_index "projects", ["tool_id"], name: "index_projects_on_tool_id"
 
   create_table "projects_users", id: false, force: :cascade do |t|
     t.integer "project_id"
