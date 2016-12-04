@@ -168,7 +168,7 @@
                 <ul class="list-group">
 
                 <% @projects.each do |project| %>
-                  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
+                  <%= link_to current_user ? project_path(:id => project.id) : project do %>
 	                  <li class="list-group-item">
 	                    <div class="media">
 	                      <div class="media-left">
@@ -197,7 +197,7 @@
 
                 <% if has_user_favorite_project(current_user.id) %>
                   <% @proj.each do |favorite_project| %>
-                  <%= link_to current_user ? edit_project_path(:id => favorite_project.id) : project do %>
+                  <%= link_to current_user ? project_path(:id => favorite_project.id) : project do %>
                     <li class="list-group-item">
                       <div class="media">
                         <div class="media-left">
@@ -225,7 +225,7 @@
                 <ul class="list-group">
 
                 <% @projects.each do |project| %>
-                  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
+                  <%= link_to current_user ? project_path(:id => project.id) : project do %>
                     <li class="list-group-item">
                       <div class="media">
                         <div class="media-left">
