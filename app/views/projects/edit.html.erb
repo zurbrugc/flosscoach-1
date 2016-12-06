@@ -40,6 +40,7 @@
     <% @project.widgets.from_tab_about.each do |widget| %>
       <%= render 'widget', :widget => widget %>
     <% end %>
+
     </div>
     <!-- TAB HOW TO START-->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
@@ -75,7 +76,7 @@
         <%= link_to project_path(@project),
             data: {:confirm => 'Are you sure?'}, :method => :delete do %>
         <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
-          <i class="icon wb-trash" aria-hidden="true"></i>
+          <i class="icon wb-trash"></i>
         </button>     
         <% end %>
       </div>

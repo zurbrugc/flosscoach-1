@@ -15,23 +15,16 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @codigourl = params[:id]
-    @language = Language.where(:id => @project.language_id).first
-    @tool = Tool.where(:id => @project.tool_id).first
   end
 
   # GET /projects/new
   def new
     @project = current_user.projects.build
-    @languages = Language.all
-    @tools = Tool.all
-    @operatingsystems = OperatingSystem.all
   end
 
   # GET /projects/1/edit
   def edit
     @codigourl = params[:id]
-    @language = Language.where(:id => @project.language_id).first
-    @tool = Tool.where(:id => @project.tool_id).first
   end
 
   # POST /projects
