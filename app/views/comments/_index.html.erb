@@ -4,8 +4,7 @@
 <% else %>
 <% comments.each do |comment| %>
 	<% reply ||= true %>
-  <%= render "comment", :comment => comment ,  :reply =>  reply %>
-
+  <%= render "comments/show", :comment => comment ,  :reply =>  reply %>
 <% end %>
 
 <% end %>

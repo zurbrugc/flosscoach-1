@@ -124,15 +124,17 @@ serializeWidgetMap(items)
   function save_text_widget(widget){
     var widget = $(widget); 
     var obj={};
-    
+
+    var id = widget.attr("data-gs-id");
+    var content = widget.code();
+
     obj['_method']="put";
-    obj['widget'] = {"id": widget.attr("data-gs-id-number"), 
-                      "slug" : widget.attr("id"), 
-                      "content" : widget.code()};
+    obj['widget'] = {"id": id, 
+                      "content" : content};
     $.ajax({
     type: "PUT",
     dataType: "script",
-    url: window.location.href.replace("/edit", ""),
+    url: "/widgets/" + id,
     contentType: 'application/json',
     data: JSON.stringify(obj)
     }).done(function( msg )
@@ -146,15 +148,15 @@ serializeWidgetMap(items)
     var height = widget.height
     var x = widget.x
     var y = widget.y
-    var slug = widget.id
+    var id = widget.id
     var obj={}
     obj['_method']="put"
-    obj['widget'] = {"slug" : slug, "width" : width, "height" : height, "pos_x" : x, "pos_y" : y}
+    obj['widget'] = {"id" : id, "width" : width, "height" : height, "pos_x" : x, "pos_y" : y}
 
     $.ajax({
     type: "PUT",
     dataType: "script",
-    url: window.location.href.replace("/edit", ""),
+    url: "/widgets/" + id,
     contentType: 'application/json',
     data: JSON.stringify(obj)
     }).done(function( msg )
@@ -168,12 +170,15 @@ serializeWidgetMap(items)
    
     var obj={};
     obj['_method']="put";
-    obj['widget'] = {"id": widget.attr("data-gs-id-number"), "title" : new_title};
+
+    var id = widget.attr("data-gs-id");
+    var title = new_title;
+    obj['widget'] = {"id": id, "title" : title};
 
     $.ajax({
     type: "PUT",
     dataType: "script",
-    url: window.location.href.replace("/edit", ""),
+    url: "/widgets/" + id,
     contentType: 'application/json',
     data: JSON.stringify(obj)
     }).done(function( msg )
@@ -187,6 +192,7 @@ serializeWidgetMap(items)
    
     var obj={}
     obj['_method']="put"
+    
     obj['project'] = {"name" : new_name}
 
     $.ajax({
@@ -204,7 +210,6 @@ serializeWidgetMap(items)
 
 
   function save_description_project(new_description){
-   
     var obj={}
     obj['_method']="put"
     obj['project'] = {"description" : new_description}
@@ -225,7 +230,6 @@ serializeWidgetMap(items)
 
 
 function favorite_project(id){
-   
     var obj={}
     obj['_method']="post"
 

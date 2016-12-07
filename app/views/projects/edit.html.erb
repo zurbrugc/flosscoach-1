@@ -23,7 +23,7 @@
           <a data-toggle="tab" href="#config-workspace"><%=t('Configure workspace')%></a>
         </li>
         <li>
-          <a data-toggle="tab" href="#know-code"><%=t('Know the code')%></a>
+          <a data-toggle="tab" href="#know-the-code"><%=t('Know the code')%></a>
         </li>
         <li>
           <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
@@ -38,37 +38,46 @@
     <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
     <!-- TAB ABOUT -->
     <% @project.widgets.from_tab_about.each do |widget| %>
-      <%= render 'widget', :widget => widget %>
+      <%= render 'widgets/show', :widget => widget %>
     <% end %>
+          <%= render 'widgets/new' , :tab => "about" %>
+
     </div>
     <!-- TAB HOW TO START-->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
       <% @project.widgets.from_tab_how_to_start.each do |widget| %>
-        <%= render 'widget', :widget => widget %>
+        <%= render 'widgets/show', :widget => widget %>
       <% end %>
+      <%= render 'widgets/new', :tab => "how_to_start"%>
     </div>
     <!--TAB CONFIGURE WORKSPACE-->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
       <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
-        <%= render 'widget', :widget => widget %>
+        <%= render 'widgets/show', :widget => widget %>
       <% end %>
+
+      <%= render 'widgets/new', :tab => "config_workspace"%>
+
     </div>
       <!-- TAB KNOW THE CODE -->
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-code"
+      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-the-code"
       data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-    <% @project.widgets.from_tab_know_the_code.each do |widget| %>
-      <%= render 'widget', :widget => widget %>
-    <% end %>
+      <% @project.widgets.from_tab_know_the_code.each do |widget| %>
+          <%= render 'widgets/show', :widget => widget %>
+      <% end %>
+      <%= render 'widgets/new', :tab => "know_the_code"%>
     </div>
       <!-- TAB SEND CONTRIBUTION -->
     <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack"  data-gs-width="12" id="send_contribution" data-gs-animate="yes"  role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
         <% @project.widgets.from_tab_send_contribution.each do |widget| %>
-          <%= render 'widget', :widget => widget %>
+        <%= render 'widgets/show', :widget => widget %>
         <% end %>
-      </div>
+        <%= render 'widgets/new', :tab => "send_contribution"%>
+
+    </div>
 
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
         <%= render 'widget_owner' %>

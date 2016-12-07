@@ -1,10 +1,10 @@
 <div class="grid-stack-item" 
-    data-gs-id="<%= widget.slug %>" 
-    data-gs-id-number="<%= widget.id %>" 
+    data-gs-id="<%= widget.id %>" 
     data-gs-x="<%= widget.pos_x %>" 
     data-gs-y="<%= widget.pos_y %>" 
     data-gs-width="<%= widget.width %>" 
     data-gs-height="<%= widget.height %>" 
+    data-gs-slug="<%= widget.slug %>" 
     data-gs-no-resize="" 
     data-gs-no-move="" 
     data-gs-locked="">
@@ -13,7 +13,7 @@
     <div class="panel-heading">
       <h3 class="panel-title widget-title" data-plugin="summernote" data-air-mode="true" ><%= t(widget.title) %></h3>
       <div class="panel-actions">
-        <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.slug %>' data-toggle="modal"></a>
+        <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.id %>' data-toggle="modal"></a>
 
         <% if widget.retractable? %>
         <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
@@ -27,12 +27,12 @@
 
       </div>
     </div>
-    <div id="<%= widget.slug %>" class="panel-body click2edit">
+    <div id="<%= widget.id %>" class="panel-body click2edit">
       <%= widget.content.html_safe %>
     </div>
   </div>
 </div>
-<div class="modal fade" id="comments<%= widget.slug %>" aria-hidden="false"  aria-labelledby="comments<%= widget.slug %>" role="dialog" tabindex="-1" style="display: none;">
+<div class="modal fade" id="comments<%= widget.id %>" aria-hidden="false"  aria-labelledby="comments<%= widget.id %>" role="dialog" tabindex="-1" style="display: none;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -42,8 +42,8 @@
         <h4 class="modal-title" id="exampleOptionalLarge">Comments</h4>
       </div>
       <div class="modal-body">
-        <%= render 'comments', :widget => widget, :comments => widget.comments.is_not_reply, :reply => true%>
-      <%= render 'form_comment', :widget => widget, :comments => widget.comments %>
+        <%= render 'comments/index', :widget => widget, :comments => widget.comments.is_not_reply, :reply => true%>
+      <%= render 'comments/form', :widget => widget %>
       </div>
     </div>
   </div>

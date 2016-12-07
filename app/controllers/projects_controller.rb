@@ -4,34 +4,28 @@ class ProjectsController < ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :authorize_project, only: [:new, :create, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: [:update, :comment]
+  skip_before_filter :verify_authenticity_token, only: [:update]
 
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
- 	@myproject = Project.new	
+ 	  @myproject = Project.new	
   end
 
   # GET /projects/1
   def show
     @codigourl = params[:id]
-    @language = Language.where(:id => @project.language_id).first
-    @tool = Tool.where(:id => @project.tool_id).first
+    render :edit if @project.owners.include?(current_user)
   end
 
   # GET /projects/new
   def new
     @project = current_user.projects.build
-    @languages = Language.all
-    @tools = Tool.all
-    @operatingsystems = OperatingSystem.all
   end
 
   # GET /projects/1/edit
   def edit
     @codigourl = params[:id]
-    @language = Language.where(:id => @project.language_id).first
-    @tool = Tool.where(:id => @project.tool_id).first
   end
 
   # POST /projects
@@ -55,10 +49,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # TODO: Refactor
   def update
-    if(params[:widget])
-      widget = @project.widgets.find_by_id(widget_params[:id])
-      widget.update_attributes(widget_params)
-    elsif @project.update_attributes(project_params)
+    if @project.update_attributes(project_params)
       #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
@@ -68,27 +59,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def comment
-    comment = Comment.new(comment_params)
-    comment.user = current_user
-    if comment_params[:widget_id]
-      @widget = Widget.find(comment_params[:widget_id])
-      @widget.comments << comment
-      comment.widget = @widget
-    elsif comment_params[:reply_to_id]
-      comment_dad = Comment.find(comment_params[:reply_to_id])
-      comment_dad.replies << comment
-      @widget = comment_dad.widget
-    end
-    respond_to do |format|
-    if comment.save
-      flash.now[:notice] = "Comment was successfully saved."
-        format.js
-        format.html
-      end
-    end
-  end
-
   # DELETE /projects/1
   def destroy
     @project.destroy
@@ -104,16 +74,9 @@ class ProjectsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
 
-    def comment_params
-      params.permit(:content, :widget_id, :reply_to_id)
-    end
 
     def project_params
       params.require(:project).permit!
-    end
-
-    def widget_params
-      params.require(:widget).permit!
     end
 
     def authorize_project

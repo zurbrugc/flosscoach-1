@@ -19,10 +19,18 @@ class Widget < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy
 
+  before_create :to_param
+
   def set_defaults
     self.closeable =  false
     self.resizeable =  true
     self.retractable = true
+  end
+
+
+  private
+  def to_param
+    self.slug ||= [self.id, self.title.parameterize].join("-")
   end
 
 end

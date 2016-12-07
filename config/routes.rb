@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
-
+  
+  root :to => "login#index"
   resources :password_resets
 
   resources :projects do
     resources :users, :controller => "projects/users"
+
   end
-
-
-
-  resources :operating_systems
-  resources :tools
+    resources :widgets
+    resources :comments
   resources :projects
-  resources :languages
   post "/projects/:id" => "projects#comment", defaults: { format: 'js' }
   get "/users/login" => "login#index"
   post "/users/login" => "login#create"
@@ -21,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root :to => "login#index"
 
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'
   get 'auth/failure', to: redirect('/')

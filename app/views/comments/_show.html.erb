@@ -21,20 +21,21 @@
     </div>
       <% if reply %>
 
-    <%= form_tag project_path, method: "comment", class:"comment-reply", style:'display:none', remote: true do %>
+    <%= form_for Comment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
         <h3 class="margin-bottom-35">Leave A Reply</h3>
         <div class="form-group">
-        <%= text_area_tag :content,"", class: 'form-control', rows: 5, placeholder: "Comment here" %> 
+        <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %> 
         </div>
+      <%= hidden_field_tag :widget_id , comment.widget.id %> 
 
-        <%= hidden_field_tag :reply_to_id , comment.id %> 
+        <%= f.hidden_field :reply_to_id, :value => comment.id %> 
         <div class="form-group">
-          <%= submit_tag "Comment", class: "btn btn-primary" %>
+          <%= f.submit "Comment", class: "btn btn-primary" %>
           <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
         </div>
       <% end %>
        <% if !comment.replies.empty? %>
-     <%= render 'comments', :comments => comment.replies,  :reply => false%>
+     <%= render 'comments/index', :comments => comment.replies,  :reply => false%>
      <% end %>
       <% end %>
 
