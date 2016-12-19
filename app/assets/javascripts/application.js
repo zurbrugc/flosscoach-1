@@ -59,24 +59,3 @@
 //= require components/slidepanel
 
 //= require components/asscrollable
-
-
-
-  function salvar_alteracao(campoid,campocod){
-    var obj={}
-    obj[campoid] = campocod
-    obj['_method']="put"
-    $.ajax({
-    type: "PUT",
-    dataType: "script",
-    url: window.location.href,
-    contentType: 'application/json',
-    data: JSON.stringify(obj)
-    }).done(function( msg )
-    {
-        alert( "Data Saved: ", msg );
-    });
-
-    //save()
-
-  }       

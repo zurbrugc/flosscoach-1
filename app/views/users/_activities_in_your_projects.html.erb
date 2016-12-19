@@ -1,0 +1,24 @@
+<% if !current_user.projects.empty? %>
+
+
+<div class="tab-pane animation-slide-left" id="activities-your-projects" role="tabpanel">
+  <ul class="list-group">
+
+          <% if !@activities_in_your_projects.empty? %>
+          <% @activities_in_your_projects.each do |audit| %>
+            <%= render 'audit', :audit => audit %>
+          <% end %>
+          <% else%>
+            <b>No data to show.</b>
+          <% end %>
+
+
+
+  </ul>
+</div>
+
+<% else %>
+
+
+<b> You don't have projects </b>
+<% end %>

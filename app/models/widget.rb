@@ -1,4 +1,7 @@
 class Widget < ActiveRecord::Base
+  audited associated_with: :project
+
+  
   after_initialize :set_defaults, unless: :persisted?
 
   validates_presence_of :title
@@ -19,7 +22,7 @@ class Widget < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy
 
-  before_create :to_param
+  before_create :create_slug
 
   def set_defaults
     self.closeable =  false
@@ -29,8 +32,8 @@ class Widget < ActiveRecord::Base
 
 
   private
-  def to_param
-    self.slug ||= [self.id, self.title.parameterize].join("-")
+  def create_slug
+    self.slug ||= self.title.parameterize
   end
 
 end

@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
   # GET /users/1
   def show
+    redirect_to comment.widget.project
   end
 
   # POST /users

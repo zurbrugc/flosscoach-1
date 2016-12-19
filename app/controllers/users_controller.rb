@@ -10,6 +10,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+   @activities_in_your_projects = project_audits(current_user).reverse
+   @recent_comments = []
+
+   @recent_activities = current_user.audits.reverse
 
   end
 
@@ -36,19 +40,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def favorite_project
-    project = Project.find_by_id(params[:project_id])
-    current_user.favorited_projects << project
-    current_user.save
-    redirect_to projects_url
-  end
-  
-  def disfavorite_project
-    project = Project.find_by_id(params[:project_id])
-    current_user.favorited_projects.delete(project)
-    redirect_to projects_url
-  end
-
   def confirm_email
     user = User.find_by_confirm_token(params[:id])
     if user
@@ -65,7 +56,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         current_user.photo_url = @user.photo.url
         current_user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -83,8 +74,17 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
-  private
 
+
+  private
+  def project_audits(user)
+    audits = []
+    user.projects.each do |project|
+      audits += project.audits
+      audits += project.associated_audits if project.associated_audits
+    end
+    audits.sort{|a, b| a.created_at <=> b.created_at}
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = current_user
@@ -99,7 +99,8 @@ class UsersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def user_params
     #params.require(:user).permit(:photo)
-    params.require(:user).permit!
+    params.require(:user).permit!.reject{|_, v| v.blank?}
   end
+
 
 end

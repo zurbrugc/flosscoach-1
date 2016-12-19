@@ -57,10 +57,14 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li role="presentation">
-		  <a href="/users/" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> <%= t('Profile') %></a>
+          <%= link_to current_user do %>
+    		    <i class="icon wb-user" aria-hidden="true"></i> <%= t('Profile') %>
+          <% end %>
           </li>
           <li role="presentation">
-            <a href="/users/<%= current_user.id %>/edit" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> <%= t('Settings') %></a>
+            <%= link_to edit_user_path(current_user) do %>
+              <i class="icon wb-settings" aria-hidden="true"></i>Profile Edit
+            <% end %>
           </li>
           <% if current_user.admin? %>
           <li class="divider" role="presentation"></li>

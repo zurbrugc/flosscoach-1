@@ -29,6 +29,9 @@ gem 'summernote-rails'
 
 #github api
 gem 'github_api', '~> 0.14.5'
+#
+gem "audited", "~> 4.3"
+
 
 #Active Admin
 gem 'activeadmin', github: 'activeadmin'

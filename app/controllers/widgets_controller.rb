@@ -9,6 +9,7 @@ class WidgetsController < ApplicationController
 
   # GET /users/1
   def show
+    redirect_to @widget.project
   end
 
   # POST /users

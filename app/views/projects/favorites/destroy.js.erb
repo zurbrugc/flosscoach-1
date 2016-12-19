@@ -1,0 +1,4 @@
+var wrapper = $("#<%= @project.id %> .favorite-button-wrapper");
+wrapper.html("<%= escape_javascript(button_to 'Favorite this project', project_favorite_path(@project), :class => 'btn btn-outline btn-default btn-sm favorite-button', :remote => true)%>");
+$("#most-favorites").html("<ul class='list-group'><% if current_user %><% current_user.favorited_projects.each do |project| %><%= escape_javascript(render 'project_list_item', :project => project) %><% end %><% end %></ul>");
+

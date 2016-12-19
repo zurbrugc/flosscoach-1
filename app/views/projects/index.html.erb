@@ -106,20 +106,17 @@
 
 <% end %>
 
-
-
-
 <div class="page-content">
 
-        <div class="text-center">
-          <h3>
-            <%=t('Explore Flosscoach') %>
-          </h3>
-          <p class="lead">
-            <%=t('Discover projects, groups and technologies')%> <%=t('Share your projects with others')%>
-          </p>
-          <br>
-        </div>
+<div class="text-center">
+  <h3>
+    <%=t('Explore Flosscoach') %>
+  </h3>
+  <p class="lead">
+    <%=t('Discover projects, groups and technologies')%> <%=t('Share your projects with others')%>
+  </p>
+  <br>
+</div>
 
       <!-- Panel -->
       <div class="panel">
@@ -144,143 +141,40 @@
               </ul>
             </div>
             <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-              <li class="active" role="presentation"><a data-toggle="tab" href="#all_contacts" aria-controls="all_contacts"
+              <li class="active" role="presentation"><a data-toggle="tab" href="#trending" aria-controls="trending"
                 role="tab"><%=t('Trending')%></a></li>
-              <li role="presentation"><a data-toggle="tab" href="#my_contacts" aria-controls="my_contacts"
+              <li role="presentation"><a data-toggle="tab" href="#most-favorites" aria-controls="most-favorites"
                 role="tab"><%=t('Most favorites')%></a></li>
-              <li role="presentation"><a data-toggle="tab" href="#google_contacts" aria-controls="google_contacts"
+              <li role="presentation"><a data-toggle="tab" href="#all" aria-controls="all"
                 role="tab"><%=t('All')%></a></li>
-              <li class="dropdown" role="presentation">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                  <span class="caret"></span>Contacts </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a data-toggle="tab" href="#all_contacts" aria-controls="all_contacts"
-                    role="tab">All Contacts</a></li>
-                  <li class="active" role="presentation"><a data-toggle="tab" href="#my_contacts" aria-controls="my_contacts"
-                    role="tab">My Contacts</a></li>
-                  <li role="presentation"><a data-toggle="tab" href="#google_contacts" aria-controls="google_contacts"
-                    role="tab">Google Contacts</a></li>
-                </ul>
-              </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+              <div class="tab-pane animation-fade active" id="trending" role="tabpanel">
                 <ul class="list-group">
 
                 <% @projects.each do |project| %>
-	                  <li class="list-group-item">
-	                    <div class="media">
-                        <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
-	                      <div class="media-left">
-	                        <div class="avatar avatar-online">
-	                          <img src="<%= project.image_url %>" alt="<%= project.name %> image"/>
-	                        </div>
-	                      </div>
-                        <% end %>
-
-	                      <div class="media-body">
-                        <% if current_user %>
-                          <div class="pull-right">
-                          <% if !current_user.favorited_projects.include?(project) %>
-                          <%= link_to "/users/favorite_project/#{project.id}", :method => :post, :remote => true do %>
-                           <button type="button" class="btn btn-outline btn-default btn-sm">Favorite this project</button>
-                           <% end %>
-                           <% else %>
-                                                     <%= link_to "/users/disfavorite_project/#{project.id}", :method => :post, :remote => true do %>
-                          <button type="button"  class="btn btn-success btn-default btn-sm"><i class="icon wb-check" aria-hidden="true"></i>Project favorited</button>
-                                                     <% end %>
-
-                          <% end %>
-                        </div>
-                        <% end %>
-
-                          <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
-	                        <h4 class="media-heading">
-	                          <%= project.name %>
-	                        </h4>
-	                        <p>
-	                          <%= project.description %>
-	                        </p>
-                          <% end %>
-
-	                      </div>
-    
-	                    </div>
-	                  </li>
+                  <%= render 'project_list_item', :project => project %>
                 <% end %>
 
                 </ul>
               </div>
 
-              <div class="tab-pane animation-fade" id="my_contacts" role="tabpanel">
+              <div class="tab-pane animation-fade" id="most-favorites" role="tabpanel">
                 <ul class="list-group">
                 <% if current_user %>
-                <% current_user.favorited_projects.each do |project| %>
-                  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
-                    <li class="list-group-item">
-                      <div class="media">
-                        <div class="media-left">
-                          <div class="avatar avatar-online">
-                            <img src="<%= project.image_url %>" alt="<%= project.name %> image"/>
-                          </div>
-                        </div>
-                        <div class="media-body">
-                           <div class="pull-right">
-                          <% if !current_user.favorited_projects.include?(project) %>
-                          <%= link_to "/users/favorite_project/#{project.id}", :method => :post do %>
-                           <button type="button" class="btn btn-outline btn-default btn-sm">Favorite this project</button>
-                           <% end %>
-                           <% else %>
-                                                     <%= link_to "/users/disfavorite_project/#{project.id}", :method => :post do %>
-                          <button type="button" class="btn btn-success btn-default btn-sm"><i class="icon wb-check" aria-hidden="true"></i>Project favorited</button>
-                                                     <% end %>
-
-                          <% end %>
-                                                    <% end %>
-
-                        </div>
-
-
-                          <h4 class="media-heading">
-                            <%= project.name %>
-                          </h4>
-                          <p>
-                            <%= project.description %>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+                  <% current_user.favorited_projects.each do |project| %>
+                    <%= render 'project_list_item', :project => project %>
                   <% end %>
                 <% end %>
 
                 </ul>
               </div>
 
-              <div class="tab-pane animation-fade" id="google_contacts" role="tabpanel">
+              <div class="tab-pane animation-fade" id="all" role="tabpanel">
                 <ul class="list-group">
-
                 <% @projects.each do |project| %>
-                  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
-                    <li class="list-group-item">
-                      <div class="media">
-                        <div class="media-left">
-                          <div class="avatar avatar-online">
-                            <img src="<%= project.image_url %>" alt="<%= project.name %> image"/>
-                          </div>
-                        </div>
-                        <div class="media-body">
-                          <h4 class="media-heading">
-                            <%= project.name %>
-                          </h4>
-                          <p>
-                            <%= project.description %>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  <% end %>
+                  <%= render 'project_list_item', :project => project %>
                 <% end %>
-
                 </ul>
               </div>
             </div>
@@ -293,12 +187,10 @@
 
 
 <% if current_user %>
-     <!-- <a  href="/projects/new"> -->
-        <button class="btn btn-floating btn-success" style="position:fixed; bottom:50px; right:20px; border-radius:50%;"
-        data-target="#createProject" data-toggle="modal">
-          <i class="icon wb-plus" aria-hidden="true"></i>
-        </button>
-    <!--  </a> -->
+    <button class="btn btn-floating btn-success" style="position:fixed; bottom:50px; right:20px; border-radius:50%;"
+    data-target="#createProject" data-toggle="modal">
+      <i class="icon wb-plus" aria-hidden="true"></i>
+    </button>
 
 <!-- POPUP -->
 

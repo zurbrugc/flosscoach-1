@@ -1,3 +1,109 @@
 <h1> <center> <%= t('Editing Profile') %> </center ></h1>
 
-<%= render 'form' %>
+<div class="container">
+<div class="panel">
+<div class="panel-body">
+<div class="col-lg-3 profile-settings-sidebar">
+	<h4>
+	Public photo
+	</h4>
+	<p>
+	You can upload an photo or avatar here
+	</p>
+</div>
+
+<div class="col-lg-9">
+	<div class="clearfix avatar-image append-bottom-default">
+	<%= image_tag(current_user.photo_url, :alt => "...", :class => "img-responsive") %>
+	</div>
+	<h5>
+	Upload new avatar
+	</h5>
+	<div>
+		<a class="btn js-choose-user-avatar-button">
+		Browse file...
+		</a>
+		<span class="avatar-file-name prepend-left-default js-avatar-filename">No file chosen</span>
+		<input class="js-user-avatar-input hidden" accept="image/*" type="file" name="user[avatar]-trigger" id="this.fileInput.attr('id')-trigger">
+	</div>
+	<div class="help-block">
+		The maximum file size allowed is [X]KB.
+	</div>
+</div>
+
+</div>
+</div>
+<div class="panel">
+<div class="panel-body">
+<div class="row">
+<div class="col-lg-3">
+	<h4>
+	Main information
+	</h4>
+	<p>
+	Fill your public informations here
+	</p>
+</div>
+
+<div class="col-lg-9">
+	<div class="clearfix avatar-image append-bottom-default">
+	
+	</div>
+	<%= form_for(@user) do |f| %>
+
+	<div class="form-group">
+	    <h5>Your username</h5>
+	    <%= f.text_field :username, :class => "form-control", 
+	    :placeholder => 'Username'%>
+  	</div>
+
+	<div class="form-group">
+		<h5>Your name</h5>
+	    <%= f.text_field :name, :class => "form-control", 
+	    :placeholder => t('Name') %>
+  	</div>
+
+	<div class="form-group">
+	    <h5>Your email</h5>
+	    <%= f.text_field :email, :class => "form-control", 
+	    :placeholder => t('Email') %>
+  	</div>
+
+	<div class="form-group">
+	    <h5>Twitter</h5>
+	    <%= f.text_field :twitter_link, :class => "form-control", 
+	    :placeholder => 'http://'%>
+  	</div>
+
+
+	<div class="form-group">
+	    <h5>Facebook</h5>
+	    <%= f.text_field :facebook_link, :class => "form-control", 
+	    :placeholder => 'http://'%>
+  	</div>
+
+
+	<div class="form-group">
+	    <h5>GitHub</h5>
+	    <%= f.text_field :github_link, :class => "form-control", 
+	    :placeholder => 'http://' %>
+  	</div>
+
+	<div class="form-group">
+	    <h5>Your biografy</h5>
+	    <%= f.text_area :description, :class => "form-control", 
+	    :placeholder => "Description..." %>
+  	</div>
+
+
+  	<div class="form-group">
+	  	<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+  	</div>
+	<% end %>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
