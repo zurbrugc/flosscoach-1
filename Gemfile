@@ -55,7 +55,9 @@ gem "rubycritic", :require => false #run: rubycritic
 gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
 
 # Gem to upload images
-gem 'paperclip'
+gem 'carrierwave'
+gem 'carrierwave-base64'
+gem 'cloudinary'
 
 group :development, :test do
   gem "factory_girl_rails"

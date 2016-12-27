@@ -1,15 +1,11 @@
 require "bcrypt"
 class User < ActiveRecord::Base
-  audited
+  audited except: :avatar
   has_associated_audits
 
   has_and_belongs_to_many :projects
 
   has_many :comments
-  has_attached_file :photo, styles:
-    { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment :photo, content_type:
-    { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   validates_presence_of :email, :name
   validates_presence_of :password,  :if => :password
   validates_uniqueness_of :email
@@ -20,6 +16,12 @@ class User < ActiveRecord::Base
 
 	has_many :favoriter_projects
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
+  mount_uploader :avatar, AvatarUploader
+
+  def photo_url
+    avatar.url
+  end
+  
   def password=(new_password)
     @password = new_password
     self.encrypted_password = BCrypt::Password.create(@password)

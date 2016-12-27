@@ -11,6 +11,7 @@
 	You can upload an photo or avatar here
 	</p>
 </div>
+	<%= form_for(@user) do |f| %>
 
 <div class="col-lg-9">
 	<div class="clearfix avatar-image append-bottom-default">
@@ -20,11 +21,7 @@
 	Upload new avatar
 	</h5>
 	<div>
-		<a class="btn js-choose-user-avatar-button">
-		Browse file...
-		</a>
-		<span class="avatar-file-name prepend-left-default js-avatar-filename">No file chosen</span>
-		<input class="js-user-avatar-input hidden" accept="image/*" type="file" name="user[avatar]-trigger" id="this.fileInput.attr('id')-trigger">
+		<%= f.file_field :avatar %>
 	</div>
 	<div class="help-block">
 		The maximum file size allowed is [X]KB.
@@ -49,7 +46,6 @@
 	<div class="clearfix avatar-image append-bottom-default">
 	
 	</div>
-	<%= form_for(@user) do |f| %>
 
 	<div class="form-group">
 	    <h5>Your username</h5>
