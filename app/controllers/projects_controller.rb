@@ -15,7 +15,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @codigourl = params[:id]
+<<<<<<< HEAD
     render :edit if @project.owners.include?(current_user)
+=======
+>>>>>>> refactor-project-model
   end
 
   # GET /projects/new

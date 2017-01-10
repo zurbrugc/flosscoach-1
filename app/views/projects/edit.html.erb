@@ -54,7 +54,10 @@
     <% @project.widgets.from_tab_about.each do |widget| %>
       <%= render 'widgets/show', :widget => widget %>
     <% end %>
+<<<<<<< HEAD
           <%= render 'widgets/new' , :tab => "about" %>
+=======
+>>>>>>> refactor-project-model
 
     </div>
     <!-- TAB HOW TO START-->
@@ -98,7 +101,7 @@
         <%= link_to project_path(@project),
             data: {:confirm => 'Are you sure?'}, :method => :delete do %>
         <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
-          <i class="icon wb-trash" aria-hidden="true"></i>
+          <i class="icon wb-trash"></i>
         </button>     
         <% end %>
       </div>
