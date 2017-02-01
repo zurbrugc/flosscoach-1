@@ -18,10 +18,8 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
-
   #projects/index.html.erb
   Explore Flosscoach: "Explore Flosscoach"
   Discover projects, groups and technologies: "Discover projects, groups and technologies."
@@ -40,7 +38,6 @@ en:
   I want to get data from OpenHub: "I want to get data from OpenHub"
   Create project: "Create project"
   Edit project: "Edit project"
-
   #projects/edit.html.erb
   You need to login to continue: "You need to login to continue"
   Project was successfully created: "Project was successfully created"
@@ -58,19 +55,16 @@ en:
   Submitting your contribution: "Submitting your contribution"
   Code documentation: "Code documentation"
   Searcheable resources: "Searcheable resources"
-
   #projects/users/index.html.erb
   Administrators of: "Administrators of "
   project: "project"
   Administrator: "Administrator"
   Are you sure?: "Are you sure?"
-
   #projects/users/new.html.erb
   Add administrators to project: "Add administrators to project"
   Please insert the e-mail of the user on the box below: "Please insert the e-mail of the user on the box below"
   Please put here the user e-mail: "Please put here the user e-mail"
   Add owner : "Add owner"
-
   # users/new.html
   FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS): "  FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS)"
   Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?: "Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?"
@@ -86,9 +80,7 @@ en:
   Sign Up: "Sign Up"
   Have account already? Please go to: "Have account already? Please go to"
   Sign In: "Sign In"
-
   #users/edit.html
   Editing Profile: "Editing Profile"
   Submit: "Submit"
   Admin Area: "Admin Area"
-

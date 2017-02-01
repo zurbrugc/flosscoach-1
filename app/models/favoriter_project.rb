@@ -1,4 +1,4 @@
-class FavoriterProject < ActiveRecord::Base
+class FavoriterProject < ApplicationRecord
 	belongs_to :project, :autosave => true
  	belongs_to :user, :autosave => true
 

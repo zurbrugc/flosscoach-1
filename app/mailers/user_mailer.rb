@@ -1,5 +1,4 @@
-class UserMailer < ActionMailer::Base
-    default :from => "noanswer@flosscoach.com"
+class UserMailer < ApplicationMailer
 
 	 def registration_confirmation(user)
 	    @user = user

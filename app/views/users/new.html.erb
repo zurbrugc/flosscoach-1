@@ -32,22 +32,23 @@
 
         <div class="form-group">
           <label class="sr-only" for="user_name"><%= t('Full Name') %></label>
-          <input type="text" class="form-control" id="user_name" name="user[name]" placeholder="<%= t('Name') %>">
+          <%= f.text_field :name, :class => "form-control", :placeholder => t('Name') %>
         </div>
 
         <div class="form-group">
           <label class="sr-only" for="user_email"><%= t('Email') %></label>
-          <input type="email" class="form-control" id="user_email" name="user[email]" placeholder="<%= t('Email') %>">
+          <%= f.text_field :email, :class => "form-control", :placeholder => t('Email') %>
         </div>
 
         <div class="form-group">
           <label class="sr-only" for="user_password"><%= t('Password') %></label>
-          <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="<%= t('Password') %>">
+          <%= f.password_field :password, :class => "form-control", :placeholder => t('Password') %>
         </div>
 
         <div class="form-group">
           <label class="sr-only" for="user_password_confirmation"><%= t('Retype Password') %></label>
-          <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]" placeholder="<%= t('Retype Password') %>">
+          <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => t('Retype Password') %>
+
         </div>
 
         <div class="form-group clearfix">

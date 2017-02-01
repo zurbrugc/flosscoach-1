@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
   audited
   audited associated_with: :owners
   belongs_to :user

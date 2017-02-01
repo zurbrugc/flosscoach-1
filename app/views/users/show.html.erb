@@ -21,11 +21,11 @@
                 </p>
 
                 <div class="profile-social">
-                  <%= link_to "", @user.twitter_link, :class => "icon bd-twitter"  unless @user.twitter_link.empty? %>
+                  <%= link_to "", @user.twitter_link, :class => "icon bd-twitter"  unless @user.twitter_link %>
                   <% if @user.facebook_link %>
-                  <%= link_to "", @user.facebook_link, :class => "icon bd-facebook"  unless @user.facebook_link.empty? %>
+                  <%= link_to "", @user.facebook_link, :class => "icon bd-facebook"  unless @user.facebook_link %>
                   <% end %>
-                  <%= link_to"", @user.github_link, :class => "icon bd-github"  unless @user.facebook_link.empty? %>
+                  <%= link_to"", @user.github_link, :class => "icon bd-github"  unless @user.facebook_link %>
 
                 </div>
               <!--  <button type="button" class="btn btn-primary">Follow</button> -->
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- End Page Widget -->
         </div>
         <div class="col-md-9">
@@ -82,7 +82,7 @@
                 <h4>Você não tem projetos cadastrados.</h4>
 
                 <% end %>
-        
+
                   </ul>
                 </div>
               </div>

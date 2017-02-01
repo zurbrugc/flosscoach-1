@@ -9,12 +9,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
- 	  @myproject = Project.new	
+ 	  @myproject = Project.new
   end
 
   # GET /projects/1
   def show
-    render :edit if @project.owners.include?(current_user)
+    
   end
 
   # GET /projects/new
@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
     #  render :edit
     end
   end
-  
+
   # DELETE /projects/1
   def destroy
     @project.destroy
@@ -85,7 +85,7 @@ class ProjectsController < ApplicationController
 
 
     end
-      
+
 
 
 end

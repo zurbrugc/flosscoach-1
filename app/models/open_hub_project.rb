@@ -14,14 +14,14 @@ class OpenHubProject < ActiveResource::Base
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"
 
-  @headers = { 'api_key' => "#{Rails.application.secrets.OPENHUB_KEY}" }
+  @headers = { 'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
 
   def self.find_by_id(id)
-    self.find(id, :params => {'api_key' => "#{Rails.application.secrets.OPENHUB_KEY}" })
+    self.find(id, :params => {'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" })
   end
 
   def self.find_by_name(nome)
-    self.find(:all, :params => {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPENHUB_KEY}" })
+    self.find(:all, :params => {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" })
   end
 
 end

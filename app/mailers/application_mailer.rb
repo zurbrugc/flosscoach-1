@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "projetoheroku@gmail.com"
+  default :from => "noanswer@flosscoach.com"
   layout 'mailer'
 end
