@@ -26,5 +26,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, user.projects.size
   end
 
+  test "generate slug from username" do
+    user = build(:user)
+    username = user.username
+    user.save
+
+    assert_equal username, user.slug
+  end
 
 end

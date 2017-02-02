@@ -3,9 +3,7 @@ class User < ApplicationRecord
   include FriendlyId
 
   friendly_id :username, use: :slugged
-  
   audited except: :avatar
-
   has_associated_audits
 
   has_and_belongs_to_many :projects

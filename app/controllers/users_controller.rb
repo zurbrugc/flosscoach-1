@@ -10,10 +10,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-   @activities_in_your_projects = project_audits(current_user).reverse
+   @activities_in_your_projects = project_audits(@user).reverse
    @recent_comments = []
 
-   @recent_activities = current_user.audits.reverse
+   @recent_activities = @user.audits.reverse
 
   end
 
