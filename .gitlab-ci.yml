@@ -3,8 +3,8 @@ before_script:
   - ruby -v
   - which ruby
   - gem install bundler --no-ri --no-rdoc
-  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
   - bundle update
+  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
 test:
   script:
   - bundle exec rake db:create RAILS_ENV=test
