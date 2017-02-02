@@ -15,16 +15,18 @@
 
 <div class="col-lg-9">
 	<div class="clearfix avatar-image append-bottom-default">
-	<%= image_tag(current_user.photo_url, :alt => "...", :class => "img-responsive") %>
 	</div>
 	<h5>
 	Upload new avatar
 	</h5>
 	<div>
-		<%= f.file_field :avatar %>
+		<div class='img-responsive' style='width:350px;'>
+
+		<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.photo_url} %>
+	</div>
 	</div>
 	<div class="help-block">
-		The maximum file size allowed is [X]KB.
+		The maximum file size allowed is 3MB.
 	</div>
 </div>
 
@@ -44,50 +46,57 @@
 
 <div class="col-lg-9">
 	<div class="clearfix avatar-image append-bottom-default">
-	
+
 	</div>
 
 	<div class="form-group">
 	    <h5>Your username</h5>
-	    <%= f.text_field :username, :class => "form-control", 
-	    :placeholder => 'Username'%>
+                  <div class="input-group input-group-icon">
+                    <span class="input-group-addon">
+                      @
+                    </span>
+										<%= f.text_field :slug, :class => "form-control",
+								    :placeholder => 'Username', :disabled => true%>
+									                  </div>
+
+
   	</div>
 
 	<div class="form-group">
 		<h5>Your name</h5>
-	    <%= f.text_field :name, :class => "form-control", 
+	    <%= f.text_field :name, :class => "form-control",
 	    :placeholder => t('Name') %>
   	</div>
 
 	<div class="form-group">
 	    <h5>Your email</h5>
-	    <%= f.text_field :email, :class => "form-control", 
+	    <%= f.text_field :email, :class => "form-control",
 	    :placeholder => t('Email') %>
   	</div>
 
 	<div class="form-group">
 	    <h5>Twitter</h5>
-	    <%= f.text_field :twitter_link, :class => "form-control", 
+	    <%= f.text_field :twitter_link, :class => "form-control",
 	    :placeholder => 'http://'%>
   	</div>
 
 
 	<div class="form-group">
 	    <h5>Facebook</h5>
-	    <%= f.text_field :facebook_link, :class => "form-control", 
+	    <%= f.text_field :facebook_link, :class => "form-control",
 	    :placeholder => 'http://'%>
   	</div>
 
 
 	<div class="form-group">
 	    <h5>GitHub</h5>
-	    <%= f.text_field :github_link, :class => "form-control", 
+	    <%= f.text_field :github_link, :class => "form-control",
 	    :placeholder => 'http://' %>
   	</div>
 
 	<div class="form-group">
 	    <h5>Your biografy</h5>
-	    <%= f.text_area :description, :class => "form-control", 
+	    <%= f.text_area :description, :class => "form-control",
 	    :placeholder => "Description..." %>
   	</div>
 

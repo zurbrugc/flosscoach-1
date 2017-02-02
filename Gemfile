@@ -57,6 +57,9 @@ gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'cloudinary'
 
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
+
 group :development, :test do
   gem "factory_girl_rails"
 end

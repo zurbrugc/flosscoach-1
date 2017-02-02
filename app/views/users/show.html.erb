@@ -21,12 +21,9 @@
                 </p>
 
                 <div class="profile-social">
-                  <%= link_to "", @user.twitter_link, :class => "icon bd-twitter"  unless @user.twitter_link %>
-                  <% if @user.facebook_link %>
-                  <%= link_to "", @user.facebook_link, :class => "icon bd-facebook"  unless @user.facebook_link %>
-                  <% end %>
-                  <%= link_to"", @user.github_link, :class => "icon bd-github"  unless @user.facebook_link %>
-
+                  <%= link_to "", @user.twitter_link, :class => "icon bd-twitter"  if @user.twitter_link %>
+                  <%= link_to "", @user.facebook_link, :class => "icon bd-facebook"  if @user.facebook_link %>
+                  <%= link_to "", @user.github_link, :class => "icon bd-github"  if @user.github_link %>
                 </div>
               <!--  <button type="button" class="btn btn-primary">Follow</button> -->
               </div>

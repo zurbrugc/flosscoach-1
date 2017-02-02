@@ -1,6 +1,11 @@
 require "bcrypt"
 class User < ApplicationRecord
+  include FriendlyId
+
+  friendly_id :username, use: :slugged
+  
   audited except: :avatar
+
   has_associated_audits
 
   has_and_belongs_to_many :projects
@@ -8,7 +13,7 @@ class User < ApplicationRecord
   has_many :comments
   validates_presence_of :email, :name
   validates_format_of :email, :with => /@/
-
+  validates_uniqueness_of :username
   validates_presence_of :password,  :if => :password
   validates_uniqueness_of :email
   validates_length_of :password, minimum: 6, :if => :password

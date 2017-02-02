@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = current_user
+    @user = User.friendly.find(params[:id])
   end
 
   def block_acess
