@@ -19,7 +19,9 @@ class UsersControllerTest < ActionController::TestCase
 
   test "access profile URL generated from username" do
     user = create(:user)
-    get :show, id: user.username
+    get :show, params: {id: user.username}
     assert_response :success
   end
+
+
 end

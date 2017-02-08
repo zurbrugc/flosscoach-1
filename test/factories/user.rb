@@ -4,5 +4,7 @@ FactoryGirl.define do
     birth "04/11/1995"
     sequence(:email)  { |n| "email#{n}@gmail.com"}
     sequence(:username)  {|n| "username#{n}"}
+    email_confirmed true
+    
   end
 end

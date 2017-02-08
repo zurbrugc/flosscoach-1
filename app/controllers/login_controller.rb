@@ -9,10 +9,10 @@ class LoginController < ApplicationController
   def check_confirmed_email(user)
     if user.email_confirmed?
       session[:user_id] = user.id
-      redirect_to projects_path
+      redirect_to projects_path, status: :success
     else
       flash.now[:alert] = "Please verify your e-mail and confirm your registration."
-      render action: "index"
+      render action: "index", status: :unauthorized
     end
   end
 
@@ -22,7 +22,7 @@ class LoginController < ApplicationController
       check_confirmed_email(user)
     else
       flash.now[:alert] = "Invalid e-mail or password."
-      render action: "index"
+      render action: "index", status: :unauthorized
     end
   end
 
@@ -39,5 +39,5 @@ class LoginController < ApplicationController
       render :index
     end
   end
-  
+
 end

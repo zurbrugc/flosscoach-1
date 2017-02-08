@@ -3,8 +3,8 @@ class ProjectsController < ApplicationController
   respond_to :html, :js, :json
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize_project, only: [:new, :create, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: [:update]
+  before_action :authorize_project, only: [:new, :create, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:update]
 
   # GET /projects
   def index
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    
+
   end
 
   # GET /projects/new
@@ -38,10 +38,10 @@ class ProjectsController < ApplicationController
     @project.widgets << make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to edit_project_path(@project), notice: t('Project was successfully created.')
+      redirect_to edit_project_path(@project), notice: t('Project was successfully created.'), status: :created
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
