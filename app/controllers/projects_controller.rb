@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all.search(params[:search])
- 	  @myproject = Project.new
+ 	  @project = Project.new
   end
 
   # GET /projects/1
@@ -24,6 +24,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    unless @project.owner?(current_user)
+      redirect_to project_path(@project), notice: "Access unauthorized!"
+    end
     @codigourl = params[:id]
   end
 
@@ -31,14 +34,15 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
-    @project.image_url = "/assets/placeholder.png"
     if ohp && ohp.try(:medium_logo_url)
-      @project.image_url = ohp.medium_logo_url
+      @project.open_hub_image_url = ohp.medium_logo_url
+      @project.use_open_hub_data = true
+      @project.use_open_hub_image = true
     end
     @project.widgets << make_all_widgets(ohp)
     @project.owners << current_user
     if @project.save
-      redirect_to edit_project_path(@project), notice: t('Project was successfully created.'), status: :created
+      redirect_to project_path(@project), notice: t('Project was successfully created.')
     else
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -49,8 +53,8 @@ class ProjectsController < ApplicationController
   # TODO: Refactor
   def update
     if @project.update_attributes(project_params)
-      #redirect_to @project, notice: 'Project was successfully updated.'
       respond_to do |format|
+        format.html { redirect_to @project, notice: 'Project was successfully updated.'}
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
       end
     else

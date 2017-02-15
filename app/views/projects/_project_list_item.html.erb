@@ -2,9 +2,9 @@
 <div class="media">
 
   <div class="media-left">
-    <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
+    <%= link_to project do %>
       <div class="avatar avatar-online">
-        <img src="<%= project.image_url %>" alt="<%= project.name %> image"/>
+        <img src="<%= project.photo_url %>" alt="<%= project.name %> image"/>
       </div>
     <% end %>
   </div>
@@ -12,7 +12,7 @@
   <div class="media-body">
   <% if current_user %>
   <div class="pull-right favorite-button-wrapper">
-  <% if !current_user.favorited_projects.include?(project) %>
+  <% unless current_user.favorited_projects.include?(project) %>
     <%= button_to "Favorite this project", project_favorite_path(project), :class => "btn btn-outline btn-default btn-sm favorite-button", :remote => true %>
   <% else %>
     <%= button_to "Project favorited", project_favorite_path(project), :class => "btn btn-success btn-default btn-sm disfavorite-button", :method => :delete , :remote => true %>
@@ -20,7 +20,7 @@
   </div>
   <% end %>
 
-  <%= link_to current_user ? edit_project_path(:id => project.id) : project do %>
+  <%= link_to project do %>
     <h4 class="media-heading">
       <%= project.name %>
     </h4>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :edit]
-  skip_before_filter :verify_authenticity_token, only: [:update]
+  skip_before_action :verify_authenticity_token, only: [:update]
   before_action :block_acess, only: [:new]
 
   # GET /users
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.photo_url ||= "/assets/avatar.jpeg"
     if @user.save
       flash[:notice] = "Please confirm your email address to continue"
       redirect_to root_url

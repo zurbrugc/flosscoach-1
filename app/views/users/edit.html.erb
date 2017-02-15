@@ -11,9 +11,10 @@
 	You can upload an photo or avatar here
 	</p>
 </div>
-	<%= form_for(@user) do |f| %>
 
 <div class="col-lg-9">
+	<%= form_for(@user) do |f| %>
+
 	<div class="clearfix avatar-image append-bottom-default">
 	</div>
 	<h5>
@@ -22,17 +23,24 @@
 	<div>
 		<div class='img-responsive' style='width:350px;'>
 
-		<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.photo_url} %>
+		<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.photo_url_uploaded} %>
 	</div>
 	</div>
 	<div class="help-block">
 		The maximum file size allowed is 3MB.
 	</div>
+
+	<div class="form-group">
+		<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+	</div>
+	<% end %>
 </div>
 
 </div>
 </div>
 <div class="panel">
+<%= form_for(@user) do |f| %>
+
 <div class="panel-body">
 <div class="row">
 <div class="col-lg-3">
@@ -104,11 +112,12 @@
   	<div class="form-group">
 	  	<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
   	</div>
-	<% end %>
 
 </div>
 
 </div>
 </div>
+<% end %>
+
 </div>
 </div>

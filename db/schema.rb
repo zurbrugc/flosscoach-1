@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201231606) do
+ActiveRecord::Schema.define(version: 20170215143723) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -105,9 +105,13 @@ ActiveRecord::Schema.define(version: 20170201231606) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_url"
+    t.string   "avatar"
+    t.boolean  "use_open_hub_image"
+    t.string   "open_hub_image_url"
+    t.boolean  "use_open_hub_data"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -128,7 +132,6 @@ ActiveRecord::Schema.define(version: 20170201231606) do
     t.string   "encrypted_password"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "photo_url"
     t.string   "fb_token"
     t.string   "provider"
     t.string   "uid"

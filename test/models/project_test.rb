@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
+
+  test "create two project with same name" do
+    project_one = create(:project, name: "Potato")
+    project_two = build(:project, name: "Potato")
+
+    assert_not project_two.save
+  end
+
   test "user creating a project" do
     user = create(:user)
     project = create(:project)

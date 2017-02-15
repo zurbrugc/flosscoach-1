@@ -17,17 +17,24 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, :if => :password
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
-  
+
   before_create :confirmation_token
 
 	has_many :favoriter_projects
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   mount_uploader :avatar, AvatarUploader
+  validates :avatar, file_size: { less_than: 3.megabytes }
 
   def photo_url
-    avatar.url
+    unless avatar.url.nil?
+      avatar.url
+    else
+      "/assets/avatar.jpeg"
+    end
   end
-
+  def photo_url_uploaded
+      photo_url
+  end
   def password=(new_password)
     @password = new_password
     self.encrypted_password = BCrypt::Password.create(@password)

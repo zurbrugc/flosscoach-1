@@ -4,13 +4,12 @@
     <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs">
 
     <figure class='logo-projeto'>
-      <div class='img-responsive  center-block' style='width:300px;'>
-        <input type="file" id="input-file-now-custom-1"
-        data-default-file='<%= @project.image_url if @project %>' data-plugin="dropify"/>
+      <div class='center-block'>
+        <img class="center-block img-responsive" src="<%= @project.photo_url %>" style="max-width:250px;"/>
     </div>
     </figure>
-    <h1  class="page-title text-center" data-plugin="summernote" data-air-mode="true"><%= @project.name %></h1>
-    <p class='description text-center' data-plugin="summernote" data-air-mode="true"><%= @project.description %></p>
+    <h1 class="page-title text-center"><%= @project.name %></h1>
+    <p class='text-center'><%= @project.description %></p>
 
     <div class="center-block container text-center">
     Project created <%= time_ago_in_words @project.created_at %> ago
@@ -42,9 +41,16 @@
         <li>
           <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
         </li>
-        <li>
-          <a data-toggle="tab" href="#manage"><%= t('Manage')%></a>
+        <% if @project.owner?(current_user) %>
+        <%= link_to edit_project_path(@project) do %>
+
+        <li style="float:right;">
+<button type="button" class="btn btn-dark"><i class="icon wb-settings" aria-hidden="true"></i> Edit</button>
         </li>
+        <% end %>
+
+        <% end %>
+
        </ul>
 
     </div>
@@ -55,7 +61,7 @@
       <%= render 'widgets/show', :widget => widget %>
     <% end %>
 
-    <% if @project.owners.include?(current_user) %>
+    <% if @project.owner?(current_user) %>
     <%= render 'widgets/new' , :tab => "about" %>
     <% end %>
     </div>
@@ -65,7 +71,7 @@
       <% @project.widgets.from_tab_how_to_start.each do |widget| %>
         <%= render 'widgets/show', :widget => widget %>
       <% end %>
-      <% if @project.owners.include?(current_user) %>
+      <% if @project.owner?(current_user) %>
       <%= render 'widgets/new', :tab => "how_to_start"%>
       <% end %>
 
@@ -78,7 +84,7 @@
         <%= render 'widgets/show', :widget => widget %>
       <% end %>
 
-      <% if @project.owners.include?(current_user) %>
+      <% if @project.owner?(current_user) %>
       <%= render 'widgets/new', :tab => "config_workspace"%>
       <% end %>
 
@@ -89,7 +95,7 @@
       <% @project.widgets.from_tab_know_the_code.each do |widget| %>
           <%= render 'widgets/show', :widget => widget %>
       <% end %>
-      <% if @project.owners.include?(current_user) %>
+      <% if @project.owner?(current_user) %>
       <%= render 'widgets/new', :tab => "know_the_code"%>
       <% end %>
 
@@ -100,11 +106,11 @@
         <% @project.widgets.from_tab_send_contribution.each do |widget| %>
         <%= render 'widgets/show', :widget => widget %>
         <% end %>
-        <% if @project.owners.include?(current_user) %>
+        <% if @project.owner?(current_user) %>
         <%= render 'widgets/new', :tab => "send_contribution"%>
         <% end %>
     </div>
-    <% if @project.owners.include?(current_user) %>
+    <% if @project.owner?(current_user) %>
       <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
         <%= render 'widget_owner' %>
         <%= link_to project_path(@project),

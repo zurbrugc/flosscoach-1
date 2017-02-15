@@ -77,20 +77,20 @@ $(".widget-title").on("summernote.change", function(e) {
     obj.style.color = obj.className.includes("up") ?  "green"  : "" ;
 
     if(obj.className.includes("up")){ // Se o botão tá ativo e o usuário clicou pra desativar
-            edit($(obj)); 
+            edit($(obj));
 
     }else{
       finish($(obj)); // Salva (na realidade na implementação ele está apenas chamado o destroy())
 
     }
   }
-  
+
 var serializeWidgetMap = function(items) {
     console.log(items);
 };
 
 $('.grid-stack').on('change', function(event, items) {
-  for (i = 0; i < items.length; i++) { 
+  for (i = 0; i < items.length; i++) {
     save_properties_widget(items[i]);
 }
 serializeWidgetMap(items)
@@ -103,7 +103,7 @@ serializeWidgetMap(items)
 
   $(".grid-stack-item").each(function(){
       box = $(this).find('.insertBox').eq(0);
- 
+
 
       box_html = box.html();
       button = $(this).find('.button-insert');
@@ -122,14 +122,14 @@ serializeWidgetMap(items)
 
 
   function save_text_widget(widget){
-    var widget = $(widget); 
+    var widget = $(widget);
     var obj={};
 
     var id = widget.attr("data-gs-id");
     var content = widget.code();
 
     obj['_method']="put";
-    obj['widget'] = {"id": id, 
+    obj['widget'] = {"id": id,
                       "content" : content};
     $.ajax({
     type: "PUT",
@@ -164,10 +164,10 @@ serializeWidgetMap(items)
         alert( "Data Saved: ", msg );
     });
 
-  }       
+  }
 
   function update_widget_title(widget, new_title){
-   
+
     var obj={};
     obj['_method']="put";
 
@@ -187,57 +187,18 @@ serializeWidgetMap(items)
     });
 
 
-  }  
-  function save_name_project(new_name){
-   
-    var obj={}
-    obj['_method']="put"
-    
-    obj['project'] = {"name" : new_name}
-
-    $.ajax({
-    type: "PUT",
-    dataType: "script",
-    url: window.location.href.replace("/edit", ""),
-    contentType: 'application/json',
-    data: JSON.stringify(obj)
-    }).done(function( msg )
-    {
-        alert( "Data Saved: ", msg );
-    });
-
-  }       
-
-
-  function save_description_project(new_description){
-    var obj={}
-    obj['_method']="put"
-    obj['project'] = {"description" : new_description}
-
-    $.ajax({
-    type: "PUT",
-    dataType: "script",
-    url: window.location.href.replace("/edit", ""),
-    contentType: 'application/json',
-    data: JSON.stringify(obj)
-    }).done(function( msg )
-    {
-        alert( "Data Saved: ", msg );
-    });
-
-
-  }      
-
-
-
-
+  }
 
 
   $(".btn-reply").click(function(){
     $(this).parents(".comment-body:first").find(".comment-reply:first").show();
-  })      
+  });
 
     $(".btn-reply-close").click(function(){
       $(this).parents(".comment-body:first").find(".comment-reply:first").hide();
-  })    
+  });
 
+    $("#project_use_open_hub_image").change(function(){
+      $("#container-upload").toggleClass("hide");
+      $("#container-openhub").toggleClass("hide");
+    });
