@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20170215143723) do
     t.text     "body"
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
-    t.integer  "author_id"
     t.string   "author_type"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170215143723) do
     t.string   "name"
     t.date     "birth"
     t.string   "email"
+    t.string   "username"
     t.string   "encrypted_password"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -146,7 +147,6 @@ ActiveRecord::Schema.define(version: 20170215143723) do
     t.string   "github_link"
     t.string   "avatar"
     t.string   "slug"
-    t.string   "username"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

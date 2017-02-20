@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class UsersControllerTest  < ActionDispatch::IntegrationTest
 
   test "no clearing fields on error in user sign up" do
       #issue number #78 on gitlab
       params = {name: 'Victor', email: 'testeteste.com'}
-      post :create, params: {user: params}
+      post users_url, params: {user: params}
       assert :unprocessable_entity
 
       assert_select '#user_name' do
@@ -19,8 +19,10 @@ class UsersControllerTest < ActionController::TestCase
 
   test "access profile URL generated from username" do
     user = create(:user)
-    get :show, params: {id: user.username}
+    get user_url(user.username), params: {id: user.username}
     assert_response :success
+
+    assert_select '.profile-user span.name', user.name
   end
 
 
