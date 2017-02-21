@@ -6,24 +6,29 @@ class User < ApplicationRecord
   audited except: :avatar
   has_associated_audits
 
-  has_and_belongs_to_many :projects
 
-  has_many :comments
-  validates_presence_of :email, :name
-  validates_format_of :email, :with => /@/
-  validates_uniqueness_of :username
+  validates_presence_of :email
+  validates_presence_of :name
+  validates_presence_of :username
   validates_presence_of :password,  :if => :password
+
+  validates_uniqueness_of :username
   validates_uniqueness_of :email
+
+  validates_format_of :email, :with => /@/
   validates_length_of :password, minimum: 6, :if => :password
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
+  validates :avatar, file_size: { less_than: 3.megabytes }
 
   before_create :confirmation_token
 
 	has_many :favoriter_projects
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
+  has_and_belongs_to_many :projects
+  has_many :comments
+
   mount_uploader :avatar, AvatarUploader
-  validates :avatar, file_size: { less_than: 3.megabytes }
 
   def photo_url
     unless avatar.url.nil?
