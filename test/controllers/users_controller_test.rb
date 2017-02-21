@@ -24,6 +24,5 @@ class UsersControllerTest  < ActionDispatch::IntegrationTest
 
     assert_select '.profile-user span.name', user.name
   end
-
-
+  
 end

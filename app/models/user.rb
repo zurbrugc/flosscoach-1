@@ -40,6 +40,9 @@ class User < ApplicationRecord
   def photo_url_uploaded
       photo_url
   end
+  def favorite_project(project)
+    self.favorited_projects << project
+  end
   def password=(new_password)
     @password = new_password
     self.encrypted_password = BCrypt::Password.create(@password)

@@ -9,7 +9,9 @@ class ProjectsControllerTest <  ActionDispatch::IntegrationTest
 
     post projects_url, params: {project: {name: "Teste", description: "lol"}}
     assert_redirected_to project_url(Project.first)
-  end
 
+    get project_url(Project.first)
+    assert_select "h1.page-title", Project.first.name
+  end
 
 end

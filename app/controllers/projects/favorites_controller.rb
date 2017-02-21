@@ -7,30 +7,38 @@ class Projects::FavoritesController < ProjectsController
   def create
     project = Project.find_by_id(params[:project_id])
     respond_to do |format|
-      @user.favorited_projects << project
+      @user.favorite_project(project)
       if @user.save
-        flash.now[:notice] = "Project #{@project.name} has been favorited!."
         format.js
-        format.html
+        format.html{
+          flash.now[:notice] = "Project #{@project.name} has been favorited!."
+          redirect_to project_path(@project)
+        }
       else
-        flash.now[:notice] = "Erron on favorite project #{@project.name}."
         format.js
-        format.html
+        format.html{
+          flash.now[:notice] = "Erron on favorite project #{@project.name}."
+          redirect_to project_path(@project)
+        }
       end
     end
   end
-  
+
   # DELETE /users/1
   def destroy
     respond_to do |format|
       if @user.favorited_projects.delete(@project)
-        flash.now[:notice] = "Project #{@project.name} has been disfavorited!."
         format.js
-        format.html
+        format.html{
+          flash.now[:notice] = "Project #{@project.name} has been disfavorited!."
+          redirect_to project_path(@project)
+        }
       else
-        flash.now[:notice] = "Erron on disfavorite project #{@project.name}."
         format.js
-        format.html
+        format.html{
+          flash.now[:notice] = "Erron on disfavorite project #{@project.name}."
+          redirect_to project_path(@project)
+        }
       end
     end
   end
