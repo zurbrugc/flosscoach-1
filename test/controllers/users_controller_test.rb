@@ -24,5 +24,12 @@ class UsersControllerTest  < ActionDispatch::IntegrationTest
 
     assert_select '.profile-user span.name', user.name
   end
-  
+
+  test "register user" do
+    user_attributes = {name: 'Victor', email: 'imatheusfsantos@gmail.com',
+                        username: 'victor', password: 'victor123', password_confirmation: 'victor123'}
+    post users_url, params: {user: user_attributes}
+
+    assert_equal User.first.name, user_attributes[:name]
+  end
 end
