@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     unless @project.owner?(current_user)
-      redirect_to project_path(@project), notice: "Access unauthorized!"
+      render :show, status: :unauthorized, notice: 'Access unauthorized'
     end
     @codigourl = params[:id]
   end
@@ -52,13 +52,20 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # TODO: Refactor
   def update
-    if @project.update_attributes(project_params)
-      respond_to do |format|
-        format.html { redirect_to @project, notice: 'Project was successfully updated.'}
-        format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
+    if @project.owner?(current_user)
+      if @project.update_attributes(project_params)
+        respond_to do |format|
+          format.html { render :edit, status: :ok, notice: 'Project was successfully updated.'}
+          format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit, status: :unprocessable_entity, notice: 'Update failed!'}
+          format.json { render :json => { :status => 'Error', :message => 'Error on update'}, :status => :unprocessable_entity }
+        end
       end
     else
-    #  render :edit
+      render :show, status: :unauthorized, notice: 'Access unauthorized'
     end
   end
 
