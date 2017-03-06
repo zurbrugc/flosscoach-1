@@ -3,7 +3,9 @@ class User < ApplicationRecord
   include FriendlyId
 
   friendly_id :username, use: :slugged
-  audited except: :avatar, :email_confirmed, :confirm_token 
+  audited except: :avatar
+  audited except: :email_confirmed
+  audited except: :confirm_token
   has_associated_audits
 
 
@@ -22,7 +24,7 @@ class User < ApplicationRecord
   validates :avatar, file_size: { less_than: 3.megabytes }
 
   before_create :confirmation_token
-
+  #relationships
 	has_many :favoriter_projects
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   has_and_belongs_to_many :projects
