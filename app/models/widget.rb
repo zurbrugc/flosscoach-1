@@ -25,9 +25,9 @@ class Widget < ApplicationRecord
   before_create :create_slug
 
   def set_defaults
-    self.closeable =  false
-    self.resizeable =  true
-    self.retractable = true
+    self.closeable ||=  false
+    self.resizeable ||=  true
+    self.retractable ||= true
   end
 
 
