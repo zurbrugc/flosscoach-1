@@ -53,7 +53,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html {
+          @activities_in_your_projects = project_audits(@user).reverse
+          @recent_comments = []
+          @recent_activities = @user.audits.reverse
+          render :show, status: :ok, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

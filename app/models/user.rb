@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include FriendlyId
 
   friendly_id :username, use: :slugged
-  audited except: :avatar
+  audited except: :avatar, :email_confirmed, :confirm_token 
   has_associated_audits
 
 
