@@ -22,7 +22,7 @@ gem 'file_validators'
 
 gem 'therubyracer',  platforms: :ruby
 
-gem 'bcrypt-ruby', '~> 3.0'
+gem 'bcrypt', '~> 3.1.7'
 gem 'react-rails'
 gem 'responders'
 gem 'summernote-rails'
