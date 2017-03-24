@@ -26,18 +26,11 @@ class LoginController < ApplicationController
     end
   end
 
+
   def logout
     session.delete(:user_id)
     render action: "index"
   end
 
-  def search
-    @projects = Project.search(params[:query])
-    if request.xhr?
-      render :json => @projects.to_json
-    else
-      render :index
-    end
-  end
 
 end

@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.widget = @widget
     @widget.comments << @comment
-    
+
     if comment_params[:reply_to_id]
       comment_dad = Comment.find(comment_params[:reply_to_id])
       comment_dad.replies << @comment
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
     if @widget.update_attributes(widget_params)
       respond_to do |format|
         format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => 200 }
-      end   
+      end
     else
       render :edit
     end
@@ -64,10 +64,10 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @comment = Comment.all.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
   def set_widget
-    @widget = Widget.all.find(params[:widget_id])
+    @widget = Widget.find(params[:widget_id])
   end
 
 

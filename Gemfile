@@ -60,6 +60,9 @@ gem 'cloudinary'
 
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem "factory_girl_rails"

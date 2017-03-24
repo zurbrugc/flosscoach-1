@@ -6,8 +6,7 @@ class User < ApplicationRecord
   audited except: :email_confirmed
   audited except: :confirm_token
   has_associated_audits
-
-
+  
   validates_presence_of :email
   validates_presence_of :name
   validates_presence_of :username
@@ -41,6 +40,7 @@ class User < ApplicationRecord
   def photo_url_uploaded
       self.photo_url
   end
+
   def favorite_project(project)
     self.favorited_projects << project
   end
