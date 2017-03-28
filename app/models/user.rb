@@ -58,6 +58,8 @@ class User < ApplicationRecord
       email: user.email || auth.info.email || "#{auth.info.name}@flosscoach.com",
       fb_token: auth.credentials.token,
       password: "abababbbb", password_confirmation: "abababbbb"})
+    user.username = user.name.parameterize.gsub("-","_")
+
     user.save!
     if auth.info.image
       user.update_attributes({remote_image_url: auth.info.image,
