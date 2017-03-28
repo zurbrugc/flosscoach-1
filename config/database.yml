@@ -24,10 +24,9 @@ production:
   adapter: postgresql
   encoding: utf8
   database: floss
-  username:  flosscoach
+  username: flosscoach
   password: awsfloss2017
   host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
-
+  port: 5432
 cucumber:
   <<: *test
