@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :topic do
-    forum_id 1
-    title "MyString"
+    sequence(:title)  { |n| "Title of a Topic #{n}"}
     locked false
-    locked_at "2017-03-27 21:48:41"
+    forum
   end
 end

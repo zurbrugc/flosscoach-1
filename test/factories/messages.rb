@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :message do
-    user_id 1
-    topic_id 1
-    content "MyString"
+    user
+    topic
+    sequence(:content)  { |n| "Content of a message in forum #{n}"}
   end
 end
