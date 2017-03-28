@@ -15,6 +15,7 @@ class MessageTest < ActiveSupport::TestCase
     assert message.persisted?
     assert_equal user, message.user
     assert_equal topic, message.topic
+    assert_equal 1, topic.messages_count
   end
   test "post a message on topic 2" do
     project = create(:project)
@@ -27,6 +28,7 @@ class MessageTest < ActiveSupport::TestCase
     assert message.persisted?
     assert_equal "Batata :D", message.content
     assert_equal "Batata :D", message.to_s
+    assert_equal 1, topic.messages_count
   end
   test "create a message without a user" do
     project = create(:project)
