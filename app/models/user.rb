@@ -62,7 +62,7 @@ class User < ApplicationRecord
 
     user.save!
     if auth.info.image
-      user.update_attributes({remote_image_url: auth.info.image,
+      user.update_attributes({remote_avatar_url: auth.info.image,
         password: "blablablablabla"})
     end
     user
