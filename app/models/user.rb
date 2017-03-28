@@ -2,15 +2,17 @@ class User < ApplicationRecord
   include FriendlyId
 
   friendly_id :username, use: :slugged
+  has_secure_password
+
+
   audited except: :avatar
   audited except: :email_confirmed
   audited except: :confirm_token
   has_associated_audits
-  
+
   validates_presence_of :email
   validates_presence_of :name
   validates_presence_of :username
-  validates_presence_of :password,  :if => :password
 
   validates_uniqueness_of :username
   validates_uniqueness_of :email
@@ -29,7 +31,6 @@ class User < ApplicationRecord
   has_many :comments
 
   mount_uploader :avatar, AvatarUploader
-  has_secure_password
   def photo_url
     unless self.avatar.url.nil?
       self.avatar.url
@@ -55,10 +56,13 @@ class User < ApplicationRecord
     user = self.find_or_create_by(:provider => auth.provider,:uid => auth.uid)
     user.assign_attributes({ name: user.name || auth.info.name,
       email: user.email || auth.info.email || "#{auth.info.name}@flosscoach.com",
-      photo_url: user.photo_url || auth.info.image,
       fb_token: auth.credentials.token,
       password: "abababbbb", password_confirmation: "abababbbb"})
     user.save!
+    if auth.info.image
+      user.update_attributes({remote_image_url: auth.info.image,
+        password: "blablablablabla"})
+    end
     user
   end
 
