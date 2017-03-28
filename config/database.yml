@@ -23,7 +23,7 @@ test: &test
 production:
   adapter: postgresql
   encoding: utf8
-  database: <%= ENV['RDS_DB_NAME'] %>
+  database: floss
   username:  flosscoach
   password: awsfloss2017
   host: <%= ENV['RDS_HOSTNAME'] %>
