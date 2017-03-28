@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314164614) do
+ActiveRecord::Schema.define(version: 20170328005148) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20170314164614) do
     t.integer  "user_id"
   end
 
+  create_table "forums", force: :cascade do |t|
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -78,6 +84,14 @@ ActiveRecord::Schema.define(version: 20170314164614) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -121,6 +135,16 @@ ActiveRecord::Schema.define(version: 20170314164614) do
 
   create_table "tools", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.integer  "forum_id"
+    t.string   "title"
+    t.boolean  "locked"
+    t.datetime "locked_at"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
