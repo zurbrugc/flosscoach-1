@@ -10,8 +10,29 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require red
+
+ * Bootstrap and site stylesheets
+
+ *= require remark/global/css/bootstrap.min.css
+ *= require remark/global/css/bootstrap-extend.min.css
+ *= require remark/assets/css/site.min.css
+
+ * Necessary plugin stylesheets
+
+ *= require remark/global/vendor/animsition/animsition.css
+ *= require remark/global/vendor/asscrollable/asScrollable.css
+ *= require remark/global/vendor/switchery/switchery.css
+ *= require remark/global/vendor/slidepanel/slidePanel.css
+ *= require remark/global/vendor/flag-icon-css/flag-icon.css
+
+ * Icon stylesheets
+
+ *= require remark/global/fonts/web-icons/web-icons.min.css
+ *= require remark/global/fonts/brand-icons/brand-icons.min.css
+
+
+
+ *= require remark/assets/skins/red
  *= require_self
  */
 

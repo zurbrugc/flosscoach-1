@@ -11,51 +11,47 @@
 // about supported directives.
 //
 
-//= require plugin/jquery
+
+
+// Core and plugin dependencies
+
+//= require remark/global/vendor/babel-external-helpers/babel-external-helpers
+//= require remark/global/vendor/jquery/jquery.js
+//= require remark/global/vendor/tether/tether.js
+
+//= require remark/global/vendor/bootstrap/bootstrap.js
+//= require remark/global/vendor/animsition/animsition.js
+//= require remark/global/vendor/mousewheel/jquery.mousewheel.js
+//= require remark/global/vendor/asscrollbar/jquery-asScrollbar.js
+//= require remark/global/vendor/asscrollable/jquery-asScrollable.js
+//= require remark/global/vendor/ashoverscroll/jquery-asHoverScroll.js
+//= require remark/global/vendor/screenfull/screenfull.js
+//= require remark/global/vendor/slidepanel/jquery-slidePanel.js
+
+// Template relating scripts
+
+//= require remark/global/js/State.js
+//= require remark/global/js/Component.js
+//= require remark/global/js/Plugin.js
+//= require remark/global/js/Base.js
+//= require remark/global/js/Config.js
+
+//= require remark/assets/js/Section/Menubar.js
+//= require remark/assets/js/Section/Sidebar.js
+//= require remark/assets/js/Section/PageAside.js
+//= require remark/assets/js/Plugin/menu.js
+
+//= require remark/assets/js/Site.js
+
+
 //= require jquery_ujs
-//= require plugin/bootstrap
-//= require plugin/animsition
-//= require plugin/jquery-asScroll
-//= require plugin/jquery.mousewheel
-//= require plugin/jquery.asScrollable.all
-//= require plugin/jquery-asHoverScroll
-
-//= require plugin/switchery.min
-//= require plugin/intro
-//= require plugin/screenfull
-//= require plugin/jquery-slidePanel
-//= require plugin/jquery.placeholder
-
-//= require plugin/isotope.pkgd.min.js
-//= require plugin/lodash.js
-//= require plugin/jquery-ui.min
-//= require plugin/jquery-asProgress.js
-//= require plugin/draggabilly.pkgd
+//= require_self
 
 
-
-//= require js/core
-//= require js/site
-//= require js/menu
-//= require js/menubar
-//= require js/gridmenu
-//= require js/sidebar
-//= require js/config-colors
-//= require js/config-tour
-//= require js/asscrollable
-//= require js/animsition
-//= require js/slidepanel
-//= require js/switchery
-//= require js/jquery-placeholder
-
-//= require js/jquery.asPaginator.min
-//= require components/tabs
-
-//= require components/responsive-tabs
-//= require components/asprogress
-//= require components/panel
-
-//= require components/aspaginator
-//= require components/slidepanel
-
-//= require components/asscrollable
+(function(document, window, $) {
+  'use strict';
+  var Site = window.Site;
+  $(document).ready(function() {
+    Site.run();
+  });
+})(document, window, jQuery);

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js css-menubar">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
     <title>Flosscoach</title>
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -8,9 +12,7 @@
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-    <%= javascript_include_tag 'js/modernizr' %>
-    <%= javascript_include_tag 'js/breakpoints' %>
-
+    <%= javascript_include_tag 'remark/global/vendor/breakpoints/breakpoints.js' %>
     <script>
       Breakpoints();
     </script>
@@ -33,51 +35,16 @@
     </style>
 
   </head>
-  <body class="<%= yield :body_class %>">
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <body>
 
-    <% if current_user %>
+    <%= render 'header' %>
 
-      <%= render 'layouts/navigation' %>
-
-      <!-- Page -->
-      <div class="page animsition">
-
-        <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
-        <% if alert %><p class="alert alert-error"><%= alert %></p><% end %>
-
-        <%= yield %>
-
-      </div>
-      <!-- End Page -->
-
-      <!-- Footer -->
-      <footer class="site-footer">
-        <div class="site-footer-legal">© 2016 <a href="#">Flosscoach</a> </div>
-        <p align="Right"> <a href="?locale=pt-BR">Br</a> <a href="?locale=en">En</a>
-
-      </footer>
-
-    <% else %>
-
+    <div class="page">
       <%= yield %>
-
-    <% end %>
+    </div>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag params[:controller] %>
-
-    <script>
-      (function(document, window, $) {
-        'use strict';
-        var Site = window.Site;
-        $(document).ready(function() {
-          Site.run();
-        });
-      })(document, window, jQuery);
-    </script>
 
   </body>
 </html>
