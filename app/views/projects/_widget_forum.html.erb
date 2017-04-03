@@ -1,6 +1,6 @@
 <div class="grid-stack-item"
 data-gs-x="0"
-data-gs-y="0"
+data-gs-y="6"
 data-gs-width="12"
 data-gs-height="5"
 data-gs-no-resize=""
@@ -9,37 +9,30 @@ data-gs-locked="">
 
 <div class="grid-stack-item-content panel panel-bordered" >
   <div class="panel-heading">
-    <h3 class="panel-title" >Owners</h3>
+    <h3 class="panel-title" >Fórum</h3>
     <div class="panel-actions">
     </div>
   </div>
   <div class="panel-body">
     <ul class="list-group list-group-full">
-      <% @project.owners.each  do |member| %>
+      <% @forum.topics.each  do |topic| %>
       <li class="list-group-item">
         <div class="media">
           <div class="media-left">
-            <span class="avatar">
-              <%= link_to user_path(member) do %>
 
-              <img class="img-responsive" src="<%= member.photo_url %>" alt="Photo of <%= member.name %>">
-              <% end %>
-
-            </span>
           </div>
           <div class="media-body">
-            <%= link_to user_path(member) do %>
+            <%= link_to forum_topic_path(@forum, topic) do %>
 
-            <h4 class="media-heading"><%= member.name %></h4>
+            <h4 class="media-heading"><%= topic.title %></h4>
             <% end %>
 
-            <small><%= t('Administrator')%></small>
+            <small>Created by <%= topic.user.username %></small>
 
           </div>
 
           <div class="media-right">
-            <%= link_to '' ,project_user_path(@project, member),
-            data: {:confirm => t('Are you sure?')}, :class => "status status-lg wb-close" , :method => :delete %>
+
           </div>
         </div>
       </li>
@@ -48,11 +41,11 @@ data-gs-locked="">
 
     </ul>
 
-    <%= link_to new_project_user_path(@project) do %>
+    <%= link_to new_forum_topic_path(@project.forum) do %>
     <button class="btn btn-primary">
 
       <i class="icon wb-plus" aria-hidden="true"></i>
-      Add new administrator
+      Create topic
     </button>
     <% end %>
 

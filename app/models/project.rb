@@ -2,13 +2,14 @@ class Project < ApplicationRecord
   audited
   validates_presence_of :name
   validates_uniqueness_of :name
+  
   audited associated_with: :owners
   belongs_to :user
   has_many :widgets, :dependent => :destroy
   has_associated_audits
   has_and_belongs_to_many :owners, class_name: 'User'
   has_one :forum
-  
+
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
   has_many :comments, through: :widgets

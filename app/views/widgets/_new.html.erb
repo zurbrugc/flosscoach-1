@@ -18,7 +18,7 @@
           <h4 class="modal-title" id="createWidgetLabel"><%=t('Create new widget')%></h4>
         </div>
         <div class="modal-body">
-        <%= form_for(Widget.new) do |f| %>
+        <%= form_for [@project, Widget.new] do |f| %>
           <div class="row">
             <div class="col-lg-12 form-group">
               <%= f.text_field :title , :class => "form-control", placeholder:'Widget title' %>

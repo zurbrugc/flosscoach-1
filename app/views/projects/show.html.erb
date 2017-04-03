@@ -1,126 +1,125 @@
 
-    <input type='hidden' name='_method' value='put'>
+<input type='hidden' name='_method' value='put'>
 
-    <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs">
+<div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs">
 
-    <figure class='logo-projeto'>
-      <div class='center-block'>
-        <img class="center-block img-responsive" src="<%= @project.photo_url %>" style="max-width:250px;"/>
+  <figure class='logo-projeto'>
+    <div class='center-block'>
+      <img class="center-block img-responsive" src="<%= @project.photo_url %>" style="max-width:250px;"/>
     </div>
-    </figure>
-    <h1 class="page-title text-center"><%= @project.name %></h1>
-    <p class='text-center'><%= @project.description %></p>
+  </figure>
+  <h1 class="page-title text-center"><%= @project.name %></h1>
+  <p class='text-center'><%= @project.description %></p>
 
-    <div class="center-block container text-center">
+  <div class="center-block container text-center">
     Project created <%= time_ago_in_words @project.created_at %> ago
 
     <div class="favorite-button-wrapper center-block ">
-        <% if !current_user.favorited_projects.include?(@project) %>
-    <%= button_to "Favorite this project", project_favorite_path(@project), :class => "btn btn-outline btn-default btn-sm favorite-button ", :remote => true %>
-  <% else %>
-    <%= button_to "Project favorited", project_favorite_path(@project), :class => "btn btn-success btn-default btn-sm disfavorite-button", :method => :delete , :remote => true
- %>
+      <% if !current_user.favorited_projects.include?(@project) %>
+      <%= button_to "Favorite this project", project_favorite_path(@project), :class => "btn btn-outline btn-default btn-sm favorite-button ", :remote => true %>
+      <% else %>
+      <%= button_to "Project favorited", project_favorite_path(@project), :class => "btn btn-success btn-default btn-sm disfavorite-button", :method => :delete , :remote => true
+      %>
 
-  <% end %>
+      <% end %>
     </div>
 
-    </div>
-      <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist" >
-        <li class="active">
-          <a data-toggle="tab" href="#about_aba"><%=t('About')%></a>
-        </li>
-        <li>
-          <a data-toggle="tab"  href="#how-to-start"><%=t('How to start')%></a>
-        </li>
-        <li>
-          <a data-toggle="tab" href="#config-workspace"><%=t('Configure workspace')%></a>
-        </li>
-        <li>
-          <a data-toggle="tab" href="#know-the-code"><%=t('Know the code')%></a>
-        </li>
-        <li>
-          <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
-        </li>
-        <% if @project.owner?(current_user) %>
-        <%= link_to edit_project_path(@project) do %>
+  </div>
+  <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist" >
+    <li class="active">
+      <a data-toggle="tab" href="#about_aba"><%=t('About')%></a>
+    </li>
+    <li>
+      <a data-toggle="tab"  href="#how-to-start"><%=t('How to start')%></a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#config-workspace"><%=t('Configure workspace')%></a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#know-the-code"><%=t('Know the code')%></a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
+    </li>
+    <% if @project.owner?(current_user) %>
+    <%= link_to edit_project_path(@project) do %>
 
-        <li style="float:right;">
-<button type="button" class="btn btn-dark"><i class="icon wb-settings" aria-hidden="true"></i> Edit</button>
-        </li>
-        <% end %>
-
-        <% end %>
-
-       </ul>
-
-    </div>
-    <div class="page-content container-fluid tab-content">
-    <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
-    <!-- TAB ABOUT -->
-    <% @project.widgets.from_tab_about.each do |widget| %>
-      <%= render 'widgets/show', :widget => widget %>
+    <li style="float:right;">
+      <button type="button" class="btn btn-dark"><i class="icon wb-settings" aria-hidden="true"></i> Edit</button>
+    </li>
     <% end %>
+
+    <% end %>
+
+  </ul>
+
+</div>
+<div class="page-content container-fluid tab-content">
+  <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
+    <!-- TAB ABOUT -->
+    <%= render @project.widgets.from_tab_about %>
+    <%= render 'widget_forum' %>
+
 
     <% if @project.owner?(current_user) %>
     <%= render 'widgets/new' , :tab => "about" %>
     <% end %>
-    </div>
-    <!-- TAB HOW TO START-->
-    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
-      data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
-      <% @project.widgets.from_tab_how_to_start.each do |widget| %>
-        <%= render 'widgets/show', :widget => widget %>
-      <% end %>
-      <% if @project.owner?(current_user) %>
-      <%= render 'widgets/new', :tab => "how_to_start"%>
-      <% end %>
+  </div>
+  <!-- TAB HOW TO START-->
+  <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
+  data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
-    </div>
-    <!--TAB CONFIGURE WORKSPACE-->
-    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
-      data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
+  <%= render @project.widgets.from_tab_how_to_start %>
 
-      <% @project.widgets.from_tab_configure_workspace.each do |widget| %>
-        <%= render 'widgets/show', :widget => widget %>
-      <% end %>
+  <% if @project.owner?(current_user) %>
+  <%= render 'widgets/new', :tab => "how_to_start"%>
+  <% end %>
 
-      <% if @project.owner?(current_user) %>
-      <%= render 'widgets/new', :tab => "config_workspace"%>
-      <% end %>
+</div>
+<!--TAB CONFIGURE WORKSPACE-->
+<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
+data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
-    </div>
-      <!-- TAB KNOW THE CODE -->
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-the-code"
-      data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-      <% @project.widgets.from_tab_know_the_code.each do |widget| %>
-          <%= render 'widgets/show', :widget => widget %>
-      <% end %>
-      <% if @project.owner?(current_user) %>
-      <%= render 'widgets/new', :tab => "know_the_code"%>
-      <% end %>
+<%= render @project.widgets.from_tab_configure_workspace %>
+
+<% if @project.owner?(current_user) %>
+<%= render 'widgets/new', :tab => "config_workspace"%>
+<% end %>
+
+</div>
+<!-- TAB KNOW THE CODE -->
+<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-the-code"
+data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+
+<%= render @project.widgets.from_tab_know_the_code %>
+
+<% if @project.owner?(current_user) %>
+<%= render 'widgets/new', :tab => "know_the_code"%>
+<% end %>
 
 
-    </div>
-      <!-- TAB SEND CONTRIBUTION -->
-    <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack"  data-gs-width="12" id="send_contribution" data-gs-animate="yes"  role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
-        <% @project.widgets.from_tab_send_contribution.each do |widget| %>
-        <%= render 'widgets/show', :widget => widget %>
-        <% end %>
-        <% if @project.owner?(current_user) %>
-        <%= render 'widgets/new', :tab => "send_contribution"%>
-        <% end %>
-    </div>
-    <% if @project.owner?(current_user) %>
-      <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-        <%= render 'widget_owner' %>
-        <%= link_to project_path(@project),
-            data: {:confirm => 'Are you sure?'}, :method => :delete do %>
-        <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
-          <i class="icon wb-trash"></i>
-        </button>
-        <% end %>
-      </div>
-    <% end %>
+</div>
+<!-- TAB SEND CONTRIBUTION -->
+<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack"  data-gs-width="12" id="send_contribution" data-gs-animate="yes"  role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
 
-      </div>
-      <!-- End Panel -->
+  <%= render @project.widgets.from_tab_send_contribution %>
+
+  <% if @project.owner?(current_user) %>
+  <%= render 'widgets/new', :tab => "send_contribution"%>
+  <% end %>
+</div>
+
+<% if @project.owner?(current_user) %>
+<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
+  <%= render 'widget_owner' %>
+  <%= link_to project_path(@project),
+  data: {:confirm => 'Are you sure?'}, :method => :delete do %>
+  <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
+    <i class="icon wb-trash"></i>
+  </button>
+  <% end %>
+</div>
+<% end %>
+
+</div>
+<!-- End Panel -->

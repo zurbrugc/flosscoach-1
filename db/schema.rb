@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328005148) do
+ActiveRecord::Schema.define(version: 20170403161413) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20170328005148) do
     t.index ["created_at"], name: "index_audits_on_created_at"
     t.index ["request_uuid"], name: "index_audits_on_request_uuid"
     t.index ["user_id", "user_type"], name: "user_index"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "{:null=>false}_id"
+    t.index ["{:null=>false}_id"], name: "index_categories_on_{:null=>false}_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -145,8 +153,10 @@ ActiveRecord::Schema.define(version: 20170328005148) do
     t.boolean  "locked"
     t.datetime "locked_at"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "tags",       default: "--- []\n"
+    t.string   "content"
   end
 
   create_table "users", force: :cascade do |t|

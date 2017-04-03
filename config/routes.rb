@@ -7,8 +7,17 @@ Rails.application.routes.draw do
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"
     delete :favorite, :to =>"projects/favorites#destroy"
+    resources :widgets
   end
-  resources :widgets
+  #resources :widgets
+  resources :forums do
+    resources :topics do
+      resources :messages
+    end
+  end
+
+
+
   resources :comments
   resources :projects
   get "/users/login" => "login#index"

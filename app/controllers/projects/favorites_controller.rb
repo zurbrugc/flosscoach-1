@@ -5,6 +5,7 @@ class Projects::FavoritesController < ProjectsController
 
   # POST /users
   def create
+    @projects = Project.all
     project = Project.find_by_id(params[:project_id])
     respond_to do |format|
       @user.favorite_project(project)
@@ -26,6 +27,8 @@ class Projects::FavoritesController < ProjectsController
 
   # DELETE /users/1
   def destroy
+    @projects = Project.all
+
     respond_to do |format|
       if @user.favorited_projects.delete(@project)
         format.js
