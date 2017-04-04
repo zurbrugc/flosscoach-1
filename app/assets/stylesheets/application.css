@@ -26,13 +26,13 @@
  *= require remark/global/vendor/flag-icon-css/flag-icon.css
 
  * Icon stylesheets
+ *= require remark/global/fonts/material-design/material-design.min.css
 
  *= require remark/global/fonts/web-icons/web-icons.min.css
  *= require remark/global/fonts/brand-icons/brand-icons.min.css
 
 
 
- *= require remark/assets/skins/red
  *= require_self
  */
 

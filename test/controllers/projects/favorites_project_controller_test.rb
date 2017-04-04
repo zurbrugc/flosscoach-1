@@ -1,6 +1,8 @@
 require 'test_helper'
+=begin
 
 class FavoritesProjectControllerTest <  ActionDispatch::IntegrationTest
+
   test "favorite a project" do
     #login routine to fill current_user
     user = create(:user, email: "victor@orochi.com.br", password:"batata")
@@ -45,3 +47,4 @@ class FavoritesProjectControllerTest <  ActionDispatch::IntegrationTest
     end
   end
 end
+=end

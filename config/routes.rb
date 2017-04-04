@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root :to => "login#index"
   resources :password_resets
   resources :projects do
+    get 'most_favorited', on: :collection
+    get 'recent', on: :collection
+
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"
     delete :favorite, :to =>"projects/favorites#destroy"

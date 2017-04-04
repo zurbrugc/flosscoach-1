@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   audited
   validates_presence_of :name
   validates_uniqueness_of :name
-  
+
   audited associated_with: :owners
   belongs_to :user
   has_many :widgets, :dependent => :destroy
@@ -21,11 +21,11 @@ class Project < ApplicationRecord
 
   def photo_url
     if use_open_hub_image
-      open_hub_image_url  || "/assets/placeholder.png"
+      open_hub_image_url  || "/assets/no-image.png"
     elsif !avatar.url.nil?
       avatar.url
     else
-      "/assets/placeholder.png"
+      "/assets/no-image.png"
     end
   end
 

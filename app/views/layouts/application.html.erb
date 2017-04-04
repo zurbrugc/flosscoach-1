@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar">
   <head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
     <title>Flosscoach</title>
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <%= csrf_meta_tags %>
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
     <%= javascript_include_tag 'remark/global/vendor/breakpoints/breakpoints.js' %>
     <script>
@@ -38,6 +37,7 @@
   <body>
 
     <%= render 'header' %>
+    <%= render 'menu' %>
 
     <div class="page">
       <%= yield %>

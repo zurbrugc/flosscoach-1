@@ -1,37 +1,32 @@
 <li class="list-group-item" id="<%= project.id %>">
-<div class="media">
+  <div class="media">
 
-  <div class="media-left">
-    <%= link_to project do %>
-      <div class="avatar avatar-online">
-        <img src="<%= project.photo_url %>" alt="<%= project.name %> image"/>
+    <div class="pr-10 ml-10">
+      <a class="" href="javascript:void(0)">
+        <%= link_to project, class: "avatar" do %>
+        <% image_tag project.photo_url %>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+      <div class="media-left">
+        <%= link_to project do %>
+        <div class="avatar avatar-online">
 
-  <div class="media-body">
-  <% if current_user %>
-  <div class="pull-right favorite-button-wrapper">
-  <% unless current_user.favorited_projects.include?(project) %>
-    <%= button_to "Favorite this project", project_favorite_path(project), :class => "btn btn-outline btn-default btn-sm favorite-button", :remote => true %>
-  <% else %>
-    <%= button_to "Project favorited", project_favorite_path(project), :class => "btn btn-success btn-default btn-sm disfavorite-button", :method => :delete , :remote => true %>
-  <% end %>
-  </div>
-  <% end %>
+        </div>
+        <% end %>
+      </div>
 
-  <%= link_to project do %>
-    <h4 class="media-heading">
-      <%= project.name %>
-    </h4>
-    <p>
-      <%= project.description %>
-    </p>
-   <% end %>
+      <div class="media-body">
+        <h3 class="mt-0 mb-5">
+          <%= link_to project.name, project %>
+        </h3>
+        <span><%= project.description %></span>
 
-    <p><%= project.fans.size %> persons favorited this.</p>
-
-  </div>
-
-</div>
-</li>
+      </div>
+      <div class="pl-20 mt-15">
+        <span>
+        <%= project.fans.size %> persons favorited this
+              <i class="icon md-star"></i>
+      </span>
+                        </div>
+    </div>
+  </li>

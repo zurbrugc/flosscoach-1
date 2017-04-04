@@ -1,182 +1,74 @@
-<% if !current_user %>
 
-<nav class="site-navbar navbar navbar-inverse navbar-fixed-top navbar-mega" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
-    data-toggle="menubar">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="hamburger-bar"></span>
-  </button>
-  <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse"
-  data-toggle="collapse">
-  <i class="icon wb-more-horizontal" aria-hidden="true"></i>
-</button>
-<div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-  <span class="navbar-brand-text hidden-xs">Flosscoach</span>
+
+<div class="page-header text-center">
+  <center>
+    <%= image_tag "flosscoach-logo" %>
+  </center>
+  <h1 class="page-title ">  <%=t('Explore Flosscoach') %></h1>
+  <p class="lead">
+    <%=t('Discover projects, groups and technologies')%> <%=t('Share your projects with others')%>
+  </p>
 </div>
-<button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
-data-toggle="collapse">
-<span class="sr-only">Toggle Search</span>
-<i class="icon wb-search" aria-hidden="true"></i>
-</button>
-</div>
-<div class="navbar-container container-fluid">
-  <!-- Navbar Collapse -->
-  <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-    <!-- Navbar Toolbar -->
-    <ul class="nav navbar-toolbar">
-      <li class="hidden-float" id="toggleMenubar">
-        <a data-toggle="menubar" href="#" role="button">
-          <i class="icon hamburger hamburger-arrow-left">
-            <span class="sr-only">Toggle menubar</span>
-            <span class="hamburger-bar"></span>
-          </i>
-        </a>
-      </li>
-      <li class="hidden-xs" id="toggleFullscreen">
-        <a class="icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-          <span class="sr-only">Toggle fullscreen</span>
-        </a>
-      </li>
-      <li class="hidden-float">
-        <a class="icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-        role="button">
-        <span class="sr-only">Toggle Search</span>
-      </a>
-    </li>
-  </ul>
-  <!-- End Navbar Toolbar -->
-
-  <!-- Navbar Toolbar Right -->
-  <ul class="nav navbar-nav navbar-right">
-    <li><a href="/users/login">Sign In</a></li>
-  </ul>
-  <!-- End Navbar Toolbar Right -->
-
-</div>
-<!-- End Navbar Collapse -->
-<!-- Site Navbar Seach -->
-<div class="collapse navbar-search-overlap" id="site-navbar-search">
-  <form role="search">
-    <div class="form-group">
-      <div class="input-search">
-        <i class="input-search-icon wb-search" aria-hidden="true"></i>
-        <input type="text" class="form-control" name="site-search" placeholder="Search...">
-        <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
-        data-toggle="collapse" aria-label="Close"></button>
-      </div>
-    </div>
-  </form>
-</div>
-<!-- End Site Navbar Seach -->
-</div>
-</nav>
-
-<div class="site-menubar">
-
-  <div class="site-menubar-body">
-    <div>
-      <div>
-
-        <ul class="site-menu">
-          <li class="site-menu-item has-sub">
-            <a href="#">
-              <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-              <span class="site-menu-title"><%=t('Projects')%></span>
-            </a>
-          </li>
-          <li class="site-menu-item has-sub">
-            <a href="#">
-              <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-              <span class="site-menu-title"><%=t('Groups')%></span>
-            </a>
-          </li>
-          <li class="site-menu-item has-sub">
-            <a href="#">
-              <i class="site-menu-icon wb-file" aria-hidden="true"></i>
-              <span class="site-menu-title">Help</span>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<% end %>
-
+<!-- Panel -->
 <div class="page-content">
+  <div class="panel ">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @projects.count %> projects found</h3>
+    </div>
+    <div class="panel-body container-fluid">
 
-  <div class="text-center">
-    <h3>
-      <%=t('Explore Flosscoach') %>
-    </h3>
-    <p class="lead">
-      <%=t('Discover projects, groups and technologies')%> <%=t('Share your projects with others')%>
-    </p>
-    <br>
-  </div>
-
-  <!-- Panel -->
-  <div class="panel">
-    <div class="panel-body">
-
-      <form class="page-search-form" role="search">
-        <div class="input-search input-search-dark">
-          <i class="input-search-icon wb-search" aria-hidden="true"></i>
-          <input type="text" class="form-control" id="inputSearch" name="search" placeholder="<%=('Search Projects')%>">
-          <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
-        </div>
-      </form>
-      <div class="nav-tabs-horizontal">
-        <div class="dropdown page-user-sortlist">
-          <%=t('Order By')%>: <a class="dropdown-toggle inline-block" data-toggle="dropdown"
-          href="#" aria-expanded="false"><%=t('Last Active')%><span class="caret"></span></a>
-          <ul class="dropdown-menu animation-scale-up animation-top-right animation-duration-250"
-          role="menu">
-          <li class="active" role="presentation"><a href="javascript:void(0)"><%=t('Last Active')%></a></li>
-          <li role="presentation"><a href="javascript:void(0)"><%=t('Groups')%></a></li>
-          <li role="presentation"><a href="javascript:void(0)"><%=t('Register Date')%></a></li>
-        </ul>
-      </div>
-      <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-        <li class="active" role="presentation"><a data-toggle="tab" href="#trending" aria-controls="trending"
-          role="tab"><%=t('Trending')%></a></li>
-          <li role="presentation"><a data-toggle="tab" href="#most-favorites" aria-controls="most-favorites"
-            role="tab">Your favorited projects</a></li>
-            <li role="presentation"><a data-toggle="tab" href="#all" aria-controls="all"
-              role="tab"><%=t('All')%></a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane animation-fade active" id="trending" role="tabpanel">
-                <ul class="list-group">
-                  <%= render @projects.order_by_fans_count %>
-                </ul>
+      <div class="row row-lg">
+        <div class="col-md-8">
+          <form class="page-search-form" role="search">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" name="" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button style="line-height:inherit;" type="submit" class="btn btn-primary waves-effect waves-classic"><i class="icon md-search" aria-hidden="true"></i></button>
+                </span>
               </div>
-
-              <div class="tab-pane animation-fade" id="most-favorites" role="tabpanel">
-                <ul class="list-group">
-                  <% if current_user %>
-                  <%= render current_user.favorited_projects%>
-                  <% end %>
-                </ul>
-              </div>
-
-              <div class="tab-pane animation-fade" id="all" role="tabpanel">
-                <ul class="list-group">
-                  <%= render @projects%>
-                </ul>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle btn-sm" id="searchFilter"
+                data-toggle="dropdown" aria-expanded="false">
+                Order by: Recents
+              </button>
+              <div class="dropdown-menu" aria-labelledby="searchFilter" role="menu">
+                <%= link_to "Recents", recent_projects_path, class: "dropdown-item" %>
+                <%= link_to "Most Favoritered", most_favorited_projects_path, class: "dropdown-item" %>
               </div>
             </div>
+            </div>
+          </form>
 
-          </div>
-        </div>
+
+        <ul class="list-group list-group-bordered list-group-full">
+          <%= render @projects %>
+
+        </ul>
+
       </div>
-      <!-- End Panel -->
+      <div class="col-md-4">
+        <div>
+        <h4>Tags</h4>
+        <div class="list-group list-group-bordered">
+          <a class="list-group-item" href="javascript:void(0)">Dapibus ac facilisis in</a>
+          <a class="list-group-item" href="javascript:void(0)">Morbi leo risus</a>
+          <a class="list-group-item" href="javascript:void(0)">Vestibulum at eros</a>
+        </div>
+        <div>
+          <% if current_user %>
+          <div>
+            <%= link_to "Create new project", new_project_path %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
-
-    <%= render 'new'  %>
+</div>
+</div>
 
 </div>

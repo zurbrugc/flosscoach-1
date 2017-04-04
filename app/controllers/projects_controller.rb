@@ -21,7 +21,20 @@ class ProjectsController < ApplicationController
   def new
     @project = current_user.projects.build
   end
+  def recent
+    @projects = Project.all
+    @project = Project.new
 
+    render :index
+  end
+
+  def most_favorited
+    @projects = Project.all
+    @project = Project.new
+
+    render :index
+
+  end
   # GET /projects/1/edit
   def edit
     unless @project.owner?(current_user)
@@ -33,9 +46,10 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-    ohp = OpenHubProject.find_by_name(@project.name).first if params[:openhub_check]
-    if ohp && ohp.try(:medium_logo_url)
-      @project.open_hub_image_url = ohp.medium_logo_url
+    ohp = OpenHubProject.find_by_name(@project.name) if params[:openhub_check]
+    if ohp
+      @project.description = ohp.description
+      @project.open_hub_image_url = ohp.logo_url
       @project.use_open_hub_data = true
       @project.use_open_hub_image = true
     end
