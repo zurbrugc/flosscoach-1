@@ -1,32 +1,26 @@
-<li class="list-group-item" id="<%= project.id %>">
-  <div class="media">
 
-    <div class="pr-10 ml-10">
-      <a class="" href="javascript:void(0)">
+  <tr data-href="<%= project_url(project) %>" data-toggle="slidePanel">
+    <td class="pre-cell"></td>
+    <td class="cell-60 responsive-hide">
         <%= link_to project, class: "avatar" do %>
-        <% image_tag project.photo_url %>
+        <% image_tag project.photo_url, class:"img-fluid" %>
         <% end %>
-      </div>
-      <div class="media-left">
-        <%= link_to project do %>
-        <div class="avatar avatar-online">
+      </a>
+    </td>
+    <td>
+      <div class="content">
+        <div class="title">
+          <%= link_to project.name, project %>
+        </div>
+        <div class="metas">
+          <span class="description"><%= project.description %></span>
 
         </div>
-        <% end %>
       </div>
+    </td>
+    <td class="cell-150 forum-posts">
 
-      <div class="media-body">
-        <h3 class="mt-0 mb-5">
-          <%= link_to project.name, project %>
-        </h3>
-        <span><%= project.description %></span>
-
-      </div>
-      <div class="pl-20 mt-15">
-        <span>
-        <%= project.fans.size %> persons favorited this
-              <i class="icon md-star"></i>
-      </span>
-                        </div>
-    </div>
-  </li>
+       <div class="rating rating-sm" data-score="4" data-plugin="rating"></div>
+    </td>
+    <td class="suf-cell"></td>
+  </tr>

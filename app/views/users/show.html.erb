@@ -1,98 +1,127 @@
- <div class="page animsition page-profile">
+<%= render 'visitor/header' unless current_user %>
+<%= render 'visitor/menu' unless current_user %>
+<div class="page">
+  <div class="page-content container-fluid">
+    <div class="row">
+      <!-- Middle Column -->
+      <div class="col-lg-12 col-xl-6 push-xl-3">
 
-    <div class="page-content container-fluid">
-
-      <div class="row">
-
-        <div class="col-md-3">
-          <!-- Page Widget -->
-          <div class="widget widget-shadow text-center">
-            <div class="widget-header">
-              <div class="widget-header-content">
-                <a class="avatar avatar-lg" href="javascript:void(0)">
-                  <img src="<%= @user.photo_url %>" />
-                </a>
-                <h4 class="profile-user editable">
-                  <span class='name'><%= @user.name %></span>
-                </h4>
-                <small>Member since <b><%= @user.created_at %></b></small>
-                <p class="editable" >
-                <span class='description'> <%= @user.description %></span>
-                </p>
-
-                <div class="profile-social">
-                  <%= link_to "", @user.twitter_link, :class => "icon bd-twitter"  if @user.twitter_link %>
-                  <%= link_to "", @user.facebook_link, :class => "icon bd-facebook"  if @user.facebook_link %>
-                  <%= link_to "", @user.github_link, :class => "icon bd-github"  if @user.github_link %>
-                </div>
-              <!--  <button type="button" class="btn btn-primary">Follow</button> -->
-              </div>
-            </div>
-            <div class="widget-footer">
-              <div class="row no-space">
-                <div class="col-xs-12">
-                  <strong class="profile-stat-count"><%= @user.projects.size %></strong>
-                  <span>Projects created</span>
-                </div>
-
-              </div>
-            </div>
+        <!-- End User Content Release -->
+        <!-- User Posts -->
+        <div class="user-posts card card-shadow">
+          <div class="card-block">
+            <h4 class="card-title mb-20">Recent activity</h4>
+            <b> This feature is not implemented yet </b>
+          </div>
+        </div>
+        <!-- End User Posts -->
+        <!-- User Background -->
+        <div class="user-background card card-shadow">
+          <div class="card-header card-header-transparent p-20">
+            <h4 class="card-title mb-0">Background</h4>
           </div>
 
-          <!-- End Page Widget -->
-        </div>
-        <div class="col-md-9">
-          <!-- Panel -->
-          <div class="panel">
-            <div class="panel-body nav-tabs-animate nav-tabs-horizontal">
-              <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-                <li class="active" role="presentation"><a data-toggle="tab" href="#recent-activities" aria-controls="recent-activities"
-                  role="tab">Your recent activities</a></li>
-                <li role="presentation"><a data-toggle="tab" href="#activities-your-projects" aria-controls="activities-your-projects" role="tab">Activities in your projects </a></li>
-                <li role="presentation"><a data-toggle="tab" href="#your-projects" aria-controls="your-projects"
-                  role="tab">Your projects </a></li>
-                <li class="dropdown" role="presentation" style="display: none;">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    <span class="caret"></span>Menu </a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li role="presentation" style="display: none;"><a data-toggle="tab" href="#recent-activities" aria-controls="recent-activities"
-                      role="tab">Recent activities <span class="badge label-danger">5</span></a></li>
-                    <li role="presentation" style="display: none;"><a data-toggle="tab" href="#activities-your-projects" aria-controls="activities-your-projects"
-                      role="tab">Activities in your projects</a></li>
-                    <li role="presentation"><a data-toggle="tab" href="#your-projets" aria-controls="your-projects"
-                      role="tab">Your projects</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <div class="tab-content">
-              <%= render 'recent_activities' %>
-              <%= render 'activities_in_your_projects' %>
+          <div class="card-block">
+            <h5 class="card-title">
+              <i class="icon md-share"></i>
+              <span>Skills</span>
+            </h5>
+            <b>Not implemented yet.</b>
 
-
-              <div class="tab-pane animation-slide-left" id="your-projects" role="tabpanel">
-                  <ul class="list-group">
-                  <% if @user.projects %>
-                       <% @user.projects.each do |project| %>
-                        <%= render 'projects/project_list_item', :project => project %>
-                      <% end %>
-                  <% else %>
-                <h4>Você não tem projetos cadastrados.</h4>
-
-                <% end %>
-
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- End Panel -->
+          <div class="card-block">
+            <h5 class="card-title">
+              <i class="icon md-star"></i>
+              <span>More interest</span>
+            </h5>
+            <!--<span class="badge mb-5 mr-5 badge-warning">Pokemon go</span>-->
+            <b>Not implemented yet.</b>
+          </div>
         </div>
+        <!-- End User Background -->
+
       </div>
-    </div>
-  </div>
-  <% if @user == current_user %>
-  <%= link_to edit_user_path(@user) do %>
-  <button type="button" class="btn btn-floating btn-success" style="position:fixed; bottom:50px; right:20px; border-radius:50%;"><i class="icon wb-pencil" aria-hidden="true"></i></button>
+      <!-- End Middle Column -->
+      <!-- Left Column -->
+      <div class="col-lg-6 col-xl-3 pull-xl-6">
+        <div class="user-info card card-shadow text-center">
+          <div class="user-base card-block">
+            <%= link_to @user, class: "avatar img-bordered avatar-100" do%>
+            <%= image_tag @user.photo_url %>
+            <% end %>
 
-  <% end %>
-<% end %>
+            <h4 class="user-name"><%= @user.name %></h4>
+
+          </div>
+
+
+          <div class="user-socials list-group list-group-full">
+            <%= link_to "http://www.twitter.com/#{@user.twitter_username}", class:"list-group-item justify-content-center"   do %>
+            <i class="icon bd-twitter"></i> twitter.com/<%= @user.twitter_username %>
+            <% end if @user.twitter_username?%>
+
+            <%= link_to "http://www.facebook.com/#{@user.facebook_username}", class:"list-group-item justify-content-center"   do %>
+            <i class="icon bd-facebook"></i> facebook.com/<%= @user.facebook_username %>
+            <% end if @user.facebook_username?%>
+
+            <%= link_to "http://www.github.com/#{@user.github_username}", class:"list-group-item justify-content-center"   do %>
+            <i class="icon bd-github"></i> github.com/<%= @user.github_username %>
+            <% end if @user.github_username?%>
+
+          </div>
+      <%= link_to "Edit your profile", edit_user_path(@user), class:"btn btn-primary btn-block" if current_user == @user%>
+        </div>
+
+        <!-- End User Info -->
+        <!-- Friend List -->
+
+        <!-- End Friends List -->
+      </div>
+      <!-- End Left Column -->
+      <!-- Right Column -->
+      <div class="col-lg-6 col-xl-3 ">
+        <div class="card user-visitors">
+          <div class="card-header card-header-transparent p-20">
+            <h4 class="card-title mb-0">Projects</h4>
+          </div>
+          <div class="card-block">
+            <ul class="list-group list-group-full list-group-dividered mb-0">
+              <ul class="list-group list-group-full">
+                <% @user.projects.each do |project| %>
+                <li class="list-group-item">
+                  <div class="media">
+                    <div class="pr-20">
+                      <%= link_to project, class: "avatar" do %>
+                      <%= image_tag project.photo_url, class: "img-fluid" %>
+                      <% end %>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-5 hover"><%= link_to project.name, project %>
+                      </h5>
+                      <small><%= project.name %> owner</small>
+                    </div>
+
+                  </div>
+                </li>
+                <% end %>
+              </ul>
+            </ul>
+            <!--
+            <div class="text-center">
+            <button class="btn btn-round btn-outline btn-primary" type="button" name="button">See all
+            <span>(19)</span>
+          </button>
+        </div>
+      -->
+
+    </div>
+    <%= link_to "Create new project", edit_user_path(@user), class:"btn btn-primary btn-block" if current_user == @user%>
+
+  </div>
+
+</div>
+<!-- End Right Column -->
+</div>
+</div>
+</div>
+</div>

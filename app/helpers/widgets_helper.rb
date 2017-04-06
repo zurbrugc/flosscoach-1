@@ -1,41 +1,39 @@
 module WidgetsHelper
-      def make_all_widgets(ohp = nil)
+      def make_all_widgets
       widgets = []
-      if(ohp)
-        widgets << make_widget_about("#{ohp.description} <br>
-                         <iframe src='https://www.openhub.net/p/#{ohp.vanity_url}/widgets/project_factoids_stats' scrolling='no' marginheight='0' marginwidth='0' 
-                         style='height: 220px; width: 370px; border: none'></iframe>")
-        widgets << make_widget_links("OpenHub URL: <a href='#{ohp.html_url}'>#{ohp.html_url}</a><br>
-                          Homepage Url: <a href='#{ohp.homepage_url}'>#{ohp.homepage_url}</a><br>
-                          Download URL: <a href='#{ohp.download_url}'>#{ohp.download_url}</a>")
-      else
-        widgets << make_widget_links
-        widgets << make_widget_about
-      end
-      widgets << make_widget_technical_skills
-      widgets << make_widget_soft_skills
-      widgets << make_widget_basic_contribution_flow
-      widgets << make_widget_workspace_setup
-      widgets << make_widget_resources_provided
-      widgets << make_widget_code_documentation
-      widgets << make_widget_searchable_resources
-      widgets << make_widget_send_contribution
+
+
 
       widgets
     end
+    def build_widget(title, slug: , tab:, x:, y:, width:, height:)
+      widget = Widget.new
+      widget.title = title
+      widget.slug = slug
+      widget.tab = tab
+      widget.pos_x = x
+      widget.pos_y = y
+      widget.width = width
+      widget.height = height
+      widget
+    end
     #Auto builds for widgets
     def make_widget_about(pre_content = "Fill with text")
+
+    end
+
+    def make_widget_resources_avaiable(pre_content = "Fill with text")
       widget = Widget.new
-      widget.title = "About"
-      widget.slug = "about"
+      widget.title = "Resources avaiable"
+      widget.slug = "resources_avaliable"
       widget.tab = "about"
-      widget.pos_x = 4
+      widget.pos_x = 0
       widget.pos_y = 0
-      widget.width = 8
-      widget.height = 5
+      widget.width = 6
+      widget.height = 4
       widget.closeable = false
       widget.resizeable = true
-      widget.retractable = true
+      widget.retractable = false
       widget.content = pre_content
       widget
     end
@@ -60,14 +58,14 @@ module WidgetsHelper
       widget = Widget.new
       widget.title = "Technical Skills"
       widget.slug = "technical_skills"
-      widget.tab = "how_to_start"
-      widget.pos_x = 0
+      widget.tab = "about"
+      widget.pos_x = 6
       widget.pos_y = 0
       widget.width = 6
-      widget.height = 4
+      widget.height = 5
       widget.closeable = false
       widget.resizeable = true
-      widget.retractable = true
+      widget.retractable = false
       widget.content = pre_content
       widget
     end
@@ -78,12 +76,12 @@ module WidgetsHelper
       widget.slug = "soft_skills"
       widget.tab = "how_to_start"
       widget.pos_x = 6
-      widget.pos_y = 0
+      widget.pos_y = 5
       widget.width = 6
       widget.height = 4
       widget.closeable = false
       widget.resizeable = true
-      widget.retractable = true
+      widget.retractable = false
       widget.content = pre_content
       widget
     end

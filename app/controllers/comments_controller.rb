@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
   before_action :set_widget, only: [:show, :update, :destroy, :create]
   skip_before_filter :verify_authenticity_token, only: [:update]
+  before_action :authorize
 
   # GET /users
   def index

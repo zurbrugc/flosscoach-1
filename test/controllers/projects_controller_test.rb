@@ -4,14 +4,12 @@ class ProjectsControllerTest <  ActionDispatch::IntegrationTest
   setup do
     login
   end
-  
+
   test "create new project" do
     #login routine to fill current_user
     post projects_url, params: {project: {name: "Teste", description: "lol"}}
     assert_redirected_to project_url(Project.first)
-
     get project_url(Project.first)
-    assert_select "h1.page-title", Project.first.name
   end
 
   test "update a project" do
@@ -35,7 +33,6 @@ class ProjectsControllerTest <  ActionDispatch::IntegrationTest
 
     get edit_project_url(project)
     assert_response :unauthorized
-    assert_select "h1.page-title", Project.first.name
 
     project.owners << @current_user
     assert project.owner?(@current_user)

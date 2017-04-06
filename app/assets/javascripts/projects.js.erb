@@ -1,50 +1,27 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+//= require remark/global/vendor/raty/jquery.raty.js
+//= require remark/global/js/Plugin/raty.js
+//= require remark/global/vendor/blueimp-tmpl/tmpl.js
+//= require remark/global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js
+//= require remark/global/vendor/blueimp-load-image/load-image.all.min.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-process.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-image.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-audio.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-video.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js
+//= require remark/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js
+//= require remark/global/vendor/dropify/dropify.min.js
+//= require remark/global/js/Plugin/dropify.js
+//= require remark/global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js
 
+//= require remark/global/js/Plugin/bootstrap-tokenfield.js
+//= require remark/global/js/Plugin/bootstrap-tagsinput.js
 
-
-
-
-
-
-
-$(".page-title").on("summernote.change", function(e) {
-  save_name_project($(this).text());
-});
-$(".description").on("summernote.change", function(e) {
-  save_description_project($(this).text());
-});
-$(".widget-title").on("summernote.change", function(e) {
-  update_widget_title($(this).parents(".grid-stack-item"), $(this).text());
-});
-
-  function toggleGridEditable(obj){
-    // clear any active button if set before
-    $.each($(".wb-edit"), function(index, btn_obj){
-        if (obj != btn_obj){
-          btn_obj.className.includes("up") ? btn_obj.classList.remove("up") : null;
-          btn_obj.style.color = "";
-          finish($(btn_obj));
-        }
-      });
-    // tag a new button
-    $(obj).toggleClass("up");
-
-    box = $(obj).parents(".grid-stack-item")
-
-    $('.grid-stack').data('gridstack').movable(box, !obj.className.includes("up"));
-    $('.grid-stack').data('gridstack').resizable(box, !obj.className.includes("up"));
-    obj.style.color = obj.className.includes("up") ?  "green"  : "" ;
-
-    if(obj.className.includes("up")){ // Se o botão tá ativo e o usuário clicou pra desativar
-            edit($(obj));
-
-    }else{
-      finish($(obj)); // Salva (na realidade na implementação ele está apenas chamado o destroy())
-
-    }
-  }
+//= require remark/global/vendor/typeahead-js/bloodhound.min.js
+//= require remark/global/vendor/typeahead-js/typeahead.jquery.min.js
 
 var serializeWidgetMap = function(items) {
     console.log(items);
@@ -57,52 +34,27 @@ $('.grid-stack').on('change', function(event, items) {
 serializeWidgetMap(items)
 });
 
-  // POPOVER DA INSERÇÃO
-  // ------------------------------------
+// Example Tokenfield With Typeahead
+  // ---------------------------------
   (function() {
-  var defaults = $.components.getDefaults("webuiPopover");
-
-  $(".grid-stack-item").each(function(){
-      box = $(this).find('.insertBox').eq(0);
-
-
-      box_html = box.html();
-      button = $(this).find('.button-insert');
-          settings = {
-            content: box_html,
-            width: 500,
-            placement: "bottom"
-          };
-
-        button.webuiPopover($.extend({}, defaults, settings));
-
-  });
-  })();
-
-
-
-
-  function save_text_widget(widget){
-    var widget = $(widget);
-    var obj={};
-
-    var id = widget.attr("data-gs-id");
-    var content = widget.code();
-
-    obj['_method']="put";
-    obj['widget'] = {"id": id,
-                      "content" : content};
-    $.ajax({
-    type: "PUT",
-    dataType: "script",
-    url: "/widgets/" + id,
-    contentType: 'application/json',
-    data: JSON.stringify(obj)
-    }).done(function( msg )
-    {
-        alert( "Data Saved: ", msg );
+    var engine = new Bloodhound({
+      local: [
+        <%= Tag.all.map{|t| "{value :'#{t}'}"}.join(",") %>
+      ],
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace
     });
-  }
+
+    // engine.initialize();
+
+    $('#project_tags').tokenfield({
+      typeahead: [null, {
+        name: 'engine',
+        displayKey: 'value',
+        source: engine.ttAdapter()
+      }]
+    });
+  })();
 
   function save_properties_widget(widget){
     var width = widget.width
@@ -124,29 +76,6 @@ serializeWidgetMap(items)
     {
         alert( "Data Saved: ", msg );
     });
-
-  }
-
-  function update_widget_title(widget, new_title){
-
-    var obj={};
-    obj['_method']="put";
-
-    var id = widget.attr("data-gs-id");
-    var title = new_title;
-    obj['widget'] = {"id": id, "title" : title};
-
-    $.ajax({
-    type: "PUT",
-    dataType: "script",
-    url: "/widgets/" + id,
-    contentType: 'application/json',
-    data: JSON.stringify(obj)
-    }).done(function( msg )
-    {
-        alert( "Data Saved: ", msg );
-    });
-
 
   }
 

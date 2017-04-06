@@ -7,14 +7,11 @@
 
     <title>Flosscoach</title>
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag  params[:controller], media: 'all', 'data-turbolinks-track' => true %>
 
     <%= csrf_meta_tags %>
 
 
-    <%= javascript_include_tag 'remark/global/vendor/breakpoints/breakpoints.js' %>
-    <script>
-      Breakpoints();
-    </script>
 
     <style>
       .grid-stack-item-content {
@@ -42,6 +39,7 @@
     <div class="page">
       <%= yield %>
     </div>
+    <%= render 'footer' %>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag params[:controller] %>

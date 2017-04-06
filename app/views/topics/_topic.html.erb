@@ -1,0 +1,36 @@
+<tr data-href="<%= forum_topic_url(@forum, topic) %>" data-toggle="slidePanel">
+  <td class="pre-cell"></td>
+  <td class="cell-60 responsive-hide">
+    <a class="avatar" href="javascript:void(0)">
+      <%= image_tag topic.user.photo_url, class: "img-fluid" %>
+    </a>
+  </td>
+  <td>
+    <div class="content">
+      <div class="title">
+        <%= topic.title %>
+        <div class="flags responsive-hide">
+          <% if false %>
+          <span class="sticky-top badge badge-round badge-danger">
+            <i class="icon md-caret-up-circle" aria-hidden="true"></i>
+            TOP</span>
+
+            <% end %>
+          <% if topic.locked?%>
+          <i class="locked icon md-lock"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="metas">
+        <span class="author"><%= topic.user.name %></span>
+        <span class="started">1 day ago</span>
+        <span class="badges">Themes</span>
+      </div>
+    </div>
+  </td>
+  <td class="cell-80 forum-posts">
+    <span class="num"><%= topic.messages_count %></span>
+    <span class="unit">Post</span>
+  </td>
+  <td class="suf-cell"></td>
+</tr>

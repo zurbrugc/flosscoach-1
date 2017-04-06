@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   audited
   validates_presence_of :name
   validates_uniqueness_of :name
+  validates_presence_of :description
 
   audited associated_with: :owners
   belongs_to :user
@@ -18,7 +19,16 @@ class Project < ApplicationRecord
   scope :order_by_fans_count, -> {
   joins(:fans).select('projects.*, COUNT(user_id) as user_count').group('projects.id').order('user_count DESC')
   }
+  serialize :tags
 
+  def get_open_hub_data
+    ohp = OpenHubProject.find_by_name(self.name)
+    self.description = ohp.description
+    self.open_hub_image_url = ohp.logo_url
+    self.use_open_hub_data = true
+    self.use_open_hub_image = true
+    self.tags = ohp.tags
+  end
   def photo_url
     if use_open_hub_image
       open_hub_image_url  || "/assets/no-image.png"
@@ -39,9 +49,9 @@ class Project < ApplicationRecord
 
   def self.search(search)
     if search
-      Project.where('name LIKE ?', "%#{search}%")
+      where("name LIKE ? OR description LIKE ? OR tags LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
     else
-      Project.all
+      all
     end
   end
 end

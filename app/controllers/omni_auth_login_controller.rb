@@ -1,5 +1,5 @@
 class OmniAuthLoginController < ApplicationController
-
+  before_action :block_access
   def index
     if current_user
       redirect_to projects_path

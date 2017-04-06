@@ -4,20 +4,16 @@ class User < ApplicationRecord
   friendly_id :username, use: :slugged
   has_secure_password
 
-
-  audited except: :avatar
-  audited except: :email_confirmed
-  audited except: :confirm_token
-  has_associated_audits
-
   validates_presence_of :email
   validates_presence_of :name
   validates_presence_of :username
 
-  validates_uniqueness_of :username
   validates_uniqueness_of :email
 
-  validates_format_of :email, :with => /@/
+  VALID_EMAIL_FORMAT= /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates :email, presence: true, length: {maximum: 260}, format: { with: VALID_EMAIL_FORMAT}, uniqueness: {case_sensitive: false}
+  before_save { self.email = email.downcase }
+
   validates_length_of :password, minimum: 6, :if => :password
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms

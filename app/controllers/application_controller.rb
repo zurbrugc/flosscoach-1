@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :set_locale
+  layout :choose_layout
+  include SessionsHelper
 
   def set_locale
     if params[:locale] == "en"
@@ -14,17 +14,23 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def authenticate_admin_user!
-      unless current_user && current_user.admin?
-        redirect_to(root_url, notice: "You need to be authenticated")
-     end
-  end
-
-  def current_user
-    @current_user ||= if session[:user_id]
-      User.find_by_id(session[:user_id])
+  def choose_layout
+    if current_user
+      "application"
+    else
+      "visitor"
     end
   end
-  helper_method :current_user
+  def authenticate_admin_user!
+    unless current_user && current_user.admin?
+      redirect_to(root_url, notice: "You need to be authenticated")
+    end
+  end
+
+  def authorize
+    unless logged_in?
+      redirect_to root_url
+    end
+  end
 
 end

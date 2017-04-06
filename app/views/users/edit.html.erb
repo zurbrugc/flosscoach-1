@@ -1,5 +1,167 @@
-<h1> <center> <%= t('Editing Profile') %> </center ></h1>
+		<div class="page-header text-center">
 
-	<div class="container">
-		<%= render 'form_edit', user: @user %>
-	</div>
+		  <h1 class="page-title ">Edit your public profile</h1>
+		  <p class="lead">
+
+		  </p>
+		</div>
+	    <div class="page-content container-fluid">
+	      <div class="row">
+	        <!-- Middle Column -->
+	        <div class="col-lg-12 col-xl-6 push-xl-3">
+
+	          <!-- End User Content Release -->
+	          <!-- User Posts -->
+	          <div class="user-posts card card-shadow">
+	            <div class="card-block">
+	              <h4 class="card-title mb-20">Main information</h4>
+								<%= form_for(@user) do |f| %>
+								<div class="form-group">
+									<h5>Your username</h5>
+									<div class="input-group input-group-icon">
+										<span class="input-group-addon">
+											@
+										</span>
+										<%= f.text_field :slug, :class => "form-control",
+										:placeholder => 'Username', :disabled => true%>
+									</div>
+
+								</div>
+								<div class="form-group">
+				          <h5>Your name</h5>
+				          <%= f.text_field :name, :class => "form-control",
+				          :placeholder => t('Name') %>
+				        </div>
+
+				        <div class="form-group">
+				          <h5>Your email</h5>
+				          <%= f.email_field :email, :class => "form-control",
+				          :placeholder => t('Email') %>
+				        </div>
+
+
+				        <div class="form-group">
+				          <h5>Your biografy</h5>
+				          <%= f.text_area :description, :class => "form-control",
+				          :placeholder => "Description..." %>
+				        </div>
+
+
+				        <div class="form-group">
+				          <%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+				        </div>
+
+								<% end %>
+	            </div>
+	          </div>
+	          <!-- End User Posts -->
+	          <!-- User Background -->
+	          <div class="user-background card card-shadow">
+	            <div class="card-header card-header-transparent p-20">
+	              <h4 class="card-title mb-0">Social</h4>
+	            </div>
+
+	            <div class="card-block">
+
+								<%= form_for(@user) do |f| %>
+								<div class="form-group">
+									<h5>Twitter</h5>
+									<div class="input-group input-group-icon">
+										<span class="input-group-addon">
+											http://www.twitter.com/
+										</span>
+										<%= f.text_field :twitter_username, :class => "form-control"%>
+									</div>
+								</div>
+								<div class="form-group">
+									<h5>Facebook</h5>
+									<div class="input-group input-group-icon">
+										<span class="input-group-addon">
+											http://www.facebook.com/
+										</span>
+										<%= f.text_field :facebook_username, :class => "form-control"%>
+									</div>
+								</div>
+								<div class="form-group">
+									<h5>Github</h5>
+									<div class="input-group input-group-icon">
+										<span class="input-group-addon">
+											http://www.github.com/
+										</span>
+										<%= f.text_field :github_username, :class => "form-control" %>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+								</div>
+
+								<% end %>
+	            </div>
+	            <div class="card-block">
+	              <h5 class="card-title">
+	                <i class="icon md-star"></i>
+	                <span>More interest</span>
+	              </h5>
+	              <!--<span class="badge mb-5 mr-5 badge-warning">Pokemon go</span>-->
+	              <b>Not implemented yet.</b>
+	            </div>
+	          </div>
+	          <!-- End User Background -->
+
+	        </div>
+	        <!-- End Middle Column -->
+	        <!-- Left Column -->
+	        <div class="col-lg-6 col-xl-3 pull-xl-6">
+	          <div class="user-info card card-shadow text-center">
+	            <div class="user-base card-block">
+
+	            </div>
+
+
+	            <div class="user-socials list-group list-group-full">
+
+	            </div>
+
+	          </div>
+	          <!-- End User Info -->
+	          <!-- Friend List -->
+
+	          <!-- End Friends List -->
+	        </div>
+	        <!-- End Left Column -->
+	        <!-- Right Column -->
+	        <div class="col-lg-6 col-xl-3 ">
+	          <div class="card user-visitors">
+	            <div class="card-header card-header-transparent p-20">
+	              <h4 class="card-title mb-0">Profile picture</h4>
+	            </div>
+	            <div class="card-block">
+								<%= form_for(@user) do |f| %>
+
+								<h5>
+									Upload new avatar
+								</h5>
+								<div>
+									<div class='img-responsive' style='width:250px;'>
+
+										<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.photo_url_uploaded} %>
+									</div>
+								</div>
+								<div class="help-block">
+									The maximum file size allowed is 3MB.
+								</div>
+
+								<div class="form-group">
+									<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+								</div>
+								<% end %>
+	            </div>
+	          </div>
+
+	        </div>
+	        <!-- End Right Column -->
+	      </div>
+	    </div>
+	  </div>

@@ -17,6 +17,8 @@
 
 //= require remark/global/vendor/babel-external-helpers/babel-external-helpers
 //= require remark/global/vendor/jquery/jquery.js
+//= require jquery_ujs
+
 //= require remark/global/vendor/tether/tether.js
 
 //= require remark/global/vendor/bootstrap/bootstrap.js
@@ -27,6 +29,7 @@
 //= require remark/global/vendor/ashoverscroll/jquery-asHoverScroll.js
 //= require remark/global/vendor/screenfull/screenfull.js
 //= require remark/global/vendor/slidepanel/jquery-slidePanel.js
+//= require remark/global/vendor/intro-js/intro.js
 
 // Template relating scripts
 
@@ -43,8 +46,16 @@
 
 //= require remark/assets/js/Site.js
 
+//= require remark/global/js/Plugin/asscrollable.js
+//= require remark/global/js/Plugin/slidepanel.js
+//= require remark/global/js/Plugin/switchery.js
+//= require remark/global/js/Plugin/jquery-placeholder.js
 
-//= require jquery_ujs
+
+//= require jquery-ui
+//= require gridstack-js-rails
+//= require remark/global/js/Plugin/material.js
+
 //= require_self
 
 
@@ -53,5 +64,10 @@
   var Site = window.Site;
   $(document).ready(function() {
     Site.run();
+    $('*[data-href]').click(function(){
+        window.location = $(this).data('href');
+        return false;
+    });
+
   });
 })(document, window, jQuery);

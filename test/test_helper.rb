@@ -19,8 +19,10 @@ class ActionDispatch::IntegrationTest
 
   def set_current_user
     @current_user = create(:user, email: "victor@orochi.com.br", password:"batata")
-    post users_login_url, params: {user: {email: "victor@orochi.com.br", password:"batata"}}
-    assert_redirected_to projects_url
+    post sign_in_url, params: {session: {email: "victor@orochi.com.br", password:"batata"}}
+  end
+  def current_user
+    @current_user
   end
   def login
     set_current_user

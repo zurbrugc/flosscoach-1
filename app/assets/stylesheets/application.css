@@ -12,7 +12,6 @@
  *
 
  * Bootstrap and site stylesheets
-
  *= require remark/global/css/bootstrap.min.css
  *= require remark/global/css/bootstrap-extend.min.css
  *= require remark/assets/css/site.min.css
@@ -32,10 +31,7 @@
  *= require remark/global/fonts/brand-icons/brand-icons.min.css
 
 
+ *= require gridstack/gridstack
 
  *= require_self
  */
-
-.field_with_errors{
-  display:block;
-}

@@ -2,6 +2,7 @@ class Projects::UsersController < ProjectsController
 
   before_action :set_user, only: [:show, :update, :destroy]
   skip_before_filter :verify_authenticity_token, only: [:update]
+  before_action :authorize
 
   # GET /users
   def index

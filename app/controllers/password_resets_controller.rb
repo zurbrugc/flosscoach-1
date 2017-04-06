@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  before_action :block_access
+
 def create
   user = User.find_by_email(params[:email])
   if user && user.email_confirmed?

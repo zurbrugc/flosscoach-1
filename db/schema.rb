@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403161413) do
+ActiveRecord::Schema.define(version: 20170405200743) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -50,10 +50,8 @@ ActiveRecord::Schema.define(version: 20170403161413) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "{:null=>false}_id"
-    t.index ["{:null=>false}_id"], name: "index_categories_on_{:null=>false}_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -127,13 +125,14 @@ ActiveRecord::Schema.define(version: 20170403161413) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "image_url"
     t.string   "avatar"
     t.boolean  "use_open_hub_image"
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
+    t.text     "tags",               default: "--- []\n"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -182,6 +181,10 @@ ActiveRecord::Schema.define(version: 20170403161413) do
     t.string   "slug"
     t.string   "password"
     t.string   "password_digest"
+    t.string   "twitter_username"
+    t.string   "facebook_username"
+    t.string   "github_username"
+    t.index ["email"], name: "index_users_on_email"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
@@ -200,6 +203,7 @@ ActiveRecord::Schema.define(version: 20170403161413) do
     t.datetime "updated_at",                 null: false
     t.text     "content"
     t.integer  "project_id"
+    t.boolean  "deletable",   default: true
   end
 
 end

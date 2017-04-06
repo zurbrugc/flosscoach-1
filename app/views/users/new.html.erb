@@ -1,73 +1,73 @@
-<% content_for :body_class, "page-register-v2 layout-full page-dark" %>
-<div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-  <div class="page-content">
-    <div class="page-brand-info">
-      <div class="brand">
-        <h2 class="brand-text font-size-40">FLOSS Coach</h2>
-      </div>
-      <p class="font-size-20">
-        <%= t('FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS)') %>
-        <%= t('Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?') %>
-      </p>
-    </div>
-
-    <div class="page-register-main">
-      <h3 class="font-size-24"><%= t('Sign Up') %></h3>
-      <p><%= t('Register NOW! Check our prototype and give us your feedback') %></p>
-
-      <%= form_for(@user) do |f| %>
-        <% if @user.errors.any? %>
-          <div class="summary-errors alert alert-danger alert-dismissible">
-            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+<body class="animsition page-register-v3 layout-full">
+  <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <!-- Page -->
+  <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
+    <div class="page-content vertical-align-middle">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="brand">
+            <%= image_tag "flosscoach-logo", class: "brand-img" %>
+            <h2 class="brand-text font-size-18">FlossCoach Register</h2>
+          </div>
+          <% if @user.errors.any? %>
+          <div role="alert" class="alert dark alert-danger alert-icon alert-dismissible">
+            <button aria-label="Close" data-dismiss="alert" class="close" type="button">
               <span aria-hidden="true">×</span>
             </button>
-            <p><%= pluralize(@user.errors.count, "error") %> <%= ('prohibited this user from being saved:') %></p>
+            <i class="icon md-notifications" aria-hidden="true"></i>
+            <h4><%= pluralize(@user.errors.count, "Error") %> creating a user</h4>
             <ul>
               <% @user.errors.full_messages.each do |message| %>
-                <li data-field="summary_fullName"><%= message %></li>
+                <li><%= message %></li>
               <% end %>
             </ul>
           </div>
-        <% end %>
-        <div class="form-group">
-          <label class="sr-only" for="user_name">Username</label>
-          <%= f.text_field :username, :class => "form-control", :placeholder => "Username" %>
-        </div>
-        <div class="form-group">
-          <label class="sr-only" for="user_name"><%= t('Full Name') %></label>
-          <%= f.text_field :name, :class => "form-control", :placeholder => t('Name') %>
-        </div>
+          <% end %>
 
-        <div class="form-group">
-          <label class="sr-only" for="user_email"><%= t('Email') %></label>
-          <%= f.text_field :email, :class => "form-control", :placeholder => t('Email') %>
-        </div>
 
-        <div class="form-group">
-          <label class="sr-only" for="user_password"><%= t('Password') %></label>
-          <%= f.password_field :password, :class => "form-control", :placeholder => t('Password') %>
-        </div>
-
-        <div class="form-group">
-          <label class="sr-only" for="user_password_confirmation"><%= t('Retype Password') %></label>
-          <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => t('Retype Password') %>
-
-        </div>
-
-        <div class="form-group clearfix">
-          <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
-            <input name="user[terms]" type="hidden" value="0" />
-            <input type="checkbox" value="1" name="user[terms]" id="user_terms" />
-            <label for="user_terms"></label>
+          <%= form_for(@user) do |f| %>
+          <div class="form-group form-material floating" data-plugin="formMaterial">
+            <%= f.text_field :username, class: "form-control", required: true  %>
+            <%= f.label :username, "Choose a nickname to use on FlossCOACH",
+            class: "floating-label"%>
           </div>
-          <p class="margin-left-40"><%= t('By clicking Sign Up, you agree to our') %><a href="#"><%= t('Terms') %></a>.</p>
+
+            <div class="form-group form-material floating" data-plugin="formMaterial">
+              <%= f.text_field :name, class: "form-control", required: true %>
+              <%= f.label :name, "Full name", class: "floating-label" %>
+            </div>
+
+            <div class="form-group form-material floating" data-plugin="formMaterial">
+              <%= f.email_field :email, class: "form-control", required: true  %>
+              <%= f.label :email, "Email", class: "floating-label" %>
+            </div>
+
+            <div class="form-group form-material floating" data-plugin="formMaterial">
+              <%= f.password_field :password, class: "form-control", required: true  %>
+              <%= f.label :password, "Password", class: "floating-label" %>
+            </div>
+
+            <div class="form-group form-material floating" data-plugin="formMaterial">
+              <%= f.password_field :password_confirmation, class: "form-control" , required: true %>
+              <%= f.label :password_confirmation, "Re-enter Password", class: "floating-label" %>
+            </div>
+
+            <div class="form-group clearfix">
+              <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
+                <%= f.check_box :terms, required: true  %>
+                <%= f.label :terms, "I accept FlossCoach Terms" %>
+              </div>
+            </div>
+
+            <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg mt-40" %>
+            <% end %>
+          <p>Have account already? Please go to <%= link_to "Sign In", sign_in_path  %></p>
         </div>
-        <%= f.submit t('Sign Up'), class: 'btn btn-primary btn-block' %>
-
-      <% end %>
-
-      <p><%= t('Have account already? Please go to') %> <%= link_to t('Sign In'), users_login_path %></p>
-
+      </div>
+      <%= render 'visitor/footer' %>
     </div>
   </div>
-</div>
+
+</body>

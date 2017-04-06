@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_forum
+  before_action :authorize, except: [:show]
 
 
   # GET /topics

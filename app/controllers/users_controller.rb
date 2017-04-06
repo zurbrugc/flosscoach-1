@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :edit]
   skip_before_action :verify_authenticity_token, only: [:update]
-  before_action :block_acess, only: [:new]
 
+  before_action :block_access, only:[:new, :create, :confirm_email]
+  before_action :authorize, except: [:new, :create,:show, :confirm_email]
   # GET /users
   def index
     redirect_to user_path(current_user)
@@ -10,9 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-   @activities_in_your_projects = project_audits(@user).reverse
-   @recent_comments = []
-   @recent_activities = @user.audits.reverse
+
   end
 
   # GET /users/new
@@ -54,9 +53,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.html {
-          @activities_in_your_projects = project_audits(@user).reverse
-          @recent_comments = []
-          @recent_activities = @user.audits.reverse
           render :show, status: :ok, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -75,23 +71,10 @@ class UsersController < ApplicationController
 
 
   private
-  def project_audits(user)
-    audits = []
-    user.projects.each do |project|
-      audits += project.audits
-      audits += project.associated_audits if project.associated_audits
-    end
-    audits.sort{|a, b| a.created_at <=> b.created_at}
-  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.friendly.find(params[:id])
-  end
-
-  def block_acess
-    if current_user
-      redirect_to root_url
-    end
   end
 
   # Only allow a trusted parameter "white list" through.

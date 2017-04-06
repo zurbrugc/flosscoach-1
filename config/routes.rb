@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
-  root :to => "login#index"
+  root :to => "sessions#index"
   resources :password_resets
   resources :projects do
     get 'most_favorited', on: :collection
@@ -23,16 +23,19 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :projects
-  get "/users/login" => "login#index"
-  post "/users/login" => "login#create"
-  get "/users/logout" => "login#logout"
+  resources :sessions
+
+
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'omni_auth_login#destroy'
   post "/users/favorite_project/:project_id" => "users#favorite_project"
   post "/users/disfavorite_project/:project_id" => "users#disfavorite_project"
-  resources :users
+  get    'sign_in'   => 'sessions#new'
+  post   'sign_in'   => 'sessions#create'
+  delete 'sign_out'  => 'sessions#destroy'
   resources :users do
+
       member do
         get :confirm_email
       end

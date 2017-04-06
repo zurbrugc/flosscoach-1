@@ -1,15 +1,15 @@
 class ProjectsController < ApplicationController
   include WidgetsHelper
   respond_to :html, :js, :json
-
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_project, only: [:new, :create, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:update]
+  before_action :authorize, except: [:index, :show]
 
   # GET /projects
   def index
-    @projects = Project.all.search(params[:search])
+    @projects = Project.search(params[:search])
  	  @project = Project.new
+    @order_by ||= "Recents"
   end
 
   # GET /projects/1
@@ -19,18 +19,20 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = current_user.projects.build
+    @project = Project.new
   end
   def recent
-    @projects = Project.all
+    @projects = Project.search(params[:search])
     @project = Project.new
+    @order_by = "Recents"
 
     render :index
   end
 
   def most_favorited
-    @projects = Project.all
+    @projects = Project.all.search(params[:search])
     @project = Project.new
+    @order_by ||= "Most favorited"
 
     render :index
 
@@ -46,18 +48,15 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-    ohp = OpenHubProject.find_by_name(@project.name) if params[:openhub_check]
-    if ohp
-      @project.description = ohp.description
-      @project.open_hub_image_url = ohp.logo_url
-      @project.use_open_hub_data = true
-      @project.use_open_hub_image = true
-    end
-    @project.widgets << make_all_widgets(ohp)
+    @project.get_open_hub_data if params[:openhub_check]
+
+    @project.widgets << Widget.defaults
     @project.owners << current_user
+    @project.tags = @project.tags.split(",")
     if @project.save
-      redirect_to project_path(@project), notice: t('Project was successfully created.')
+      redirect_to @project, notice: t('Project was successfully created.')
     else
+      @project.tags = @project.tags.join(",")
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
     end
@@ -105,15 +104,4 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit!
     end
-
-    def authorize_project
-      unless current_user
-        redirect_to root_path, alert: t('You need to login to continue.')
-      end
-
-
-    end
-
-
-
 end

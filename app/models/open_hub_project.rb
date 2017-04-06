@@ -7,7 +7,7 @@ class MyXMLFormatter
 end
 
 class OpenHubProject < ActiveResource::Base
-  attr_accessor :name, :openhub_url, :description, :homepage_url, :logo_url, :tags
+  attr_accessor :name, :openhub_url, :description, :homepage_url, :logo_url, :tags, :vanity_url
   self.site = "https://www.openhub.net/"
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"
@@ -32,10 +32,13 @@ class OpenHubProject < ActiveResource::Base
     project = OpenHubProject.new
     project.name = data.attributes["name"]
     project.openhub_url = data.attributes["html_url"]
+    project.download_url =  data.attributes["download_url"]
+
     project.description = data.attributes["description"]
     project.homepage_url = data.attributes["homepage_url"]
     project.logo_url = data.attributes["medium_logo_url"] || data.attributes["small_logo_url"]
     project.tags = data.attributes["tags"].attributes["tag"]
+    project.vanity_url = data.attributes["vanity_url"]
     project
   end
   def to_flosscoach_project

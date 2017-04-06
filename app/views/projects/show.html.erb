@@ -1,125 +1,123 @@
+<%= render 'visitor/header' unless current_user %>
+<%= render 'visitor/menu' unless current_user %>
 
-<input type='hidden' name='_method' value='put'>
+<div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
 
-<div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs">
-
-  <figure class='logo-projeto'>
-    <div class='center-block'>
-      <img class="center-block img-responsive" src="<%= @project.photo_url %>" style="max-width:250px;"/>
-    </div>
+  <figure class='logo-projeto text-center'>
+    <img class=" img-responsive" src="<%= @project.photo_url %>"
+    style="max-width:250px;"/>
   </figure>
   <h1 class="page-title text-center"><%= @project.name %></h1>
   <p class='text-center'><%= @project.description %></p>
 
-  <div class="center-block container text-center">
-    Project created <%= time_ago_in_words @project.created_at %> ago
-
-    <div class="favorite-button-wrapper center-block ">
-      <% if !current_user.favorited_projects.include?(@project) %>
-      <%= button_to "Favorite this project", project_favorite_path(@project), :class => "btn btn-outline btn-default btn-sm favorite-button ", :remote => true %>
-      <% else %>
-      <%= button_to "Project favorited", project_favorite_path(@project), :class => "btn btn-success btn-default btn-sm disfavorite-button", :method => :delete , :remote => true
-      %>
-
-      <% end %>
-    </div>
+  <div class="text-center">
+    <small>Project created <%= time_ago_in_words @project.created_at %> ago</small>
 
   </div>
-  <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist" >
-    <li class="active">
-      <a data-toggle="tab" href="#about_aba"><%=t('About')%></a>
-    </li>
-    <li>
-      <a data-toggle="tab"  href="#how-to-start"><%=t('How to start')%></a>
-    </li>
-    <li>
-      <a data-toggle="tab" href="#config-workspace"><%=t('Configure workspace')%></a>
-    </li>
-    <li>
-      <a data-toggle="tab" href="#know-the-code"><%=t('Know the code')%></a>
-    </li>
-    <li>
-      <a data-toggle="tab" href="#send_contribution"><%=t('Send contribution')%></a>
-    </li>
-    <% if @project.owner?(current_user) %>
-    <%= link_to edit_project_path(@project) do %>
 
-    <li style="float:right;">
-      <button type="button" class="btn btn-dark"><i class="icon wb-settings" aria-hidden="true"></i> Edit</button>
-    </li>
-    <% end %>
+  <ul class="nav nav-tabs" role="tablist">
 
-    <% end %>
+    <%= tab_item(:about, "About", active: true ) %>
+    <%= tab_item(:how_to_start, "How to start") %>
+    <%= tab_item(:talk_to_the_community, "Talk to the community") %>
+    <%= tab_item(:setup_your_workspace, "Setup your workspace") %>
+    <%= tab_item(:deal_with_the_code, "Deal with the code") %>
+    <%= tab_item(:submit_your_changes, "Submit your changes") %>
 
+    <div class="dropdown float-right">
+      <button type="button" class="float-right btn btn-primary dropdown-toggle float-right waves-effect waves-classic" id="exampleLeftDropdownSubMenu" aria-expanded="true" data-toggle="dropdown">
+        Administration menu
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exampleLeftDropdownSubMenu" role="menu">
+        <%= link_to "Edit project", edit_project_path(@project), class: "dropdown-item" %>
+        <a class="dropdown-item" href="javascript:void(0)" role="menuitem" tabindex="-1">Owners</a>
+        <a class="dropdown-item" href="javascript:void(0)" role="menuitem" tabindex="-1">Create a forum</a>
+
+      </div>
+    </div>
   </ul>
 
 </div>
 <div class="page-content container-fluid tab-content">
-  <div class="grid-stack tab-pane animation-fade active" data-plugin="gridstack" data-gs-width="12"  id="about_aba" data-gs-animate="yes" role="tabpanel" >
-    <!-- TAB ABOUT -->
-    <%= render @project.widgets.from_tab_about %>
-    <%= render 'widget_forum' %>
-
-
-    <% if @project.owner?(current_user) %>
-    <%= render 'widgets/new' , :tab => "about" %>
+  <div class="tab-content pt-20">
+    <% tab_pane(:about, active: true) do %>
+      <%= render @project.widgets.from_tab(:about ) %>
     <% end %>
+    <% tab_pane(:how_to_start, gridstack: false) do %>
+        <div class="panel nav-tabs-horizontal" data-plugin="tabs">
+          <div class="panel-heading">
+            <h3 class="panel-title">How to start</h3>
+          </div>
+          <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contribution_flow" role="tab">Contribution flow</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#choosing_a_task_to_start_with" role="tab">Choosing a task to start with</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#find_a_mentor" role="tab">Find a mentor</a></li>
+          </ul>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="contribution_flow" role="tabpanel">
+                <p>Please consider the flow below if you want to be guided till you
+                finish your contribution. It is not a strict flow, you can skip steps
+                if you want. It was designed to give you a sense on what you should do.
+                You can move to appropriate guidelines and resource by clicking the boxes
+                instead of using the menu.</p>
+              <%= render 'flow' %>
+              </div>
+              <% tab_pane(:choosing_a_task_to_start_with) do %>
+                  <%= render @project.widgets.from_tab(:choosing_a_task_to_start_with) %>
+              <% end %>
+
+              <% tab_pane(:find_a_mentor) do %>
+                  <%= render @project.widgets.from_tab(:find_a_mentor) %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <% tab_pane(:talk_to_the_community, gridstack: false) do %>
+      <div class="panel nav-tabs-horizontal" data-plugin="tabs">
+        <div class="panel-heading">
+          <h3 class="panel-title">Community support</h3>
+        </div>
+        <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#search_before_ask" role="tab">Search before ask</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#synchronous_chat" role="tab">Synchronous chat</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mailing_lists" role="tab">Mailing lists</a></li>
+        </ul>
+        <div class="panel-body">
+          <div class="tab-content">
+
+            <% tab_pane(:search_before_ask, active: true) do %>
+              <%= render @project.widgets.from_tab(:search_before_ask) %>
+            <% end %>
+
+            <% tab_pane(:synchronous_chat) do %>
+                <%= render @project.widgets.from_tab(:synchronous_chat) %>
+            <% end %>
+
+            <% tab_pane(:mailing_lists) do %>
+                <%= render @project.widgets.from_tab(:mailing_lists) %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% tab_pane(:setup_your_workspace) do %>
+    <%= render @project.widgets.from_tab(:setup_your_workspace) %>
+    <% end %>
+
+    <% tab_pane(:deal_with_the_code) do %>
+    <%= render @project.widgets.from_tab(:deal_with_the_code) %>
+
+    <% end %>
+
+    <% tab_pane(:submit_your_changes) do %>
+    <%= render @project.widgets.from_tab(:submit_your_changes) %>
+    <% end %>
+
   </div>
-  <!-- TAB HOW TO START-->
-  <div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="how-to-start"
-  data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
-
-  <%= render @project.widgets.from_tab_how_to_start %>
-
-  <% if @project.owner?(current_user) %>
-  <%= render 'widgets/new', :tab => "how_to_start"%>
-  <% end %>
-
-</div>
-<!--TAB CONFIGURE WORKSPACE-->
-<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="config-workspace"
-data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
-
-<%= render @project.widgets.from_tab_configure_workspace %>
-
-<% if @project.owner?(current_user) %>
-<%= render 'widgets/new', :tab => "config_workspace"%>
-<% end %>
-
-</div>
-<!-- TAB KNOW THE CODE -->
-<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="know-the-code"
-data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-
-<%= render @project.widgets.from_tab_know_the_code %>
-
-<% if @project.owner?(current_user) %>
-<%= render 'widgets/new', :tab => "know_the_code"%>
-<% end %>
 
 
 </div>
-<!-- TAB SEND CONTRIBUTION -->
-<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack"  data-gs-width="12" id="send_contribution" data-gs-animate="yes"  role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="" >
-
-  <%= render @project.widgets.from_tab_send_contribution %>
-
-  <% if @project.owner?(current_user) %>
-  <%= render 'widgets/new', :tab => "send_contribution"%>
-  <% end %>
-</div>
-
-<% if @project.owner?(current_user) %>
-<div class="grid-stack  tab-pane animation-fade" data-plugin="gridstack" data-gs-width="12" id="manage" data-gs-animate="yes" role="tabpanel" data-gs-no-resize="" data-gs-no-move="" data-gs-locked="">
-  <%= render 'widget_owner' %>
-  <%= link_to project_path(@project),
-  data: {:confirm => 'Are you sure?'}, :method => :delete do %>
-  <button class="btn  btn-danger btn-floating" style="position:fixed; bottom:50px; right:20px; border-radius:50%;">
-    <i class="icon wb-trash"></i>
-  </button>
-  <% end %>
-</div>
-<% end %>
-
-</div>
-<!-- End Panel -->
