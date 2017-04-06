@@ -42,12 +42,13 @@ role="navigation">
                     <ul class="list-icons">
                       <% tags = Tag.all_ordered_by_count.first(12)
                       tags = tags.in_groups_of(6,false)%>
+
                       <% tags[0].each do |tag, count| %>
                       <li><i class="md-chevron-right" aria-hidden="true"></i>
                         <%= link_to "#{tag}", projects_path(search: tag)%>
 
                       </li>
-                      <% end %>
+                      <% end if tags[0] %>
                     </ul>
                   </li>
                   <li class="mega-menu m-0">
@@ -56,7 +57,7 @@ role="navigation">
                       <li><i class="md-chevron-right" aria-hidden="true"></i>
                         <%= link_to "#{tag}", projects_path(search: tag)%>
                       </li>
-                      <% end %>
+                      <% end unless tags.empty? %>
                     </ul>
                   </li>
                 </ul>
@@ -128,19 +129,6 @@ role="navigation">
         </span>
       </a>
       <% end %>
-      <div class="dropdown-menu" role="menu">
-        <%= link_to current_user, class:"dropdown-item" do %>
-        <i class="icon md-account"></i> Profile
-        <% end %>
-        <%= link_to edit_user_path(current_user), class:"dropdown-item" do %>
-        <i class="icon md-settings"></i> Profile Edit
-        <% end %>
-        <div class="dropdown-divider"></div>
-        <%= link_to sign_out_path, method: :delete, class: "dropdown-item" do%>
-        <i class="icon md-power"></i> Logout</a>
-        <% end %>
-
-      </div>
     </li>
     <% if current_user && current_user.respond_to?(:notifications)%>
     <li class="nav-item dropdown">
