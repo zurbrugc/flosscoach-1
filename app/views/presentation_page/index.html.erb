@@ -1,25 +1,73 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Presentation Pages</h1>
+<body class="animsition" >
+  <nav class="navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggler hamburger hamburger-close collapsed" data-target="#example-navbar-collapse-3" data-toggle="collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="hamburger-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="javascript:void(0)">FlossCOACH</a>
+                </div>
+                <div class="navbar-collapse collapse" id="example-navbar-collapse-3" aria-expanded="false">
+                  <%= link_to "Register NOW", new_user_path, class: "mr-20 btn btn-info navbar-right navbar-btn" %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @presentation_pages.each do |presentation_page| %>
-      <tr>
-        <td><%= link_to 'Show', presentation_page %></td>
-        <td><%= link_to 'Edit', edit_presentation_page_path(presentation_page) %></td>
-        <td><%= link_to 'Destroy', presentation_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                  <%= link_to "Sign in", sign_in_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
 
-<br>
+                </div>
+              </div>
+            </nav>
 
-<%= link_to 'New Presentation Page', new_presentation_page_path %>
+  <div class="page container-fluid " data-animsition-in="fade-in" data-animsition-out="fade-out">
+
+
+    <div class="row bg-grey-800 text-white">
+      <div class="page-content ">
+        <span class="icon  float-left"></span>
+        <h1 class="text-white font-size-50" >
+          <i class="icon md-account-add font-size-70"></i>
+          Create/add your project on FlossCoach</h1>
+        <p class="lead text-left">
+          Add your project to FlossCoach and help newbies collaborate with your project.
+        </p>
+      </div>
+    </div>
+
+    <div class="row bg-indigo-500 text-white">
+      <div class="page-content ">
+        <h1 class="text-white font-size-50" >
+          <i class="icon md-eye font-size-70"></i>
+Check us!</h1>
+        <p class="lead bg-indigo-500 text-center">
+          You are curious? Come to know the <%= link_to "projects currently registered in FlossCOACH", projects_path, style: "color: #FFD740"%>. Do not worry, you do not need to register to view them;)        </p>
+      </div>
+    </div>
+
+    <div class="row bg-purple-800  text-white">
+      <div class="page-content ">
+        <h1 class="text-white font-size-50" >
+          <i class="icon md-collection-item font-size-70"></i>
+
+          See some of the current projects registered</h1>
+        <div class="col-md-12 mt-50">
+          <ul class="blocks-6">
+            <% Project.all.each do |project|%>
+            <li class="text-center">
+              <%= link_to project, class:"thumbnail m-0" do %>
+                <%= image_tag project.photo_url, class:"center-block", width:50%>
+                <% end %>
+              <p><b><%= project.name %></b></p>
+            </li>
+            <% end %>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <%= render 'application/footer' %>
+
+</body>

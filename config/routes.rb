@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
-  root :to => "sessions#index"
+  root :to => "presentation_page#index"
   resources :password_resets
   resources :projects do
     get 'most_favorited', on: :collection
