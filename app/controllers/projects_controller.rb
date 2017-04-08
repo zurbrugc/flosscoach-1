@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  include WidgetsHelper
   respond_to :html, :js, :json
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:update]
@@ -48,12 +47,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-    @project.get_open_hub_data if params[:openhub_check]
 
     @project.widgets << Widget.defaults
     @project.owners << current_user
     @project.tags = @project.tags.split(",")
     if @project.save
+      @project.get_open_hub_data if params[:openhub_check]
+      @project.save
       redirect_to @project, notice: t('Project was successfully created.')
     else
       @project.tags = @project.tags.join(",")
@@ -91,7 +91,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.all.find(params[:id])
+      @project = Project.includes(:widgets).find(params[:id])
       @project.forum ||= Forum.new
       @project.save
       @forum = @project.forum

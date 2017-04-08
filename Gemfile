@@ -46,6 +46,8 @@ gem 'carrierwave-base64'
 gem 'cloudinary'
 
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'summernote-rails'
+gem 'simple_form'
 
 group :production do
   gem 'pg'

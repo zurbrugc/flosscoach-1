@@ -7,7 +7,18 @@
     <img class=" img-responsive" src="<%= @project.photo_url %>"
     style="max-width:250px;"/>
   </figure>
-  <h1 class="page-title text-center"><%= @project.name %></h1>
+  <h1 class="page-title text-center"><%= @project.name %>
+    <% if @project.recent? %>
+    <span class="badge badge-danger badge-sm">New</span>
+    <% end %>
+  </h1>
+  <p class="tags text-center">
+    <% @project.tags.each do |tag| %>
+    <%= link_to projects_path(search: tag) do %>
+      <span class="badge badge-outline badge-primary"><%=tag%></span>
+      <% end %>
+    <% end %>
+</p>
   <p class='text-center'><%= @project.description %></p>
 
   <div class="text-center">

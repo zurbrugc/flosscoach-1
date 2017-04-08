@@ -67,10 +67,10 @@ role="navigation">
                 </h5>
                 <ul class="blocks-3">
                   <% Project.limit(6).each do |project|%>
-                  <li>
-                    <a class="thumbnail m-0" href="javascript:void(0)">
+                  <li class="text-center">
+                      <%= link_to project, class: "thumbnail m-0" do %>
                       <%= image_tag project.photo_url, width:50%>
-                    </a>
+                      <% end %>
                     <p><%= project.name %></p>
                   </li>
                   <% end %>
@@ -84,10 +84,10 @@ role="navigation">
                 role="tablist">
                 <ul class="blocks-3">
                   <% User.limit(6).each do |user|%>
-                  <li>
-                    <a class="thumbnail m-0 avatar avatar-lg" href="javascript:void(0)">
+                  <li class="text-center">
+                      <%= link_to user, class: "thumbnail m-0 avatar avatar-lg" do %>
                       <%= image_tag user.photo_url, width:50%>
-                    </a>
+                    <% end %>
                     <p><%= user.username %></p>
                   </li>
                   <% end %>

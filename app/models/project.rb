@@ -28,6 +28,21 @@ class Project < ApplicationRecord
     self.use_open_hub_data = true
     self.use_open_hub_image = true
     self.tags = ohp.tags
+    widget = self.widgets.where(title: "About the project").first
+    widget.content = ohp.iframe_html
+    widget.save
+
+    widget = self.widgets.where(title: "Resources avaiable").first
+    widget.content = ohp.links_html
+    widget.save
+
+    widget = self.widgets.where(title: "Technical skills required").first
+    widget.content = ohp.iframe_languages_html
+    widget.save
+
+  end
+  def recent?
+    created_at > 2.day.ago 
   end
   def photo_url
     if use_open_hub_image

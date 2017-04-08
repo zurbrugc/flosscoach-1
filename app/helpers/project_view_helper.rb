@@ -1,5 +1,4 @@
 module ProjectViewHelper
-
   def tab_pane(id, active:false,  gridstack: true, &block)
     content = "<div class='tab-pane #{"grid-stack" if gridstack} #{"active" if active}' id='#{id}' role='tabpanel'  #{"data-plugin='gridstack'" if gridstack}>".html_safe
     content << capture(&block)

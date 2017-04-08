@@ -1,3 +1,0 @@
-module ProjectShowViewHelper
-  
-end

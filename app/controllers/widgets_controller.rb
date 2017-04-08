@@ -1,5 +1,5 @@
 class WidgetsController < ApplicationController
-  before_action :set_widget, only: [:show, :update, :destroy]
+  before_action :set_widget, only: [:show, :update, :destroy, :edit]
   skip_before_filter :verify_authenticity_token, only: [:update]
 
   def index
@@ -22,7 +22,9 @@ class WidgetsController < ApplicationController
       redirect_to @project
     end
   end
+  def edit
 
+  end
   def update
     if @widget.update_attributes(widget_params)
       respond_to do |format|

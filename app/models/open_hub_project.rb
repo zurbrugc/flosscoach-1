@@ -7,7 +7,10 @@ class MyXMLFormatter
 end
 
 class OpenHubProject < ActiveResource::Base
-  attr_accessor :name, :openhub_url, :description, :homepage_url, :logo_url, :tags, :vanity_url
+  include OpenHubProjectHelper
+  attr_accessor :name, :openhub_url, :description,
+  :homepage_url, :logo_url, :tags, :vanity_url, :download_url
+  
   self.site = "https://www.openhub.net/"
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"

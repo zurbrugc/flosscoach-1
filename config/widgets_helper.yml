@@ -162,6 +162,4 @@ open_hub_links:
     pos_y: 0
     width: 4
     height: 3
-    content: "OpenHub URL: <a href='#{ohp.html_url}'>#{ohp.html_url}</a><br>
-              Homepage Url: <a href='#{ohp.homepage_url}'>#{ohp.homepage_url}</a><br>
-              Download URL: <a href='#{ohp.download_url}'>#{ohp.download_url}</a>"
+    content: 
