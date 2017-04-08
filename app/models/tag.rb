@@ -13,7 +13,7 @@ class Tag
     Hash.new(0).tap { |h| arr.each { |v| h[v] += 1 } }.sort{|k, v| v[1] <=> k[1]}.to_h
   end
 
-  def self.exists(tag)
+  def self.exists?(tag)
     Project.pluck(:tags).include?(tag)
   end
 end

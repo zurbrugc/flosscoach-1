@@ -29,96 +29,13 @@ role="navigation">
 
 
       <li class="nav-item dropdown dropdown-fw dropdown-mega">
-        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="fade"
-        role="button">Trending <i class="icon md-chevron-down" aria-hidden="true"></i></a>
-        <div class="dropdown-menu" role="menu">
-          <div class="mega-content">
-            <div class="row">
-              <div class="col-md-4">
-                <h5>Top project tags</h5>
-
-                <ul class="blocks-2">
-                  <li class="mega-menu m-0">
-                    <ul class="list-icons">
-                      <% tags = Tag.all_ordered_by_count.first(12)
-                      tags = tags.in_groups_of(6,false)%>
-
-                      <% tags[0].each do |tag, count| %>
-                      <li><i class="md-chevron-right" aria-hidden="true"></i>
-                        <%= link_to "#{tag}", projects_path(search: tag)%>
-
-                      </li>
-                      <% end if tags[0] %>
-                    </ul>
-                  </li>
-                  <li class="mega-menu m-0">
-                    <ul class="list-icons">
-                      <% tags[1].each do |tag, count| %>
-                      <li><i class="md-chevron-right" aria-hidden="true"></i>
-                        <%= link_to "#{tag}", projects_path(search: tag)%>
-                      </li>
-                      <% end unless tags.empty? %>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5>Top projects
-                </h5>
-                <ul class="blocks-3">
-                  <% Project.limit(6).each do |project|%>
-                  <li class="text-center">
-                      <%= link_to project, class: "thumbnail m-0" do %>
-                      <%= image_tag project.photo_url, width:50%>
-                      <% end %>
-                    <p><%= project.name %></p>
-                  </li>
-                  <% end %>
-
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5 >Top users(?)</h5>
-                <!-- Accordion -->
-                <div class="panel-group panel-group-simple" id="siteMegaAccordion" aria-multiselectable="true"
-                role="tablist">
-                <ul class="blocks-3">
-                  <% User.limit(6).each do |user|%>
-                  <li class="text-center">
-                      <%= link_to user, class: "thumbnail m-0 avatar avatar-lg" do %>
-                      <%= image_tag user.photo_url, width:50%>
-                    <% end %>
-                    <p><%= user.username %></p>
-                  </li>
-                  <% end %>
-
-                </ul>
-              </div>
-              <!-- End Accordion -->
-            </div>
-          </div>
-        </div>
-      </div>
+        <%= render 'header_trending' %>
     </li>
   </ul>
   <!-- End Navbar Toolbar -->
   <!-- Navbar Toolbar Right -->
   <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up"
-      aria-expanded="false" role="button">
-      <span class="flag-icon flag-icon-us"></span>
-    </a>
-    <div class="dropdown-menu" role="menu">
-      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-        <span class="flag-icon flag-icon-us"></span> English</a>
-        <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-          <span class="flag-icon flag-icon-br"></span> Portuguese</a>
-
-
-
-        </div>
-      </li>
+    <%= render 'header_translates' %>
       <% if current_user %>
       <li class="nav-item dropdown">
         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
