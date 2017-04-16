@@ -1,0 +1,11 @@
+<ul class="blocks-3">
+  <% Project.limit(6).each do |project|%>
+  <li class="text-center">
+      <%= link_to project, class: "thumbnail m-0" do %>
+      <%= image_tag project.photo_url, width:50%>
+      <% end %>
+    <p><%= project.name %></p>
+  </li>
+  <% end %>
+
+</ul>

@@ -19,24 +19,19 @@
         text-align: left!important;
       }
 
-      .nav-tabs-line>li>a {
-        position: relative;
-        display: block;
-        padding: 10px 10px!important;
-      }
-
-      .list-group a:hover {
-        text-decoration:none;
-      }
     </style>
+    <%= javascript_include_tag 'remark/global/vendor/breakpoints/breakpoints.js' %>
 
+    <script>
+    Breakpoints();
+    </script>
   </head>
-  <body>
+  <body class="animsition <%= yield :body_class %>">
 
     <%= render 'header' %>
     <%= render 'menu' %>
 
-    <div class="page">
+    <div class="page <%= yield :page_class %>">
       <%= yield %>
     </div>
     <%= render 'footer' %>

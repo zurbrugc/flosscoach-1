@@ -1,0 +1,12 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+	*= require remark/assets/examples/css/advanced/rating.css
+
+	*= require remark/global/vendor/blueimp-file-upload/jquery.fileupload.css
+	*= require remark/global/vendor/dropify/dropify.css
+	
+	*= require remark/global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css
+   *= require remark/global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css
+  *= require remark/global/vendor/typeahead-js/typeahead.css
+*/
