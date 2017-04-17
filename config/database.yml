@@ -23,10 +23,10 @@ test: &test
 production:
   adapter: postgresql
   encoding: utf8
-  database: floss
-  username: flosscoach
-  password: awsfloss2017
-  host: <%= ENV['RDS_HOSTNAME'] %>
+  database: postgres
+  username: floss #ou postgres
+  password: fl022c0ach
+  host: localhost
   port: 5432
 cucumber:
   <<: *test
