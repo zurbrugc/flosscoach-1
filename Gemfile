@@ -48,6 +48,8 @@ gem 'sass-rails'
 
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'simple_form'
+gem 'uglifier'
+
 
 group :production do
   gem 'pg'
