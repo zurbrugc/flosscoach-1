@@ -2,7 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 
-//= require summernote
+//= require remark/global/vendor/summernote/summernote.js
+
 $(document).ready(function() {
   $('#widget_content.summernote').summernote();
 });

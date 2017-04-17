@@ -17514,7 +17514,7 @@ label
     height: 100% !important;
 }
 
-@media (min-width: null) and (max-width: 479px)
+@media (max-width: 479px)
 {
     .w-only-xs-20
     {
@@ -19874,7 +19874,7 @@ label
     }
 }
 
-@media (min-width: 1600px) and (max-width: null)
+@media (min-width: 1600px)
 {
     .w-only-xxl-20
     {
