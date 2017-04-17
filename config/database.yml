@@ -21,12 +21,7 @@ test: &test
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: floss
-  username: flosscoach
-  password: awsfloss2017
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: 5432
+  <<: *default
+  database: db/development.sqlite3
 cucumber:
   <<: *test
