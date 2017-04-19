@@ -9,7 +9,7 @@
         <%= link_to "#{tag}", projects_path(search: tag)%>
 
       </li>
-      <% end if tags[0] %>
+      <% end unless tags.empty? || tags[0].nil?  %>
     </ul>
   </li>
   <li class="mega-menu m-0">
@@ -18,7 +18,7 @@
       <li><i class="md-chevron-right" aria-hidden="true"></i>
         <%= link_to "#{tag}", projects_path(search: tag)%>
       </li>
-      <% end unless tags.empty? %>
+      <% end unless tags.empty? || tags[1].nil? %>
     </ul>
   </li>
 </ul>
