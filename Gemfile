@@ -36,7 +36,9 @@ gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resour
 gem 'jquery-ui-rails', "5.0.5"
 
 gem 'gridstack-js-rails'
-
+gem 'responders'
+gem 'summernote-rails', "0.8.1.0"
+gem 'bootstrap-sass'
  #static analysis tools
 gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
 

@@ -3,6 +3,7 @@
   They will automatically be included in application.css.
 
 
+  *= require remark/global/vendor/summernote/summernote.css
+  *= require summernote
   */
-
-@import "summernote";
+  @import "summernote";
