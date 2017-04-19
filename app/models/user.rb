@@ -84,4 +84,13 @@ class User < ApplicationRecord
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
+
+  def self.search(search)
+    if search
+      where("name LIKE ? OR username LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      all
+    end
+  end
+
 end

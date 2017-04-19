@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :authorize, except: [:new, :create,:show, :confirm_email]
   # GET /users
   def index
-    redirect_to user_path(current_user)
+    @users = User.search(params[:search])
   end
 
   # GET /users/1

@@ -52,6 +52,27 @@
               </li>
             </ul>
           </li>
+          <li class="site-menu-item has-sub">
+            <a href="javascript:void(0)">
+              <i class="site-menu-icon md-accounts" aria-hidden="true"></i>
+              <span class="site-menu-title">Users</span>
+              <span class="site-menu-arrow"></span>
+            </a>
+            <ul class="site-menu-sub">
+              <li class="site-menu-item">
+                <%= link_to current_user do %>
+                <span class="site-menu-title">Your profile</span>
+                <% end if logged_in? %>
+              </li>
+
+              <li class="site-menu-item">
+                <%= link_to users_path do %>
+                <span class="site-menu-title">All users</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </li>
 
