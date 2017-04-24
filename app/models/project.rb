@@ -62,7 +62,7 @@ class Project < ApplicationRecord
 
   def self.search(search)
     if search
-      where("name LIKE ? OR description LIKE ? OR tags LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+      where("name LIKE ? OR description LIKE ? OR cast(tags as text) LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end
