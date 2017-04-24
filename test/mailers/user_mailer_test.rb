@@ -9,7 +9,7 @@ class UserMailerTest < ActionDispatch::IntegrationTest
   test "send email for activation on register" do
     user_attributes = attributes_for(:user)
     post users_url, params: {user: user_attributes}
-    assert_redirected_to root_url
+    assert_redirected_to sign_in_url
 
     mail = @emails.last
     assert_equal user_attributes[:email], mail.to.first

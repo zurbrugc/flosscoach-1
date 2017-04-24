@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
       flash[:notice] = "Please confirm your email address to continue"
-      redirect_to root_url
+      redirect_to sign_in_path
     else
       render :new
     end
@@ -41,10 +41,10 @@ class UsersController < ApplicationController
         user.email_activate
         flash[:notice] = "Welcome to the FlossCOACH! Your email has been confirmed.
         Please sign in to continue."
-      redirect_to root_url
+      redirect_to sign_in_path
     else
       flash[:alert] = "Sorry. User does not exist"
-      redirect_to root_url
+      redirect_to sign_in_path
     end
   end
   # PATCH/PUT /users/1

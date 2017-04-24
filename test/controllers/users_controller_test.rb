@@ -29,7 +29,30 @@ class UsersControllerTest  < ActionDispatch::IntegrationTest
     post users_url, params: {user: user_attributes}
 
     assert_equal User.first.name, user_attributes[:name]
+
   end
+
+  test "redirect to sign in page on register user" do
+    user_attributes = {name: 'Victor', email: 'imatheusfsantos@gmail.com',
+                        username: 'victor', password: 'victor123', password_confirmation: 'victor123'}
+    post users_url, params: {user: user_attributes}
+
+    assert_redirected_to sign_in_path
+  end
+
+
+    test "redirect to sign in page on confirm email" do
+      user_attributes = {name: 'Victor', email: 'imatheusfsantos@gmail.com',
+                          username: 'victor', password: 'victor123', password_confirmation: 'victor123'}
+      post users_url, params: {user: user_attributes}
+      assert_not User.last.email_confirmed?
+      get confirm_email_user_url(User.last.confirm_token)
+
+      assert_redirected_to sign_in_path
+
+      assert User.last.email_confirmed?
+    end
+
 
   test "update user twitter" do
     login
