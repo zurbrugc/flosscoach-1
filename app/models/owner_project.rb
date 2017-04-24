@@ -5,6 +5,4 @@ class OwnerProject < ApplicationRecord
 	accepts_nested_attributes_for :project
 	accepts_nested_attributes_for :user
 
-	audited associated_with: :project
-	audited associated_with: :user
 end

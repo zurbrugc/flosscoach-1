@@ -15,7 +15,10 @@ class Topic < ApplicationRecord
     messages.count
   end
 
-
+  def recent?
+    created_at > 2.day.ago
+  end
+  
   private
   def validate_tags
     if tags.length != tags.uniq.length

@@ -1,5 +1,4 @@
 class Widget < ApplicationRecord
-  audited associated_with: :project
 
 
   after_initialize :set_defaults, unless: :persisted?

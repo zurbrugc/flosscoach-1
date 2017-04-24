@@ -1,13 +1,10 @@
 class Project < ApplicationRecord
-  audited
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_presence_of :description
 
-  audited associated_with: :owners
   belongs_to :user
   has_many :widgets, :dependent => :destroy
-  has_associated_audits
   has_and_belongs_to_many :owners, class_name: 'User'
   has_one :forum
 
@@ -42,8 +39,9 @@ class Project < ApplicationRecord
 
   end
   def recent?
-    created_at > 2.day.ago 
+    created_at > 2.day.ago
   end
+
   def photo_url
     if use_open_hub_image
       open_hub_image_url  || "/assets/no-image.png"

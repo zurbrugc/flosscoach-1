@@ -1,0 +1,36 @@
+<li class="list-group-item">
+  <div class="media">
+    <div class="pr-20">
+      <div class="avatar avatar-online">
+        <%= link_to user do %>
+        <%= image_tag user.photo_url %>
+        <% end %>
+        <!-- <i class="avatar avatar-busy"></i> -->
+      </div>
+    </div>
+    <div class="media-body">
+      <h5 class="mt-0 mb-5">
+        <%= link_to user.name, user %>
+        <!--<small>Last Access: 1 hour ago</small>-->
+      </h5>
+      <p>
+        <i class="icon icon-color md-pin-account" aria-hidden="true"></i>
+        <%= link_to "@#{user.username}", user %>
+      </p>
+      <div>
+        <%= link_to "http://www.twitter.com/#{user.twitter_username}", class: "text-action"  do %>
+          <i class="icon icon-color bd-twitter"></i>
+        <% end if user.twitter_username  %>
+        <%= link_to "http://www.facebook.com/#{user.facebook_username}", class: "text-action"  do %>
+          <i class="icon icon-color bd-facebook"></i>
+        <% end if user.facebook_username %>
+        <%= link_to "http://www.github.com/#{user.github_username}", class: "text-action"  do %>
+          <i class="icon icon-color bd-github"></i>
+        <% end if user.github_username %>
+      </div>
+    </div>
+    <!-- <div class="pl-20 align-self-center">
+      <button type="button" class="btn btn-primary btn-sm waves-effect waves-classic">Follow</button>
+    </div> -->
+  </div>
+</li>
