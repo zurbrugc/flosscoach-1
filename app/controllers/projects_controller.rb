@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
 
     @project.widgets << Widget.defaults
     @project.owners << current_user
-    @project.tags = @project.tags.split(",")
+    @project.tags = @project.tags.split(",").to_yaml
     if @project.save
       @project.get_open_hub_data if params[:openhub_check]
       @project.save
