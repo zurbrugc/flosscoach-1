@@ -24,7 +24,7 @@ class Project < ApplicationRecord
     self.open_hub_image_url = ohp.logo_url
     self.use_open_hub_data = true
     self.use_open_hub_image = true
-    self.tags = ohp.tags
+    self.tags = ohp.tags.to_yaml
     widget = self.widgets.where(title: "About the project").first
     widget.content = ohp.iframe_html
     widget.save
