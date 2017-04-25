@@ -50,13 +50,13 @@ class ProjectsController < ApplicationController
 
     @project.widgets << Widget.defaults
     @project.owners << current_user
-    @project.tags = @project.tags.split(",")
+    @project.tags = project_params["tags"].split(",")
     if @project.save
       @project.get_open_hub_data if params[:openhub_check]
       @project.save
       redirect_to @project, notice: t('Project was successfully created.')
     else
-      @project.tags = @project.tags.join(",")
+      @project.tags = project_params["tags"].tags.join(",")
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
     end
