@@ -16,7 +16,6 @@ class Project < ApplicationRecord
   scope :order_by_fans_count, -> {
   joins(:fans).select('projects.*, COUNT(user_id) as user_count').group('projects.id').order('user_count DESC')
   }
-  serialize :tags
 
   def get_open_hub_data
     ohp = OpenHubProject.find_by_name(self.name)
