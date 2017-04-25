@@ -16,7 +16,7 @@ class Project < ApplicationRecord
   scope :order_by_fans_count, -> {
   joins(:fans).select('projects.*, COUNT(user_id) as user_count').group('projects.id').order('user_count DESC')
   }
-  serialize :tags, Array
+  serialize :tags
 
   def get_open_hub_data
     ohp = OpenHubProject.find_by_name(self.name)
@@ -24,7 +24,7 @@ class Project < ApplicationRecord
     self.open_hub_image_url = ohp.logo_url
     self.use_open_hub_data = true
     self.use_open_hub_image = true
-    self.tags = ohp.tags.to_yaml
+    self.tags = ohp.tags
     widget = self.widgets.where(title: "About the project").first
     widget.content = ohp.iframe_html
     widget.save
