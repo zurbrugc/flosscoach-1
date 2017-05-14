@@ -1,0 +1,14 @@
+<% if @user.errors.any? %>
+<div role="alert" class="alert dark alert-danger alert-icon alert-dismissible">
+  <button aria-label="Close" data-dismiss="alert" class="close" type="button">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="icon md-notifications" aria-hidden="true"></i>
+  <h4><%= pluralize(@user.errors.count, "Error") %> reseting password</h4>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
