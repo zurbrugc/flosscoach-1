@@ -8,9 +8,9 @@ end
 
 class OpenHubProject < ActiveResource::Base
   include OpenHubProjectHelper
-  attr_accessor :name, :openhub_url, :description,
+  attr_accessor :id, :name, :openhub_url, :description,
   :homepage_url, :logo_url, :tags, :vanity_url, :download_url
-  
+
   self.site = "https://www.openhub.net/"
   self.format =  MyXMLFormatter.new
   self.element_name = "projects"
@@ -18,21 +18,22 @@ class OpenHubProject < ActiveResource::Base
 
   def self.find_by_id(id)
     params = {'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
-    data = self.find(id, :params => params)
-    project = OpenHubProject.new
+    data = OpenHubProject.find(id, :params => params)
     project = OpenHubProject.build(data)
     project
   end
 
   def self.find_by_name(nome)
     params = {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
-    data = self.find(:all, :params => params).first
+    data = OpenHubProject.find(:all, :params => params).first
+    p data
     project = OpenHubProject.build(data)
     project
   end
 
   def self.build(data)
     project = OpenHubProject.new
+    project.id = data.attributes["id"]
     project.name = data.attributes["name"]
     project.openhub_url = data.attributes["html_url"]
     project.download_url =  data.attributes["download_url"]
@@ -44,8 +45,17 @@ class OpenHubProject < ActiveResource::Base
     project.vanity_url = data.attributes["vanity_url"]
     project
   end
-  def to_flosscoach_project
-    project = Project.new
+
+  def to_open_hub_data
+    data = OpenHubData.new
+    data.open_hub_id = id
+    data.name = name
+    data.description = description
+    data.homepage_url = homepage_url
+    data.vanity_url = vanity_url
+    data.download_url = download_url
+    data.logo_url = logo_url
+    data
   end
 
 

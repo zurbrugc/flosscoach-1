@@ -2,7 +2,7 @@
 <%= render 'visitor/menu' unless current_user %>
 
 <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
-
+  <%= render 'notices' %>
   <figure class='logo-projeto text-center'>
     <img class=" img-responsive" src="<%= @project.photo_url %>"
     style="max-width:250px;"/>
@@ -14,9 +14,9 @@
   </h1>
   <p class="tags text-center">
     <% @project.tags.each do |tag| %>
-    <%= link_to projects_path(search: tag) do %>
-    <span class="badge badge-outline badge-primary"><%=tag%></span>
-    <% end %>
+      <%= link_to projects_path(search: tag.to_s) do %>
+      <span class="badge badge-outline badge-primary"><%=tag.to_s%></span>
+      <% end %>
     <% end %>
   </p>
   <p class='text-center'><%= @project.description %></p>

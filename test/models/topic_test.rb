@@ -30,9 +30,9 @@ class TopicTest < ActiveSupport::TestCase
 
     tags = topic.tags
     assert_equal 3, tags.count
-    assert_equal "batata", tags[0]
-    assert_equal "suco", tags[1]
-    assert_equal "heroku", tags[2]
+    assert_equal "batata", tags[0].to_s
+    assert_equal "suco", tags[1].to_s
+    assert_equal "heroku", tags[2].to_s
   end
 
   test "create a topic without a forum" do
@@ -48,7 +48,9 @@ class TopicTest < ActiveSupport::TestCase
     topic.tags << "batata"
     assert topic.save
     topic.tags << "batata"
-    assert_not topic.save
+    assert topic.save
+    assert_equal 1, topic.tags.count
+    assert_equal "batata", topic.tags.first.to_s
   end
 
   test "delete tags" do

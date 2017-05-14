@@ -1,6 +1,4 @@
 class Widget < ApplicationRecord
-
-
   after_initialize :set_defaults, unless: :persisted?
 
   validates_presence_of :title
@@ -71,7 +69,6 @@ class Widget < ApplicationRecord
     self.resizeable ||=  true
     self.retractable ||= false
   end
-
 
   def create_slug
     self.slug ||= self.title.parameterize

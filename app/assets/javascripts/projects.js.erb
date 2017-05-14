@@ -39,7 +39,7 @@ serializeWidgetMap(items)
   (function() {
     var engine = new Bloodhound({
       local: [
-        <%= Tag.all.map{|t| "{value :'#{t}'}"}.join(",") %>
+        <%= Tag.all.map{|t| "{value :'#{t.name}'}"}.join(",") %>
       ],
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -47,7 +47,7 @@ serializeWidgetMap(items)
 
     engine.initialize();
 
-    $('#project_tags').tokenfield({
+    $('#project_plain_tags').tokenfield({
       typeahead: [null, {
         name: 'engine',
         displayKey: 'value',

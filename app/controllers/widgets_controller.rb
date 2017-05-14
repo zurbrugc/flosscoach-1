@@ -38,7 +38,7 @@ class WidgetsController < ApplicationController
 
   def destroy
     @widget.destroy
-    redirect_to @project, notice: 'Widget was successfully destroyed.'
+    redirect_to @project, success: 'Widget was successfully destroyed.'
   end
 
   private

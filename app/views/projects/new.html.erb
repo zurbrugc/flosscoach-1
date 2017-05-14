@@ -1,13 +1,80 @@
 
 <div class="page-header">
 
-  <h1 class="page-title ">Create/add your project on FlossCoach</h1>
+  <h1 class="page-title ">Create/add your project on <%= site_name %></h1>
   <p class="lead">
-    Add your project to FlossCoach and help newbies collaborate with your project.
+    Add your project to <%= site_name %> and help newbies collaborate with your project.
   </p>
 </div>
 
 <div class="page-content">
+  <div class="panel" id="exampleWizardForm">
+            <div class="panel-heading">
+              <h3 class="panel-title">Wizard Form</h3>
+            </div>
+            <div class="panel-body">
+              <!-- Steps -->
+              <div class="steps steps-sm row" data-plugin="matchHeight" data-by-row="true" role="tablist">
+                <div class="step col-lg-4 current active error" data-target="#exampleAccount" role="tab" aria-expanded="true">
+                  <span class="step-number">1</span>
+                  <div class="step-desc">
+                    <span class="step-title">Account</span>
+                    <p>Login for identification</p>
+                  </div>
+                </div>
+                <div class="step col-lg-4 disabled" data-target="#exampleBilling" role="tab" aria-expanded="false">
+                  <span class="step-number">2</span>
+                  <div class="step-desc">
+                    <span class="step-title">Billing</span>
+                    <p>Pay for the bill</p>
+                  </div>
+                </div>
+                <div class="step col-lg-4 disabled" data-target="#exampleGetting" role="tab" aria-expanded="false">
+                  <span class="step-number">3</span>
+                  <div class="step-desc">
+                    <span class="step-title">Getting</span>
+                    <p>Waiting for the goods</p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Steps -->
+              <!-- Wizard Content -->
+              <div class="wizard-content">
+                <div class="wizard-pane active" id="exampleAccount" role="tabpanel" aria-expanded="true">
+                  <form id="exampleAccountForm" novalidate="novalidate" class="fv-form fv-form-bootstrap"><button type="submit" class="fv-hidden-submit disabled" style="display: none; width: 0px; height: 0px;" disabled="disabled"></button>
+                    <div class="form-group form-material has-danger">
+                      <label class="form-control-label" for="inputUserName">Username</label>
+                      <input type="text" class="form-control" id="inputUserName" name="username" required="required" data-fv-field="username">
+                    <small class="text-help" data-fv-validator="notEmpty" data-fv-for="username" data-fv-result="INVALID" style="">The username is required</small><small class="text-help" data-fv-validator="stringLength" data-fv-for="username" data-fv-result="VALID" style="display: none;">The username must be more than 6 and less than 30 characters long</small><small class="text-help" data-fv-validator="regexp" data-fv-for="username" data-fv-result="VALID" style="display: none;">The username can only consist of alphabetical, number, dot and underscore</small></div>
+                    <div class="form-group form-material has-danger">
+                      <label class="form-control-label" for="inputPassword">Password</label>
+                      <input type="password" class="form-control" id="inputPassword" name="password" required="required" data-fv-field="password">
+                    <small class="text-help" data-fv-validator="notEmpty" data-fv-for="password" data-fv-result="INVALID" style="">The password is required</small><small class="text-help" data-fv-validator="different" data-fv-for="password" data-fv-result="VALID" style="display: none;">The password cannot be the same as username</small></div>
+                  </form>
+                </div>
+                <div class="wizard-pane" id="exampleBilling" role="tabpanel" aria-expanded="false">
+                  <form id="exampleBillingForm" novalidate="novalidate" class="fv-form fv-form-bootstrap"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                    <div class="form-group form-material">
+                      <label class="form-control-label" for="inputCardNumber">Card Number</label>
+                      <input type="text" class="form-control" id="inputCardNumber" name="number" placeholder="Card number" data-fv-field="number">
+                    <small class="text-help" data-fv-validator="notEmpty" data-fv-for="number" data-fv-result="NOT_VALIDATED" style="display: none;">The credit card number is required</small></div>
+                    <div class="form-group form-material">
+                      <label class="form-control-label" for="inputCVV">CVV</label>
+                      <input type="text" class="form-control" id="inputCVV" name="cvv" placeholder="CVV" data-fv-field="cvv">
+                    <small class="text-help" data-fv-validator="notEmpty" data-fv-for="cvv" data-fv-result="NOT_VALIDATED" style="display: none;">The CVV number is required</small></div>
+                  </form>
+                </div>
+                <div class="wizard-pane" id="exampleGetting" role="tabpanel" aria-expanded="false">
+                  <div class="text-center my-20">
+                    <i class="icon md-check font-size-40" aria-hidden="true"></i>
+                    <h4>We got your order. Your product will be shipping soon.</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End Wizard Content -->
+            <div class="wizard-buttons"><a class="btn btn-default btn-outline disabled waves-effect waves-classic" href="#exampleWizardForm" data-wizard="back" role="button">Back</a><a class="btn btn-primary btn-outline float-right waves-effect waves-classic" href="#exampleWizardForm" data-wizard="next" role="button">Next</a><a class="btn btn-success btn-outline float-right hidden-xs-up waves-effect waves-classic" href="#exampleWizardForm" data-wizard="finish" role="button">Finish</a></div></div>
+          </div>
+          
   <div class="panel">
     <div class="panel-body container-fluid">
       <% if @project.errors.any? %>
@@ -48,8 +115,8 @@
 
     </div>
     <div class="col-lg-12 form-group">
-      <%= f.label :tags, "Tags" %>
-      <%= f.text_field :tags, class: "form-control" %>
+      <%= f.label :plain_tags, "Tags" %>
+      <%= f.text_field :plain_tags, class: "form-control" %>
 
 
     </div>

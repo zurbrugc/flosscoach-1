@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405200743) do
+ActiveRecord::Schema.define(version: 20170513020511) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_projects", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "project_id",  null: false
+    t.index ["category_id", "project_id"], name: "index_categories_projects_on_category_id_and_project_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -102,6 +108,19 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "open_hub_data", force: :cascade do |t|
+    t.integer  "open_hub_id"
+    t.string   "name"
+    t.string   "url"
+    t.text     "description"
+    t.string   "homepage_url"
+    t.string   "logo_url"
+    t.string   "vanity_url"
+    t.string   "download_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "operating_systems", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -125,19 +144,36 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_url"
     t.string   "avatar"
     t.boolean  "use_open_hub_image"
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
-    t.text     "tags",               default: "--- []\n"
+  end
+
+  create_table "projects_tags", id: false, force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "tag_id",     null: false
+    t.index ["project_id", "tag_id"], name: "index_projects_tags_on_project_id_and_tag_id"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
     t.integer "project_id"
     t.integer "user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags_topics", id: false, force: :cascade do |t|
+    t.integer "tag_id",   null: false
+    t.integer "topic_id", null: false
+    t.index ["tag_id", "topic_id"], name: "index_tags_topics_on_tag_id_and_topic_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -152,9 +188,8 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.boolean  "locked"
     t.datetime "locked_at"
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.text     "tags",       default: "--- []\n"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "content"
   end
 

@@ -8,7 +8,7 @@ role="navigation">
 </button>
 
 <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-  <span class="navbar-brand-text hidden-xs-down">FlossCOACH</span>
+  <span class="navbar-brand-text hidden-xs-down"><%= site_name %></span>
 </div>
 
 
@@ -40,7 +40,7 @@ role="navigation">
                 <ul class="blocks-2">
                   <li class="mega-menu m-0">
                     <ul class="list-icons">
-                      <% tags = Tag.all_ordered_by_count.first(12)
+                      <% tags = Tag.first(12)
                       tags = tags.in_groups_of(6,false)%>
 
                       <% tags[0].each do |tag, count| %>
@@ -50,7 +50,7 @@ role="navigation">
                       </li>
                       <% end if tags[0] %>
                     </ul>
-                  </li>
+                  </li>Pro
                   <li class="mega-menu m-0">
                     <ul class="list-icons">
                       <% tags[1].each do |tag, count| %>

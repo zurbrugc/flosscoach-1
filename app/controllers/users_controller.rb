@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def index
     @users = User.search(params[:search])
   end
-
   # GET /users/1
   def show
 
@@ -28,8 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
-      flash[:notice] = "Please confirm your email address to continue"
-      redirect_to sign_in_path
+      redirect_to sign_in_path, success: "Please confirm your email address to continue."
     else
       render :new
     end
@@ -39,21 +37,18 @@ class UsersController < ApplicationController
     user = User.find_by_confirm_token(params[:id])
     if user
         user.email_activate
-        flash[:notice] = "Welcome to the FlossCOACH! Your email has been confirmed.
+        welcome_message = "Welcome to the FlossCOACH! Your email has been confirmed.
         Please sign in to continue."
-      redirect_to sign_in_path
+        redirect_to sign_in_path, success: welcome_message
     else
-      flash[:alert] = "Sorry. User does not exist"
-      redirect_to sign_in_path
+      redirect_to sign_in_path, error: "Sorry. User does not exist."
     end
   end
   # PATCH/PUT /users/1
-
   def update
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html {
-          render :show, status: :ok, notice: 'User was successfully updated.' }
+        format.html { render :show, status: :ok, success: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

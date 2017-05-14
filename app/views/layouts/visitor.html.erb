@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-    <title>Flosscoach</title>
+    <title><%= site_name %></title>
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag  'visitor', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -15,9 +15,19 @@
       Breakpoints();
     </script>
   </head>
+  <body class="animsition <%= yield :body_class %>">
+
     <%= render 'header' if params[:controller] == "project" %>
-    <%= yield %>
+
+    <div class="page <%= yield :page_class %>">
+      <%= yield %>
+    </div>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'visitor' %>
+
+  </body>
+
+
 
 </html>

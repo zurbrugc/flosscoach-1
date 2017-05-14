@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     unless @project.owner?(current_user)
-      render :show, status: :unauthorized, notice: 'Access unauthorized'
+      render :show, status: :unauthorized, error: 'Access unauthorized'
     end
     @codigourl = params[:id]
   end
@@ -47,17 +47,11 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-    
-    @project.widgets << Widget.defaults
     @project.owners << current_user
-    @project.tags = @project.tags.split(",")
+    @project.get_open_hub_data if params[:openhub_check]
     if @project.save
-      @project.get_open_hub_data if params[:openhub_check]
-      @project.save
-      redirect_to @project, notice: t('Project was successfully created.')
+      redirect_to @project, success: 'Project was successfully created.'
     else
-      @project.tags = @project.tags.join(",")
-      flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -68,24 +62,24 @@ class ProjectsController < ApplicationController
     if @project.owner?(current_user)
       if @project.update_attributes(project_params)
         respond_to do |format|
-          format.html { render :edit, status: :ok, notice: 'Project was successfully updated.'}
+          format.html { render :edit, status: :ok, success: 'Project was successfully updated.'}
           format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => :ok }
         end
       else
         respond_to do |format|
-          format.html { render :edit, status: :unprocessable_entity, notice: 'Update failed!'}
+          format.html { render :edit, status: :unprocessable_entity, error: 'Update failed!'}
           format.json { render :json => { :status => 'Error', :message => 'Error on update'}, :status => :unprocessable_entity }
         end
       end
     else
-      render :show, status: :unauthorized, notice: 'Access unauthorized'
+      render :show, status: :unauthorized, error: 'Access unauthorized!'
     end
   end
 
   # DELETE /projects/1
   def destroy
     @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    redirect_to projects_url, success: 'Project was successfully destroyed.'
   end
 
   private
