@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513020511) do
+ActiveRecord::Schema.define(version: 20170516153109) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20170513020511) do
     t.boolean  "use_open_hub_image"
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
+    t.integer  "open_hub_id"
   end
 
   create_table "projects_tags", id: false, force: :cascade do |t|

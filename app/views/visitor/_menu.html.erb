@@ -1,33 +1,8 @@
 <div class="site-menubar">
-  <% if current_user %>
-  <div class="site-menubar-header">
-    <div class="cover overlay">
-      <%= image_tag "dashboard-header", class: "cover-image" %>
-
-      <div class="overlay-panel vertical-align overlay-background">
-        <div class="vertical-align-middle">
-          <a class="avatar avatar-lg" href="javascript:void(0)">
-            <%= image_tag current_user.photo_url %>
-          </a>
-          <div class="site-menubar-info">
-            <h5 class="site-menubar-user"><%= current_user.name %></h5>
-            <p class="site-menubar-email"><%= current_user.username %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% end %>
   <div class="site-menubar-body">
     <div>
       <div>
         <ul class="site-menu" data-plugin="menu">
-          <li class="site-menu-item active">
-            <a class="animsition-link" href="index.html">
-              <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
-              <span class="site-menu-title">Dashboard</span>
-            </a>
-          </li>
           <li class="site-menu-item has-sub">
             <a href="javascript:void(0)">
               <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>

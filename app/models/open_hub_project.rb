@@ -26,7 +26,6 @@ class OpenHubProject < ActiveResource::Base
   def self.find_by_name(nome)
     params = {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
     data = OpenHubProject.find(:all, :params => params).first
-    p data
     project = OpenHubProject.build(data)
     project
   end

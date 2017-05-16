@@ -49,7 +49,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.owners << current_user
     @project.get_open_hub_data if params[:openhub_check]
+    
     if @project.save
+
       redirect_to @project, success: 'Project was successfully created.'
     else
       render :new, status: :unprocessable_entity

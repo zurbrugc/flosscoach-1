@@ -1,5 +1,5 @@
 module ApplicationHelper
-  SITE_NAME = "FLOSSCoach"
+  SITE_NAME = "FLOSScoach"
 
   def site_name
     SITE_NAME
