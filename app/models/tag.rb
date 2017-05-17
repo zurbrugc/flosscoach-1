@@ -13,6 +13,9 @@ class Tag < ApplicationRecord
     tags = tags.collect {|tag| tag.name}
     tags.uniq
   end
+  def self.from_string(string)
+    Tag.find_or_create_by(name: string)
+  end
 
   def to_s
     name

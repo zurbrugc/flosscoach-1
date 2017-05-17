@@ -27,7 +27,7 @@ class Project < ApplicationRecord
     ohp = open_hub_project
     self.description = ohp.description
     self.remote_avatar_url = ohp.logo_url
-    ohp.tags.each {|tag| self.tags << tag}
+    ohp.tags.each {|tag| self.tags << Tag.from_string(tag)}
     self.open_hub_id = ohp.id
   end
 
