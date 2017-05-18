@@ -1,0 +1,4 @@
+class DefaultTip < ApplicationRecord
+
+    
+end
