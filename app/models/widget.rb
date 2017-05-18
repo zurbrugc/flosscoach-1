@@ -62,6 +62,12 @@ class Widget < ApplicationRecord
     widget.deletable =  false
     widget
   end
+  def tip
+    DefaultTip.where(widget_slug: slug) if default?
+  end
+  def tip?
+    !tip.empty?
+  end
   def default?
     ["About the project", "Technical skills required",
       "Resources avaiable", "Soft skills required", "Easy tasks",

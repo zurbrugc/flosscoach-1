@@ -23,9 +23,9 @@ class TopicTest < ActiveSupport::TestCase
 
   test "define tags to topic" do
     topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
-    topic.tags << "suco"
-    topic.tags << "heroku"
+    topic.add_tag("batata")
+    topic.add_tag("suco")
+    topic.add_tag("heroku")
     assert topic.save
 
     tags = topic.tags
@@ -45,9 +45,9 @@ class TopicTest < ActiveSupport::TestCase
   end
   test "insert repeated tags" do
     topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
+    topic.add_tag("batata")
     assert topic.save
-    topic.tags << "batata"
+    topic.add_tag("batata")
     assert topic.save
     assert_equal 1, topic.tags.count
     assert_equal "batata", topic.tags.first.to_s
@@ -55,9 +55,9 @@ class TopicTest < ActiveSupport::TestCase
 
   test "delete tags" do
     topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
+    topic.add_tag("batata")
     assert topic.save
-    topic.tags.delete("batata")
+    topic.remove_tag("batata")
     topic.save
     assert topic.tags.empty?
     assert_equal 0, topic.tags.count

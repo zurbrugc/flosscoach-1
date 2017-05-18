@@ -12,4 +12,13 @@ module Taggable
       end
     end
   end
+  def add_tag(tag)
+    tag = Tag.find_or_create_by(name: tag) if tag.kind_of?(String)
+    tags << tag
+  end
+  def remove_tag(tag)
+    tag = Tag.find_or_create_by(name: tag) if tag.kind_of?(String)
+    tags.delete(tag)
+  end
+
 end

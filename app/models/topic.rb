@@ -1,11 +1,12 @@
 class Topic < ApplicationRecord
+  include Taggable
+
   belongs_to :forum
   has_many :messages
 
   belongs_to :user
   validates_presence_of :forum
   validates_presence_of :user
-  include Taggable
 
   def project
     forum.project
