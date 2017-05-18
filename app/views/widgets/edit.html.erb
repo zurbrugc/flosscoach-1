@@ -15,7 +15,7 @@
     <div class="panel-body">
 
       <%= simple_form_for [@project,@widget] do |f| %>
-        <%= f.input :title %>
+        <%= f.input :title unless @widget.default?%>
         <%= f.input :content, as: :summernote %>
         <%= f.button :submit, data: { disable_with: "Updating widget..." }%>
       <% end %>

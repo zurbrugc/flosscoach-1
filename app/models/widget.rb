@@ -62,7 +62,15 @@ class Widget < ApplicationRecord
     widget.deletable =  false
     widget
   end
-
+  def default?
+    ["About the project", "Technical skills required",
+      "Resources avaiable", "Soft skills required", "Easy tasks",
+       "Finding Mentorship and Support", "Searching the mailing list",
+       "Search project site", "Synchronous help", "Subscribing to mailing list",
+       "Information about mailing list", "Resources provided by the project",
+       "Search for solutions in the mailing list","Code documentation","Searchable resources",
+       "Submitting your contribution"].include?(self.title)
+  end
   private
 
   def set_defaults
