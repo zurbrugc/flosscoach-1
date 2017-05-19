@@ -19,8 +19,8 @@
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
         <% if widget.tip? %>
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"
-        data-plugin="webuiPopover" data-title="<%= widget.tip.title %>"
-        data-content="<p><%= widget.tip.content %></p>"
+        data-plugin="webuiPopover" data-title="Example Title tip"
+        data-content="<p>Example tip for this widget.</p>"
         data-target="webuiPopover3"></a>
         <% end %>
         <% if widget.deletable? %>
