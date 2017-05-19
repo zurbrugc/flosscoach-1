@@ -17,12 +17,10 @@
       <div class="panel-actions">
         <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.id %>' data-toggle="modal"></a>
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
-        <% if widget.tip? %>
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"
         data-plugin="webuiPopover" data-title="Example Title tip"
         data-content="<p>Example tip for this widget.</p>"
         data-target="webuiPopover3"></a>
-        <% end %>
         <% if widget.deletable? %>
         <%= link_to "", project_widget_path(@project, widget),
         method: :delete, :class => "panel-action icon wb-close",
