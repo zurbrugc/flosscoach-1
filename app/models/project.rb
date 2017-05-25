@@ -15,7 +15,10 @@ class Project < ApplicationRecord
   has_many :fans, through: :favoriter_projects, :source => :user
   has_many :comments, through: :widgets
 
+
   before_create :transform_tags
+  before_create :get_open_hub_data, if: :open_hub_id
+
   before_create :create_widgets
 
   attr_accessor :plain_tags

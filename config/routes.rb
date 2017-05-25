@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root :to => "presentation_page#index"
   resources :password_resets
+  get 'open_hub/similar', :to => "projects#similiar_open_hub_projects"
+
   resources :projects do
     get 'most_favorited', on: :collection
     get 'recent', on: :collection

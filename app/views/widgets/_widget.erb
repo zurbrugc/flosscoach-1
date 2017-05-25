@@ -12,22 +12,24 @@
   <div class="grid-stack-item-content panel panel-bordered panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"><%= widget.title %></h3>
-      <% if @project.owner?(current_user) %>
 
       <div class="panel-actions">
+        <% if logged_in? %>
         <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.id %>' data-toggle="modal"></a>
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
+        <% end %>
+
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"
         data-plugin="webuiPopover" data-title="Example Title tip"
         data-content="<p>Example tip for this widget.</p>"
         data-target="webuiPopover3"></a>
-        <% if widget.deletable? %>
+
+        <% if logged_in? && widget.deletable? && @project.owner?(current_user) %>
         <%= link_to "", project_widget_path(@project, widget),
         method: :delete, :class => "panel-action icon wb-close",
         :data => {confirm: "You sure delete this widget?", toogle: 'panel-close'} %>
         <% end %>
       </div>
-      <% end %>
 
     </div>
     <div class="panel-body" id="<%= widget.id %>">

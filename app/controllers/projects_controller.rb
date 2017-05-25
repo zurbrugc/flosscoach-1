@@ -43,15 +43,20 @@ class ProjectsController < ApplicationController
     end
     @codigourl = params[:id]
   end
-
+  #TODO: Refactor and create a Open Hub Controller
+  def similiar_open_hub_projects
+    projects = OpenHubProject.find_by_name(params[:project_name], list:true)
+    if projects.empty?
+      render json: nil, status: :unprocessable_entity
+    else
+    render json: OpenHubProject.find_by_name(params[:project_name], list:true), status: :ok
+  end
+  end
   # POST /projects
   def create
     @project = Project.new(project_params)
     @project.owners << current_user
-    @project.get_open_hub_data if params[:openhub_check]
-    
     if @project.save
-
       redirect_to @project, success: 'Project was successfully created.'
     else
       render :new, status: :unprocessable_entity

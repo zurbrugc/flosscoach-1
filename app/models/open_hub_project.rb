@@ -1,4 +1,6 @@
 require 'active_resource'
+require 'json'
+
 class MyXMLFormatter
   include ActiveResource::Formats::XmlFormat
   def decode(xml)
@@ -8,6 +10,7 @@ end
 
 class OpenHubProject < ActiveResource::Base
   include OpenHubProjectHelper
+
   attr_accessor :id, :name, :openhub_url, :description,
   :homepage_url, :logo_url, :tags, :vanity_url, :download_url
 
@@ -23,12 +26,20 @@ class OpenHubProject < ActiveResource::Base
     project
   end
 
-  def self.find_by_name(nome)
+  def self.find_by_name(nome, list: false)
     params = {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
-    data = OpenHubProject.find(:all, :params => params).first
-    project = OpenHubProject.build(data)
-    project
+    search = OpenHubProject.find(:all, :params => params)
+    if list
+      projects = search.collect do |data|
+        OpenHubProject.build(data)
+      end
+    else
+      data = search.first
+      project = OpenHubProject.build(data)
+      project
+    end
   end
+
 
   def self.build(data)
     project = OpenHubProject.new
@@ -40,10 +51,25 @@ class OpenHubProject < ActiveResource::Base
     project.description = data.attributes["description"]
     project.homepage_url = data.attributes["homepage_url"]
     project.logo_url = data.attributes["medium_logo_url"] || data.attributes["small_logo_url"]
-    project.tags = data.attributes["tags"].attributes["tag"]
+    project.tags = data.attributes["tags"].attributes["tag"] if data.attributes["tags"]
     project.vanity_url = data.attributes["vanity_url"]
     project
   end
+
+
+    def as_json(options={})
+      {
+        id: @id,
+        name: @name,
+        logo_url: @logo_url,
+        tags: @tags,
+        description: @description
+      }
+    end
+
+    def to_json(*options)
+      as_json(*options).to_json(*options)
+    end
 
   def to_open_hub_data
     data = OpenHubData.new
