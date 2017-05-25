@@ -4,7 +4,8 @@ development:
   api_key: '381665987836122'
   api_secret: cOtphv8APujN89uOd1c0z2JEPNg
   enhance_image_tag: true
-  static_image_support: false
+  static_image_support: true
+
 production:
   cloud_name: dsi2rdcnj
   api_key: '381665987836122'
