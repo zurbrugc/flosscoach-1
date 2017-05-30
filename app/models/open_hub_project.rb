@@ -70,18 +70,11 @@ class OpenHubProject < ActiveResource::Base
     def to_json(*options)
       as_json(*options).to_json(*options)
     end
+    private
 
-  def to_open_hub_data
-    data = OpenHubData.new
-    data.open_hub_id = id
-    data.name = name
-    data.description = description
-    data.homepage_url = homepage_url
-    data.vanity_url = vanity_url
-    data.download_url = download_url
-    data.logo_url = logo_url
-    data
-  end
+    def params
+
+    end
 
 
 end

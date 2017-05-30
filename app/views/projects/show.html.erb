@@ -50,7 +50,9 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exampleLeftDropdownSubMenu" role="menu">
         <%= link_to "Edit project", edit_project_path(@project), class: "dropdown-item" %>
-        <a class="dropdown-item" href="javascript:void(0)" role="menuitem" tabindex="-1">Owners</a>
+
+        <%= link_to "Owners", project_users_path(@project), class: "dropdown-item" %>
+
         <%= link_to "Create a forum","#", class: "dropdown-item" if @project.forum.nil?%>
       </div>
     </div>

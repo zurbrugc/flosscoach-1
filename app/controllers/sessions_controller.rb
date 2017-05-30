@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(session_params[:password])
       check_confirmed_email(user)
     else
-      render :new, status: :unauthorized, error:  "Invalid e-mail or password."
+      flash.now[:error] = "Invalid e-mail or password."
+      render :new, status: :unauthorized
     end
   end
 
@@ -34,7 +35,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to projects_path
     else
-      render :new, status: :unauthorized, alert: "Please verify your e-mail and confirm your registration."
+      flash.now[:alert] = "Please verify your e-mail and confirm your registration."
+      render :new, status: :unauthorized
     end
   end
 

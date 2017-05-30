@@ -13,49 +13,6 @@ data-gs-locked="">
     <div class="panel-actions">
     </div>
   </div>
-  <div class="panel-body">
-    <ul class="list-group list-group-full">
-      <% @project.owners.each  do |member| %>
-      <li class="list-group-item">
-        <div class="media">
-          <div class="media-left">
-            <span class="avatar">
-              <%= link_to user_path(member) do %>
 
-              <img class="img-responsive" src="<%= member.photo_url %>" alt="Photo of <%= member.name %>">
-              <% end %>
-
-            </span>
-          </div>
-          <div class="media-body">
-            <%= link_to user_path(member) do %>
-
-            <h4 class="media-heading"><%= member.name %></h4>
-            <% end %>
-
-            <small><%= t('Administrator')%></small>
-
-          </div>
-
-          <div class="media-right">
-            <%= link_to '' ,project_user_path(@project, member),
-            data: {:confirm => t('Are you sure?')}, :class => "status status-lg wb-close" , :method => :delete %>
-          </div>
-        </div>
-      </li>
-
-      <% end %>
-
-    </ul>
-
-    <%= link_to new_project_user_path(@project) do %>
-    <button class="btn btn-primary">
-
-      <i class="icon wb-plus" aria-hidden="true"></i>
-      Add new administrator
-    </button>
-    <% end %>
-
-  </div>
 </div>
 </div>
