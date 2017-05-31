@@ -10,6 +10,7 @@
     <div class="page-aside-inner page-aside-scroll">
       <div data-role="container">
         <div data-role="content">
+          <!--
           <section class="page-aside-section">
             <h5 class="page-aside-title">Filters</h5>
             <div class="list-group">
@@ -24,7 +25,7 @@
               </a>
 
             </div>
-          </section>
+          </section>-->
 
           <section class="page-aside-section">
             <h5 class="page-aside-title">Interact with us</h5>
@@ -68,13 +69,14 @@
 
     <!-- Forum Content -->
     <div class="page-content tab-content page-content-table nav-tabs-animate bg-white">
+      <%= render "notices" %>
       <div >
         <table class="table is-indent">
           <tbody>
             <% if @forum.topics? %>
             <%= render @forum.topics %>
             <% else %>
-              No topics created. <%= link_to "Click here to create a topic", new_forum_topic_path(@forum) %>
+              <p>No topics created. <%= link_to "Click here to create a topic", new_forum_topic_path(@forum) %></p>
             <% end%>
           </tbody>
         </table>

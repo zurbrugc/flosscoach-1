@@ -1,71 +1,71 @@
 <%= render 'visitor/header' unless current_user %>
 <%= render 'visitor/menu' unless current_user %>
+<div class="page-header">
 
-<div class="panel">
-  <div class="panel-body">
-    <div class="comments mx-20">
-      <h1><%= @topic.title %></h1>
-      <div class="comment media">
-        <div class="pr-15">
-          <%= link_to @topic.user, class: "avatar avatar-md" do %>
-            <%= image_tag @topic.user.photo_url %>
-          <% end %>
-        </div>
-        <div class="comment-body media-body">
-          <div class="comment-title">
-            <div class="comment-meta float-right">
-              <span>04.07.11, 8:02 AM</span>
-            </div>
-            <%= link_to @topic.user.name ,@topic.user, class: "comment-author"%>
-          </div>
-          <div class="comment-content">
-            <p>
-              <%= @topic.content %>
-            </p>
-
-          </div>
-          <div class="comment-actions text-left">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
+<div class="page-content">
 
+  <div class="panel panel-bordered">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @topic.title %></h3>
+    </div>
+    <div class="panel-body">
+      <div class="testimonial testimonial-top">
+                    <ul class="testimonial-ul row">
+                      <li class="testimonial-item col-sm-12">
+                        <div class="testimonial-image">
+                          <%= link_to @topic.user, class: "avatar" do %>
+                            <%= image_tag @topic.user.photo_url %>
+                          <% end %>
+                        </div>
+                        <span class="testimonial-author">@<%= link_to @topic.user.username, @topic.user%></span>
+                        <span class="testimonial-company"></span>
+                        <div class="testimonial-content">
+                          <p><%= @topic.content %></p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Add answer', new_forum_topic_message_path(@topic.forum, @topic), class:"btn btn-primary" %>
 
-
-<%= link_to 'Adicionar nova mensagem', new_forum_topic_message_path(@topic.forum, @topic)%>
-
-<div class="panel">
-  <div class="panel-body">
-    <div class="comments mx-20">
-      <h3>Answers for topic <b><%= @topic.title %></b></h3>
-
-      <% @topic.messages.each do |message| %>
-
-
-      <div class="comment media">
-        <div class="pr-15">
-          <%= link_to @topic.user, class: "avatar avatar-md" do %>
-          <%= image_tag @topic.user.photo_url %>
-          <% end %>
-        </div>
-        <div class="comment-body media-body">
-          <div class="comment-title">
-            <div class="comment-meta float-right">
-              <span>04.07.11, 8:02 AM</span>
-            </div>
-            <%= link_to @topic.user.name ,@topic.user, class: "comment-author"%>
-
-          </div>
-          <div class="comment-content">
-            <p><%= message.content %></p>
-          </div>
-
-        </div>
-      </div>
-      <%end%>
     </div>
   </div>
+
+
+  <div class="panel">
+    <div class="panel-body">
+      <div class="comments mx-20">
+        <h3>Answers for topic <b><%= @topic.title %></b></h3>
+
+        <% @topic.messages.each do |message| %>
+
+
+        <div class="comment media">
+          <div class="pr-15">
+            <%= link_to @topic.user, class: "avatar avatar-md" do %>
+            <%= image_tag @topic.user.photo_url %>
+            <% end %>
+          </div>
+          <div class="comment-body media-body">
+            <div class="comment-title">
+              <div class="comment-meta float-right">
+                <span>04.07.11, 8:02 AM</span>
+              </div>
+              <%= link_to @topic.user.name ,@topic.user, class: "comment-author"%>
+
+            </div>
+            <div class="comment-content">
+              <p><%= message.content %></p>
+            </div>
+
+          </div>
+        </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
 </div>

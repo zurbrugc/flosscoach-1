@@ -13,13 +13,14 @@
 
   <div class="row">
     <div class="col-lg-12 form-group">
+      <%= f.label :content %>
       <%= f.text_area :content, :class => "form-control", placeholder: "Content" %>
     </div>
 </div>
 <div class="row">
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Post message", class:"btn btn-primary" %>
   </div>
 </div>
 

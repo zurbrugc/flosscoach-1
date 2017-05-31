@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
     @topic.forum = @forum
     @topic.user = current_user
     if @topic.save
-      redirect_to @forum.project, success: 'Topic was successfully created.'
+      redirect_to @forum, success: 'Topic was successfully created.'
     else
       render :new
     end
