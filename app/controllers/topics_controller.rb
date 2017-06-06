@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   def destroy
     @topic.destroy
-    redirect_to @project, notice: 'Topic was successfully destroyed.'
+    redirect_to @forum, notice: 'Topic was successfully destroyed.'
   end
 
   private
@@ -54,9 +54,7 @@ class TopicsController < ApplicationController
     def set_topic
       @topic = Topic.find(params[:id])
     end
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
+
     def set_forum
       @forum = Forum.find(params[:forum_id])
       @project = @forum.project

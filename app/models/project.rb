@@ -10,10 +10,17 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
-  has_one :forum
+  has_one :forum, :dependent => :destroy
+
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
   has_many :comments, through: :widgets
+
+  has_many :ownership_requests, :dependent => :destroy
+  has_many :ownership_requests, :dependent => :destroy
+
+  has_many :pendent_ownership_requests, -> { pendent }, :class_name => 'OwnershipRequest'
+  has_many :pendent_owners, :source => :user, through: :pendent_ownership_requests
 
 
   before_create :transform_tags
@@ -22,6 +29,7 @@ class Project < ApplicationRecord
   before_create :create_widgets
 
   attr_accessor :plain_tags
+
 
   def get_open_hub_data
     @open_hub_project = OpenHubProject.find_by_name(self.name)
@@ -44,6 +52,9 @@ class Project < ApplicationRecord
     created_at > 2.day.ago
   end
 
+  def dismiss_request_ownership(user)
+    pendent_owners.delete(user)
+  end
   def photo_url
     if use_open_hub_image
       open_hub_image_url  || "/assets/no-image.png"
@@ -57,9 +68,19 @@ class Project < ApplicationRecord
   def photo_url_uploaded
       avatar.url
   end
-
+  def pendent_ownership_requests
+    ownership_requests.where(approved:nil)
+  end
   def owner?(user)
     self.owners.include?(user)
+  end
+  def add_owner(user)
+    owners << user unless owner?(user)
+    
+  end
+  def remove_owner(user)
+    owners.delete(user) if owner?(user)
+
   end
 
   def self.search(search)
@@ -77,7 +98,6 @@ class Project < ApplicationRecord
       self.tags << Tag.array_to_tags(plain_tags.split(","))
     end
   end
-
 
   def create_widgets
     self.widgets << Widget.defaults

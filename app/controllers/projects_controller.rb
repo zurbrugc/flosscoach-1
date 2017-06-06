@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js, :json
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :request_ownership]
   skip_before_action :verify_authenticity_token, only: [:update]
   before_action :authorize, except: [:index, :show]
 
@@ -49,9 +49,11 @@ class ProjectsController < ApplicationController
     if projects.empty?
       render json: nil, status: :unprocessable_entity
     else
-    render json: OpenHubProject.find_by_name(params[:project_name], list:true), status: :ok
+      render json: OpenHubProject.find_by_name(params[:project_name], list:true), status: :ok
+    end
   end
-  end
+ #TODO: Create a controller to Ownerships requests
+
   # POST /projects
   def create
     @project = Project.new(project_params)
@@ -92,10 +94,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.includes(:widgets).find(params[:id])
-      @project.forum ||= Forum.new
-      @project.save
-      @forum = @project.forum
+      @project = Project.includes(:widgets).find(params[:id] || params[:project_id])
       #@project = current_user.projects.find(params[:id])
     end
 

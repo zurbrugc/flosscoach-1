@@ -25,6 +25,7 @@ class User < ApplicationRecord
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   has_and_belongs_to_many :projects
   has_many :comments
+  has_many :ownership_requests
 
   mount_uploader :avatar, AvatarUploader
   def photo_url
@@ -41,7 +42,10 @@ class User < ApplicationRecord
   def favorite_project(project)
     self.favorited_projects << project
   end
-
+  def request_ownership(project)
+    self.ownership_requests << OwnershipRequest.new({project: project})
+    save
+  end
   def email_activate
     self.email_confirmed = true
     self.confirm_token = nil
