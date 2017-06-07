@@ -39,7 +39,7 @@ class TopicTest < ActiveSupport::TestCase
     topic = build(:topic, forum: nil)
     assert_not topic.save
   end
-  test "create a topic without a user" do
+  test "create a topic without a creator" do
     topic = build(:topic, user: nil)
     assert_not topic.save
   end

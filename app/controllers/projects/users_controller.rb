@@ -1,8 +1,7 @@
 class Projects::UsersController < ProjectsController
 
-  before_action :set_project, only: [:index, :destroy, :new, :create, :approve, :disapprove]
+  before_action :set_project, only: [:index, :destroy, :new, :create]
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :set_ownership_request, only: [:approve, :disapprove]
 
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
@@ -39,27 +38,12 @@ class Projects::UsersController < ProjectsController
     end
   end
 
-  def approve
-    @ownership_request.approve
-    respond_to do |format|
-       format.js #this will call delete.js.erb when js action is called
-     end
-  end
-
-  def disapprove
-    @ownership_request.disapprove
-    respond_to do |format|
-       format.js #this will call delete.js.erb when js action is called
-     end
-  end
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = @project.owners.find_by_username(params[:id])
+    @user = @project.owners.find_by_slug(params[:id])
   end
-  def set_ownership_request
-    @ownership_request = OwnershipRequest.find(params[:id])
-  end
+
   def set_project
     @project = Project.find(params[:project_id])
   end

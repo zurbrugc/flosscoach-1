@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518003812) do
+ActiveRecord::Schema.define(version: 20170607064615) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 20170518003812) do
     t.datetime "updated_at", null: false
     t.integer  "project_id"
     t.integer  "user_id"
+  end
+
+  create_table "ownership_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.boolean  "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pics", force: :cascade do |t|

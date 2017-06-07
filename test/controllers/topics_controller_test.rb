@@ -11,7 +11,7 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     topic = attributes_for(:topic)
     post forum_topics_url(@forum), params: {topic: topic}
     assert_equal 1, @forum.topics.count
-    assert_redirected_to @project
+    assert_redirected_to @forum
 
     topic = Topic.last
     assert_equal topic.forum, @forum
@@ -24,7 +24,7 @@ class TopicsControllerTest < ActionDispatch::IntegrationTest
     assert_equal Topic.last, topic
     delete forum_topic_url(@forum, topic)
     assert_equal 0, @forum.topics.count
-    assert_redirected_to @project
+    assert_redirected_to @forum
   end
 
 

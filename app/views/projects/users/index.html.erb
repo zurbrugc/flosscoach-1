@@ -4,53 +4,23 @@
 <div class="page-content">
   <%= render "notices" %>
 <div class="panel">
-  <div class="panel-body">
-    <ul class="list-group list-group-full">
-      <% @project.owners.each  do |user| %>
-      <li class="list-group-item">
-        <div class="media">
-          <div class="pr-20">
-            <div class="avatar avatar-online">
-              <%= link_to user do %>
-              <%= image_tag user.photo_url %>
-              <% end %>
-              <!-- <i class="avatar avatar-busy"></i> -->
-            </div>
-          </div>
-          <div class="media-body">
-            <h5 class="mt-0 mb-5">
-              <%= link_to user.name, user %>
-              <small>Owner</small>
-            </h5>
-            <p>
-              <i class="icon icon-color md-pin-account" aria-hidden="true"></i>
-              <%= link_to "@#{user.username}", user %>
-            </p>
-
-          </div>
-
-          <div class="pl-20 align-self-center">
-            <%= link_to project_user_path(@project, user),
-            data: {:confirm => t('Are you sure?')}, :method => :delete do %>
-            <button type="button" class="btn btn-danger btn-sm waves-effect waves-classic">Remove</button>
-            <% end %>
-          </div>
-        </div>
-      </li>
-
-
-      <% end %>
-
-    </ul>
+  <div class="panel-body owners-panel-body">
+    <%= render 'owners' %>
 
     <%= link_to new_project_user_path(@project) do %>
     <button class="btn btn-primary">
 
       <i class="icon wb-plus" aria-hidden="true"></i>
-      Add new administrator
+      Add new owner
     </button>
     <% end %>
 
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-body pendent-owner-panel-body">
+    <%= render 'pendent_owners' %>
   </div>
 </div>
 

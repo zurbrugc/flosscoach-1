@@ -35,6 +35,9 @@
     <% end %>
   </div>
   <% end %>
+  <div class="text-center request_ownership_wrapper">
+    <%= request_ownership_button(@project) %>
+  </div>
   <ul class="nav nav-tabs" role="tablist">
 
     <%= tab_item(:about, "About", active: true ) %>
