@@ -9,11 +9,14 @@ Rails.application.routes.draw do
     get 'most_favorited', on: :collection
     get 'recent', on: :collection
     resources :ownership_requests, :controller => "projects/ownership_requests"
+    resources :comments, :controller => "projects/comments"
 
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"
     delete :favorite, :to =>"projects/favorites#destroy"
-    resources :widgets
+    resources :widgets do
+      resources :comments, :controller => "widgets/comments"
+    end
   end
   #resources :widgets
   resources :forums do
@@ -21,13 +24,8 @@ Rails.application.routes.draw do
       resources :messages
     end
   end
-
-
-
-  resources :comments
-  resources :projects
+  resources :widget_comments, :controller => "widgets/comments"
   resources :sessions
-
 
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'
   get 'auth/failure', to: redirect('/')
@@ -37,10 +35,10 @@ Rails.application.routes.draw do
   get    'sign_in'   => 'sessions#new'
   post   'sign_in'   => 'sessions#create'
   delete 'sign_out'  => 'sessions#destroy'
-  resources :users do
 
-      member do
-        get :confirm_email
-      end
+  resources :users do
+    member do
+      get :confirm_email
+    end
   end
 end

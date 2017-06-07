@@ -14,14 +14,11 @@ class Project < ApplicationRecord
 
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
-  has_many :comments, through: :widgets
+  has_many :comments, class_name: 'ProjectComment'
 
   has_many :ownership_requests, :dependent => :destroy
-  has_many :ownership_requests, :dependent => :destroy
-
   has_many :pendent_ownership_requests, -> { pendent }, :class_name => 'OwnershipRequest'
   has_many :pendent_owners, :source => :user, through: :pendent_ownership_requests
-
 
   before_create :transform_tags
   before_create :get_open_hub_data, if: :open_hub_id
@@ -29,7 +26,6 @@ class Project < ApplicationRecord
   before_create :create_widgets
 
   attr_accessor :plain_tags
-
 
   def get_open_hub_data
     @open_hub_project = OpenHubProject.find_by_name(self.name)
@@ -76,7 +72,7 @@ class Project < ApplicationRecord
   end
   def add_owner(user)
     owners << user unless owner?(user)
-    
+
   end
   def remove_owner(user)
     owners.delete(user) if owner?(user)
@@ -85,7 +81,8 @@ class Project < ApplicationRecord
 
   def self.search(search)
     if search
-      results = includes(:tags).where("projects.name LIKE ? OR projects.description LIKE ? OR tags.name LIKE ?", "%#{search}%","%#{search}%", "%#{search}%").references(:tags)
+      query = "projects.name LIKE ? OR projects.description LIKE ? OR tags.name LIKE ?"
+      results = includes(:tags).where(query, "%#{search}%","%#{search}%", "%#{search}%").references(:tags)
     else
       results = all
     end
