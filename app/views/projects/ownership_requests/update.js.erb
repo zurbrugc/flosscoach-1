@@ -1,0 +1,5 @@
+var wrapper1 = $(".owners-panel-body");
+var wrapper2 = $(".pendent-owner-panel-body");
+
+wrapper1.html('<%= escape_javascript(render "projects/users/owners") %>');
+wrapper2.html('<%= escape_javascript(render "projects/users/pendent_owners") %>');
