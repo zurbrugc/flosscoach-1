@@ -1,0 +1,6 @@
+<div class="comments">
+
+<% reply ||= true %>
+<%= render 'comment', collection: comments, as: :comment, :reply =>  reply || "<b>No comments no show.</b>"%>
+
+</div>
