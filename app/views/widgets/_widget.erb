@@ -16,6 +16,9 @@
       <div class="panel-actions">
         <% if logged_in? %>
         <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.id %>' data-toggle="modal"></a>
+        <% end %>
+
+        <% if @project.owner?(current_user) && widget.editable?   %>
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
         <% end %>
 

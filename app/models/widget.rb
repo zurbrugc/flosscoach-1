@@ -24,6 +24,7 @@ class Widget < ApplicationRecord
     widgets << Widget.build("Technical skills required", tab: :about, x: 6, y: 0, width: 6, height: 5)
     widgets << Widget.build("Resources avaiable", tab: :about, x: 0, y: 5, width: 6, height: 5)
     widgets << Widget.build("Soft skills required", tab: :about, x: 6, y: 5, width: 6, height: 5)
+    widgets << Widget.build("Opinion by the others newcomes", tab: :about, x: 0, y: 5, width: 12, height: 5, editable: false, deletable: false)
 
     widgets << Widget.build("Easy tasks", tab: :choosing_a_task_to_start_with, x: 0, y: 0, width: 12, height: 5)
 
@@ -49,7 +50,7 @@ class Widget < ApplicationRecord
 
   end
 
-  def self.build(title, slug: nil , tab:, x:, y:, width:, height:)
+  def self.build(title, slug: nil , tab:, x:, y:, width:, height:, editable: true, deletable: false)
     widget = Widget.new
     widget.title = title
     widget.slug = slug || title.parameterize
@@ -59,7 +60,8 @@ class Widget < ApplicationRecord
     widget.width = width
     widget.height = height
     widget.content = "Fill with content."
-    widget.deletable =  false
+    widget.deletable = deletable
+    widget.editable = editable
     widget
   end
   def tip
