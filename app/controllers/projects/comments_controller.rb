@@ -1,6 +1,6 @@
-class Widgets::ProjectsController < WidgetsController
+class Projects::CommentsController < ProjectsController
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :set_widget, only: [:show, :update, :destroy, :create]
+  before_action :set_project, only: [:show, :update, :destroy, :create]
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
 
@@ -23,7 +23,7 @@ class Widgets::ProjectsController < WidgetsController
     @comment = ProjectComment.new(comment_params)
     @comment.user = current_user
     @comment.project = @project
-    @project.comments << @project
+    @project.comments << @comment
 
     if comment_params[:reply_to_id]
       comment_dad = ProjectComment.find(comment_params[:reply_to_id])
@@ -52,7 +52,7 @@ class Widgets::ProjectsController < WidgetsController
 
   # DELETE /users/1
   def destroy
-    @widget.destroy
+    @comment.destroy
     redirect_to @project, notice: 'Widget was successfully destroyed.'
   end
 
@@ -61,13 +61,13 @@ class Widgets::ProjectsController < WidgetsController
 
   # Only allow a trusted parameter "white list" through.
   def comment_params
-    params.require(:comment).permit!
+    params.require(:project_comment).permit!
   end
 
   def set_comment
-    @comment = WidgetComment.find(params[:id])
+    @comment = ProjectComment.find(params[:id])
   end
   def set_project
-    @project = Widget.find(params[:project_id])
+    @project = Project.find(params[:project_id])
   end
 end

@@ -97,7 +97,7 @@ class Project < ApplicationRecord
   end
 
   def create_widgets
-    self.widgets << Widget.defaults
+    self.widgets << Widget.generate_all
     if open_hub_project
       ohp = open_hub_project
 

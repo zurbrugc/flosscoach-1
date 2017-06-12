@@ -22,19 +22,7 @@
     </div>
       <% if reply %>
 
-    <%= form_for WidgetComment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
-        <h3 class="margin-bottom-35">Leave A Reply</h3>
-        <div class="form-group">
-        <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
-        </div>
-      <%= hidden_field_tag :widget_id , comment.widget.id %>
-
-        <%= f.hidden_field :reply_to_id, :value => comment.id %>
-        <div class="form-group">
-          <%= f.submit "Comment", class: "btn btn-primary" %>
-          <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
-        </div>
-      <% end %>
+      <%= render 'widgets/comments/reply_form', comment: comment %>
        <% unless comment.replies.empty? %>
        <div class="comments">
 

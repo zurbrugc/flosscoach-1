@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608065631) do
+ActiveRecord::Schema.define(version: 20170608073418) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -260,6 +260,8 @@ ActiveRecord::Schema.define(version: 20170608065631) do
     t.integer  "project_id"
     t.boolean  "deletable",   default: true
     t.boolean  "editable",    default: true
+    t.string   "type"
+    t.boolean  "commentable", default: true
   end
 
 end
