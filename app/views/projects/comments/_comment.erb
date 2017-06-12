@@ -1,0 +1,47 @@
+<% reply ||= true %>
+<div class="comment media">
+  <div class="media-left">
+    <a class="avatar avatar-lg" href="javascript:void(0)">
+
+      <img src="<%= comment.user.photo_url if comment.user.photo_url %>" alt="<%= comment.user.name %>">
+    </a>
+  </div>
+  <div class="comment-body media-body">
+    <a class="comment-author" href="javascript:void(0)"><%= comment.user.name %></a>
+    <div class="comment-meta">
+      <span class="date"><%= time_ago_in_words comment.created_at %> ago</span>
+    </div>
+    <div class="comment-content">
+      <p><%= comment.content %></p>
+    </div>
+    <div class="comment-actions">
+      <% if reply %>
+      <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
+      <% end %>
+    </div>
+      <% if reply %>
+
+    <%= form_for ProjectComment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
+        <h3 class="margin-bottom-35">Leave A Reply</h3>
+        <div class="form-group">
+        <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
+        </div>
+      <%= hidden_field_tag :project_id , comment.project.id %>
+
+        <%= f.hidden_field :reply_to_id, :value => comment.id %>
+        <div class="form-group">
+          <%= f.submit "Comment", class: "btn btn-primary" %>
+          <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
+        </div>
+      <% end %>
+       <% unless comment.replies.empty? %>
+       <div class="comments">
+
+     <%= render comment.replies, locals: {reply: false} %>
+   </div>
+     <% end %>
+      <% end %>
+
+  </div>
+
+</div>

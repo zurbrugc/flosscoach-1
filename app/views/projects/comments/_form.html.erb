@@ -1,0 +1,12 @@
+<%= form_for ProjectComment.new, class: "comments-add margin-top-35", remote: true do |f| %>
+  <h3 class="margin-bottom-35">Leave A Reply</h3>
+  <div class="form-group">
+  <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
+  </div>
+
+  <%= hidden_field_tag :project_id, project.id %> 
+
+  <div class="form-group">
+    <%= f.submit "Comment", class: "btn btn-primary" %>
+  </div>
+<% end %>
