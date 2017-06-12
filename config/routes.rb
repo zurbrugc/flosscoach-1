@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'most_favorited', on: :collection
     get 'recent', on: :collection
     resources :ownership_requests, :controller => "projects/ownership_requests"
+    resources :comments, :controller => "projects/comments"
 
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"

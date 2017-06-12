@@ -6,11 +6,7 @@ class Projects::CommentsController < ProjectsController
 
   # GET /users
   def index
-    if params[:without_replies]
-      @comments = @widget.comments.is_not_replies
-    else
-      @comments = @widget.comments
-    end
+    
   end
 
   # GET /users/1
@@ -35,6 +31,7 @@ class Projects::CommentsController < ProjectsController
         flash.now[:notice] = "Comment was successfully saved."
         format.js
         format.html
+
       end
     end
   end
@@ -57,8 +54,6 @@ class Projects::CommentsController < ProjectsController
   end
 
   private
-
-
   # Only allow a trusted parameter "white list" through.
   def comment_params
     params.require(:project_comment).permit!

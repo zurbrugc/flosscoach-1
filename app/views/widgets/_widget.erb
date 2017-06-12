@@ -48,6 +48,7 @@
     <%= render 'widgets/comments/form', :widget => widget %>
 <% end if widget.commentable? %>
 
+
 <% create_modal("Opine here!", "project_comments") do %>
-    <%= render "widgets/opine_form" %>
+    <%= render "projects/comments/form" %>
 <% end if widget.is_a?(OpinionWidget) %>

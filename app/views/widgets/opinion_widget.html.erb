@@ -1,6 +1,8 @@
-<%= render 'projects/comments/index' %>
+<div class="all_project_comments">
+<%= render @project.comments.except_replies %>
+</div>
 <p>
-<button data-target='project_comments' data-toggle="modal">
+<button data-target='#project_comments' data-toggle="modal">
 Comment on <%= @project.name %> project
 </button>
 </p>

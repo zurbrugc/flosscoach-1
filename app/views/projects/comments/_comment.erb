@@ -1,8 +1,6 @@
-<% reply ||= true %>
 <div class="comment media">
   <div class="media-left">
     <a class="avatar avatar-lg" href="javascript:void(0)">
-
       <img src="<%= comment.user.photo_url if comment.user.photo_url %>" alt="<%= comment.user.name %>">
     </a>
   </div>
@@ -15,32 +13,13 @@
       <p><%= comment.content %></p>
     </div>
     <div class="comment-actions">
-      <% if reply %>
       <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
-      <% end %>
     </div>
-      <% if reply %>
 
-    <%= form_for ProjectComment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
-        <h3 class="margin-bottom-35">Leave A Reply</h3>
-        <div class="form-group">
-        <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
-        </div>
-      <%= hidden_field_tag :project_id , comment.project.id %>
-
-        <%= f.hidden_field :reply_to_id, :value => comment.id %>
-        <div class="form-group">
-          <%= f.submit "Comment", class: "btn btn-primary" %>
-          <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
-        </div>
-      <% end %>
-       <% unless comment.replies.empty? %>
-       <div class="comments">
-
-     <%= render comment.replies, locals: {reply: false} %>
-   </div>
-     <% end %>
-      <% end %>
+    <%= render 'projects/comments/reply_form', comment:comment %>
+    <div class="comments">
+      <%= render comment.replies %>
+    </div>
 
   </div>
 

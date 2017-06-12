@@ -1,10 +1,11 @@
+var wrapper = $(".all_project_comments");
+wrapper.html("<%= escape_javascript( render @project.comments.except_replies) %>")
+$('#project_comments').modal('hide');
 
-$("#comments<%= @widget.id %> .modal-body .comments").html("<%= escape_javascript(render @widget.comments.is_not_reply, locals: {reply:true}) %>");
+$(".btn-reply").click(function(){
+  $(this).parents(".comment-body:first").find(".comment-reply").show();
+})
 
-  $(".btn-reply").click(function(){
-    $(this).parents(".comment-body:first").find(".comment-reply").show();
-  })
-
-    $(".btn-reply-close").click(function(){
-      $(this).parents(".comment-body:first").find(".comment-reply").hide();
-  })
+$(".btn-reply-close").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply").hide();
+})

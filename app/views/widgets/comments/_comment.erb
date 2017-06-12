@@ -1,5 +1,4 @@
-<% reply ||= true
- %>
+
 <div class="comment media">
   <div class="media-left">
     <a class="avatar avatar-lg" href="javascript:void(0)">
@@ -16,21 +15,15 @@
       <p><%= comment.content %></p>
     </div>
     <div class="comment-actions">
-      <% if reply %>
       <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
-      <% end %>
     </div>
-      <% if reply %>
 
       <%= render 'widgets/comments/reply_form', comment: comment %>
        <% unless comment.replies.empty? %>
        <div class="comments">
-
-     <%= render comment.replies, locals: {reply: false} %>
-   </div>
+     <%= render comment.replies%>
+    </div>
      <% end %>
-      <% end %>
-
   </div>
 
 </div>
