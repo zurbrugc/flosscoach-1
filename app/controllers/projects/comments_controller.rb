@@ -6,7 +6,7 @@ class Projects::CommentsController < ProjectsController
 
   # GET /users
   def index
-    
+
   end
 
   # GET /users/1
@@ -56,7 +56,7 @@ class Projects::CommentsController < ProjectsController
   private
   # Only allow a trusted parameter "white list" through.
   def comment_params
-    params.require(:project_comment).permit!
+    params.require(:comment).permit!
   end
 
   def set_comment

@@ -36,7 +36,7 @@
 
     </div>
     <div class="panel-body" id="<%= widget.id %>">
-      <%= widget.content.html_safe %>
+      <%= widget.content.html_safe if widget.content %>
     </div>
   </div>
 </div>
