@@ -1,4 +1,4 @@
-<%= form_for ProjectComment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
+<%= form_for [@project, Comment.new], :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
     <h3 class="margin-bottom-35">Leave A Reply</h3>
     <div class="form-group">
     <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>

@@ -7,7 +7,6 @@ class Widget < ApplicationRecord
   validates_presence_of :pos_y
   validates_presence_of :width
   validates_presence_of :height
-  validates_presence_of :content
 
   belongs_to :project
   scope :from_tab, -> (tab) {where("tab= ?", tab.to_s)}

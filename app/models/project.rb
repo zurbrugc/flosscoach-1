@@ -97,18 +97,6 @@ class Project < ApplicationRecord
   end
 
   def create_widgets
-    self.widgets << Widget.generate_all
-    if open_hub_project
-      ohp = open_hub_project
-
-      widget = self.widgets.select{|widget| widget.title == "About the project" }.first
-      widget.content = ohp.iframe_html
-
-      widget = self.widgets.select{|widget| widget.title == "Resources avaiable" }.first
-      widget.content = ohp.links_html
-
-      widget = self.widgets.select{|widget| widget.title == "Technical skills required"}.first
-      widget.content = ohp.iframe_languages_html
-    end
+    self.widgets << WidgetFactory.for(:default_widgets, open_hub_data: open_hub_project)
   end
 end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'most_favorited', on: :collection
     get 'recent', on: :collection
     resources :ownership_requests, :controller => "projects/ownership_requests"
-    resources :comments, :controller => "projects/comments"
+    resources :comments, :controller => "projects/comments", except: [:create]
 
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"
@@ -25,8 +25,7 @@ Rails.application.routes.draw do
     end
   end
   resources :widget_comments, :controller => "widgets/comments"
-  resources :project_comments, :controller => "projects/comments"
-
+  resources :project_comments, :controller => "projects/comments", only: [:create]
   resources :sessions
 
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'

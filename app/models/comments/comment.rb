@@ -9,5 +9,8 @@ class Comment < ApplicationRecord
 	scope :is_not_reply, -> { where(reply_to_id: nil) }
 	scope :except_replies, -> { where(reply_to_id: nil) }
 
+	scope :approved, -> {where(approved: true)}
+	scope :pending_approval, -> {where(approved: nil)}
+
 	scope :most_recents, -> { where(created_at: (Time.now - 3.days)..Time.now) }
 end
