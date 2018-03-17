@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
+
 
   root :to => "presentation_page#index"
   resources :password_resets

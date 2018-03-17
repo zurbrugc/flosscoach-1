@@ -27,12 +27,13 @@ gem 'responders'
 #github api
 gem 'github_api', '~> 0.14.5'
 #
-gem "rails-observers", github: "rails/rails-observers"
-gem "audited", github: "Partyista/audited", branch: "rails5-pr-work"
+#gem "rails-observers", github: "rails/rails-observers"
+#gem "audited", github: "Partyista/audited", branch: "rails5-pr-work"
 
 #Active Admin
-gem 'activeadmin', github: 'gregbell/active_admin'
+#gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem 'jquery-rails'
 gem 'jquery-ui-rails', "5.0.5"
 
 gem 'gridstack-js-rails'
@@ -51,7 +52,7 @@ gem 'sass-rails'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'simple_form'
 gem 'uglifier'
-
+gem 'coffee-rails', '~> 4.1.0'
 
 group :production do
   gem 'pg'

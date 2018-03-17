@@ -125,14 +125,14 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.string   "name"
     t.text     "description"
     t.string   "project_page_url"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_url"
     t.string   "avatar"
     t.boolean  "use_open_hub_image"
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
-    t.text     "tags",               default: "--- []\n"
+    t.text     "tags"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -152,9 +152,9 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.boolean  "locked"
     t.datetime "locked_at"
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.text     "tags",       default: "--- []\n"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "tags"
     t.string   "content"
   end
 
