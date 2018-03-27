@@ -8,7 +8,7 @@
 	Public project logo
 	</h4>
 	<p>
-	You can upload an logo of project here
+	You can upload a logo of project here
 	</p>
 </div>
 
@@ -23,7 +23,7 @@
 		<div id="container-upload" class='img-responsive <%= "hide" if @project.use_open_hub_image%>' style='width:350px;'>
 			<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @project.photo_url_uploaded} %>
 			<div class="help-block">
-				The maximum file size allowed is 3MB.
+				max. size 3MB
 			</div>
 		</div>
 		<div id="container-openhub"  class='img-responsive <%= "hide" unless @project.use_open_hub_image%>' style='width:350px;'>
@@ -48,10 +48,10 @@
 <div class="row">
 <div class="col-lg-3">
 	<h4>
-	Main information of <%= @project.name %> project
+		<%= @project.name %> project information
 	</h4>
 	<p>
-	Fill the project public informations here
+	Fill the project public informations here:
 	</p>
 </div>
 
