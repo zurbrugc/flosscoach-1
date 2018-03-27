@@ -1,4 +1,4 @@
-  class User < ApplicationRecord
+class User < ApplicationRecord
   include FriendlyId
 
   friendly_id :username, use: :slugged
