@@ -1,7 +1,7 @@
 <%= form_for [@topic.forum, @topic, message] do |f| %>
   <% if message.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <h2>The following <%= pluralize(message.errors.count, "error") %> must be fixed in order to save this message:</h2>
 
       <ul>
       <% message.errors.full_messages.each do |message| %>

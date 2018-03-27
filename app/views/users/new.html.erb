@@ -17,7 +17,7 @@
               <span aria-hidden="true">×</span>
             </button>
             <i class="icon md-notifications" aria-hidden="true"></i>
-            <h4><%= pluralize(@user.errors.count, "Error") %> creating a user</h4>
+            <h4><%= pluralize(@user.errors.count, "Error") %> when creating a new user</h4>
             <ul>
               <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -63,7 +63,7 @@
 
             <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg mt-40" %>
             <% end %>
-          <p>Have account already? Please go to <%= link_to "Sign In", sign_in_path  %></p>
+          <p>Have a login? Go to <%= link_to "Sign In", sign_in_path  %></p>
         </div>
       </div>
       <%= render 'visitor/footer' %>
