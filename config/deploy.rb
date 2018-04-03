@@ -1,5 +1,5 @@
 # Change these
-server '159.89.147.95', port: 3000, roles: [:web, :app, :db], primary: true
+server '159.89.147.95', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'https://gitlab.com/flosscoach/flosscoach'
 set :application,     'flosscoach'
