@@ -9,7 +9,5 @@ config/secrets.yml
 /.bundle
 cache
 locale
-Gemfile.lock
-
 public/system/
 
