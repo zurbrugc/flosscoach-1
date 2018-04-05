@@ -4,7 +4,7 @@ server '159.89.147.95', port: 22, roles: [:web, :app, :db], primary: true
 set :repo_url,        'https://gitlab.com/flosscoach/flosscoach'
 set :application,     'flosscoach'
 set :user,            'flosscoach'
-set :puma_threads,    [4, 16]
+set :puma_threads,    [2]
 set :puma_workers,    0
 
 # Don't change these unless you know what you're doing
