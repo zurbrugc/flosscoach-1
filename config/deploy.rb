@@ -32,8 +32,7 @@ set :migration_role, :app
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-# set :linked_files, %w{config/database.yml config/secrets.yml}
-append :linked_files, 'config/database.yml', 'config/secrets.yml'
+#set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
 
 namespace :puma do
