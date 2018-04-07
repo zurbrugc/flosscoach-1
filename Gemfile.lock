@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/activeresource.git
-  revision: b71ded7e1b9004c7a24f28203c35c7ad24da6617
+  revision: bc2dd80e26b408086e8814ec81d596f106d110c7
   branch: master
   specs:
     activeresource (5.0.0)
@@ -290,7 +290,7 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (~> 3.4)
-    sexp_processor (4.10.1)
+    sexp_processor (4.11.0)
     simple_form (3.5.1)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
