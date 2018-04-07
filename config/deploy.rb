@@ -33,7 +33,7 @@ set :migration_role, :app
 
 ## Linked Files & Directories (Default None):
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
-set :linked_files, %w{config/database.yml}
+#set :linked_files, %w{config/database.yml}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -48,11 +48,6 @@ namespace :puma do
 end
 
 namespace :deploy do
-  before :deploy, "deploy:check_revision"
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
-  after :finishing, 'deploy:cleanup'
-  after 'deploy:publishing', 'deploy:restart'
-
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
@@ -80,7 +75,6 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-  before :finishing, 'linked_files:upload'
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
