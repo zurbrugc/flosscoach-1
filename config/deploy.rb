@@ -25,15 +25,15 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 set :migration_role, :app
 
 ## Defaults:
-# set :scm,           :git
+set :scm,           :git
 # set :branch,        :master
 # set :format,        :pretty
 # set :log_level,     :debug
-# set :keep_releases, 5
+set :keep_releases, 1
 
 ## Linked Files & Directories (Default None):
 set :linked_dirs,  %w{bin log config tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
-set :linked_files, %w{config/database.yml}
+# set :linked_files, %w{config/database.yml}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
