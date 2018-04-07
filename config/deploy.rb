@@ -77,9 +77,9 @@ namespace :deploy do
     end
   end
 
-  before :starting,     :check_revision
   # Uploading only linked_files
-  before :finishing, 'linked_files:upload_files'
+  before :starting, 'linked_files:upload_files'
+  before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
