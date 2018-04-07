@@ -31,6 +31,8 @@ set :migration_role, :app
 # set :log_level,     :debug
 # set :keep_releases, 5
 
+
+
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
@@ -79,6 +81,8 @@ namespace :deploy do
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
+
+before 'deploy:check:linked_files', 'linked_files:upload'
 
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
