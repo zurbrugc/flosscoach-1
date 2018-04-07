@@ -31,12 +31,9 @@ set :migration_role, :app
 # set :log_level,     :debug
 # set :keep_releases, 5
 
-
-
 ## Linked Files & Directories (Default None):
+append :linked_dirs,  "bin","log","tmp/pids","tmp/cache","tmp/sockets","vendor/bundle","public/system","public"
 append :linked_files, "config/database.yml"
-set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
-
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
