@@ -66,5 +66,6 @@ group :development, :test do
     gem 'capistrano-rails',   require: false
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false 
+    gem 'capistrano-linked-files', require:  false
     gem "spring"
 end
