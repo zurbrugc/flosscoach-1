@@ -32,8 +32,8 @@ set :migration_role, :app
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
-#set :linked_files, %w{config/database.yml}
+set :linked_dirs,  %w{bin log config tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public}
+set :linked_files, %w{config/database.yml}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -70,7 +70,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke!("puma:restart")
+      invoke "puma:restart"
     end
   end
 
