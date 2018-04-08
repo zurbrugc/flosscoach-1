@@ -1,5 +1,6 @@
 #Flosscoach Deployment
 
+
 ##Base installation
 These are the steps necessary when you are deploying from a new Debian/Ubuntu based server.
 
@@ -135,4 +136,6 @@ To deploy simply execute the following command:
 ```bash
 cap development deploy
 ```
-> When prompted `develop` branch is used as a default branch to deploy, but you can pass a value to the input if other branch is needed
+> - When prompted, `develop` branch is used as a default branch to deploy, but you can pass another branch name to the input if needed
+
+> - `Gemfile.lock` should be outside `.gitignore` file
