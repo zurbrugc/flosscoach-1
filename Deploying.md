@@ -1,24 +1,24 @@
-#Flosscoach Deployment
+# Flosscoach Deployment
 
 
-##Base installation
+## Base installation
 These are the steps necessary when you are deploying from a new Debian/Ubuntu based server.
 
-#####System Dependencies
+##### System Dependencies
 - Git
 - Curl
 - Nginx
 - RVM
 - Postgres
 
-###Step 1: Install Curl, Git, Nginx and Postgres
+### Step 1: Install Curl, Git, Nginx and Postgres
 
 To update and then install Curl, Git, Nginx and Postgres:
 
 ```bash
 sudo apt-get update && sudo apt-get install curl git-core nginx postgresql postgresql-contrib libpq-dev -y
 ```
-###Step 2: Configure Postgres database
+### Step 2: Configure Postgres database
 
 You'll need to create the database user that is used by the Flosscoach application:
 
@@ -34,7 +34,7 @@ sudo -u postgres psql
 
 Type `\q` to exit `postgres`
 
-###Step 3: Install RVM and Ruby
+### Step 3: Install RVM and Ruby
 
 Import the RVM GPG key:
 ```bash
@@ -54,7 +54,7 @@ rvm install 2.4.0
 rvm use 2.4.0 --default
 ```
 
-###Step 4: Install Rails and Bundler
+### Step 4: Install Rails and Bundler
 
 To install `Rails` and `Bundler` gems do:
 
@@ -101,7 +101,7 @@ Initialize the deploy process on your **local** machine.
 cap production deploy:initial
 ```
 
-###Step 6: Config Nginx
+### Step 6: Config Nginx
 On the Droplet, Symlink the `condig/nginx.conf` to the **sites-enabled** directory:
 ```bash
     sudo rm /etc/nginx/sites-enabled/default
@@ -114,24 +114,24 @@ Restart Nginx service:
 sudo service nginx restart
 ```
 
-#Deploying from the master(production) branch
+# Deploying from the master(production) branch
 
-#####Requirements
+##### Requirements
 - Be able to SSH into the server
 - Capistrano gem
 
 
 In order to deploy changes from local machine to the server you need to be allowed to ssh to the DigitalOcean droploet and need to install `capistrano` gem. To install capistrano do `gem install capistrano`.
 
-##Step 1: To  Deploy
+## Step 1: To  Deploy
 To deploy simply execute the following command:
 ```bash
 cap production deploy
 ```
 
-#Deploying from the development branch
+# Deploying from the development branch
 
-##Step 1: To Deploy a development branch
+## Step 1: To Deploy a development branch
 To deploy simply execute the following command:
 ```bash
 cap development deploy
