@@ -63,7 +63,7 @@ gem install rails -v '5.0.0' -V --no-ri --no-rdoc
 gem install bundler -V --no-ri --no-rdoc
 ```
 
-###Step 5: Adding Deployment Configurations in the Rails App
+### Step 5: Adding Deployment Configurations in the Rails App
 
 `Capistrano` it's a gem that handles deployment by cloning the repository and doing the tasks necessary to set up the application.
 If not already present, add `Capistrano` and `Puma` to Gemfile: 
@@ -102,7 +102,7 @@ cap production deploy:initial
 ```
 
 ### Step 6: Config Nginx
-On the Droplet, Symlink the `condig/nginx.conf` to the **sites-enabled** directory:
+On the Droplet, Symlink the `config/nginx.conf` to the **sites-enabled** directory:
 ```bash
     sudo rm /etc/nginx/sites-enabled/default
     sudo ln -nfs "/home/flosscoach/apps/flosscoach/current/config/nginx.conf" "/etc/nginx/sites-enabled/flosscoach"
