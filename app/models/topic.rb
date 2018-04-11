@@ -3,7 +3,7 @@ class Topic < ApplicationRecord
   has_many :messages
   serialize :tags
   #deactivated the validation below due to currently unknwon error
-  #validate :validate_tags
+  validate :validate_tags
   belongs_to :user
   validates_presence_of :forum
   validates_presence_of :user
