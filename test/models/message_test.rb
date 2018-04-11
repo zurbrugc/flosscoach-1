@@ -39,7 +39,7 @@ class MessageTest < ActiveSupport::TestCase
     assert message.empty?
     assert_not message.save, "Saved a empty message."
     message = build(:message, content: "          ", user: @user, topic: @topic)
-    assert message.blank? "Saved a blank message."
+    assert message.blank?, "Saved a blank message."
     assert_not message.save
   end
 
