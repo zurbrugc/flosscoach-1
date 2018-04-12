@@ -2,7 +2,6 @@ class Topic < ApplicationRecord
   belongs_to :forum
   has_many :messages
   serialize :tags
-  #deactivated the validation below due to currently unknwon error
   validate :validate_tags
   belongs_to :user
   validates_presence_of :forum
@@ -29,9 +28,11 @@ class Topic < ApplicationRecord
 
   private
   def validate_tags
-    #o erro provavelmente está na linha abaixo:
-    if !tags.nil? && tags.length != tags.uniq.length
-      errors.add(:tags, " have repeated elements")
+    
+    if !tags.nil? && !tags.empty?
+      if tags.length != tags.uniq.length
+        errors.add(:tags, " have repeated elements")
+      end
     end
     
   end

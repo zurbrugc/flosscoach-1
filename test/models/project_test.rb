@@ -57,7 +57,7 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.recent?
 
   end
-  test "create a no recent project" do
+  test "create a not recent project" do
     project = create(:project, created_at: 3.days.ago)
     assert_not project.recent?
   end
