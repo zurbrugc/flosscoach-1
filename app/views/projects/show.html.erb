@@ -12,13 +12,7 @@
     <span class="badge badge-danger badge-sm">New</span>
     <% end %>
   </h1>
-  <p class="tags text-center">
-    <% @project.tags.each do |tag| %>
-    <%= link_to projects_path(search: tag) do %>
-    <span class="badge badge-outline badge-primary"><%=tag%></span>
-    <% end %>
-    <% end %>
-  </p>
+ 
   <p class='text-center'><%= @project.description %></p>
 
   <div class="text-center">

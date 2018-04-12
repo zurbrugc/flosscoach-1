@@ -149,13 +149,13 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.date     "birth"
     t.string   "email"
     t.string   "username"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "fb_token"
     t.string   "provider"
     t.string   "uid"
     t.string   "description"
-    t.boolean  "email_confirmed"
+    t.boolean  "email_confirmed",        default: false
     t.string   "confirm_token"
     t.boolean  "admin"
     t.string   "password_reset_token"

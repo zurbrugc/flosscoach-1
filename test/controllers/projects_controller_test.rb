@@ -7,7 +7,7 @@ class ProjectsControllerTest <  ActionDispatch::IntegrationTest
 
   test "create new project" do
     #login routine to fill current_user
-    post projects_url, params: {project: {name: "Teste", description: "lol"}}
+    post projects_url, params: {project: {name: "Test", description: "This is a testing description."}}
     assert_redirected_to project_url(Project.first)
     get project_url(Project.first)
   end

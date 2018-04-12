@@ -52,7 +52,7 @@ gem 'coffee-rails', '~> 4.1.0'
 #gem "audited", github: "Partyista/audited", branch: "rails5-pr-work"
 #Active Admin
 #gem 'activeadmin', github: 'gregbell/active_admin'
-	
+gem 'rails-erd', require: false, group: :development	
 
 group :production do
   #had to fo back to pg version 0.21 as 1.0.0 is not working on rails 5 production env
