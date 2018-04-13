@@ -13,13 +13,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-
   end
 
   # GET /projects/new
   def new
     @project = Project.new
   end
+  
   def recent
     @projects = Project.search(params[:search])
     @project = Project.new

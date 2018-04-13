@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405200743) do
+ActiveRecord::Schema.define(version: 20180413221043) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -119,6 +119,10 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
     t.text     "tags"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -170,6 +174,10 @@ ActiveRecord::Schema.define(version: 20170405200743) do
     t.string   "twitter_username"
     t.string   "facebook_username"
     t.string   "github_username"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end

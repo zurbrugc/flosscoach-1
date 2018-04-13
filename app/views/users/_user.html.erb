@@ -3,7 +3,7 @@
     <div class="pr-20">
       <div class="avatar avatar-online">
         <%= link_to user do %>
-        <%= image_tag user.photo_url %>
+        <%= image_tag @user.avatar.url(:medium) %>
         <% end %>
         <!-- <i class="avatar avatar-busy"></i> -->
       </div>

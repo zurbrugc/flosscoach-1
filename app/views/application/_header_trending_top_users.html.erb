@@ -4,7 +4,7 @@ role="tablist">
   <% User.limit(6).each do |user|%>
   <li class="text-center">
       <%= link_to user, class: "thumbnail m-0 avatar avatar-lg" do %>
-      <%= image_tag user.photo_url, width:50%>
+      <%= image_tag user.avatar.url(:small) %>
     <% end %>
     <p><%= user.username %></p>
   </li>
