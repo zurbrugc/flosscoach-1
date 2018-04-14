@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, :if => :password
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
-  validates :avatar, file_size: { less_than: 3.megabytes }
+  
 
   before_create :confirmation_token
   #relationships
@@ -25,18 +25,11 @@ class User < ApplicationRecord
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   has_and_belongs_to_many :projects
   has_many :comments
-
-  mount_uploader :avatar, AvatarUploader
-  def photo_url
-    unless self.avatar.url.nil?
-      self.avatar.url
-    else
-      "/assets/avatar.jpeg"
-    end
-  end
-  def photo_url_uploaded
-      self.photo_url
-  end
+  #PaperClip gem related code:
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates :avatar, file_size: { less_than: 3.megabytes }
+  
 
   def favorite_project(project)
     self.favorited_projects << project

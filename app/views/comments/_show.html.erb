@@ -3,7 +3,7 @@
   <div class="media-left">
     <a class="avatar avatar-lg" href="javascript:void(0)">
 
-      <img src="<%= comment.user.photo_url if comment.user.photo_url %>" alt="<%= comment.user.name %>">
+      <img src="<%= comment.user.avatar.url(:thumb) if comment.user.avatar.url(:thumb) %>" alt="<%= comment.user.name %>">
     </a>
   </div>
   <div class="comment-body media-body">
