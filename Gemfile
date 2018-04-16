@@ -47,12 +47,7 @@ gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.
 gem 'simple_form'
 gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
-#Removed gems, were causing bugs
-#gem "rails-observers", github: "rails/rails-observers"
-#gem "audited", github: "Partyista/audited", branch: "rails5-pr-work"
-#Active Admin
-#gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'rails-erd', require: false, group: :development	
+gem 'puma'
 
 group :production do
   #had to fo back to pg version 0.21 as 1.0.0 is not working on rails 5 production env
@@ -60,6 +55,12 @@ group :production do
 end
 
 group :development, :test do
-  gem "factory_girl_rails"
-  gem "spring"
+    gem "factory_girl_rails"
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false 
+    gem 'capistrano-local-precompile', require: false
+    gem "spring"
 end
