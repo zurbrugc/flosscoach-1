@@ -8,7 +8,7 @@ role="navigation">
 </button>
 
 <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-  <span class="navbar-brand-text hidden-xs-down">FlossCOACH</span>
+  <span class="navbar-brand-text hidden-xs-down">FlossCoach</span>
 </div>
 
 
@@ -41,7 +41,7 @@ role="navigation">
         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
         data-animation="scale-up" role="button">
         <span class="avatar avatar-online">
-          <%= image_tag current_user.photo_url%>
+          <%= image_tag current_user.avatar.url(:thumb) %>
           <i></i>
         </span>
       </a>
@@ -51,7 +51,7 @@ role="navigation">
         <i class="icon md-account"></i> Profile
         <% end %>
         <%= link_to edit_user_path(current_user), class:"dropdown-item" do %>
-        <i class="icon md-settings"></i> Profile Edit
+        <i class="icon md-settings"></i> Edit Profile
         <% end %>
         <div class="dropdown-divider"></div>
         <%= link_to sign_out_path, method: :delete, class: "dropdown-item" do%>

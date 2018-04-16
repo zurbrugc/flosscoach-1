@@ -13,13 +13,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-
   end
 
   # GET /projects/new
   def new
     @project = Project.new
   end
+  
   def recent
     @projects = Project.search(params[:search])
     @project = Project.new
@@ -50,13 +50,17 @@ class ProjectsController < ApplicationController
     
     @project.widgets << Widget.defaults
     @project.owners << current_user
-    @project.tags = @project.tags.split(",")
+    #@project.tags = @project.tags.split(",")
+    if !@project.tags.nil?
+      @project.tags = @project.tags.split(" ").join(",")
+    end
+
     if @project.save
       @project.get_open_hub_data if params[:openhub_check]
       @project.save
-      redirect_to @project, notice: t('Project was successfully created.')
+      redirect_to @project, notice: t('Your project was successfully added to Flosscoach')
     else
-      @project.tags = @project.tags.join(",")
+      #@project.tags = @project.tags.join(",")
       flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
     end

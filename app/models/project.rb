@@ -7,15 +7,19 @@ class Project < ApplicationRecord
   has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
   has_one :forum
-
+ 
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
   has_many :comments, through: :widgets
-  mount_uploader :avatar, AvatarUploader
-  validates :avatar, file_size: { less_than: 3.megabytes }
+  #mount_uploader :avatar, AvatarUploader
+  
   scope :order_by_fans_count, -> {
   joins(:fans).select('projects.*, COUNT(user_id) as user_count').group('projects.id').order('user_count DESC')
   }
+  #PaperClip related code:
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates :image, file_size: { less_than: 3.megabytes }
   serialize :tags unless Rails.env.production?
 
   def get_open_hub_data
@@ -40,20 +44,6 @@ class Project < ApplicationRecord
   end
   def recent?
     created_at > 2.day.ago
-  end
-
-  def photo_url
-    if use_open_hub_image
-      open_hub_image_url  || "/assets/no-image.png"
-    elsif !avatar.url.nil?
-      avatar.url
-    else
-      "/assets/no-image.png"
-    end
-  end
-
-  def photo_url_uploaded
-      avatar.url
   end
 
   def owner?(user)

@@ -8,7 +8,7 @@ role="navigation">
 </button>
 
 <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-  <span class="navbar-brand-text hidden-xs-down">FlossCOACH</span>
+  <span class="navbar-brand-text hidden-xs-down">FlossCoach</span>
 </div>
 
 
@@ -69,7 +69,7 @@ role="navigation">
                   <% Project.limit(6).each do |project|%>
                   <li>
                     <a class="thumbnail m-0" href="javascript:void(0)">
-                      <%= image_tag project.photo_url, width:50%>
+                      <%= image_tag project.image.url(:thumb), width:50%>
                     </a>
                     <p><%= project.name %></p>
                   </li>
@@ -86,7 +86,7 @@ role="navigation">
                   <% User.limit(6).each do |user|%>
                   <li>
                     <a class="thumbnail m-0 avatar avatar-lg" href="javascript:void(0)">
-                      <%= image_tag user.photo_url, width:50%>
+                      <%= image_tag user.avatar.url(:thumb), width:50%>
                     </a>
                     <p><%= user.username %></p>
                   </li>
@@ -124,7 +124,7 @@ role="navigation">
         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
         data-animation="scale-up" role="button">
         <span class="avatar avatar-online">
-          <%= image_tag current_user.photo_url%>
+          <%= image_tag current_user.avatar.url(:thumb)%>
           <i></i>
         </span>
       </a>
@@ -139,7 +139,7 @@ role="navigation">
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
       <div class="dropdown-menu-header">
-        <h5>NOTIFICATIONS</h5>
+        <h5>Notifications</h5>
         <span class="badge badge-round badge-danger">New 5</span>
       </div>
       <div class="list-group">

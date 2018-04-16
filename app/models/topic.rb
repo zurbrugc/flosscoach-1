@@ -19,10 +19,21 @@ class Topic < ApplicationRecord
     created_at > 2.day.ago
   end
   
+  #private
+  #def validate_tags
+    #if tags.length != tags.uniq.length
+     # errors.add(:tags, " have repeated elements")
+    #end
+  #end
+
   private
   def validate_tags
-    if tags.length != tags.uniq.length
-      errors.add(:tags, " have repeated elements")
+    
+    if !tags.nil? && !tags.empty?
+      if tags.length != tags.uniq.length
+        errors.add(:tags, " have repeated elements")
+      end
     end
+    
   end
 end

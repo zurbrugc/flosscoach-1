@@ -5,15 +5,15 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="hamburger-bar"></span>
       </button>
-      <a class="navbar-brand" href="javascript:void(0)">FlossCOACH</a>
+      <a class="navbar-brand" href="javascript:void(0)">FlossCoach</a>
     </div>
     <div class="navbar-collapse collapse" id="example-navbar-collapse-3" aria-expanded="false">
 
       <% if logged_in? %>
-      <%= link_to "Come back to FlossCOACH Portal", projects_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
+      <%= link_to "FlossCoach Portal", projects_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
       <% else %>
-      <%= link_to "Register NOW", new_user_path, class: "mr-20 btn btn-info navbar-right navbar-btn" %>
-      <%= link_to "Sign in", sign_in_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
+      <%= link_to "Sign Up", new_user_path, class: "mr-20 btn btn-info navbar-right navbar-btn" %>
+      <%= link_to "Sign In", sign_in_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
       <% end %>
     </div>
   </div>

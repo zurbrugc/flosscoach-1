@@ -8,7 +8,7 @@
       <div class="comment media">
         <div class="pr-15">
           <%= link_to @topic.user, class: "avatar avatar-md" do %>
-            <%= image_tag @topic.user.photo_url %>
+            <%= image_tag @topic.user.avatar.url(:thumb) %>
           <% end %>
         </div>
         <div class="comment-body media-body">
@@ -48,7 +48,7 @@
       <div class="comment media">
         <div class="pr-15">
           <%= link_to @topic.user, class: "avatar avatar-md" do %>
-          <%= image_tag @topic.user.photo_url %>
+          <%= image_tag @topic.user.avatar.url(:thumb) %>
           <% end %>
         </div>
         <div class="comment-body media-body">

@@ -4,7 +4,7 @@
 <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
 
   <figure class='logo-projeto text-center'>
-    <img class=" img-responsive" src="<%= @project.photo_url %>"
+    <img class=" img-responsive" src="<%= @project.image.url %>"
     style="max-width:250px;"/>
   </figure>
   <h1 class="page-title text-center"><%= @project.name %>
@@ -12,13 +12,7 @@
     <span class="badge badge-danger badge-sm">New</span>
     <% end %>
   </h1>
-  <p class="tags text-center">
-    <% @project.tags.each do |tag| %>
-    <%= link_to projects_path(search: tag) do %>
-    <span class="badge badge-outline badge-primary"><%=tag%></span>
-    <% end %>
-    <% end %>
-  </p>
+ 
   <p class='text-center'><%= @project.description %></p>
 
   <div class="text-center">
@@ -28,7 +22,7 @@
   <div class="text-center">
     <%= link_to @project.forum, class: "btn btn-info waves-effect waves-classic" do %>
 
-    <i class="icon md-comment" aria-hidden="true"></i>Visit the forum!
+    <i class="icon md-comment" aria-hidden="true"></i>Visit the <%= @project.name%> forum!
     <% if @project.recent? %>
     <span class="badge badge-danger badge-sm">New</span>
     <% end %>
@@ -76,10 +70,8 @@
       <div class="panel-body">
         <div class="tab-content">
           <div class="tab-pane active" id="contribution_flow" role="tabpanel">
-            <p>Please consider the flow below if you want to be guided till you
-              finish your contribution. It is not a strict flow, you can skip steps
-              if you want. It was designed to give you a sense on what you should do.
-              You can move to appropriate guidelines and resource by clicking the boxes
+            <p>Please consider following the flow below as it may help you in your first contribution. Tough following is not mandatory, it was tought to guide you as a begginer.
+              You can move to appropriate guidelines and resources by clicking in the boxes
               instead of using the menu.</p>
               <%= render 'flow' %>
             </div>

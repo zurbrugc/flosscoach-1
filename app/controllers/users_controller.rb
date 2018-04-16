@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+  class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :edit]
   skip_before_action :verify_authenticity_token, only: [:update]
 
@@ -28,9 +28,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
-      flash[:notice] = "Please confirm your email address to continue"
+      flash[:notice] = "Please confirm your email address bt checking your inbox"
       redirect_to sign_in_path
     else
+      flash[:error] = "Something went wrong while registrating you, check for errors and try again"
       render :new
     end
   end
@@ -39,11 +40,11 @@ class UsersController < ApplicationController
     user = User.find_by_confirm_token(params[:id])
     if user
         user.email_activate
-        flash[:notice] = "Welcome to the FlossCOACH! Your email has been confirmed.
-        Please sign in to continue."
+        flash[:success] = "Welcome to FlossCoach! Your email has been confirmed.
+        Sign in to continue, please."
       redirect_to sign_in_path
     else
-      flash[:alert] = "Sorry. User does not exist"
+      flash[:error] = "Sorry. User does not exist"
       redirect_to sign_in_path
     end
   end
@@ -79,7 +80,6 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    #params.require(:user).permit(:photo)
     params.require(:user).permit!.reject{|_, v| v.blank?}
   end
 

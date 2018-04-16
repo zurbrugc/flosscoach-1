@@ -15,7 +15,7 @@
 	          <div class="user-posts card card-shadow">
 	            <div class="card-block">
 	              <h4 class="card-title mb-20">Main information</h4>
-								<%= form_for(@user) do |f| %>
+								<%= form_for @user, html: { multipart: true } do |f| %>
 								<div class="form-group">
 									<h5>Your username</h5>
 									<div class="input-group input-group-icon">
@@ -28,20 +28,20 @@
 
 								</div>
 								<div class="form-group">
-				          <h5>Your name</h5>
+				          <h5>Name</h5>
 				          <%= f.text_field :name, :class => "form-control",
 				          :placeholder => t('Name') %>
 				        </div>
 
 				        <div class="form-group">
-				          <h5>Your email</h5>
+				          <h5>Email</h5>
 				          <%= f.email_field :email, :class => "form-control",
 				          :placeholder => t('Email') %>
 				        </div>
 
 
 				        <div class="form-group">
-				          <h5>Your biografy</h5>
+				          <h5>Bio</h5>
 				          <%= f.text_area :description, :class => "form-control",
 				          :placeholder => "Description..." %>
 				        </div>
@@ -63,7 +63,7 @@
 
 	            <div class="card-block">
 
-								<%= form_for(@user) do |f| %>
+								<%= form_for @user, html: { multipart: true } do |f| %>
 								<div class="form-group">
 									<h5>Twitter</h5>
 									<div class="input-group input-group-icon">
@@ -138,7 +138,7 @@
 	              <h4 class="card-title mb-0">Profile picture</h4>
 	            </div>
 	            <div class="card-block">
-								<%= form_for(@user) do |f| %>
+								<%= form_for @user, html: { multipart: true } do |f| %>
 
 								<h5>
 									Upload new avatar
@@ -146,11 +146,11 @@
 								<div>
 									<div class='img-responsive' style='width:250px;'>
 
-										<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.photo_url_uploaded} %>
+										<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.avatar.path} %>
 									</div>
 								</div>
 								<div class="help-block">
-									The maximum file size allowed is 3MB.
+									max file size 3mb
 								</div>
 
 								<div class="form-group">

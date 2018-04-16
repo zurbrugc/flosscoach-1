@@ -26,7 +26,7 @@
               <i class="icon md-share"></i>
               <span>Skills</span>
             </h5>
-            <b>Not implemented yet.</b>
+            <b>Not implemented yet</b>
 
           </div>
           <div class="card-block">
@@ -35,7 +35,7 @@
               <span>More interest</span>
             </h5>
             <!--<span class="badge mb-5 mr-5 badge-warning">Pokemon go</span>-->
-            <b>Not implemented yet.</b>
+            <b>Not implemented yet</b>
           </div>
         </div>
         <!-- End User Background -->
@@ -47,7 +47,7 @@
         <div class="user-info card card-shadow text-center">
           <div class="user-base card-block">
             <%= link_to @user, class: "avatar img-bordered avatar-100" do%>
-            <%= image_tag @user.photo_url %>
+            <%= image_tag @user.avatar.url(:medium) %>
             <% end %>
 
             <h4 class="user-name"><%= @user.name %></h4>
@@ -92,7 +92,7 @@
                   <div class="media">
                     <div class="pr-20">
                       <%= link_to project, class: "avatar" do %>
-                      <%= image_tag project.photo_url, class: "img-fluid" %>
+                      <%= image_tag project.image.url(:thumb), class: "img-fluid" %>
                       <% end %>
                     </div>
                     <div class="media-body">

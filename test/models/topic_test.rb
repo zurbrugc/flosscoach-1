@@ -8,6 +8,7 @@ class TopicTest < ActiveSupport::TestCase
     @project = create(:project)
     @forum = @project.forum
     @user = create(:user)
+    @tags = []
   end
 
   test "create a topic on a forum" do
@@ -22,10 +23,10 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   test "define tags to topic" do
-    topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
-    topic.tags << "suco"
-    topic.tags << "heroku"
+    topic = create(:topic, forum: @forum, user: @user, tags: @tags)
+    topic.tags.push "batata"
+    topic.tags.push "suco"
+    topic.tags.push "heroku"
     assert topic.save
 
     tags = topic.tags
@@ -43,17 +44,18 @@ class TopicTest < ActiveSupport::TestCase
     topic = build(:topic, user: nil)
     assert_not topic.save
   end
+  
   test "insert repeated tags" do
-    topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
+    topic = create(:topic, forum: @forum, user: @user, tags: @tags)
+    topic.tags.push "batata"
     assert topic.save
-    topic.tags << "batata"
+    topic.tags.push "batata"
     assert_not topic.save
   end
 
   test "delete tags" do
-    topic = create(:topic, forum: @forum, user: @user)
-    topic.tags << "batata"
+    topic = create(:topic, forum: @forum, user: @user, tags: @tags)
+    topic.tags.push "batata"
     assert topic.save
     topic.tags.delete("batata")
     topic.save

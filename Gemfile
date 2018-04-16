@@ -5,7 +5,6 @@ gem 'activeresource', github: 'rails/activeresource', branch: 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-# Use SCSS for stylesheets
 
 #Facebook
 gem 'omniauth'
@@ -17,21 +16,16 @@ gem 'omniauth-github'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+
 gem 'file_validators'
 
 gem 'therubyracer',  platforms: :ruby
-
+#Encrypting passwords:
 gem 'bcrypt', '~> 3.1.7'
-gem 'responders'
 
 #github api
 gem 'github_api', '~> 0.14.5'
-#
-#gem "rails-observers", github: "rails/rails-observers"
-#gem "audited", github: "Partyista/audited", branch: "rails5-pr-work"
 
-#Active Admin
-#gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', "5.0.5"
@@ -42,7 +36,7 @@ gem 'summernote-rails', "0.8.1.0"
 gem 'bootstrap-sass'
  #static analysis tools
 gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
-
+gem "paperclip", "~> 6.0.0"
 # Gem to upload images
 gem 'carrierwave'
 gem 'carrierwave-base64'
@@ -56,7 +50,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'puma'
 
 group :production do
-  gem 'pg'
+  #had to fo back to pg version 0.21 as 1.0.0 is not working on rails 5 production env
+  gem 'pg', '~> 0.21'
 end
 
 group :development, :test do
