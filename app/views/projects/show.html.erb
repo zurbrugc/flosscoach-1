@@ -22,7 +22,7 @@
   <div class="text-center">
     <%= link_to @project.forum, class: "btn btn-info waves-effect waves-classic" do %>
 
-    <i class="icon md-comment" aria-hidden="true"></i>Visit the forum!
+    <i class="icon md-comment" aria-hidden="true"></i>Visit the <%= @project.name%> forum!
     <% if @project.recent? %>
     <span class="badge badge-danger badge-sm">New</span>
     <% end %>
