@@ -5,6 +5,6 @@ $("#comments<%= @widget.id %> .modal-body .comments").html("<%= escape_javascrip
     $(this).parents(".comment-body:first").find(".comment-reply").show();
   })
 
-    $(".btn-reply-close").click(function(){
-      $(this).parents(".comment-body:first").find(".comment-reply").hide();
-  })
+  $(".btn-reply-close").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply").hide();
+})

@@ -1,74 +1,34 @@
-<div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
-  <div class="page-content">
-    <div class="page-brand-info">
+<% content_for :body_class, "page-register-v3 layout-full" %>
+<% content_for :page_class, "vertical-align text-center" %>
+
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- Page -->
+<div class="page-content vertical-align-middle">
+  <div class="panel">
+    <div class="panel-body">
       <div class="brand">
-        <h2 class="brand-text font-size-40">FLOSS Coach</h2>
+        <%= image_tag "flosscoach-logo", class: "brand-img" %>
+        <h2 class="brand-text font-size-18">Reset Password</h2>
       </div>
-      <p class="font-size-20">
-        FLOSS Coach creators are researchers who want to help newcomers to Free/Libre Open Source Software (FLOSS)
-        Have you ever thought about contributing to an Open Source Project? Have you tried? Was it too hard?
-      </p>
-
-      <p class="font-size-20">
-        <a href="/projects">Explore projects on Flosscoach.com (no login needed)</a>
-      </p>
-    </div>
-
-    <div class="page-login-main">
-      <h3 class="font-size-24">Reset your password</h3>
-
-
-        <% if alert %>
-          <div class="summary-errors alert alert-danger alert-dismissible">
-            <button type="button" class="close" aria-label="Close" data-dismiss="alert">
-              <span aria-hidden="true">×</span>
-            </button>
-            <p><%= alert %></p>
-          </div>
-        <% end %>
-
-<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-
-
-<body class="animsition page-register-v3 layout-full">
-  <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-  <!-- Page -->
-  <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
-    <div class="page-content vertical-align-middle">
-      <div class="panel">
-        <div class="panel-body">
-          <div class="brand">
-            <%= image_tag "flosscoach-logo", class: "brand-img" %>
-            <h2 class="brand-text font-size-18">Reset Password</h2>
-          </div>
-          <% if notice %>
-          <div class="alert dark alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span>×</span>
-            </button>
-            <%= notice %>
-          </div>
-          <% end %>
-          <%= form_for(@user, :url => password_reset_path(params[:id]) do |f| %>
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.password_field :password, class: "form-control", required: true  %>
-              <%= f.label :password, "New password", class: "floating-label" %>
-            </div>
-
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.password_field :password_confirmation, class: "form-control" , required: true %>
-              <%= f.label :password_confirmation, "Re-enter your new password", class: "floating-label" %>
-            </div>
-
-            <%= f.submit "Update password", class: "btn btn-primary btn-block btn-lg mt-40" %>
-            <% end %>
-          <p>Come back to <%= link_to "Sign In", sign_in_path  %></p>
-        </div>
+      <%= render 'notices' %>
+      <%= render 'errors' %>
+      <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+      <div class="form-group form-material floating" data-plugin="formMaterial">
+        <%= f.password_field :password, class: "form-control", required: true  %>
+        <%= f.label :password, "New password", class: "floating-label" %>
       </div>
-      <%= render 'visitor/footer' %>
+
+      <div class="form-group form-material floating" data-plugin="formMaterial">
+        <%= f.password_field :password_confirmation, class: "form-control" , required: true %>
+        <%= f.label :password_confirmation, "Re-enter your new password", class: "floating-label" %>
+      </div>
+
+      <%= f.submit "Update password", class: "btn btn-primary btn-block btn-lg mt-40" %>
+      <% end %>
+      <p>Did you remember your password? Go <%= link_to "Sign In", sign_in_path  %></p>
     </div>
   </div>
 
-</body>
+</div>

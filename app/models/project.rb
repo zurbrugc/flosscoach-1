@@ -1,60 +1,102 @@
 class Project < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+  include Taggable
+
   validates_presence_of :name
   validates_uniqueness_of :name
-  validates_presence_of :description
+  validates_presence_of :description, unless: :open_hub_id
+  validates :avatar, file_size: { less_than: 3.megabytes }
 
   belongs_to :user
   has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
-  has_one :forum
- 
+  has_one :forum, :dependent => :destroy
+
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
-  has_many :comments, through: :widgets
-  #mount_uploader :avatar, AvatarUploader
-  
-  scope :order_by_fans_count, -> {
-  joins(:fans).select('projects.*, COUNT(user_id) as user_count').group('projects.id').order('user_count DESC')
-  }
-  #PaperClip related code:
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  validates :image, file_size: { less_than: 3.megabytes }
-  serialize :tags unless Rails.env.production?
+  has_many :comments, class_name: 'ProjectComment'
+
+  has_many :ownership_requests, :dependent => :destroy
+  has_many :pendent_ownership_requests, -> { pendent }, :class_name => 'OwnershipRequest'
+  has_many :pendent_owners, :source => :user, through: :pendent_ownership_requests
+
+  before_create :transform_tags
+  before_create :get_open_hub_data, if: :open_hub_id
+
+  before_create :create_widgets
+
+  attr_accessor :plain_tags
 
   def get_open_hub_data
-    ohp = OpenHubProject.find_by_name(self.name)
+    @open_hub_project = OpenHubProject.find_by_name(self.name)
+    self.open_hub_id = @open_hub_project.id
+
+    ohp = open_hub_project
     self.description = ohp.description
-    self.open_hub_image_url = ohp.logo_url
-    self.use_open_hub_data = true
-    self.use_open_hub_image = true
-    self.tags = ohp.tags
-    widget = self.widgets.where(title: "About the project").first
-    widget.content = ohp.iframe_html
-    widget.save
-
-    widget = self.widgets.where(title: "Resources avaiable").first
-    widget.content = ohp.links_html
-    widget.save
-
-    widget = self.widgets.where(title: "Technical skills required").first
-    widget.content = ohp.iframe_languages_html
-    widget.save
-
+    self.remote_avatar_url = ohp.logo_url
+    ohp.tags.each {|tag| self.tags << Tag.from_string(tag)}
+    self.open_hub_id = ohp.id
   end
+
+
+  def open_hub_project
+    @open_hub_project ||= OpenHubProject.find_by_id(self.open_hub_id) if self.open_hub_id
+    @open_hub_project
+  end
+
   def recent?
     created_at > 2.day.ago
   end
 
+  def dismiss_request_ownership(user)
+    pendent_owners.delete(user)
+  end
+  def photo_url
+    if use_open_hub_image
+      open_hub_image_url  || "/assets/no-image.png"
+    elsif !avatar.url.nil?
+      avatar.url
+    else
+      "/assets/no-image.png"
+    end
+  end
+
+  def photo_url_uploaded
+      avatar.url
+  end
+  def pendent_ownership_requests
+    ownership_requests.where(approved:nil)
+  end
   def owner?(user)
     self.owners.include?(user)
+  end
+  def add_owner(user)
+    owners << user unless owner?(user)
+
+  end
+  def remove_owner(user)
+    owners.delete(user) if owner?(user)
+
   end
 
   def self.search(search)
     if search
-      where("name LIKE ? OR description LIKE ? OR cast(tags as text) LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+      query = "projects.name LIKE ? OR projects.description LIKE ? OR tags.name LIKE ?"
+      results = includes(:tags).where(query, "%#{search}%","%#{search}%", "%#{search}%").references(:tags)
     else
-      all
+      results = all
     end
+    results.distinct
+  end
+
+  private
+  def transform_tags
+    if self.plain_tags
+      self.tags << Tag.array_to_tags(plain_tags.split(","))
+    end
+  end
+
+  def create_widgets
+    self.widgets << WidgetFactory.for(:default_widgets, open_hub_data: open_hub_project)
   end
 end

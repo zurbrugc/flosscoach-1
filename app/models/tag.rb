@@ -1,19 +1,24 @@
-class Tag
-  def self.all
-    Project.pluck(:tags).flatten
+class Tag < ApplicationRecord
+  validates_presence_of :name
+  validates_uniqueness_of :name
+  has_and_belongs_to_many :projects, -> { distinct }
+
+
+  def self.array_to_tags(array)
+    tags = array.uniq.collect{ |string| Tag.find_or_create_by(name: string) }
+    tags
   end
 
-  def self.all_with_count
-    Project.pluck(:tags).flatten
-    Hash.new(0).tap { |h| arr.each { |v| h[v] += 1 } }.sort_by {|k, v| v}.to_h
+  def self.tags_to_array(tags)
+    tags = tags.collect {|tag| tag.name}
+    tags.uniq
+  end
+  def self.from_string(string)
+    Tag.find_or_create_by(name: string)
   end
 
-  def self.all_ordered_by_count
-    arr = Project.pluck(:tags).flatten
-    Hash.new(0).tap { |h| arr.each { |v| h[v] += 1 } }.sort{|k, v| v[1] <=> k[1]}.to_h
+  def to_s
+    name
   end
 
-  def self.exists?(tag)
-    Project.pluck(:tags).include?(tag)
-  end
 end

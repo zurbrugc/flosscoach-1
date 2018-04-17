@@ -23,6 +23,21 @@
 //= require remark/global/vendor/typeahead-js/bloodhound.min.js
 //= require remark/global/vendor/typeahead-js/typeahead.jquery.min.js
 
+//= require remark/global/vendor/webui-popover/jquery.webui-popover.min.js
+//= require remark/global/js/Plugin/webui-popover.js
+
+//= require remark/global/vendor/formvalidation/formValidation.js
+//= require remark/global/vendor/formvalidation/framework/bootstrap.js
+//= require remark/global/vendor/matchheight/jquery.matchHeight-min.js
+
+//= require remark/global/vendor/jquery-wizard/jquery-wizard.js
+//= require remark/global/js/Plugin/jquery-wizard.js
+//= require remark/global/js/Plugin/matchheight.js
+var similars = [];
+
+
+$(document).ready(function($) {
+
 var serializeWidgetMap = function(items) {
     console.log(items);
 };
@@ -39,7 +54,7 @@ serializeWidgetMap(items)
   (function() {
     var engine = new Bloodhound({
       local: [
-        <%= Tag.all.map{|t| "{value :'#{t}'}"}.join(",") %>
+        <%= Tag.all.map{|t| "{value :'#{t.name}'}"}.join(",") %>
       ],
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -47,7 +62,7 @@ serializeWidgetMap(items)
 
     engine.initialize();
 
-    $('#project_tags').tokenfield({
+    $('#project_plain_tags').tokenfield({
       typeahead: [null, {
         name: 'engine',
         displayKey: 'value',
@@ -74,7 +89,6 @@ serializeWidgetMap(items)
     data: JSON.stringify(obj)
     }).done(function( msg )
     {
-        alert( "Data Saved: ", msg );
     });
 
   }
@@ -91,4 +105,111 @@ serializeWidgetMap(items)
     $("#project_use_open_hub_image").change(function(){
       $("#container-upload").toggleClass("hide");
       $("#container-openhub").toggleClass("hide");
+    });
+
+    // Example Wizard Form
+      // -------------------
+      (function() {
+        function project_html(data, index){
+          html = "<li class='list-group-item'>";
+          html += "<div class='media'>";
+          html += "<div class='pr-20'>";
+          html += "<input type='radio' name='open_hub_project' id='"+ index +"'>"
+          html += "<a class='avatar' href='javascript:void(0)'>";
+          html += "<img class='img-fluid' src='"+ data.logo_url +"' alt=''...''>";
+          html += "</a>";
+          html += "</div>";
+          html += "<div class='media-body'>";
+          html += "<h5 class='mt-0 mb-5'>"+ data.name + "</h5>";
+          html += "<p>"+ data.description + "</p>";
+          html += "</div>";
+          html += "</div>";
+          html += "</li>";
+
+
+          return html;
+        }
+        const PROJECT_NAME_TAB = 0
+        const SELECT_PROJECT_TAB = 1
+        const CONFIRM_PROJECT_TAB = 2
+        // set up formvalidation
+        $('#fillNameForm').formValidation({
+          framework: 'bootstrap',
+          fields: {
+            project_name: {
+              validators: {
+                notEmpty: {
+                  message: 'The project name used in OpenHub is required.'
+                }
+              }
+            },
+          },
+          err: {
+            clazz: 'text-help'
+          },
+          row: {
+            invalid: 'has-danger'
+          }
+
+        });
+
+        // init the wizard
+        var defaults = Plugin.getDefaults("wizard");
+        var options = $.extend(true, {}, defaults, {
+          buttonsAppendTo: '.panel-body'
+        });
+
+        var wizard = $("#openHubImportForm").wizard(options).data('wizard');
+
+        // setup validator
+        // http://formvalidation.io/api/#is-valid
+        wizard.get("#fillName").setValidator(function() {
+          var fv = $("#fillNameForm").data('formValidation');
+          fv.validate();
+
+          if (!fv.isValid()) {
+            return false;
+          }
+
+          return true;
+        });
+        $('#openHubImportForm').on('wizard::next', function (e) {
+
+          var nextTab = wizard.currentIndex() ;
+          if(nextTab == SELECT_PROJECT_TAB){
+            $("#selectProjectForm .projects-loading").show();
+            $("#similarProjectsList").html("");
+            var projectName = $("#fillNameForm #projectName").val();
+            $.get("/open_hub/similar", { project_name: projectName} )
+              .success(function( data ) {
+                similars = data;
+                $("#selectProjectForm .projects-loading").hide();
+
+                for (i=0; i < data.length; i++){
+                  $("#similarProjectsList").append(project_html(data[i], i));
+                  }
+              }).error(function(){
+                alert("No projects with this name found!");
+                wizard.goTo(PROJECT_NAME_TAB);
+              });
+
+          }
+          if(nextTab == CONFIRM_PROJECT_TAB){
+            var id_selected = $('input[name=open_hub_project]:checked').attr("id");
+            var project = similars[id_selected];
+            $("#confirmProject #project_name").val(project.name);
+            $("#confirmProject #project_description").val(project.description);
+            $("#confirmProject #project_plain_tags").val(project.tags.join());
+            $("#confirmProject #project_open_hub_id").val(project.id);
+          }
+        });
+
+      })();
+
+//Get OpenHub Similar projects!
+
+$('#openHubImportForm').on('wizard::finish', function (e) {
+  $("#confirmProject form").submit();
+  // on instance ready
+});
     });

@@ -1,0 +1,12 @@
+<%= form_for [@project, Comment.new], :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
+    <h3 class="margin-bottom-35">Leave A Reply</h3>
+    <div class="form-group">
+    <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
+    </div>
+
+    <%= f.hidden_field :reply_to_id, :value => comment.id %>
+    <div class="form-group">
+      <%= f.submit "Comment", class: "btn btn-primary" %>
+      <button type="button" class="btn btn-link blue-grey-500 btn-reply-close">close</button>
+    </div>
+  <% end %>

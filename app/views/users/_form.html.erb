@@ -1,46 +1,36 @@
-<div class="fields-form">
-  <%= form_for@user, html: { multipart: true } do |f| %>
-  <% if @user.errors.any? %>
-  <div class="summary-errors alert alert-danger alert-dismissible">
-    <button type="button" class="close" aria-label="Close" data-dismiss="alert">
-      <span aria-hidden="true">×</span>
-    </button>
-    <p><%= pluralize(@user.errors.count, "error") %> must be fixed in order to save your profile</p>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-      <li data-field="summary_fullName"><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-
-  <div class="form-group">
-    <p> Select your profile photo
-    <%= f.file_field :avatar %>
-    </p>
-  </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="user_name"> Full Name </label>
-    <input type="text" class="form-control" id="user_name" name="user[name]" placeholder="<%=t('Name')%>">
-  </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="user_email">Email</label>
-    <input type="email" class="form-control" id="user_email" name="user[email]" placeholder="Email">
-  </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="user_password">Password</label>
-    <input type="password" class="form-control" id="user_password" name="user[password]" placeholder="<%= t('Password') %>">
-  </div>
-
-  <div class="form-group">
-    <label class="sr-only" for="user_password_confirmation">Retype Password</label>
-    <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]" placeholder="<%= t('Retype Password') %>">
-  </div>
-
-  <%= f.submit t('Submit'), class: 'btn btn-primary btn-block' %>
-
-  <% end %>
+<%= form_for(user) do |f| %>
+<div class="form-group form-material floating" data-plugin="formMaterial">
+  <%= f.text_field :username, class: "form-control", required: true  %>
+  <%= f.label :username, "Choose a nickname to use on #{site_name}",
+  class: "floating-label"%>
 </div>
+
+  <div class="form-group form-material floating" data-plugin="formMaterial">
+    <%= f.text_field :name, class: "form-control", required: true %>
+    <%= f.label :name, "Full name", class: "floating-label" %>
+  </div>
+
+  <div class="form-group form-material floating" data-plugin="formMaterial">
+    <%= f.email_field :email, class: "form-control", required: true  %>
+    <%= f.label :email, "Email", class: "floating-label" %>
+  </div>
+
+  <div class="form-group form-material floating" data-plugin="formMaterial">
+    <%= f.password_field :password, class: "form-control", required: true  %>
+    <%= f.label :password, "Password", class: "floating-label" %>
+  </div>
+
+  <div class="form-group form-material floating" data-plugin="formMaterial">
+    <%= f.password_field :password_confirmation, class: "form-control" , required: true %>
+    <%= f.label :password_confirmation, "Re-enter Password", class: "floating-label" %>
+  </div>
+
+  <div class="form-group clearfix">
+    <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
+      <%= f.check_box :terms, required: true  %>
+      <%= f.label :terms, "I accept #{site_name} Terms" %>
+    </div>
+  </div>
+
+  <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg mt-40" %>
+  <% end %>

@@ -6,7 +6,7 @@
   <center>
     <%= image_tag "flosscoach-logo" %>
   </center>
-  <h1 class="page-title ">  <%=t('Explore Flosscoach') %></h1>
+  <h1 class="page-title ">Explore <%= site_name %></h1>
   <p class="lead">
     <%=t('Discover projects, groups and technologies')%> <%=t('Share your projects with others')%>
   </p>
@@ -63,8 +63,8 @@
           <div>
             <h4>Popular tags</h4>
             <div class="list-group list-group-bordered">
-              <% Tag.all_ordered_by_count.first(10).each do |tag, count| %>
-              <%= link_to "#{tag} - #{count} results", projects_path(search: tag), class:"list-group-item" %>
+              <% Tag.first(10).each do |tag| %>
+              <%= link_to "#{tag} - #{tag.projects.count} results", projects_path(search: tag.to_s), class:"list-group-item" %>
 
               <% end %>
 

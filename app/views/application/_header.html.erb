@@ -8,7 +8,7 @@ role="navigation">
 </button>
 
 <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-  <span class="navbar-brand-text hidden-xs-down">FlossCoach</span>
+  <span class="navbar-brand-text hidden-xs-down"><%= site_name %></span>
 </div>
 
 
@@ -27,7 +27,12 @@ role="navigation">
         </a>
       </li>
 
-
+      <li class="nav-item ">
+        <%= link_to new_project_path, class: "nav-link" do %>
+          <i class="site-menu-icon md-plus"></i>
+          Create a new project
+        <% end %>
+      </li>
       <li class="nav-item dropdown dropdown-fw dropdown-mega">
         <%= render 'header_trending' %>
     </li>

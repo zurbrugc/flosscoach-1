@@ -5,12 +5,12 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="hamburger-bar"></span>
       </button>
-      <a class="navbar-brand" href="javascript:void(0)">FlossCoach</a>
+      <a class="navbar-brand" href="javascript:void(0)"><%= site_name %></a>
     </div>
     <div class="navbar-collapse collapse" id="example-navbar-collapse-3" aria-expanded="false">
 
       <% if logged_in? %>
-      <%= link_to "FlossCoach Portal", projects_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
+      <%= link_to "Come back to #{site_name} Portal", projects_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>
       <% else %>
       <%= link_to "Sign Up", new_user_path, class: "mr-20 btn btn-info navbar-right navbar-btn" %>
       <%= link_to "Sign In", sign_in_path, class: "mr-20 btn btn-primary navbar-right navbar-btn " %>

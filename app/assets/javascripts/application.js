@@ -31,6 +31,8 @@
 //= require remark/global/vendor/slidepanel/jquery-slidePanel.js
 //= require remark/global/vendor/intro-js/intro.js
 
+//= requre remark/global/vendor/alertify/alertify.js
+
 // Template relating scripts
 
 //= require remark/global/js/State.js
@@ -50,7 +52,7 @@
 //= require remark/global/js/Plugin/slidepanel.js
 //= require remark/global/js/Plugin/switchery.js
 //= require remark/global/js/Plugin/jquery-placeholder.js
-
+//= require remark/global/js/Plugin/alertify.js
 
 //= require jquery-ui
 //= require gridstack-js-rails

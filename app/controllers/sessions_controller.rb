@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(session_params[:password])
       check_confirmed_email(user)
     else
-      flash.now[:notice] = "Invalid e-mail or password."
+      flash.now[:error] = "Invalid e-mail or password."
       render :new, status: :unauthorized
     end
   end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   def destroy
     session.delete(:user_id)
-    redirect_to root_path, notice: 'Session was successfully destroyed.'
+    redirect_to sign_in_path, success: 'Session was successfully destroyed.'
   end
 
   private
@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to projects_path
     else
-      flash.now[:notice] = "Please verify your e-mail and confirm your registration."
+      flash.now[:alert] = "Please verify your e-mail and confirm your registration."
       render :new, status: :unauthorized
     end
   end

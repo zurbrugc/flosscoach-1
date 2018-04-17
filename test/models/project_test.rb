@@ -33,13 +33,13 @@ class ProjectTest < ActiveSupport::TestCase
   test "project search" do
 
     banana = build(:project, name: "Banana")
-    banana.save
+    assert banana.save
     melao =  build(:project, name: "Melao")
-    melao.save
+    assert melao.save
     melancia =  build(:project, name: "Melancia")
-    melancia.save
+    assert melancia.save
     melancia2 =  build(:project, name: "Melancia Two")
-    melancia2.save
+    assert melancia2.save
 
     assert_equal banana, Project.search("Banana").first
     assert_equal banana, Project.search("Ban").first

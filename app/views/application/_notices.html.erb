@@ -1,0 +1,37 @@
+<% if success %>
+<div class="alert dark alert-icon alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="icon md-check" aria-hidden="true"></i> <%= success %>
+</div>
+<% end %>
+
+<% if info %>
+<div class="alert dark alert-icon alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="icon md-info-outline" aria-hidden="true"></i> <%= info %>
+</div>
+<% end %>
+
+
+<% if error %>
+<div class="alert dark alert-icon alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="icon md-close" aria-hidden="true"></i> <%= error %>
+</div>
+<% end %>
+
+<% if alert %>
+<div class="alert dark alert-icon alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="icon md-alert-circle-o" aria-hidden="true"></i><%= alert %>
+</div>
+
+<% end %>

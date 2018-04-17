@@ -8,7 +8,14 @@ default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
-
+postgres_local: &postgres_local
+    adapter: postgresql
+    encoding: utf8
+    database: postgres
+    username: python
+    password: python
+    host: localhost
+    port: 5432
 development:
   <<: *default
   database: db/development.sqlite3

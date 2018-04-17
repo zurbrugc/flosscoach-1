@@ -1,45 +1,34 @@
 
-<%= form_tag password_resets_path, :method => :post do %>
+<% content_for :body_class, "page-register-v3 layout-full" %>
+<% content_for :page_class, "vertical-align text-center" %>
 
-<% end %>
-        <p><%= link_to "Come back to sign in", root_path %></p>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- Page -->
+<div class="page-content vertical-align-middle">
+  <div class="panel">
+    <div class="panel-body">
+      <div class="brand">
+        <%= image_tag "flosscoach-logo", class: "brand-img" %>
+        <h2 class="brand-text font-size-18">Reset Password</h2>
+      </div>
+      <%= render 'notices' %>
 
-    </div>
-  </div>
-</div>
+      <%= form_tag password_resets_path, :method => :post do |f| %>
+      <div class="form-group form-material floating" data-plugin="formMaterial">
+        <%= text_field_tag :email,"", class: 'form-control', required: true  %>
+        <%= label_tag :email, "Fill your email here", class: "floating-label" %>
 
-<body class="animsition page-register-v3 layout-full">
-  <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-  <!-- Page -->
-  <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
-    <div class="page-content vertical-align-middle">
-      <div class="panel">
-        <div class="panel-body">
-          <div class="brand">
-            <%= image_tag "flosscoach-logo", class: "brand-img" %>
-            <h2 class="brand-text font-size-18">Reset Password</h2>
-          </div>
-
-          <div class="form-group">
-
-         </div>
-
-          <%= form_tag password_resets_path, :method => :post do |f| %>
-          <div class="form-group form-material floating" data-plugin="formMaterial">
-            <%= text_field_tag :email,"", class: 'form-control', required: true  %>
-            <%= label_tag :email, "Fill your email here", class: "floating-label" %>
-
-          </div>
-
-            <%= submit_tag "Reset password", class: "btn btn-primary btn-block btn-lg mt-40" %>
-            <% end %>
-          <p>Back to <%= link_to "Sign In", sign_in_path  %></p>
-        </div>
       </div>
 
+      <%= submit_tag "Reset password", class: "btn btn-primary btn-block btn-lg mt-40" %>
+      <% end %>
+      <p>Did you remember your password? Go <%= link_to "Sign In", sign_in_path  %></p>
     </div>
   </div>
+
+</div>
+</div>
 
 </body>

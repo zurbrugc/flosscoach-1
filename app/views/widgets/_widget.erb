@@ -12,48 +12,43 @@
   <div class="grid-stack-item-content panel panel-bordered panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"><%= widget.title %></h3>
-      <% if @project.owner?(current_user) %>
 
       <div class="panel-actions">
+        <% if logged_in? %>
         <a class="panel-action icon wb-chat-group" data-target='#comments<%= widget.id %>' data-toggle="modal"></a>
+        <% end %>
+
+        <% if @project.owner?(current_user) && widget.editable?   %>
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
-        <% if widget.deletable? %>
+        <% end %>
+
+        <a class="panel-action icon fa-bolt" href="javascript:void(0)"
+        data-plugin="webuiPopover" data-title="Example Title tip"
+        data-content="<p>Example tip for this widget.</p>"
+        data-target="webuiPopover3"></a>
+
+        <% if logged_in? && widget.deletable? && @project.owner?(current_user) %>
         <%= link_to "", project_widget_path(@project, widget),
         method: :delete, :class => "panel-action icon wb-close",
         :data => {confirm: "You sure delete this widget?", toogle: 'panel-close'} %>
         <% end %>
       </div>
-      <% end %>
 
     </div>
     <div class="panel-body" id="<%= widget.id %>">
-      <%= widget.content.html_safe %>
+      <%= widget.content.html_safe if widget.content %>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="comments<%= widget.id %>" aria-hidden="false"  aria-labelledby="comments<%= widget.id %>" role="dialog" tabindex="-1" style="display: none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span>×</span>
-        </button>
-        <h4 class="modal-title" id="exampleOptionalLarge">Comments</h4>
-      </div>
-      <div class="modal-body">
-        <div class="comments">
-
-
-        <% reply ||= true %>
-        <% unless widget.comments.is_not_reply.empty? %>
-        <%= render widget.comments.is_not_reply, locals: {reply: true} %>
-        <% end %>
-        </div>
-
-
-      <%= render 'comments/form', :widget => widget %>
-      </div>
+<% create_modal("Comments", "comments#{widget.id}") do %>
+    <div class="comments">
+      <%= render widget.comments.except_replies %>
     </div>
-  </div>
-</div>
+    <%= render 'widgets/comments/form', :widget => widget %>
+<% end if widget.commentable? %>
+
+
+<% create_modal("Opine here!", "project_comments") do %>
+    <%= render "projects/comments/form" %>
+<% end if widget.is_a?(OpinionWidget) %>

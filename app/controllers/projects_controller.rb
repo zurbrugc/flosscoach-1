@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js, :json
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :request_ownership]
   skip_before_action :verify_authenticity_token, only: [:update]
   before_action :authorize, except: [:index, :show]
 
@@ -39,29 +39,28 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     unless @project.owner?(current_user)
-      render :show, status: :unauthorized, notice: 'Access unauthorized'
+      render :show, status: :unauthorized, error: 'Access unauthorized'
     end
     @codigourl = params[:id]
   end
+  #TODO: Refactor and create a Open Hub Controller
+  def similiar_open_hub_projects
+    projects = OpenHubProject.find_by_name(params[:project_name], list:true)
+    if projects.empty?
+      render json: nil, status: :unprocessable_entity
+    else
+      render json: OpenHubProject.find_by_name(params[:project_name], list:true), status: :ok
+    end
+  end
+ #TODO: Create a controller to Ownerships requests
 
   # POST /projects
   def create
     @project = Project.new(project_params)
-    
-    @project.widgets << Widget.defaults
     @project.owners << current_user
-    #@project.tags = @project.tags.split(",")
-    if !@project.tags.nil?
-      @project.tags = @project.tags.split(" ").join(",")
-    end
-
     if @project.save
-      @project.get_open_hub_data if params[:openhub_check]
-      @project.save
-      redirect_to @project, notice: t('Your project was successfully added to Flosscoach')
+      redirect_to @project, success: 'Project was successfully created.'
     else
-      #@project.tags = @project.tags.join(",")
-      flash.now[:notice] = @project.widgets.first.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -72,33 +71,30 @@ class ProjectsController < ApplicationController
     if @project.owner?(current_user)
       if @project.update_attributes(project_params)
         respond_to do |format|
-          format.html { render :edit, status: :ok, notice: 'Project was successfully updated.'}
+          format.html { render :edit, status: :ok, success: 'Project was successfully updated.'}
           format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => :ok }
         end
       else
         respond_to do |format|
-          format.html { render :edit, status: :unprocessable_entity, notice: 'Update failed!'}
+          format.html { render :edit, status: :unprocessable_entity, error: 'Update failed!'}
           format.json { render :json => { :status => 'Error', :message => 'Error on update'}, :status => :unprocessable_entity }
         end
       end
     else
-      render :show, status: :unauthorized, notice: 'Access unauthorized'
+      render :show, status: :unauthorized, error: 'Access unauthorized!'
     end
   end
 
   # DELETE /projects/1
   def destroy
     @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    redirect_to projects_url, success: 'Project was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.includes(:widgets).find(params[:id])
-      @project.forum ||= Forum.new
-      @project.save
-      @forum = @project.forum
+      @project = Project.includes(:widgets).find(params[:id] || params[:project_id])
       #@project = current_user.projects.find(params[:id])
     end
 

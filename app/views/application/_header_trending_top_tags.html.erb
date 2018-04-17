@@ -1,12 +1,12 @@
 <ul class="blocks-2">
   <li class="mega-menu m-0">
     <ul class="list-icons">
-      <% tags = Tag.all_ordered_by_count.first(12)
+      <% tags = Tag.first(12)
       tags = tags.in_groups_of(6,false)%>
 
       <% tags[0].each do |tag, count| %>
       <li><i class="md-chevron-right" aria-hidden="true"></i>
-        <%= link_to "#{tag}", projects_path(search: tag)%>
+        <%= link_to "#{tag}", projects_path(search: tag.name)%>
 
       </li>
       <% end unless tags.empty? || tags[0].nil?  %>

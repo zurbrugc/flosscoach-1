@@ -25,16 +25,27 @@ class User < ApplicationRecord
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   has_and_belongs_to_many :projects
   has_many :comments
-  #PaperClip gem related code:
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  validates :avatar, file_size: { less_than: 3.megabytes }
-  
+  has_many :ownership_requests
+
+  mount_uploader :avatar, AvatarUploader
+  def photo_url
+    unless self.avatar.url.nil?
+      self.avatar.url
+    else
+      "/assets/avatar.jpeg"
+    end
+  end
+  def photo_url_uploaded
+      self.photo_url
+  end
 
   def favorite_project(project)
     self.favorited_projects << project
   end
-
+  def request_ownership(project)
+    self.ownership_requests << OwnershipRequest.new({project: project})
+    save
+  end
   def email_activate
     self.email_confirmed = true
     self.confirm_token = nil

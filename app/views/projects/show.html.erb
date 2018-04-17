@@ -2,7 +2,7 @@
 <%= render 'visitor/menu' unless current_user %>
 
 <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
-
+  <%= render 'notices' %>
   <figure class='logo-projeto text-center'>
     <img class=" img-responsive" src="<%= @project.image.url %>"
     style="max-width:250px;"/>
@@ -12,7 +12,13 @@
     <span class="badge badge-danger badge-sm">New</span>
     <% end %>
   </h1>
- 
+  <p class="tags text-center">
+    <% @project.tags.each do |tag| %>
+      <%= link_to projects_path(search: tag.to_s) do %>
+      <span class="badge badge-outline badge-primary"><%=tag.to_s%></span>
+      <% end %>
+    <% end %>
+  </p>
   <p class='text-center'><%= @project.description %></p>
 
   <div class="text-center">
@@ -29,6 +35,9 @@
     <% end %>
   </div>
   <% end %>
+  <div class="text-center request_ownership_wrapper">
+    <%= request_ownership_button(@project) %>
+  </div>
   <ul class="nav nav-tabs" role="tablist">
 
     <%= tab_item(:about, "About", active: true ) %>
@@ -44,7 +53,9 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exampleLeftDropdownSubMenu" role="menu">
         <%= link_to "Edit project", edit_project_path(@project), class: "dropdown-item" %>
-        <a class="dropdown-item" href="javascript:void(0)" role="menuitem" tabindex="-1">Owners</a>
+
+        <%= link_to "Owners", project_users_path(@project), class: "dropdown-item" %>
+
         <%= link_to "Create a forum","#", class: "dropdown-item" if @project.forum.nil?%>
       </div>
     </div>

@@ -1,15 +1,17 @@
-<body class="animsition page-register-v3 layout-full">
+<% content_for :body_class, "animsition page-register-v3 layout-full" %>
+<% content_for :page_class, "vertical-align text-center" %>
+
+
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <!-- Page -->
-  <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
     <div class="page-content vertical-align-middle">
       <div class="panel">
         <div class="panel-body">
           <div class="brand">
             <%= image_tag "flosscoach-logo", class: "brand-img" %>
-            <h2 class="brand-text font-size-18">FlossCoach Register</h2>
+            <h2 class="brand-text font-size-18"><%= site_name %> Register</h2>
           </div>
           <% if @user.errors.any? %>
           <div role="alert" class="alert dark alert-danger alert-icon alert-dismissible">
@@ -25,49 +27,9 @@
             </ul>
           </div>
           <% end %>
-
-
-          <%= form_for(@user) do |f| %>
-          <div class="form-group form-material floating" data-plugin="formMaterial">
-            <%= f.text_field :username, class: "form-control", required: true  %>
-            <%= f.label :username, "Choose a nickname to use on FlossCOACH",
-            class: "floating-label"%>
-          </div>
-
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.text_field :name, class: "form-control", required: true %>
-              <%= f.label :name, "Full name", class: "floating-label" %>
-            </div>
-
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.email_field :email, class: "form-control", required: true  %>
-              <%= f.label :email, "Email", class: "floating-label" %>
-            </div>
-
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.password_field :password, class: "form-control", required: true  %>
-              <%= f.label :password, "Password", class: "floating-label" %>
-            </div>
-
-            <div class="form-group form-material floating" data-plugin="formMaterial">
-              <%= f.password_field :password_confirmation, class: "form-control" , required: true %>
-              <%= f.label :password_confirmation, "Re-enter Password", class: "floating-label" %>
-            </div>
-
-            <div class="form-group clearfix">
-              <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
-                <%= f.check_box :terms, required: true  %>
-                <%= f.label :terms, "I accept FlossCoach Terms" %>
-              </div>
-            </div>
-
-            <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg mt-40" %>
-            <% end %>
-          <p>Have a login? Go to <%= link_to "Sign In", sign_in_path  %></p>
+          <%= render 'form', user: @user %>
+          <p>Have account already? Please go to <%= link_to "Sign In", sign_in_path  %></p>
         </div>
       </div>
       <%= render 'visitor/footer' %>
     </div>
-  </div>
-
-</body>

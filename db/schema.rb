@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413221043) do
+ActiveRecord::Schema.define(version: 20170608073418) do
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.string   "author_type"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -40,11 +54,28 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories_projects", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "project_id",  null: false
+    t.index ["category_id", "project_id"], name: "index_categories_projects_on_category_id_and_project_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "reply_to_id"
     t.integer  "user_id"
     t.integer  "widget_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "type"
+    t.integer  "project_id"
+    t.boolean  "approved"
+  end
+
+  create_table "default_tips", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "widget_slug"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -88,6 +119,19 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "open_hub_data", force: :cascade do |t|
+    t.integer  "open_hub_id"
+    t.string   "name"
+    t.string   "url"
+    t.text     "description"
+    t.string   "homepage_url"
+    t.string   "logo_url"
+    t.string   "vanity_url"
+    t.string   "download_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "operating_systems", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -99,6 +143,14 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.datetime "updated_at", null: false
     t.integer  "project_id"
     t.integer  "user_id"
+  end
+
+  create_table "ownership_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.boolean  "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pics", force: :cascade do |t|
@@ -118,16 +170,30 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.boolean  "use_open_hub_image"
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
-    t.text     "tags"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.integer  "open_hub_id"
+  end
+
+  create_table "projects_tags", id: false, force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "tag_id",     null: false
+    t.index ["project_id", "tag_id"], name: "index_projects_tags_on_project_id_and_tag_id"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
     t.integer "project_id"
     t.integer "user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags_topics", id: false, force: :cascade do |t|
+    t.integer "tag_id",   null: false
+    t.integer "topic_id", null: false
+    t.index ["tag_id", "topic_id"], name: "index_tags_topics_on_tag_id_and_topic_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -144,7 +210,6 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "tags"
     t.string   "content"
   end
 
@@ -198,6 +263,9 @@ ActiveRecord::Schema.define(version: 20180413221043) do
     t.text     "content"
     t.integer  "project_id"
     t.boolean  "deletable",   default: true
+    t.boolean  "editable",    default: true
+    t.string   "type"
+    t.boolean  "commentable", default: true
   end
 
 end

@@ -1,0 +1,11 @@
+var wrapper = $(".all_project_comments");
+wrapper.html("<%= escape_javascript( render @project.comments.except_replies) %>")
+$('#project_comments').modal('hide');
+
+$(".btn-reply").click(function(){
+  $(this).parents(".comment-body:first").find(".comment-reply").show();
+})
+
+$(".btn-reply-close").click(function(){
+    $(this).parents(".comment-body:first").find(".comment-reply").hide();
+})
