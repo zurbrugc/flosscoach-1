@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :default_tip do
     title "MyString"
     content "MyText"

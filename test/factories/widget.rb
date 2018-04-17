@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :widget do
     sequence(:title)  { |n| "Title widget #{n}"}
     tab "about"

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :open_hub_datum, class: 'OpenHubData' do
     open_hub_id 1
     name "MyString"
