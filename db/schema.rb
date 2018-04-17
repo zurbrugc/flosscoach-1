@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608073418) do
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.string   "author_type"
-    t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
+ActiveRecord::Schema.define(version: 20180413221043) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -171,6 +157,10 @@ ActiveRecord::Schema.define(version: 20170608073418) do
     t.string   "open_hub_image_url"
     t.boolean  "use_open_hub_data"
     t.integer  "open_hub_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "projects_tags", id: false, force: :cascade do |t|
