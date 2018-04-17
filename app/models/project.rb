@@ -26,7 +26,13 @@ class Project < ApplicationRecord
   before_create :create_widgets
 
   attr_accessor :plain_tags
+  def image
+    avatar
+  end
+  def image_url
+    avatar.url
 
+  end
   def get_open_hub_data
     @open_hub_project = OpenHubProject.find_by_name(self.name)
     self.open_hub_id = @open_hub_project.id
