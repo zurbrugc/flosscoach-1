@@ -34,9 +34,8 @@ class ProjectsController < ApplicationController
     @order_by ||= "Most favorited"
 
     render :index
+
   end
-
-
   # GET /projects/1/edit
   def edit
     unless @project.owner?(current_user)
@@ -44,7 +43,6 @@ class ProjectsController < ApplicationController
     end
     @codigourl = params[:id]
   end
-
   #TODO: Refactor and create a Open Hub Controller
   def similiar_open_hub_projects
     projects = OpenHubProject.find_by_name(params[:project_name], list:true)
@@ -55,7 +53,6 @@ class ProjectsController < ApplicationController
     end
   end
  #TODO: Create a controller to Ownerships requests
-
 
   # POST /projects
   def create
