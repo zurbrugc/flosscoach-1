@@ -6,3 +6,4 @@ class Forum < ApplicationRecord
     topics.count > 0
   end
 end
+

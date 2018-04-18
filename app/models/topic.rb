@@ -21,3 +21,4 @@ class Topic < ApplicationRecord
   end
 
 end
+

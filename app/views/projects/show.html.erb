@@ -24,14 +24,12 @@
   <div class="text-center">
     <small>Project created <%= time_ago_in_words @project.created_at %> ago</small>
   </div>
-  <% unless @project.forum.nil? %>
   <div class="text-center">
-    <%= link_to @project.forum, class: "btn btn-info waves-effect waves-classic" do %>
+    <%= link_to forum_path(@project), class: "btn btn-info waves-effect waves-classic" do %>
 
     <i class="icon md-comment" aria-hidden="true"></i>Visit the <%= @project.name%> forum!
     <% if @project.recent? %>
     <span class="badge badge-danger badge-sm">New</span>
-    <% end %>
     <% end %>
   </div>
   <% end %>
@@ -56,7 +54,6 @@
 
         <%= link_to "Owners", project_users_path(@project), class: "dropdown-item" %>
 
-        <%= link_to "Create a forum","#", class: "dropdown-item" if @project.forum.nil?%>
       </div>
     </div>
     <% end %>

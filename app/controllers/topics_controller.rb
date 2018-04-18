@@ -13,9 +13,12 @@ class TopicsController < ApplicationController
   def show
   end
 
+
   # GET /topics/new
   def new
     @topic = Topic.new
+    @project = Project.find(params[:forum_id])
+
   end
 
   # GET /topics/1/edit
