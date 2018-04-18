@@ -1,45 +1,44 @@
-
 <body class="animsition" >
   <%= render 'navbar' %>
 
   <div class="page container-fluid " data-animsition-in="fade-in" data-animsition-out="fade-out">
-    <div class="row bg-grey-800 text-white">
-      <div class="page-content ">
-        <span class="icon  float-left"></span>
-        <h1 class="text-white font-size-50" >
-          <i class="icon md-account-add font-size-70"></i>
-          Create/add your project on <%= site_name %></h1>
-          <p class="lead text-left">
-            Add your project to <%= site_name %> and help newbies collaborate with your project.
-          </p>
+      <div class="row bg-indigo-500 text-white">
+        <div class="page-content">
+          <h1 class="text-white font-size-50" >
+            <i class="icon md-eye font-size-70"></i>
+            What is <%= site_name%>?</h1>
+            <p class="lead bg-indigo-500 text-left">
+              <%= site_name%> is a comunnity aimed to help newcomers get into Free/Libre Open Source Software (FLOSS)
+              </p>
         </div>
       </div>
 
-      <div class="row bg-indigo-500 text-white">
+      <div class="row bg-grey-800 text-white">
         <div class="page-content ">
+          <span class="icon  float-left"></span>
           <h1 class="text-white font-size-50" >
-            <i class="icon md-eye font-size-70"></i>
-            Check us!</h1>
-            <p class="lead bg-indigo-500 text-center">
-              You are curious? Come to know the <%= link_to "projects currently registered in #{site_name}", projects_path, style: "color: #FFD740"%>. Do not worry, you do not need to register to view them;)        </p>
-            </div>
-          </div>
+            <i class="icon md-account-add font-size-70"></i>
+              Create/add your project on <%= site_name %></h1>
+              <p class="lead text-left">
+                By <%= link_to "adding your project", new_user_path, style: "color: white; font-weight: bold"%> new developers can contribute to it 
+            
+              </p>
+        </div>
+      </div>
 
 
           <div class="row bg-purple-800  text-white">
             <div class="page-content ">
               <h1 class="text-purple-800 font-size-50 text-white">
                 <i class="icon md-collection-item font-size-70"></i>
-                Currently registered <%= link_to "projects ", projects_path, style: "color: white"%>
+                Currently registered <%= link_to "projects", projects_path, style: "color: white"%>
               </h1>
-              <p class="lead text-center" >
-                
-                
+              <p class="lead text-left" >Feel free to check them
                   </p>
                 <div class="col-md-12 mt-50">
                   <ul class="blocks-6">
                     <% Project.all.each do |project|%>
-                    <li class="text-center">
+                    <li class="text-left">
                       <%= link_to project, class:"thumbnail m-0" do %>
                       <%= image_tag project.image.url(:thumb), class:"center-block", width:50%>
                       <% end %>
@@ -53,5 +52,5 @@
             </div>
 
 
-          </div>
-        </body>
+  </div>
+</body>
