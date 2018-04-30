@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
   def check_confirmed_email(user)
     if user.email_confirmed?
       session[:user_id] = user.id
-      redirect_to projects_paths
+      redirect_to projects_path
     else
       UserMailer.registration_confirmation(user).deliver_now
       flash.now[:alert] = "We resend you an email to confirm your registration."
