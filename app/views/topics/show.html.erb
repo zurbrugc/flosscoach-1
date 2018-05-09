@@ -30,8 +30,10 @@
     </div>
     <div class="panel-footer">
       <%= link_to 'Add answer', new_forum_topic_message_path(@topic.forum, @topic), class:"btn btn-primary" %>
-
+      <%=link_to "Edit this topic", edit_forum_topic_path(), class:"btn btn-warning" %>
+      <%= link_to "Delete this topic",  forum_topic_path(),method: :delete, data: { confirm: "Are you completely sure? This can't be undone!" }, class:"btn btn-danger" %>
     </div>
+    
   </div>
 
 
@@ -52,20 +54,24 @@
           <div class="comment-body media-body">
             <div class="comment-title">
               <div class="comment-meta float-right">
-                <span>04.07.11, 8:02 AM</span>
+                <span><%=message.created_at.strftime("%b %d, %Y | %H:%M")%></span>
               </div>
               <%= link_to @topic.user.name ,@topic.user, class: "comment-author"%>
-
+            </div>
+            <div class="float-right">
+              <!-- link_to 'Edit message ', edit_forum_topic_message_path(@topic.forum, @topic) -->
+            </div>
+            <div class="float-right">
+              <%= link_to 'Delete message',  forum_topic_message_path(topic_id: message.topic_id, message_id: message.id),  method: :delete, data: { confirm: "Are you sure? This can't be undone" } %>
             </div>
             <div class="comment-content">
               <p><%= message.content %></p>
             </div>
-
           </div>
         </div>
         <%end%>
       </div>
     </div>
   </div>
-
+<%=link_to "Back to #{@project.name} forum", forum_path(@project.id), class:"float-right"%> 
 </div>

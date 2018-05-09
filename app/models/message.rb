@@ -15,3 +15,4 @@ class Message < ApplicationRecord
     content
   end
 end
+

@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   def show
   end
 
+
   # GET /projects/new
   def new
     @project = Project.new
@@ -43,6 +44,7 @@ class ProjectsController < ApplicationController
     end
     @codigourl = params[:id]
   end
+
   #TODO: Refactor and create a Open Hub Controller
   def similiar_open_hub_projects
     projects = OpenHubProject.find_by_name(params[:project_name], list:true)
