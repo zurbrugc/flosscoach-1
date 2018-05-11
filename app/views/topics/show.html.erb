@@ -47,8 +47,8 @@
 
         <div class="comment media">
           <div class="pr-15">
-            <%= link_to @topic.user, class: "avatar avatar-md" do %>
-            <%= image_tag @topic.user.photo_url %>
+            <%= link_to message.user, class: "avatar avatar-md" do %>
+            <%= image_tag message.user.photo_url %>
             <% end %>
           </div>
           <div class="comment-body media-body">
@@ -56,7 +56,7 @@
               <div class="comment-meta float-right">
                 <span><%=message.created_at.strftime("%b %d, %Y | %H:%M")%></span>
               </div>
-              <%= link_to @topic.user.name ,@topic.user, class: "comment-author"%>
+              <%= link_to message.user.name ,message.user, class: "comment-author"%>
             </div>
             <div class="float-right">
               <!-- link_to 'Edit message ', edit_forum_topic_message_path(@topic.forum, @topic) -->

@@ -21,7 +21,7 @@
 	Upload new project image
 	</h5>
 		<div id="container-upload" class='img-responsive <%= "hide" if @project.use_open_hub_image%>' style='width:350px;'>
-			<%= f.file_field :image, data: {plugin: "dropify", "default-file": @project.image.url} %>
+			<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @project.avatar.path} %>
 			<div class="help-block">
 				max file size: 3MB
 			</div>

@@ -97,7 +97,6 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.includes(:widgets).find(params[:id] || params[:project_id])
-      #@project = current_user.projects.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
