@@ -60,6 +60,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owners << current_user
+    @project.primary_owner = current_user.id #testing that
     if @project.save
       redirect_to @project, success: 'Project was successfully created.'
     else

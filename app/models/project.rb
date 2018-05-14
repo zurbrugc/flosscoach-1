@@ -23,7 +23,7 @@ class Project < ApplicationRecord
   before_create :get_open_hub_data, if: :open_hub_id
 
   before_create :create_widgets
-  before_save :update_image_attributes
+  #before_save :update_image_attributes
 
   attr_accessor :plain_tags
   def image
@@ -105,7 +105,7 @@ class Project < ApplicationRecord
   def create_widgets
     self.widgets << WidgetFactory.for(:default_widgets, open_hub_data: open_hub_project)
   end
-
+=begin
   def update_image_attributes
     if image.present?
       self.image_content_type = image.file.content_type 
@@ -113,4 +113,6 @@ class Project < ApplicationRecord
     end
 
   end
+=end
+
 end
