@@ -76,13 +76,13 @@ class Project < ApplicationRecord
   def owner?(user)
     self.owners.include?(user)
   end
+  
   def add_owner(user)
     owners << user unless owner?(user)
 
   end
   def remove_owner(user)
     owners.delete(user) if owner?(user)
-
   end
 
   def self.search(search)

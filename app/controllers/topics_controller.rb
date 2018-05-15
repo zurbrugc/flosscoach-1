@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/1
   def show
+
   end
 
 
@@ -51,6 +52,7 @@ class TopicsController < ApplicationController
     redirect_to @forum, notice: 'Topic was successfully destroyed.'
   end
 
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     #now is set propely

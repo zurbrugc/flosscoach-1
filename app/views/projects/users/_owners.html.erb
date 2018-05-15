@@ -28,8 +28,8 @@
       <%unless @project.primary_owner == user.id%>
       <div class="pl-20 align-self-center">
         <%= link_to project_user_path(@project, user),
-        data: {:confirm => t('Are you sure? you want to remove ownership?')}, :method => :delete do %>
-        <button type="button" class="btn btn-danger btn-sm waves-effect waves-classic">Resign ownership</button>
+        data: {:confirm => ('Are you sure? you want to remove ownership?')}, :method => :delete do %>
+        <button type="button" class="btn btn-danger btn-sm waves-effect waves-classic">Remove ownership</button>
         <% end %>
       </div>
       <%end%>

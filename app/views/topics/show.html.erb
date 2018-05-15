@@ -30,10 +30,12 @@
     </div>
     <div class="panel-footer">
       <%= link_to 'Add answer', new_forum_topic_message_path(@topic.forum, @topic), class:"btn btn-primary" %>
+      
+      <%if @project.owners.ids.include?(current_user.id)%>
       <%=link_to "Edit this topic", edit_forum_topic_path(), class:"btn btn-warning" %>
       <%= link_to "Delete this topic",  forum_topic_path(),method: :delete, data: { confirm: "Are you completely sure? This can't be undone!" }, class:"btn btn-danger" %>
+      <%end%>
     </div>
-    
   </div>
 
 
