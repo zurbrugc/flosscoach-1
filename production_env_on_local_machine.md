@@ -24,9 +24,13 @@ sudo -u postgres psql
 >Keep in mind that the same **user** and **password** need to be present on the `config/database.yml` file.
 
 ## PostgreSQL Permissions
-The user `floss` must have all privileges to permit the usage of the database in production mode. As you are still inside PostgreSQL console just type this:
+The user `floss` must have all privileges to permit the usage of the database in production mode. As you are still inside PostgreSQL console it goes like this:
+1- ```\l``` to list all the databases, there must be one called `postgres`, the standard database created by PostgreSQL. If there isn't, you can create it by typing:
+```CREATE DATABASE postgres ```
+
+2- Giving permission to the user `floss`:
 ```
-GRANT ALL PRIVILEGES ON DATABASE postgre to floss;
+GRANT ALL PRIVILEGES ON DATABASE postgres to floss;
 ```
 Lastly, you must allow creation of databases and tables by `floss`: 
 ```
@@ -34,7 +38,15 @@ ALTER USER floss CREATEDB;
 ```
 Type `\q` to exit `postgres` console. 
 
-### Finishing:
+## Setting the database and running migrations:
+```bash
+rake db:setup RAILS_ENV=production```
+and
+```bash
+rake db:migrate```
+
+## Finishing:
 With these steps, you must be ready to run a 
-```rails s -e production```
+```bash
+rails s -e production```
 and start your server in the production environment.
