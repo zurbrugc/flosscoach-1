@@ -40,10 +40,12 @@ Type `\q` to exit `postgres` console.
 
 ## Setting the database and running migrations:
 ```bash
-rake db:setup RAILS_ENV=production```
+rake db:setup RAILS_ENV=production
+```
 and
 ```bash
-rake db:migrate```
+rake db:migrate
+```
 
 ## Finishing:
 With these steps, you must be ready to run a 
