@@ -34,7 +34,7 @@ ALTER USER floss CREATEDB;
 ```
 Type `\q` to exit `postgres` console. 
 
-###Finishing:
+### Finishing:
 With these steps, you must be ready to run a 
 ```rails s -e production```
 and start your server in the production environment.
