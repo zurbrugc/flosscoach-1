@@ -63,9 +63,11 @@
             <div class="float-right">
               <!-- link_to 'Edit message ', edit_forum_topic_message_path(@topic.forum, @topic) -->
             </div>
-            <div class="float-right">
-              <%= link_to 'Delete message',  forum_topic_message_path(topic_id: message.topic_id, message_id: message.id),  method: :delete, data: { confirm: "Are you sure? This can't be undone" } %>
-            </div>
+            <%if message.user_id == current_user.id%>
+              <div class="float-right">
+                <%= link_to 'Delete message',  forum_topic_message_path(topic_id: message.topic_id, message_id: message.id),  method: :delete, data: { confirm: "Are you sure? This can't be undone" } %>
+              </div>
+            <%end%>
             <div class="comment-content">
               <p><%= message.content %></p>
             </div>

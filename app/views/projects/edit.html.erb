@@ -1,46 +1,7 @@
-<h1> <center> Editing <%= link_to @project.name, @project %> project</center ></h1>
+<h1> <center> Edit <%= link_to @project.name, @project %> information</center ></h1>
 
 <div class="container">
-<div class="panel">
-<div class="panel-body">
-<div class="col-lg-3 profile-settings-sidebar">
-	<h4>
-	Public project logo
-	</h4>
-	<p>
-	You can upload a logo of project here
-	</p>
-</div>
 
-<div class="col-lg-9">
-	<%= form_for @project, html: { multipart: true } do |f| %>
-
-	<div class="clearfix avatar-image append-bottom-default">
-	</div>
-	<h5>
-	Upload new project image
-	</h5>
-		<div id="container-upload" class='img-responsive <%= "hide" if @project.use_open_hub_image%>' style='width:350px;'>
-			<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @project.avatar.path} %>
-			<div class="help-block">
-				max file size: 3MB
-			</div>
-		</div>
-		<div id="container-openhub"  class='img-responsive <%= "hide" unless @project.use_open_hub_image%>' style='width:350px;'>
-			<img src="<%= @project.open_hub_image_url %>"/>
-		</div>
-		<% if @project.use_open_hub_data %>
-	<%= f.check_box :use_open_hub_image %> Use OpenHub image
-<% end %>
-	<br><br>
-
-	<%= f.submit 'Change project logo', :class => 'btn btn-primary' %>
-
-	<% end %>
-</div>
-
-</div>
-</div>
 <div class="panel">
 	<%= form_for @project, html: { multipart: true } do |f| %>
 
@@ -88,5 +49,51 @@
 </div>
 </div>
 <% end %>
+</div>
+
+<div class="panel">
+	<div class="panel-body">
+		<div class="col-lg-3 profile-settings-sidebar">
+			<h4>
+			Public project logo
+			</h4>
+			<p>
+			You can upload a image for your project here:
+			</p>
+		</div>
+
+	<div class="col-lg-9">
+		<%= form_for @project, html: { multipart: true } do |f| %>
+
+		<div class="clearfix avatar-image append-bottom-default">
+		</div>
+		
+			<div id="container-upload" class='img-responsive <%= "hide" if @project.use_open_hub_image%>' style='width:350px;'>
+				<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @project.avatar.url} %>
+				<div class="help-block">
+					max file size: 3MB
+				</div>
+			</div>
+			<% if @project.use_open_hub_data %>
+			<div id="container-openhub"  class='img-responsive <%= "hide" unless @project.use_open_hub_image%>' style='width:350px;'>
+				<img src="<%= @project.open_hub_image_url %>"/>
+			</div>
+			<% end %>
+			<% if @project.use_open_hub_data %>
+				<%= f.check_box :use_open_hub_image %> Use OpenHub image
+			<% end %>
+		<br>
+		<h5>If you want to remove your project image, just check in the box and submit it:</h5>
+  		<p>
+    		<label>
+      			<%= f.check_box :remove_avatar %>
+      			Remove avatar
+    		</label>
+  		</p>
+  		<%= f.submit 'Change project logo', :class => 'btn btn-primary' %>
+	<% end %>
+	</div>
+
+	</div>
 </div>
 </div>

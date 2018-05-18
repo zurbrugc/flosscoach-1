@@ -140,20 +140,23 @@
 								<%= form_for @user, html: { multipart: true } do |f| %>
 
 								<h5>
-									Upload new avatar
+									Upload new profile picture:
 								</h5>
 								<div>
+									<div class="help-block">Max file size: 3mb</div>
 									<div class='img-responsive' style='width:250px;'>
 
-										<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.avatar.path} %>
+										<%= f.file_field :avatar, data: {plugin: "dropify", "default-file": @user.avatar.url} %>
 									</div>
 								</div>
 								<div class="help-block">
-									max file size 3mb
+									<h5>If you want to remove your profile avatar, just check in the box and submit it:</h5>
 								</div>
+								<p><label><%= f.check_box :remove_avatar %>Remove avatar</label></p>
 
 								<div class="form-group">
 									<%= f.submit t('Submit'), :class => 'btn btn-primary' %>
+									
 								</div>
 								<% end %>
 	            </div>

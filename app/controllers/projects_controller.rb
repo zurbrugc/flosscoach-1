@@ -73,10 +73,8 @@ class ProjectsController < ApplicationController
   def update
     if @project.owner?(current_user)
       if @project.update_attributes(project_params)
-        respond_to do |format|
-          format.html { render :edit, status: :ok, success: 'Project was successfully updated.'}
-          format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => :ok }
-        end
+        redirect_to @project, notice: "You edited your project with success!"
+      
       else
         respond_to do |format|
           format.html { render :edit, status: :unprocessable_entity, error: 'Update failed!'}
