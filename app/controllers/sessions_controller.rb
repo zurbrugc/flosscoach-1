@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   def destroy
     session.delete(:user_id)
-    redirect_to sign_in_path, success: 'Session was successfully destroyed.'
+    redirect_to sign_in_path, success: 'Session was successfully destroyed. You logged out.'
   end
 
   private
@@ -35,7 +35,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to projects_path
     else
-      flash.now[:alert] = "Please verify your e-mail and confirm your registration."
+      UserMailer.registration_confirmation(user).deliver_now
+      flash.now[:alert] = "We resend you an email to confirm your registration."
       render :new, status: :unauthorized
     end
   end

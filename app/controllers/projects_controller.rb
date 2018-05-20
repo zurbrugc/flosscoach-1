@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   def show
   end
 
+
   # GET /projects/new
   def new
     @project = Project.new
@@ -43,6 +44,7 @@ class ProjectsController < ApplicationController
     end
     @codigourl = params[:id]
   end
+
   #TODO: Refactor and create a Open Hub Controller
   def similiar_open_hub_projects
     projects = OpenHubProject.find_by_name(params[:project_name], list:true)
@@ -58,6 +60,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owners << current_user
+    @project.primary_owner = current_user.id #testing that
     if @project.save
       redirect_to @project, success: 'Project was successfully created.'
     else
@@ -70,10 +73,8 @@ class ProjectsController < ApplicationController
   def update
     if @project.owner?(current_user)
       if @project.update_attributes(project_params)
-        respond_to do |format|
-          format.html { render :edit, status: :ok, success: 'Project was successfully updated.'}
-          format.json { render :json => { :status => 'Ok', :message => 'Received'}, :status => :ok }
-        end
+        redirect_to @project, notice: "You edited your project with success!"
+      
       else
         respond_to do |format|
           format.html { render :edit, status: :unprocessable_entity, error: 'Update failed!'}
@@ -95,7 +96,6 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.includes(:widgets).find(params[:id] || params[:project_id])
-      #@project = current_user.projects.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

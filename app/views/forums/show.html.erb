@@ -30,7 +30,7 @@
           <section class="page-aside-section">
             <h5 class="page-aside-title">Interact with us</h5>
             <div class="list-group">
-              <%= link_to new_forum_topic_path(@forum), class:"list-group-item" do %>
+              <%= link_to new_forum_topic_path(forum_id: @forum.id), class:"list-group-item" do %>
                 <i class="icon md-mood"></i>
                 <span class="list-group-item-content">Create a topic</span>
               <% end %>
@@ -73,14 +73,13 @@
       <div >
         <table class="table is-indent">
           <tbody>
-            <% if @forum.topics? %>
-            <%= render @forum.topics %>
+            <% if @topics %>
+            <%= render @topics %>
             <% else %>
-              <p>No topics created. <%= link_to "Click here to create a topic", new_forum_topic_path(@forum) %></p>
-            <% end%>
+              <p>No topics created yet. <%= link_to "Click here to create a topic", new_forum_topic_path(forum_id: @forum.id)%></p>
+            <%end%>
           </tbody>
         </table>
-
       </div>
     </div>
   </div>

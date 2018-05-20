@@ -18,7 +18,9 @@ class ProjectsControllerTest <  ActionDispatch::IntegrationTest
     assert_redirected_to project_url(project)
 
     put project_url(project), params: {project: {id: project.id, name: "Batata"}}
-    assert_response :ok
+    assert_equal "Teste", project['name']
+    assert_equal project.id, project['id']
+
     project = Project.first #reload
     assert_equal "Batata", project.name
   end

@@ -1,8 +1,8 @@
-<% reply ||= true
- %>
+<% reply ||= true%>
 <div class="comment media">
   <div class="media-left">
     <a class="avatar avatar-lg" href="javascript:void(0)">
+
 
       <img src="<%= comment.user.avatar.url(:thumb) if comment.user.avatar.url(:thumb) %>" alt="<%= comment.user.name %>">
     </a>
@@ -16,6 +16,10 @@
       <p><%= comment.content %></p>
     </div>
     <div class="comment-actions">
+      <div>
+        <%= link_to 'Delete comment',  project_comment_path(),  method: :delete, data: { confirm: "Are you sure? This can't be undone" } %>
+      </div>
+
       <% if reply %>
       <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
       <% end %>
@@ -23,7 +27,7 @@
       <% if reply %>
 
     <%= form_for Comment.new, :html =>{class: "comment-reply", style: 'display:none'}, remote: true do |f|%>
-        <h3 class="margin-bottom-35">Leave A Reply</h3>
+        <h3 class="margin-bottom-35">Leave a reply</h3>
         <div class="form-group">
         <%= f.text_area :content, class: 'form-control', rows: 5, placeholder: "Comment here" %>
         </div>

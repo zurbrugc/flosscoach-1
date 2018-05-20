@@ -20,10 +20,13 @@ Rails.application.routes.draw do
   end
   #resources :widgets
   resources :forums do
+    #this is for passing the project_id to the forum that's being created
     resources :topics do
       resources :messages
     end
   end
+  
+  put 'forums/new/:project_id' => 'forums#create', as: 'create_forum'
   resources :widget_comments, :controller => "widgets/comments"
   resources :project_comments, :controller => "projects/comments", only: [:create]
   resources :sessions

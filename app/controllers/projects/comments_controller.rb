@@ -20,7 +20,6 @@ class Projects::CommentsController < ProjectsController
     @comment.user = current_user
     @comment.project = @project
     @project.comments << @comment
-
     if comment_params[:reply_to_id]
       comment_dad = ProjectComment.find(comment_params[:reply_to_id])
       comment_dad.replies << @comment
@@ -50,8 +49,9 @@ class Projects::CommentsController < ProjectsController
   # DELETE /users/1
   def destroy
     @comment.destroy
-    redirect_to @project, notice: 'Widget was successfully destroyed.'
+    redirect_to @project, notice: 'Widget?(comment) was successfully destroyed.'
   end
+
 
   private
   # Only allow a trusted parameter "white list" through.

@@ -40,6 +40,7 @@ gem "paperclip", "~> 6.0.0"
 # Gem to upload images
 gem 'carrierwave'
 gem 'carrierwave-base64'
+gem 'mini_magick', '~> 4.3'
 gem 'cloudinary'
 gem 'sass-rails'
 

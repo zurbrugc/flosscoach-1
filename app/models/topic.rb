@@ -2,7 +2,7 @@ class Topic < ApplicationRecord
   include Taggable
 
   belongs_to :forum
-  has_many :messages
+  has_many :messages, :dependent => :destroy
 
   belongs_to :user
   validates_presence_of :forum
@@ -21,3 +21,4 @@ class Topic < ApplicationRecord
   end
 
 end
+

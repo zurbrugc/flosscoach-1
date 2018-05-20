@@ -11,7 +11,6 @@ class Project < ApplicationRecord
   has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
   has_one :forum, :dependent => :destroy
-
   has_many :favoriter_projects
   has_many :fans, through: :favoriter_projects, :source => :user
   has_many :comments, class_name: 'ProjectComment'
@@ -24,6 +23,7 @@ class Project < ApplicationRecord
   before_create :get_open_hub_data, if: :open_hub_id
 
   before_create :create_widgets
+  #before_save :update_image_attributes
 
   attr_accessor :plain_tags
   def image
@@ -76,13 +76,13 @@ class Project < ApplicationRecord
   def owner?(user)
     self.owners.include?(user)
   end
+  
   def add_owner(user)
     owners << user unless owner?(user)
 
   end
   def remove_owner(user)
     owners.delete(user) if owner?(user)
-
   end
 
   def self.search(search)
@@ -105,4 +105,14 @@ class Project < ApplicationRecord
   def create_widgets
     self.widgets << WidgetFactory.for(:default_widgets, open_hub_data: open_hub_project)
   end
+=begin
+  def update_image_attributes
+    if image.present?
+      self.image_content_type = image.file.content_type 
+      self.image_file_size = image.file.size
+    end
+
+  end
+=end
+
 end

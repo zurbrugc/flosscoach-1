@@ -47,15 +47,15 @@
   end
   # PATCH/PUT /users/1
   def update
-    respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { render :show, status: :ok, success: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        redirect_to @user, notice: "You edited your info with success!"
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    
   end
 
   # DELETE /users/1
@@ -75,6 +75,7 @@
 
   # Only allow a trusted parameter "white list" through.
   def user_params
+    #
     params.require(:user).permit!.reject{|_, v| v.blank?}
   end
 

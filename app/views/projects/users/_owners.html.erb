@@ -1,33 +1,39 @@
 <ul class="list-group list-group-full">
   <% @project.owners.each  do |user| %>
+  
   <li class="list-group-item">
     <div class="media">
       <div class="pr-20">
         <div class="avatar avatar-online">
           <%= link_to user do %>
-          <%= image_tag user.photo_url %>
+          <%= image_tag user.photo_url%>
           <% end %>
-          <!-- <i class="avatar avatar-busy"></i> -->
         </div>
       </div>
       <div class="media-body">
         <h5 class="mt-0 mb-5">
           <%= link_to user.name, user %>
-          <small>Owner</small>
+          <% if @project.primary_owner == user.id%>
+            <small>Primary owner</small>
+          <%else%>
+            <small>Secondary owner</small>
+          <%end%>
         </h5>
         <p>
           <i class="icon icon-color md-pin-account" aria-hidden="true"></i>
           <%= link_to "@#{user.username}", user %>
         </p>
-
       </div>
-
+      
+      <%unless @project.primary_owner == user.id%>
       <div class="pl-20 align-self-center">
         <%= link_to project_user_path(@project, user),
-        data: {:confirm => t('Are you sure?')}, :method => :delete do %>
-        <button type="button" class="btn btn-danger btn-sm waves-effect waves-classic">Remove</button>
+        data: {:confirm => ('Are you sure? you want to remove ownership?')}, :method => :delete do %>
+        <button type="button" class="btn btn-danger btn-sm waves-effect waves-classic">Remove ownership</button>
         <% end %>
       </div>
+      <%end%>
+
     </div>
   </li>
 

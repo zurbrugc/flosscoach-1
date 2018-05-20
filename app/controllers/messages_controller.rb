@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:show, :edit, :update]
   before_action :set_topic
 
   # GET /messages
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1
   def update
     if @message.update(message_params)
-      redirect_to  [@topic.forum,@topic], notice: 'Message was successfully updated.'
+      redirect_to [@topic.forum,@topic], notice: 'Message was successfully updated.'
     else
       render :edit
     end
@@ -43,8 +43,9 @@ class MessagesController < ApplicationController
 
   # DELETE /messages/1
   def destroy
+    @message = Message.find(params[:message_id])
     @message.destroy
-    redirect_to messages_url, notice: 'Message was successfully destroyed.'
+    redirect_to [@topic.forum,@topic], notice: 'Message was successfully destroyed.'
   end
 
   private
@@ -53,7 +54,7 @@ class MessagesController < ApplicationController
       @topic = Topic.find(params[:topic_id])
     end
     def set_message
-      @message = Message.find(params[:id])
+      @message = Message.where(topic_id: params[:topic_id])
     end
 
     # Only allow a trusted parameter "white list" through.

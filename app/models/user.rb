@@ -25,6 +25,7 @@ class User < ApplicationRecord
 	has_many :favorited_projects, through: :favoriter_projects, :source => :project
   has_and_belongs_to_many :projects
   has_many :comments
+  has_many :messsages
   has_many :ownership_requests
 
   mount_uploader :avatar, AvatarUploader

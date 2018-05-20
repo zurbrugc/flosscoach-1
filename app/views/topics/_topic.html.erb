@@ -23,8 +23,7 @@
       </div>
       <div class="metas">
         <span class="author"><%= topic.user.name %></span>
-        <span class="started">1 day ago</span>
-        <span class="badges">Themes</span>
+        <span class="started"><%=topic.created_at.strftime("%b %d, %Y | %H:%M")%></span>
       </div>
     </div>
   </td>
