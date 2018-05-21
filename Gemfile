@@ -49,6 +49,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'puma'
+gem 'unicorn'
 
 group :production do
   #had to fo back to pg version 0.21 as 1.0.0 is not working on rails 5 production env
@@ -63,5 +64,7 @@ group :development, :test do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false 
     gem 'capistrano-local-precompile', require: false
+    gem 'capistrano-safe-deploy-to'
+    gem 'capistrano-unicorn-nginx'
     gem "spring"
 end
