@@ -3,7 +3,6 @@ class Projects::CommentsController < ProjectsController
   before_action :set_project, only: [:show, :update, :destroy, :create]
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
-
   # GET /users
   def index
 

@@ -34,4 +34,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user
+    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
+    
+  end
+
 end

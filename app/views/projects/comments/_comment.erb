@@ -14,6 +14,7 @@
     </div>
     <div class="comment-actions">
       <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
+        <%= link_to 'Delete comment', project_comment_path(project_id: comment.project.id, id: comment.id), method: :delete, data: {confirm: "Are you sure you want to delete it?"} %>
     </div>
 
     <%= render 'projects/comments/reply_form', comment:comment %>
