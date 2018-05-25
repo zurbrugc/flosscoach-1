@@ -19,6 +19,7 @@ set :repository, 'https://gitlab.com/flosscoach/flosscoach.git'
 set :branch, 'master'
 set :rvm_use_path, '/home/flosscoach/.rvm/scripts/rvm'
 set :nginx_socket_path, '/home/flosscoach/app/shared/tmp/sockets/puma.sock'
+set :current_path, '/home/flosscoach/app/current'
 
 # Optional settings:
 set :user, 'flosscoach'          # Username in the server to SSH to.
