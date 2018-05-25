@@ -46,12 +46,12 @@ task :setup do
 
     # Create database.yml for Postgres if it doesn't exist
     path_database_yml = "config/database.yml"
-    database_yml = %[production:
-  database: #{fetch(:user)}
-  adapter: postgresql
-  pool: 5
-  timeout: 5000]
-    command %[test -e #{path_database_yml} || echo "#{database_yml}" > #{path_database_yml}]
+    # database_yml = %[production:
+    #   database: #{fetch(:user)}
+    #   adapter: postgresql
+    #   pool: 5
+    #   timeout: 5000]
+    # command %[test -e #{path_database_yml} || echo "#{database_yml}" > #{path_database_yml}]
 
     # Create secrets.yml if it doesn't exist
     path_secrets_yml = "config/secrets.yml"
