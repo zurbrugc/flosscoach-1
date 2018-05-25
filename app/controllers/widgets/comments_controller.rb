@@ -1,6 +1,6 @@
 class Widgets::CommentsController < WidgetsController
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :set_widget, only: [:show, :update, :destroy, :create]
+  before_action :set_widget, only: [:show, :update, :create]
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
 
@@ -24,6 +24,7 @@ class Widgets::CommentsController < WidgetsController
     @comment.user = current_user
     @comment.widget = @widget
     @widget.comments << @comment
+    @comment.project_id = @widget.project.id
 
     if comment_params[:reply_to_id]
       comment_dad = WidgetComment.find(comment_params[:reply_to_id])
@@ -52,8 +53,9 @@ class Widgets::CommentsController < WidgetsController
 
   # DELETE /users/1
   def destroy
-    @widget.destroy
-    redirect_to @project, notice: 'Widget was successfully destroyed.'
+     id = @comment.project_id 
+    @comment.destroy
+    redirect_to project_path(id), notice: 'Comment was successfully destroyed.'
   end
 
   private

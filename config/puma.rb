@@ -1,3 +1,21 @@
+if ENV['RAILS_ENV'] == 'production'
+    environment "production"
+
+    bind  "unix:///home/flosscoach/app/shared/tmp/sockets/puma.sock"
+    pidfile "/home/flosscoach/app/shared/tmp/pids/puma.pid"
+    state_path "/home/flosscoach/app/shared/tmp/sockets/puma.state"
+    directory "/home/flosscoach/app/current"
+
+    workers 2
+    threads 1,2
+
+    daemonize true
+
+    activate_control_app 'unix:///home/flosscoach/app/shared/tmp/sockets/pumactl.sock'
+
+    prune_bundler
+
+else
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -45,3 +63,4 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+end
