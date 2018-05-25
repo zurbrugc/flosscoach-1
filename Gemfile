@@ -58,13 +58,7 @@ end
 
 group :development, :test do
     gem "factory_bot_rails"
-    gem 'capistrano',         require: false
-    gem 'capistrano-rvm',     require: false
-    gem 'capistrano-rails',   require: false
-    gem 'capistrano-bundler', require: false
-    gem 'capistrano3-puma',   require: false 
-    gem 'capistrano-local-precompile', require: false
-    gem 'capistrano-safe-deploy-to'
-    gem 'capistrano-unicorn-nginx'
+    gem 'mina', require: false
+    gem 'mina-puma', require: false, github: 'untitledkingdom/mina-puma'
     gem "spring"
 end
