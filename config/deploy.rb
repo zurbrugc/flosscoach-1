@@ -1,6 +1,8 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/puma'
+require 'mina/nginx'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -9,12 +11,14 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'flosscoach'
+set :application, fetch(:application_name)
 set :domain, 'flosscoach.com'
 set :user, fetch(:application_name)
 set :deploy_to, "/home/#{fetch(:user)}/app"
 set :repository, 'https://gitlab.com/flosscoach/flosscoach.git'
 set :branch, 'master'
 set :rvm_use_path, '/home/flosscoach/.rvm/scripts/rvm'
+set :nginx_socket_path, '/home/flosscoach/app/shared/tmp/sockets/puma.sock'
 
 # Optional settings:
 set :user, 'flosscoach'          # Username in the server to SSH to.
@@ -26,6 +30,8 @@ set :forward_agent, true     # SSH forward_agent.
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 # set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
 # set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
+set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public/uploads', 'public/assets')
+#set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
