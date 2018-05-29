@@ -25,8 +25,9 @@ class SessionsController < ApplicationController
 
   # DELETE /sessions/1
   def destroy
-    session.delete(:user_id)
-    redirect_to sign_in_path, success: 'Session was successfully destroyed. You logged out.'
+    #session.delete(:user_id)
+    reset_session
+    redirect_to sign_in_path, success: 'You logged out successfully.'
   end
 
   private

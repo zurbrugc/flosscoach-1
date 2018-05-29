@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   layout :choose_layout
   add_flash_types :error, :alert, :success, :info
   include SessionsHelper
+  helper_method :current_user
 
   def set_locale
     if params[:locale] == "en"
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
+    @current_user ||= session[:user_id].nil? ? nil : User.find(session[:user_id])
     
   end
 

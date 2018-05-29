@@ -31,14 +31,17 @@ Rails.application.routes.draw do
   resources :project_comments, :controller => "projects/comments", only: [:create]
   resources :sessions
 
+  # Oauth Related code
 	get 'auth/:provider/callback', to: 'omni_auth_login#create'
   get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'omni_auth_login#destroy'
-  post "/users/favorite_project/:project_id" => "users#favorite_project"
-  post "/users/disfavorite_project/:project_id" => "users#disfavorite_project"
   get    'sign_in'   => 'sessions#new'
   post   'sign_in'   => 'sessions#create'
   delete 'sign_out'  => 'sessions#destroy'
+  delete 'signout' => 'sessions#destroy'
+
+  #Favoriting project related code:
+  post "/users/favorite_project/:project_id" => "users#favorite_project"
+  post "/users/disfavorite_project/:project_id" => "users#disfavorite_project"
 
   resources :users do
     member do
