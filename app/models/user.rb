@@ -1,9 +1,7 @@
 class User < ApplicationRecord
   include FriendlyId
-
   friendly_id :username, use: :slugged
   has_secure_password
-
   validates_presence_of :email
   validates_presence_of :name
   validates_presence_of :username
@@ -13,11 +11,11 @@ class User < ApplicationRecord
   VALID_EMAIL_FORMAT= /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates :email, presence: true, length: {maximum: 260}, format: { with: VALID_EMAIL_FORMAT}, uniqueness: {case_sensitive: false}
   before_save { self.email = email.downcase }
+  before_save :normalize_blank_values
 
   validates_length_of :password, minimum: 6, :if => :password
   validates_confirmation_of :password, :if => :password
   validates_acceptance_of :terms
-  
 
   before_create :confirmation_token
   #relationships
@@ -27,8 +25,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :messsages
   has_many :ownership_requests
-
   mount_uploader :avatar, AvatarUploader
+
   def photo_url
     unless self.avatar.url.nil?
       self.avatar.url
@@ -75,6 +73,13 @@ class User < ApplicationRecord
     save!
     UserMailer.password_reset(self).deliver
   end
+
+  def normalize_blank_values
+    attributes.each do |column, value|
+      self[column].present? || self[column] = nil
+    end
+  end
+
 
   private
   def confirmation_token
