@@ -6,12 +6,9 @@ gem 'activeresource', github: 'rails/activeresource', branch: 'master'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-#Facebook
-gem 'omniauth'
+#Login Authorization
 gem 'omniauth-facebook'
-#twitter
 gem 'omniauth-twitter'
-#github
 gem 'omniauth-github'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

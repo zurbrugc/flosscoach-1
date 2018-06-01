@@ -354,7 +354,6 @@ DEPENDENCIES
   mina-nginx
   mina-puma!
   mini_magick (~> 4.3)
-  omniauth
   omniauth-facebook
   omniauth-github
   omniauth-twitter
@@ -375,4 +374,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

@@ -74,6 +74,7 @@
       user.avatar = auth.info.image
       user.username = auth.info.name
       user.oauth_token = auth.credentials.token
+
       user.save!
     end
   end
