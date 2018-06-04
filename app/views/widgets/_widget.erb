@@ -20,6 +20,7 @@
 
         <% if @project.owner?(current_user) && widget.editable?   %>
         <%= link_to "", edit_project_widget_path(@project,widget), class: "panel-action icon wb-edit "%>
+        <%= link_to "", moderate_path(@project,widget), class: "panel-action icon  wb-stats-bars"%>
         <% end %>
 
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"

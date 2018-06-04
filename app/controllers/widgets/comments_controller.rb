@@ -1,6 +1,7 @@
 class Widgets::CommentsController < WidgetsController
   before_action :set_comment, only: [:show, :update, :destroy]
   before_action :set_widget, only: [:show, :update, :create]
+  before_action :set_project, only: [:approve]
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
 
@@ -25,6 +26,7 @@ class Widgets::CommentsController < WidgetsController
     @comment.widget = @widget
     @widget.comments << @comment
     @comment.project_id = @widget.project.id
+    @comment.status = "draft"
 
     if comment_params[:reply_to_id]
       comment_dad = WidgetComment.find(comment_params[:reply_to_id])
@@ -58,6 +60,24 @@ class Widgets::CommentsController < WidgetsController
     redirect_to project_path(id), notice: 'Comment was successfully destroyed.'
   end
 
+
+  def approve
+    ids = params[:comment_ids]
+    ids.each do |id|
+      c = WidgetComment.find(id)
+      c.status = "aproved"
+      c.save
+    end
+   redirect_to @project
+  end
+
+
+  def moderate
+    @widget = set_widget
+    render 'moderate'
+  end
+
+
   private
 
 
@@ -73,6 +93,8 @@ class Widgets::CommentsController < WidgetsController
     @widget = Widget.find(params[:widget_id])
   end
 
-
+  def set_project
+    @project = Widget.find(params[:widget_id]).project
+  end
 
 end

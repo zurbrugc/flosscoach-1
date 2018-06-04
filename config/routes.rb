@@ -14,10 +14,20 @@ Rails.application.routes.draw do
     resources :users, :controller => "projects/users"
     post :favorite, :to =>"projects/favorites#create"
     delete :favorite, :to =>"projects/favorites#destroy"
+    
     resources :widgets do
       resources :comments, :controller => "widgets/comments"
+=begin 
+        collection do
+          put :approve
+        end
+=end
     end
   end
+
+  #Comment Moderation:
+  get '/projects/:project_id/widgets/:widget_id/moderate(.:format)', to: 'widgets/comments#moderate', as: 'moderate'
+  put '/projects/:project_id/widgets/:widget_id/comments', to: 'widgets/comments#approve', as: 'approve_comments'
   #resources :widgets
   resources :forums do
     #this is for passing the project_id to the forum that's being created

@@ -1,0 +1,55 @@
+<div class="page">
+  <div class="page-content container-fluid">
+    <div class="row">
+      <div class="large-8 large-centered columns">
+        <h3><small>You're moderating comments for the Widget titled:</small> <%= @widget.title %></h3>
+        <hr>
+        <h5>Moderation table</h5>
+        <%= form_tag approve_comments_path, method: :put do %>
+        <table>
+          <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Comment</th>
+              <th>Status</th>
+          </tr>
+
+          <% @widget.comments.draft.each do |comment| %>
+          <tr>
+            <td><%= check_box_tag "comment_ids[]", comment.id %></td>
+            <td><%= comment.user.name %> </td>
+            <td><%= comment.content %></td>
+            <td><%= comment.status%></td>
+          </tr>
+          <% end %>
+        </table>
+          <%= submit_tag "Approve Comments"%> 
+        <% end %>
+
+        <h5>All Approved Comments:</h5>
+        <table>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Comment</th>
+            <th>Status</th>
+
+          </tr>
+          <% @widget.comments.approved.each do |comment| %>
+          <tr>
+            <td><%= comment.id %></td>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.content %></td>
+            <td><%= comment.status%></td>
+            
+          </tr>
+          <% end %>
+        </table>
+
+      <hr>
+      </div>
+    </div>
+  </div>
+</div>
+<%=link_to 'Back to project', project_path(id: @widget.project.id)%>
+<p>Note: You could of-course add edit and delete links there.</p>
