@@ -65,15 +65,13 @@ gem install bundler -V --no-ri --no-rdoc
 
 ### Step 5: Adding Deployment Configurations in the Rails App
 
-`Capistrano` it's a gem that handles deployment by cloning the repository and doing the tasks necessary to set up the application.
-If not already present, add `Capistrano` and `Puma` to Gemfile: 
+`Mina` it's a gem that handles deployment by cloning the repository and doing the tasks necessary to set up the application.
+If not already present, add `Mina` and `Puma` to Gemfile: 
 ```ruby
 	group :development do
-	    gem 'capistrano',         require: false
-	    gem 'capistrano-rvm',     require: false
-	    gem 'capistrano-rails',   require: false
-	    gem 'capistrano-bundler', require: false
-	    gem 'capistrano3-puma',   require: false
+	    gem 'mina',         require: false
+	    gem 'mina-puma',     require: false
+	    gem 'mina-nginx',   require: false
 	end
 	gem 'puma'
 ```
@@ -83,31 +81,33 @@ Update changes to the Gemfile
 bundle
 ```
 
-Install `Capistrano` gem on your **local machine**(only needed on the **local machine**):
+Install `Mina` gem on your **local machine**(only needed on the **local machine**):
 
 ```ruby
-gem install capistrano
+gem install mina
 ```
 		
-If it's a new project you're adding `Capistrano` support, create `Capistrano` config files:
+If it's a new project you're adding `Mina` support, create config files:
 
-```ruby
-cap install
+```bash
+touch config/deploy.rb
 ```
 
 Initialize the deploy process on your **local** machine.
 
 ```bash
-cap production deploy:initial
+bundle exec mina deploy
 ```
 
 ### Step 6: Config Nginx
-On the Droplet, Symlink the `config/nginx.conf` to the **sites-enabled** directory:
-```bash
-    sudo rm /etc/nginx/sites-enabled/default
-    sudo ln -nfs "/home/flosscoach/apps/flosscoach/current/config/nginx.conf" "/etc/nginx/sites-enabled/flosscoach"
+Nginx is configured by mina `config/deploy.rb` file. Below are some the constants you need to set to configure properly:
 
+```ruby
+set :nginx_socket_path, '/home/flosscoach/app/shared/tmp/sockets/puma.sock'
+set :current_path, '/home/flosscoach/app/current'
+set :domain, 'flosscoach.com'
 ```
+
 Restart Nginx service:
 
 ```bash
@@ -118,24 +118,29 @@ sudo service nginx restart
 
 ##### Requirements
 - Be able to SSH into the server
-- Capistrano gem
+- Mina gem (on **local** machine)
 
 
-In order to deploy changes from local machine to the server you need to be allowed to ssh to the DigitalOcean droploet and need to install `capistrano` gem. To install capistrano do `gem install capistrano`.
+In order to deploy changes from local machine to the server you need to be allowed to ssh to the DigitalOcean droplet. 
 
 ## Step 1: To  Deploy
 To deploy simply execute the following command:
 ```bash
-cap production deploy
+bundle exec mina deploy
 ```
 
 # Deploying from the development branch
 
 ## Step 1: To Deploy a development branch
-To deploy simply execute the following command:
-```bash
-cap development deploy
+To deploy another branch you need to change the `config/deploy.rb` file in order to specify the desired brach.  Below is the constant you need to change:
+
+```ruby
+set :branch, 'name_of_the_branch'
 ```
-> - When prompted, `develop` branch is used as a default branch to deploy, but you can pass another branch name to the input if needed
+After that you just need to run the following command:
+
+```bash
+bundle exec mina deploy
+```
 
 > - `Gemfile.lock` should be outside `.gitignore` file
