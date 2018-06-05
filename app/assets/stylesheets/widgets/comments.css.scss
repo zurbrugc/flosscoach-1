@@ -1,0 +1,49 @@
+div {
+	border: 0px solid black;
+	border-radius: 3px; 
+}
+
+.row{
+	background-color: white;
+	padding: 10px;
+}
+
+.header{
+	text-align: center;
+}
+
+
+.moderate {
+	margin: 10px;
+
+}
+
+
+.submit{
+	margin: 5px;
+	float:right;
+	margin-top: 25px;
+}
+.approved {
+	
+	margin: 10px;
+	width: 100%;
+}
+
+td, th {
+	padding: 8px;
+}
+
+td{
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.title{
+	text-align: center;
+}
+
+.back{
+	margin-top: -10px;
+	float:right;
+}
+

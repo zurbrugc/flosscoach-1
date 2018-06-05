@@ -41,6 +41,14 @@ class WidgetsController < ApplicationController
     redirect_to @project, success: 'Widget was successfully destroyed.'
   end
 
+  def owner(current_user)
+    if @project.owner?(current_user)
+      return true
+    end
+    return false
+  end
+  helper_method :owner
+
   private
   # Only allow a trusted parameter "white list" through.
   def widget_params
@@ -51,6 +59,5 @@ class WidgetsController < ApplicationController
     @widget = Widget.all.find(params[:id])
     @project = @widget.project
   end
-
-
+  
 end

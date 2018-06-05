@@ -10,6 +10,7 @@
     <a class="comment-author" href="javascript:void(0)"><%= comment.user.name %></a>
     <div class="comment-meta">
       <span class="date"><%= time_ago_in_words comment.created_at %> ago</span>
+        <span class="date"> | Comment status: <%= comment.status%></span>
     </div>
     <div class="comment-content">
       <p><%= comment.content %></p>
