@@ -1,7 +1,7 @@
 class Widgets::CommentsController < WidgetsController
   before_action :set_comment, only: [:show, :update, :destroy]
   before_action :set_widget, only: [:show, :update, :create]
-  before_action :set_project, only: [:approve]
+  before_action :set_project, only: [:approve, :owner, :create]
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_action :authorize
 
@@ -33,6 +33,10 @@ class Widgets::CommentsController < WidgetsController
       comment_dad.replies << @comment
     end
 
+    if @project.owners.include?(current_user)
+      @comment.status = "approved"
+    end
+    
     respond_to do |format|
     if @comment.save
       flash.now[:notice] = "Comment was successfully saved."
@@ -65,7 +69,7 @@ class Widgets::CommentsController < WidgetsController
     ids = params[:comment_ids]
     ids.each do |id|
       c = WidgetComment.find(id)
-      c.status = "aproved"
+      c.status = "approved"
       c.save
     end
    redirect_to @project
@@ -76,6 +80,8 @@ class Widgets::CommentsController < WidgetsController
     @widget = set_widget
     render 'moderate'
   end
+
+  
 
 
   private

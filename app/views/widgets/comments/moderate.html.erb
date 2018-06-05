@@ -1,55 +1,60 @@
 <div class="page">
   <div class="page-content container-fluid">
-    <div class="row">
-      <div class="large-8 large-centered columns">
-        <h3><small>You're moderating comments for the Widget titled:</small> <%= @widget.title %></h3>
-        <hr>
-        <h5>Moderation table</h5>
-        <%= form_tag approve_comments_path, method: :put do %>
-        <table>
-          <tr>
-              <th></th>
-              <th>Name</th>
+      <div class="row">
+          <h4 class="header">You're moderating comments for the Widget titled: <%= @widget.title %></h4>
+      </div>
+      <div class="row">
+        <div class="large-6 moderation">
+          <h5 class="title">You must moderate the comments below:</h5><hr> 
+          <%= form_tag approve_comments_path, method: :put do %>
+          <table>
+            <tr>
+                <th></th>
+                <th>Author</th>
+                <th>Comment</th>
+                <th>Status</th>
+            </tr>
+
+            <% @widget.comments.draft.each do |comment| %>
+              <tr>
+                <td><%= check_box_tag "comment_ids[]", comment.id %></td>
+                <td><%= comment.user.name %> </td>
+                <td><%= comment.content %></td>
+                <td><%= comment.status%></td>
+              </tr>
+            <% end %>
+          </table>
+          
+            <div class="submit">
+              <%= submit_tag "Approve Comments", class:"btn btn-primary"%> 
+            </div>
+          <% end %>
+          <hr>
+        </div>
+
+        <div class="large-6 approved">
+          <h5 class="title">All Approved Comments:</h5><hr>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Author</th>
               <th>Comment</th>
               <th>Status</th>
-          </tr>
 
-          <% @widget.comments.draft.each do |comment| %>
-          <tr>
-            <td><%= check_box_tag "comment_ids[]", comment.id %></td>
-            <td><%= comment.user.name %> </td>
-            <td><%= comment.content %></td>
-            <td><%= comment.status%></td>
-          </tr>
-          <% end %>
-        </table>
-          <%= submit_tag "Approve Comments"%> 
-        <% end %>
-
-        <h5>All Approved Comments:</h5>
-        <table>
-          <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Comment</th>
-            <th>Status</th>
-
-          </tr>
-          <% @widget.comments.approved.each do |comment| %>
-          <tr>
-            <td><%= comment.id %></td>
-            <td><%= comment.user.name %></td>
-            <td><%= comment.content %></td>
-            <td><%= comment.status%></td>
-            
-          </tr>
-          <% end %>
-        </table>
-
+            </tr>
+            <% @widget.comments.approved.each do |comment| %>
+            <tr>
+              <td><%= comment.id %></td>
+              <td><%= comment.user.name %></td>
+              <td><%= comment.content %></td>
+              <td><%= comment.status%></td>
+            </tr>
+            <% end %>
+          </table>
+          <hr>
+        </div>
       <hr>
       </div>
-    </div>
   </div>
-</div>
-<%=link_to 'Back to project', project_path(id: @widget.project.id)%>
-<p>Note: You could of-course add edit and delete links there.</p>
+</div> 
+<%=link_to 'Back to project', project_path(id: @widget.project.id), class:"btn btn-warning"%>
