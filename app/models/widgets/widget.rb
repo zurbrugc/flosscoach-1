@@ -33,6 +33,9 @@ class Widget < ApplicationRecord
   def default?
     is_a?(DefaultWidget)
   end
+
+  
+
   private
 
   def set_defaults
@@ -43,6 +46,7 @@ class Widget < ApplicationRecord
   def create_slug
     self.slug ||= self.title.parameterize
   end
+
   def to_partial_path
      'widgets/widget'
    end
