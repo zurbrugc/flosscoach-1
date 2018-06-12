@@ -24,8 +24,8 @@
         <% end %>
 
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"
-        data-plugin="webuiPopover" data-title="Example Title tip"
-        data-content="<p>Example tip for this widget.</p>"
+        data-plugin="webuiPopover" data-title="What to fill this field:"
+        data-content="<p><%=tips(widget)%></p>"
         data-target="webuiPopover3"></a>
 
         <% if logged_in? && widget.deletable? && @project.owner?(current_user) %>

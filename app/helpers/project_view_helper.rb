@@ -48,4 +48,58 @@ module ProjectViewHelper
     class: "btn btn-danger waves-effect waves-classic", remote: true
   end
 
+  def tips(widget)
+    #1
+    if widget.title == "About the project"
+      return 'Here you can add the project main info' 
+    end
+
+    #2
+    if widget.title == "Technical skills required"
+      return 'Add here the what are the technical skills required for someone to work in this project' 
+    end
+
+    #3
+    if widget.title == "Resources avaiable"
+      return 'If there are any resources on the web like images, videos, wikis or articles that may be useful for contributors, make then available here' 
+    end
+
+    #4
+    if widget.title == "Soft skills required"
+      return 'Is there any set of skills you assume to be necessary for working with this project? This is the place to write them' 
+    end
+
+
+    #5
+    if widget.title == "Easy tasks"
+      return 'If there are simple tasks to be done in the project, list them here as new contributors can start easily' 
+    end
+
+    #6
+    if widget.title == "Finding Mentorship and Support"
+      return 'Tutoring and help are always welcome to begginers in software development, let them know where to find it ' 
+    end
+
+    #7
+    if widget.title == "Searching the mailing list"
+      return 'to be filled' 
+    end
+
+    #8
+    if widget.title == "Search project site"
+      return 'to be filled' 
+    end
+
+    #9
+    if widget.title == "Synchronous help"
+      return 'to be filled' 
+    end
+
+    #10
+    if widget.title == "Subscribing to mailing list"
+      return 'to be filled' 
+    end
+
+  end
+
 end
