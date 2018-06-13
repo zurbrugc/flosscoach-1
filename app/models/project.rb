@@ -19,6 +19,10 @@ class Project < ApplicationRecord
   has_many :pendent_ownership_requests, -> { pendent }, :class_name => 'OwnershipRequest'
   has_many :pendent_owners, :source => :user, through: :pendent_ownership_requests
 
+  #Status related code:
+  scope :active, -> { where status: 'active'}
+  scope :inactive, -> { where status: 'inactive'}
+
   before_create :transform_tags
   before_create :get_open_hub_data, if: :open_hub_id
 

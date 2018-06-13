@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604123612) do
+ActiveRecord::Schema.define(version: 20180613140142) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20180604123612) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "primary_owner"
+    t.string   "status"
   end
 
   create_table "projects_tags", id: false, force: :cascade do |t|
