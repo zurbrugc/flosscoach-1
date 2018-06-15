@@ -37,7 +37,7 @@
                   </p>
                 <div class="col-md-12 mt-50">
                   <ul class="blocks-6">
-                    <% Project.all.each do |project|%>
+                    <% Project.active.each do |project|%>
                     <li class="text-left">
                       <%= link_to project, class:"thumbnail m-0" do %>
                       <%= image_tag project.image.url(:thumb), class:"center-block", width:50%>

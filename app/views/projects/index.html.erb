@@ -1,4 +1,3 @@
-
 <%= render 'visitor/header' unless current_user %>
 <%= render 'visitor/menu' unless current_user %>
 
@@ -15,7 +14,7 @@
 <div class="page-content">
   <div class="panel ">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= @projects.count %> projects found</h3>
+      <h3 class="panel-title"><%= @projects.active.count %> projects found</h3>
     </div>
     <div class="panel-body container-fluid">
 
@@ -53,7 +52,7 @@
           <table class="table is-indent ">
             <table class="table is-indent">
               <tbody>
-                <%= render @projects %>
+                <%= render @projects.active %>
               </tbody>
             </table>
           </div>
@@ -64,8 +63,9 @@
             <h4>Popular tags</h4>
             <div class="list-group list-group-bordered">
               <% Tag.first(10).each do |tag| %>
-              <%= link_to "#{tag} - #{tag.projects.count} results", projects_path(search: tag.to_s), class:"list-group-item" %>
-
+                <%if tag.projects.active.count >0%>
+                  <%= link_to "#{tag} - #{tag.projects.count} results", projects_path(search: tag.to_s), class:"list-group-item" %>
+                <%end%>
               <% end %>
 
             </div>

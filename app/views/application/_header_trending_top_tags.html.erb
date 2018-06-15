@@ -1,8 +1,8 @@
 <ul class="blocks-2">
   <li class="mega-menu m-0">
     <ul class="list-icons">
-      <% tags = Tag.first(12)
-      tags = tags.in_groups_of(6,false)%>
+      <% tags = Tag.first(8)
+      tags = tags.in_groups_of(4,false)%>
 
       <% tags[0].each do |tag, count| %>
       <li><i class="md-chevron-right" aria-hidden="true"></i>

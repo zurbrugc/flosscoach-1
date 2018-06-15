@@ -1,5 +1,5 @@
 <ul class="blocks-3">
-  <% Project.limit(6).each do |project|%>
+  <% Project.active.limit(6).each do |project|%>
   <li class="text-center">
       <%= link_to project, class: "thumbnail m-0 avatar avatar-lg" do %>
       <%=image_tag project.avatar.url %>

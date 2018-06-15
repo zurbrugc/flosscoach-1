@@ -1,8 +1,173 @@
-<%= render 'visitor/header' unless current_user %>
-<%= render 'visitor/menu' unless current_user %>
+<%if @project.status == "active"%>
+  <%= render 'visitor/header' unless current_user %>
+  <%= render 'visitor/menu' unless current_user %>
+
+  <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
+    <%= render 'notices' %>
+    <figure class='logo-projeto text-center'>
+      <img class=" img-responsive" src="<%= @project.image_url %>"
+      style="max-width:250px;"/>
+    </figure>
+    <h1 class="page-title text-center"><%= @project.name %>
+      <% if @project.recent? %>
+        <span class="badge badge-danger badge-sm">New</span>
+      <% end %>
+    </h1>
+    <p class="tags text-center">
+      <% @project.tags.each do |tag| %>
+        <%= link_to projects_path(search: tag.to_s) do %>
+          <span class="badge badge-outline badge-primary"><%=tag.to_s%></span>
+        <% end %>
+      <% end %>
+    </p>
 
 
-<div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
+    <p class='text-center'><%= @project.description %></p>
+    <div class="text-center">
+      <small>Project created <%= time_ago_in_words @project.created_at %> ago</small>
+    </div>
+
+    <div class="text-center">    
+      <!--  If the user has already created a forum for this project, show it-->
+      <%if @project.forum %>
+        <%= link_to forum_path(@project.id), class: "btn btn-info waves-effect waves-classic" do %>
+          <i class="icon md-comment" aria-hidden="true"></i>Visit the <%= @project.name%> forum!
+            <% if @project.recent? %>
+              <span class="badge badge-danger badge-sm">New</span>
+            <% end %>
+        <%end%>
+    
+
+    <!--If there isn't forum, create it-->
+      <%else%>
+        <%= link_to create_forum_path(@project.id), method: :put, class: "btn btn-info waves-effect waves-classic" do %>
+        <i class="icon md-comment" aria-hidden="true"></i>Create the <%= @project.name%> forum!
+          <% if @project.recent? %>
+            <span class="badge badge-danger badge-sm">New</span>
+          <% end %>
+        <% end %>
+      <%end%>
+    </div>
+      
+
+
+    <div class="text-center request_ownership_wrapper">
+        </br>
+        <%= request_ownership_button(@project) %>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+        <%= tab_item(:about, "About", active: true ) %>
+        <%= tab_item(:how_to_start, "How to start") %>
+        <%= tab_item(:talk_to_the_community, "Talk to the community") %>
+        <%= tab_item(:setup_your_workspace, "Setup your workspace") %>
+        <%= tab_item(:deal_with_the_code, "Deal with the code") %>
+        <%= tab_item(:submit_your_changes, "Submit your changes") %>
+        <% if @project.owner?(current_user) %>
+
+          <div class="nav nav-tabs dropdown float-right">
+            <button type="button" class="float-right btn btn-primary dropdown-toggle float-right waves-effect waves-classic" aria-expanded="true" data-toggle="dropdown">
+            Administration menu
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" role="menu">
+              <%= link_to "Edit project", edit_project_path(@project), class: "dropdown-item" %>
+              <%= link_to "Owners", project_users_path(@project), class: "dropdown-item" %>
+              <a href="<%=edit_project_path(@project)%>#status" class="dropdown-item">Deactivate project</a>
+            </div>
+          </div>
+        <% end %>
+    </ul>
+
+  </div>
+  <!--Projects_show_action header ends here. Body content below:-->
+
+  <div class="page-content container-fluid tab-content">
+    <div class="tab-content pt-20">
+      <% tab_pane(:about, active: true) do %>
+      <%= render @project.widgets.from_tab(:about ) %>
+      <% end %>
+      <% tab_pane(:how_to_start, gridstack: false) do %>
+        <div class="panel nav-tabs-horizontal" data-plugin="tabs">
+          <div class="panel-heading">
+            <h3 class="panel-title">How to start</h3>
+          </div>
+          <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contribution_flow" role="tab">Contribution flow</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#choosing_a_task_to_start_with" role="tab">Choosing a task to start with</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#find_a_mentor" role="tab">Find a mentor</a></li>
+          </ul>
+        <div class="panel-body">
+          <div class="tab-content">
+            <div class="tab-pane active" id="contribution_flow" role="tabpanel">
+              <p>Please consider following the flow below as it may help you in your first contribution. Tough following is not mandatory, it was tought to guide you as a begginer.
+                You can move to appropriate guidelines and resources by clicking in the boxes
+                instead of using the menu.</p>
+                <%= render 'flow' %>
+              </div>
+              <% tab_pane(:choosing_a_task_to_start_with) do %>
+              <%= render @project.widgets.from_tab(:choosing_a_task_to_start_with) %>
+              <% end %>
+
+              <% tab_pane(:find_a_mentor) do %>
+              <%= render @project.widgets.from_tab(:find_a_mentor) %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% tab_pane(:talk_to_the_community, gridstack: false) do %>
+        <div class="panel nav-tabs-horizontal" data-plugin="tabs">
+          <div class="panel-heading">
+            <h3 class="panel-title">Community support</h3>
+          </div>
+          <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#search_before_ask" role="tab">Search before ask</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#synchronous_chat" role="tab">Synchronous chat</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mailing_lists" role="tab">Mailing lists</a></li>
+          </ul>
+          <div class="panel-body">
+            <div class="tab-content">
+
+              <% tab_pane(:search_before_ask, active: true) do %>
+              <%= render @project.widgets.from_tab(:search_before_ask) %>
+              <% end %>
+
+              <% tab_pane(:synchronous_chat) do %>
+              <%= render @project.widgets.from_tab(:synchronous_chat) %>
+              <% end %>
+
+              <% tab_pane(:mailing_lists) do %>
+              <%= render @project.widgets.from_tab(:mailing_lists) %>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+        <% end %>
+
+        <% tab_pane(:setup_your_workspace) do %>
+        <%= render @project.widgets.from_tab(:setup_your_workspace) %>
+        <% end %>
+
+        <% tab_pane(:deal_with_the_code) do %>
+        <%= render @project.widgets.from_tab(:deal_with_the_code) %>
+
+        <% end %>
+
+        <% tab_pane(:submit_your_changes) do %>
+        <%= render @project.widgets.from_tab(:submit_your_changes) %>
+        <% end %>
+
+    </div>
+
+
+  </div>
+
+<!--Presenting info abou an inactive project\-->
+<%else%>
+  <%= render 'visitor/header' unless current_user %>
+  <%= render 'visitor/menu' unless current_user %>
+
+  <div id="<%= @project.id %>" class="page-header page-header-bordered page-header-tabs  nav-tabs-horizontal" data-plugin="tabs">
   <%= render 'notices' %>
   <figure class='logo-projeto text-center'>
     <img class=" img-responsive" src="<%= @project.image_url %>"
@@ -20,143 +185,37 @@
       <% end %>
     <% end %>
   </p>
-
-
   <p class='text-center'><%= @project.description %></p>
   <div class="text-center">
     <small>Project created <%= time_ago_in_words @project.created_at %> ago</small>
   </div>
+    <div class="nav nav-tabs float-right" role="tablist">
 
-  <div class="text-center">    
-    <!--  If the user has already created a forum for this project, show it-->
-    <%if @project.forum %>
-      <%= link_to forum_path(@project.id), class: "btn btn-info waves-effect waves-classic" do %>
-        <i class="icon md-comment" aria-hidden="true"></i>Visit the <%= @project.name%> forum!
-          <% if @project.recent? %>
-            <span class="badge badge-danger badge-sm">New</span>
-          <% end %>
-      <%end%>
-  
-
-  <!--If there isn't forum, create it-->
-    <%else%>
-      <%= link_to create_forum_path(@project.id), method: :put, class: "btn btn-info waves-effect waves-classic" do %>
-      <i class="icon md-comment" aria-hidden="true"></i>Create the <%= @project.name%> forum!
-        <% if @project.recent? %>
-          <span class="badge badge-danger badge-sm">New</span>
-        <% end %>
-      <% end %>
-    <%end%>
-  </div>
-    
-
-
-  <div class="text-center request_ownership_wrapper">
-      </br>
-      <%= request_ownership_button(@project) %>
-  </div>
-  <ul class="nav nav-tabs" role="tablist">
-      <%= tab_item(:about, "About", active: true ) %>
-      <%= tab_item(:how_to_start, "How to start") %>
-      <%= tab_item(:talk_to_the_community, "Talk to the community") %>
-      <%= tab_item(:setup_your_workspace, "Setup your workspace") %>
-      <%= tab_item(:deal_with_the_code, "Deal with the code") %>
-      <%= tab_item(:submit_your_changes, "Submit your changes") %>
       <% if @project.owner?(current_user) %>
 
-        <div class="nav nav-tabs dropdown float-right">
-          <button type="button" class="float-right btn btn-primary dropdown-toggle float-right waves-effect waves-classic" id="exampleLeftDropdownSubMenu" aria-expanded="true" data-toggle="dropdown">
+        <div class="nav nav-tabs dropdown">
+          <button type="button" class="float-right btn btn-primary dropdown-toggle float-right waves-effect waves-classic" aria-expanded="true" data-toggle="dropdown">
           Administration menu
           </button>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exampleLeftDropdownSubMenu" role="menu">
+          <div class="dropdown-menu dropdown-menu-right" role="menu">
             <%= link_to "Edit project", edit_project_path(@project), class: "dropdown-item" %>
             <%= link_to "Owners", project_users_path(@project), class: "dropdown-item" %>
+            <a href="<%=edit_project_path(@project)%>#status" class="dropdown-item">Activate project</a>
           </div>
         </div>
       <% end %>
-  </ul>
-
-</div>
-<!--Projects_show_action header ends here. Body content below:-->
-
-<div class="page-content container-fluid tab-content">
-  <div class="tab-content pt-20">
-    <% tab_pane(:about, active: true) do %>
-    <%= render @project.widgets.from_tab(:about ) %>
-    <% end %>
-    <% tab_pane(:how_to_start, gridstack: false) do %>
-      <div class="panel nav-tabs-horizontal" data-plugin="tabs">
-        <div class="panel-heading">
-          <h3 class="panel-title">How to start</h3>
-        </div>
-        <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contribution_flow" role="tab">Contribution flow</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#choosing_a_task_to_start_with" role="tab">Choosing a task to start with</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#find_a_mentor" role="tab">Find a mentor</a></li>
-        </ul>
-      <div class="panel-body">
-        <div class="tab-content">
-          <div class="tab-pane active" id="contribution_flow" role="tabpanel">
-            <p>Please consider following the flow below as it may help you in your first contribution. Tough following is not mandatory, it was tought to guide you as a begginer.
-              You can move to appropriate guidelines and resources by clicking in the boxes
-              instead of using the menu.</p>
-              <%= render 'flow' %>
-            </div>
-            <% tab_pane(:choosing_a_task_to_start_with) do %>
-            <%= render @project.widgets.from_tab(:choosing_a_task_to_start_with) %>
-            <% end %>
-
-            <% tab_pane(:find_a_mentor) do %>
-            <%= render @project.widgets.from_tab(:find_a_mentor) %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% tab_pane(:talk_to_the_community, gridstack: false) do %>
-      <div class="panel nav-tabs-horizontal" data-plugin="tabs">
-        <div class="panel-heading">
-          <h3 class="panel-title">Community support</h3>
-        </div>
-        <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#search_before_ask" role="tab">Search before ask</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#synchronous_chat" role="tab">Synchronous chat</a></li>
-          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#mailing_lists" role="tab">Mailing lists</a></li>
-        </ul>
-        <div class="panel-body">
-          <div class="tab-content">
-
-            <% tab_pane(:search_before_ask, active: true) do %>
-            <%= render @project.widgets.from_tab(:search_before_ask) %>
-            <% end %>
-
-            <% tab_pane(:synchronous_chat) do %>
-            <%= render @project.widgets.from_tab(:synchronous_chat) %>
-            <% end %>
-
-            <% tab_pane(:mailing_lists) do %>
-            <%= render @project.widgets.from_tab(:mailing_lists) %>
-            <% end %>
-
-          </div>
-        </div>
-      </div>
-      <% end %>
-
-      <% tab_pane(:setup_your_workspace) do %>
-      <%= render @project.widgets.from_tab(:setup_your_workspace) %>
-      <% end %>
-
-      <% tab_pane(:deal_with_the_code) do %>
-      <%= render @project.widgets.from_tab(:deal_with_the_code) %>
-
-      <% end %>
-
-      <% tab_pane(:submit_your_changes) do %>
-      <%= render @project.widgets.from_tab(:submit_your_changes) %>
-      <% end %>
-
   </div>
-
-
 </div>
+<div class="page-content container-fluid" style="background-color: white; padding: 30px;">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-lg">
+      <h4>This project is currently inactive.</h4>
+      <h4>If you own this project and want to reactivate it, please visit the administration menu</h4>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<%= render 'application/footer' unless current_user %>
+
+<%end%>

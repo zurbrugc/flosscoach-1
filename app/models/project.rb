@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   include Taggable
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :description, unless: :open_hub_id
   validates :avatar, file_size: { less_than: 3.megabytes }
 

@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
   
   def recent
-    @projects = Project.search(params[:search])
+    @projects = Project.active.search(params[:search])
     @project = Project.new
     @order_by = "Recents"
 
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
   end
 
   def most_favorited
-    @projects = Project.all.search(params[:search])
+    @projects = Project.active.search(params[:search])
     @project = Project.new
     @order_by ||= "Most favorited"
 
