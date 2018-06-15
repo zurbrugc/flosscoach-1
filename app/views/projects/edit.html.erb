@@ -1,4 +1,4 @@
-<h1> <center> Edit <%= link_to @project.name, @project %> information</center ></h1>
+<h1> <center> Here you can edit <%= link_to @project.name, @project %> information</center ></h1>
 
 <div class="container">
 
@@ -96,4 +96,31 @@
 
 	</div>
 </div>
+
+	<!--Deactivate project-->
+	<div class="panel" id="status" style="margin-bottom: 300px;">
+		<div class="panel-body">
+			<div class="col-lg-6 profile-settings-sidebar">
+				<h4>Deactivate Project:</h4>
+			<p>Deactivating a project means it will be hidden from  everybody using FLOSScoach.
+			 This is useful in case you want to pause the project without deleting it from FLOSScoach. You, the project owner can also make the project 'active' again by reversing the change.</p>
+			</div>
+			<div class="col-lg-6">
+				<h4>Actual Status of <%=@project.name%>: <%=@project.status%></h4>
+
+				<%= form_for @project, html: { multipart: true } do |f| %>
+					<%if @project.status == 'active'%>
+						<button hidden><%= f.text_field :status, :value => "inactive" %></button>
+						<%= f.submit 'Deactivate Project', :class => 'btn btn-warning', data: { confirm: "You are attempting to deactivate the project, are you sure?" } %>
+					<%end%>
+
+					<%if @project.status == 'inactive'%>
+						<button hidden><%= f.text_field :status, :value => "active" %></button>
+						<%= f.submit 'Activate Project', :class => 'btn btn-success' %>
+					<%end%>
+
+				<%end%>
+			</div>
+		</div>
+	</div>
 </div>

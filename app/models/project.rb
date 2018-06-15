@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   include Taggable
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :description, unless: :open_hub_id
   validates :avatar, file_size: { less_than: 3.megabytes }
 
@@ -18,6 +18,10 @@ class Project < ApplicationRecord
   has_many :ownership_requests, :dependent => :destroy
   has_many :pendent_ownership_requests, -> { pendent }, :class_name => 'OwnershipRequest'
   has_many :pendent_owners, :source => :user, through: :pendent_ownership_requests
+
+  #Status related code:
+  scope :active, -> { where status: 'active'}
+  scope :inactive, -> { where status: 'inactive'}
 
   before_create :transform_tags
   before_create :get_open_hub_data, if: :open_hub_id

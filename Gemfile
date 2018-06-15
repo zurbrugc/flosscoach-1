@@ -16,6 +16,8 @@ gem 'file_validators'
 gem 'therubyracer',  platforms: :ruby
 #Encrypting passwords:
 gem 'bcrypt', '~> 3.1.7'
+#for updating production models after migration
+gem 'migration_data', '~> 0.2.1'
 
 #github api
 gem 'github_api', '~> 0.14.5'

@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
   
   def recent
-    @projects = Project.search(params[:search])
+    @projects = Project.active.search(params[:search])
     @project = Project.new
     @order_by = "Recents"
 
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
   end
 
   def most_favorited
-    @projects = Project.all.search(params[:search])
+    @projects = Project.active.search(params[:search])
     @project = Project.new
     @order_by ||= "Most favorited"
 
@@ -60,7 +60,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owners << current_user
-    @project.primary_owner = current_user.id #testing that
+    @project.primary_owner = current_user.id
+    @project.status = "active"
     if @project.save
       redirect_to @project, success: 'Project was successfully created.'
     else
