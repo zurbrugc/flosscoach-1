@@ -54,7 +54,6 @@ class ProjectsController < ApplicationController
       render json: OpenHubProject.find_by_name(params[:project_name], list:true), status: :ok
     end
   end
- #TODO: Create a controller to Ownerships requests
 
   # POST /projects
   def create

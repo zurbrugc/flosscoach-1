@@ -36,11 +36,14 @@ class Project < ApplicationRecord
   def image_url
     avatar.url
 
+
   end
+
+
   def get_open_hub_data
     @open_hub_project = OpenHubProject.find_by_name(self.name)
     self.open_hub_id = @open_hub_project.id
-
+    puts(self.open_hub_id)
     ohp = open_hub_project
     self.description = ohp.description
     self.remote_avatar_url = ohp.logo_url

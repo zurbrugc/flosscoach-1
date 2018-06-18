@@ -1,3 +1,4 @@
+
 require 'active_resource'
 require 'json'
 
@@ -19,6 +20,9 @@ class OpenHubProject < ActiveResource::Base
   self.element_name = "projects"
   @headers = { 'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
 
+
+  #This method goes to Open Hub and return a project that was found by its id
+  #calling example: OpenHubProject.find_by_id(1) (will find Apache Subversion)
   def self.find_by_id(id)
     params = {'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
     data = OpenHubProject.find(id, :params => params)
@@ -26,9 +30,16 @@ class OpenHubProject < ActiveResource::Base
     project
   end
 
+=begin
+This method goes to OpenHub and return a project found by its name,
+what can be a list as you may get multiple results.
+=end
   def self.find_by_name(nome, list: false)
+    #seting a params to be sent:
     params = {'query' => nome ,'api_key' => "#{Rails.application.secrets.OPEN_HUB_KEY}" }
+    #asking OPenHub for a search:
     search = OpenHubProject.find(:all, :params => params)
+
     if list
       projects = search.collect do |data|
         OpenHubProject.build(data)
@@ -40,7 +51,7 @@ class OpenHubProject < ActiveResource::Base
     end
   end
 
-
+  #Sotores in a new instace of this model the info about an OpenHub project
   def self.build(data)
     project = OpenHubProject.new
     project.id = data.attributes["id"]
