@@ -27,8 +27,8 @@ class WidgetFactory
     content = open_hub_data.links_html if open_hub_data
     widgets << self.build_widget(:default_widget,"Resources avaiable", tab: :about, x: 0, y: 5, width: 6, height: 5, content: content)
     widgets << self.build_widget(:default_widget,"Soft skills required", tab: :about, x: 6, y: 5, width: 6, height: 5)
-
     widgets << self.build_widget(:default_widget,"Easy tasks", tab: :choosing_a_task_to_start_with, x: 0, y: 0, width: 12, height: 5)
+
 
     widgets << self.build_widget(:default_widget,"Finding Mentorship and Support", tab: :find_a_mentor, x: 0, y: 0, width: 12, height: 5)
 
@@ -66,4 +66,9 @@ class WidgetFactory
     widget.editable = editable
     widget
   end
+
+
+
+
+
 end

@@ -24,14 +24,14 @@
         <% end %>
 
         <a class="panel-action icon fa-bolt" href="javascript:void(0)"
-        data-plugin="webuiPopover" data-title="What to fill this field:"
+        data-plugin="webuiPopover" data-title="What to fill this box:"
         data-content="<p><%=tips(widget)%></p>"
         data-target="webuiPopover3"></a>
 
         <% if logged_in? && widget.deletable? && @project.owner?(current_user) %>
         <%= link_to "", project_widget_path(@project, widget),
         method: :delete, :class => "panel-action icon wb-close",
-        :data => {confirm: "You sure delete this widget?", toogle: 'panel-close'} %>
+        :data => {confirm: "Are you sure in deleting this widget?", toogle: 'panel-close'} %>
         <% end %>
       </div>
 

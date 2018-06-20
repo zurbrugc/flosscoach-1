@@ -81,12 +81,7 @@ class Widgets::CommentsController < WidgetsController
     render 'moderate'
   end
 
-  
-
-
   private
-
-
   # Only allow a trusted parameter "white list" through.
   def comment_params
     params.require(:widget_comment).permit!

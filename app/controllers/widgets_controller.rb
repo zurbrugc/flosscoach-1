@@ -1,10 +1,10 @@
 class WidgetsController < ApplicationController
-  before_action :set_widget, only: [:show, :update, :destroy, :edit]
+  before_action :set_widget, only: [:show, :update, :destroy, :edit, :good_first_issues]
   before_action :tips, only: [:show]
   skip_before_filter :verify_authenticity_token, only: [:update]
 
   def index
-    @widgets = @project.widgets
+    @widgets = @project.widgets    
   end
 
   def show
@@ -51,8 +51,6 @@ class WidgetsController < ApplicationController
   helper_method :owner
 
   
-
-    
 
   private
   # Only allow a trusted parameter "white list" through.

@@ -21,6 +21,7 @@ gem 'migration_data', '~> 0.2.1'
 
 #github api
 gem 'github_api', '~> 0.14.5'
+gem "octokit", "~> 4.0"
 
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'jquery-rails'
