@@ -58,5 +58,4 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
-
 end

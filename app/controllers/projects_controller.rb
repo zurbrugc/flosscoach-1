@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js, :json
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :request_ownership]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :request_ownership, :github_issues]
   skip_before_action :verify_authenticity_token, only: [:update]
   before_action :authorize, except: [:index, :show]
 
@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    github_issues
   end
 
 
@@ -90,6 +91,36 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to projects_url, success: 'Project was successfully destroyed.'
+  end
+
+
+  #accessing github API, and requesting issues of a project:
+  def github_issues
+    search_param = @project.repo_info
+    if !search_param.blank?
+      # Provide authentication credentials:
+      client = Octokit::Client.new(:access_token => "957b5755c2b1b73b04cff90093c9e2791fb7fb58", per_page: 20)   
+      #search for issues in repo passed as argument:
+      response = Octokit.list_issues(search_param,{'labels' => "good first issue" })
+      
+      issues = [[],[]]
+      limit = 10
+      response.each do |issue|
+        break if limit < 1
+        issues[0] << issue['title']
+        issues[1] << issue['html_url']
+        limit -= 1
+      end
+      @issues = issues[0].zip issues[1]
+
+      if @issues.empty?
+        @issues = nil
+        return @issues
+      else
+        return @issues
+      end
+    end
+    return false
   end
 
   private

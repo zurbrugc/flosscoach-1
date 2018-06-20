@@ -1,0 +1,37 @@
+<!--Table fo issues-->
+<%if @issues %>
+<style type="text/css">
+	#issue{padding: 5px;}
+	#link{text-decoration: none;}
+	.row{margin-top: 30px;}
+</style>
+<p>This project is associated with a Github repository, so then you can find issues of it(bugs, crashs and problems in general) here on FLOSScoach.</br> Your first task as a contributor may be one of these below.</p>
+<div class="row">
+<div class="col-md-6">
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>
+				<h4>Here are some good issues to start working with:</h4>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@issues.each do |title, url|%>
+		<tr>
+			<td id="issue"><a id="link" href='<%=url%>' target='_blank' ><%=title%></a>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
+</div>
+	
+<h4>You can find more issues at 
+<a target='_blank' href= 'https://github.com/<%=@project.repo_info%>/issues?q=is:issue+is:open+label:"good+first+issue"'>Github Repository</a> of this project</h4>
+
+
+<%else%>
+	<h4>There's no easy tasks for begginers in this project, or issues may not be labeled propely. You may want to try other Github projects to start contributing to.</h4>
+<% end %>

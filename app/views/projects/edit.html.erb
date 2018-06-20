@@ -1,7 +1,8 @@
+
 <h1> <center> Here you can edit <%= link_to @project.name, @project %> information</center ></h1>
 
 <div class="container">
-
+	<%= render 'errors'%>
 <div class="panel">
 	<%= form_for @project, html: { multipart: true } do |f| %>
 
@@ -37,6 +38,13 @@
 	    <h5>Project page URL</h5>
 	    <%= f.text_field :project_page_url, :class => "form-control",
 	    :placeholder => 'http://'%>
+  	</div>
+
+  	<div class="form-group">
+	    <h5>GitHub user/repository: </h5>
+	    <p>In case you want to associate a GitHub Respository to this project, fill the user/repostory names below. Otherwise, just leave it blank</p>
+	    <%= f.text_field :repo_info, :class => "form-control",
+	    :placeholder => 'user/repository'%>
   	</div>
 
 

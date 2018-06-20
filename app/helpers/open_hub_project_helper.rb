@@ -11,5 +11,5 @@ module OpenHubProjectHelper
 
   def iframe_languages_html
     "<iframe src='https://www.openhub.net/p/#{vanity_url}/widgets/project_languages' , scrolling='no' marginheight='0' marginwidth='0' style='height: 210px; width: 350px; border: none'></iframe>"
-  end
+  end  
 end

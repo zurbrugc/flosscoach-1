@@ -1,12 +1,21 @@
 class Project < ApplicationRecord
+  before_save :normalize_blank_values
+
   mount_uploader :avatar, AvatarUploader
   include Taggable
 
+  #Validations:
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :description, unless: :open_hub_id
   validates :avatar, file_size: { less_than: 3.megabytes }
+  validates :repo_info, :format => {
+  :with => /\w+\/\w+/,
+  :message => "is not valid, please insert a valid repository info",
+  :if => lambda{ |object| object.repo_info.present? } 
+  }
 
+  #Associations:
   belongs_to :user
   has_many :widgets, :dependent => :destroy
   has_and_belongs_to_many :owners, class_name: 'User'
@@ -33,10 +42,16 @@ class Project < ApplicationRecord
   def image
     avatar
   end
+
+  def normalize_blank_values
+    attributes.each do |column, value|
+      self[column].present? || self[column] = nil
+    end
+  end
+
+
   def image_url
     avatar.url
-
-
   end
 
 

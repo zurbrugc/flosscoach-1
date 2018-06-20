@@ -92,8 +92,11 @@
           </div>
           <ul class="nav nav-tabs nav-tabs-line" role="tablist">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contribution_flow" role="tab">Contribution flow</a></li>
+
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#choosing_a_task_to_start_with" role="tab">Choosing a task to start with</a></li>
+
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#find_a_mentor" role="tab">Find a mentor</a></li>
+
           </ul>
         <div class="panel-body">
           <div class="tab-content">
@@ -103,10 +106,17 @@
                 instead of using the menu.</p>
                 <%= render 'flow' %>
               </div>
-              <% tab_pane(:choosing_a_task_to_start_with) do %>
-              <%= render @project.widgets.from_tab(:choosing_a_task_to_start_with) %>
-              <% end %>
+              <%if !@project.repo_info.blank? %>
+                <div class="tab-pane" id="choosing_a_task_to_start_with" role="tabpanel">
+                  <%=render 'github_issues'%>
+                </div>
+              <% else %>
+                <% tab_pane(:choosing_a_task_to_start_with) do %>
+                <%= render @project.widgets.from_tab(:choosing_a_task_to_start_with) %>
+                <% end %>
 
+              <% end %>
+              
               <% tab_pane(:find_a_mentor) do %>
               <%= render @project.widgets.from_tab(:find_a_mentor) %>
               <% end %>

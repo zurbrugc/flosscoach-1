@@ -1,0 +1,12 @@
+<h3>Here are some good issues to start working with:</h3>
+<ul>
+<%if @issues %>	
+	<%@issues.each do |title, url|%>
+		<li><a href='<%=url%>' target='_blank' ><%=title%></a></li>
+	<%end%>
+	<h4>You can find more issues at 
+	<a target='_blank' href= 'https://github.com/<%=@project.repo_info%>/issues?q=is:issue+is:open+label:"good+first+issue"'>Github</a></h4>
+<%else%>
+	<h5>There's no easy tasks for begginers in this project. You may want to try other Github projects to start contributing</h5>
+<%end%>
+</ul>
