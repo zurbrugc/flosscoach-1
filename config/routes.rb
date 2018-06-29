@@ -58,4 +58,12 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+
+  #tabs related code:
+  get '/projects/:id/start',     to: 'projects#start',     as: 'start'
+  get '/projects/:id/community', to: 'projects#community', as: 'community'
+  get '/projects/:id/workspace', to: 'projects#workspace', as: 'workspace'
+  get '/projects/:id/code',      to: 'projects#code',      as: 'code'
+  get '/projects/:id/changes',   to: 'projects#changes',   as: 'changes'
+  
 end

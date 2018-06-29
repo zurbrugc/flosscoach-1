@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
+  before_action :set_project
   respond_to :html, :js, :json
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :request_ownership, :github_issues]
   skip_before_action :verify_authenticity_token, only: [:update]
   before_action :authorize, except: [:index, :show]
-
+  skip_before_action :set_project, only: [:index]
   # GET /projects
   def index
     @projects = Project.search(params[:search])
@@ -15,6 +15,34 @@ class ProjectsController < ApplicationController
   def show
     github_issues
   end
+
+  #placebo actions for tabs:
+  def test
+    github_issues
+  end
+  def start
+    github_issues
+  end
+
+  def community
+    github_issues
+  end
+
+  def workspace
+    github_issues
+  end
+
+  def code
+    github_issues
+  end
+
+  def changes
+    github_issues
+  end
+  
+  #end of actions for tabs
+
+
 
 
   # GET /projects/new

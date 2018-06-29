@@ -1,3 +1,4 @@
+
 <%if @project.status == "active"%>
   <%= render 'visitor/header' unless current_user %>
   <%= render 'visitor/menu' unless current_user %>
@@ -64,19 +65,19 @@
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   
   <li class="nav-item">
-    <a class="nav-link active" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab">About</a>
+    <%= link_to 'About', project_path, class:'nav-link'%>
   </li>
 
   <li class="nav-item">
-    <%= link_to "How to start", start_path, class:'nav-link'%>
+    <%= link_to 'How to start', start_path, class:'nav-link'%>
   </li>
 
   <li class="nav-item">
-    <%= link_to ' Talk to the community', community_path, class:'nav-link' %>
+    <%= link_to 'Talk to the community', community_path, class:'nav-link'%>
   </li>
 
   <li class="nav-item">
-    <%= link_to 'Setup your workspace', workspace_path, class:'nav-link' %>
+    <a class="nav-link active" id="pills-workspace-tab" data-toggle="pill" role="tab">Setup your workspace</a>
   </li>
 
   <li class="nav-item">
@@ -86,7 +87,6 @@
   <li class="nav-item">
     <%= link_to 'Submit changes', changes_path, class:'nav-link' %>
   </li>
-
 
   <li>
     <% if @project.owner?(current_user) %>
@@ -107,39 +107,32 @@
 </div>
 
 
-
-<!--MODIFICANDO A PARTIR DAQUI-->
 <div class="page-content container-fluid tab-content">
-  <div class="tab-pane fade show active" id="pills-about" role="tabpanel">
-    <% tab_pane(:about, active: true) do %>
-      <%= render @project.widgets.from_tab(:about ) %>
-    <% end %>
-    <!--END OF CONTENT FOR TAB 1-->
+  <div class="tab-pane fade" id="pills-about" role="tabpanel">
   </div>
 
   <div class="tab-pane fade" id="pills-start" role="tabpanel">
   </div>
 
+
   <div class="tab-pane fade" id="pills-community" role="tabpanel">
-    
   </div>
 
-
-  <div class="tab-pane fade" id="pills-workspace" role="tabpanel">    
-    
+  <div class="tab-pane fade show active" id="pills-workspace" role="tabpanel">
+    <% tab_pane(:setup_your_workspace) do %>
+      <%= render @project.widgets.from_tab(:setup_your_workspace) %>
+    <% end %>
   </div>
-
 
   <div class="tab-pane fade" id="pills-code" role="tabpanel">
-    <%= link_to 'Deal with code', code_path %>
   </div>
 
-
   <div class="tab-pane fade" id="pills-changes" role="tabpanel">
-    <%= link_to 'Submit your changes', changes_path %>
   </div>
 
 </div>
+
+
 
 <%else%>
   <%= render 'visitor/header' unless current_user %>

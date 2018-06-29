@@ -48,19 +48,6 @@ module ProjectViewHelper
     class: "btn btn-danger waves-effect waves-classic", remote: true
   end
 
-  def good_first_issues(user,reponame)
-    search_param = user+'/'+reponame
-    # Provide authentication credentials:
-    client = Octokit::Client.new(:access_token => "957b5755c2b1b73b04cff90093c9e2791fb7fb58", per_page: 20)   
-    #@search for issues in repo passed as argument:
-    response = Octokit.list_issues(search_param,{'labels' => "good first issue" })
-    issues = [[],[]]
-    response.each do |issue|
-      issues[0] << issue['title']
-      issues[1] << issue['html_url']
-    end
-    @issues = issues[0].zip issues[1]
-  end
 
   def tips(widget)
     #1
