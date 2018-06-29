@@ -33,4 +33,13 @@ module ApplicationHelper
     concat(content.html_safe)
   end
 
+  def project_navigator(name, url)
+    opts = {}
+    opts[:id] = 'contribution_flow' if current_page?(url)
+    content_tag :li, opts do
+      link_to name, url
+    end
+    
+  end
+    
 end
