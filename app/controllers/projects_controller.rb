@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project
+  before_action :set_project, except: [:new, :create]
   respond_to :html, :js, :json
   skip_before_action :verify_authenticity_token, only: [:update]
   before_action :authorize, except: [:index, :show]
