@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: [:new, :create]
+  before_action :set_project, except: [:new, :create, :similiar_open_hub_projects]
   respond_to :html, :js, :json
   skip_before_action :verify_authenticity_token, only: [:update]
-  before_action :authorize, except: [:index, :show]
+  before_action :authorize, except: [:index, :show, :start, :community,
+                                     :workspace, :code, :changes]
   skip_before_action :set_project, only: [:index]
   # GET /projects
   def index
