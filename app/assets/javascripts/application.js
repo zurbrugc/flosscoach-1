@@ -58,6 +58,7 @@
 //= require gridstack-js-rails
 //= require remark/global/js/Plugin/material.js
 
+
 //= require_self
 
 

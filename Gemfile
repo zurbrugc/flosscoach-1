@@ -31,6 +31,9 @@ gem 'gridstack-js-rails'
 gem 'responders'
 gem 'summernote-rails', "0.8.1.0"
 gem 'bootstrap-sass'
+
+#gem 'bootstrap', '~> 4.1.2'
+
  #static analysis tools
 gem 'rails_best_practices', '~> 1.17' #run: rails_best_practices -f html .
 gem "paperclip", "~> 6.0.0"

@@ -1,0 +1,55 @@
+/* line 1, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+div {
+  border: 0px solid black;
+  border-radius: 3px;
+}
+
+/* line 6, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.row {
+  background-color: white;
+  padding: 10px;
+}
+
+/* line 11, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.header {
+  text-align: center;
+}
+
+/* line 16, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.moderate {
+  margin: 10px;
+}
+
+/* line 22, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.submit {
+  margin: 5px;
+  float: right;
+  margin-top: 25px;
+}
+
+/* line 27, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.approved {
+  margin: 10px;
+  width: 100%;
+}
+
+/* line 33, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+td, th {
+  padding: 8px;
+}
+
+/* line 37, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+td {
+  border-bottom: 1px solid #d3d3d3;
+}
+
+/* line 41, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.title {
+  text-align: center;
+}
+
+/* line 45, /home/marcelo/flosscoach/app/assets/stylesheets/widgets/comments.css.scss */
+.back {
+  margin-top: -10px;
+  float: right;
+}

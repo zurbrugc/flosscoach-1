@@ -62,7 +62,6 @@ role="navigation">
         <%= link_to sign_out_path, method: :delete, class: "dropdown-item" do%>
         <i class="icon md-power"></i> Logout</a>
         <% end %>
-
       </div>
     </li>
     <% if current_user && current_user.respond_to?(:notifications)%>

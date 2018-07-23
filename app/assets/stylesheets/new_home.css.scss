@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,200');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans+Condensed:700');
+
+body { background: #ffffff; }
+
+.navbar {
+    background-color: transparent;
+    box-shadow: none !important;
+    position: fixed !important;
+}
+
+.navbar-toggler-bar {
+    background-color: #204c20 !important;
+}
+
+.navbar-title {
+    color: white;
+    font-weight: bold;
+}
+
+.fade-mob {
+    display: none;
+}
+
+.main-promo {
+    background-image: asset-url("mountain.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 100vh;
+    padding-top: 25vh;
+    color: #2c2c2c;
+}
+
+small.subtitle {
+    font-size: 1.375rem !important;
+    line-height: 1.636;
+    color: #495057;
+}
+
+.second-promo-back {
+    background: linear-gradient(25deg,#4580bd,#87a3c3 50%);
+}
+
+.second-promo {
+    color: #ffffff;
+    background: asset-url("back.png") no-repeat bottom right;
+    background-size: 100% 70px;
+    /* transform: skewY(2deg); */
+}
+
+.third-promo {
+    background: white;
+    color: #2c2c2c;
+    /* transform: skewY(2deg); */
+}
+
+.col-xl-3 img {
+    max-height: 100px;
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.logos {
+    margin-bottom: 80px;
+}
+
+.logos-title {
+    position: relative;
+    margin-top: -100px;
+    font-weight: bold;
+    text-shadow: 2px 2px 30px rgba(255, 255, 255, 1);
+    display: none;
+}
+
+.title h5 {
+    font-weight: bold;
+    font-size: 29px;
+    color: #3949ab;
+}
+
+.btn-github {
+    box-shadow: 0 3px 5px 0 rgba(36,50,66,.2);
+}
+
+.btn-github span {
+    color: #2c2c2c;
+    margin: 0;
+    margin-left: 20px;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.navbar-title img {
+    height: 40px;
+    vertical-align: text-top;
+}
+
+.navbar-brand { 
+    width: 100%;
+}
+
+.nav-item p {
+    color: #646f79;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.nav-item p:hover {
+    color: #204c7c;
+}
+
+.row { margin: 0; }
+
+.input-box {
+    width: 100%;
+    padding: 5px;
+    padding-left: 15px;
+    outline: none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    border: 2px solid #e0e6e8;
+}
+
+.btn-submit {
+    width: 100%;
+    font-size: 17px !important;
+    margin-top: 20px !important;
+    border-radius: 2px;
+}
+
+.input-box:focus {
+    border: 2px solid #204c7c;
+}
+
+.text-form-footer {
+    font-weight: 600;
+    color: #222b37 !important;
+}
+
+a { cursor: pointer !important; }
+
+.text-form-footer:hover { text-decoration: underline !important; }
+
+.color-primary { color: #204c7c !important; }
+
+.footer-collabs {
+    padding: 50px 0px;
+    padding-top: 30px;
+    background-color: #e9ecef;
+}
+
+footer p {
+    margin-bottom: 7px !important;
+}
+
+.footer-title {
+    font-weight: bold;
+}
+
+.footer-collabs img {
+    max-height: 30px;
+    max-width: 100%;
+    filter: grayscale(1);
+    margin-bottom: 20px;
+}
+
+.footer-creator {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.footer-creator p {
+    margin: 0 !important;
+}
+
+.footer-creator p:hover .heart {
+    color: #F44336;
+}
+
+.footer-creator p:hover .tag {
+    color: #2196F3;
+}
+
+.footer-creator p:hover .creator {
+    color: #212529;
+}
+
+.creator {
+    font-style: italic;
+    cursor: pointer;
+}
+
+.footer-creator p {
+    font-weight: bold;
+    cursor: default;
+}
+
+.footer-rights {
+    font-size: 15px;
+}
+
+.footer-rights p {
+    margin: 0;
+}
+
+.footer-collabs img:hover {
+    filter: grayscale(0);
+}
+
+.footer-site {
+    padding: 7px 0px;
+    color: white;
+    font-size: 18px !important;
+    background-color: #204c7c;
+}
+
+.ribbon {
+	position: fixed;
+    top: 100px;
+    right: 0;
+	width: 90px;
+	height: 135px;
+	text-indent: -666em;
+	overflow: hidden;
+	z-index: 999;
+	-webkit-transition: all 1s ease;
+    transition: all 1s ease; 
+    background-image: asset-url("ribbon.png");
+	background-repeat: no-repeat;
+    background-size: 90px 135px;
+    cursor: pointer;
+}
+
+.ribbon a {
+    width: 90px;
+	height: 135px;
+}

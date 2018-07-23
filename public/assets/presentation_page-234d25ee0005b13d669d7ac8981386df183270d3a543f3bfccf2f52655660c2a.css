@@ -1,0 +1,12 @@
+/* line 1, /home/marcelo/flosscoach/app/assets/stylesheets/presentation_page.css.scss */
+.navbar-btn {
+  padding: 10px;
+}
+
+/*index.html.erb related css*/
+/* line 9, /home/marcelo/flosscoach/app/assets/stylesheets/presentation_page.css.scss */
+.row {
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 5px;
+}
