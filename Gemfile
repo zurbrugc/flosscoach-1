@@ -12,6 +12,9 @@ gem 'omniauth-github'
 gem 'turbolinks'
 
 gem 'file_validators'
+#RECAPTCHA GEMS
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+gem "recaptcha", require: "recaptcha/rails"
 
 gem 'therubyracer',  platforms: :ruby
 #Encrypting passwords:

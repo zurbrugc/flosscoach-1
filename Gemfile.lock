@@ -109,6 +109,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_bot (4.8.2)
@@ -262,6 +266,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    recaptcha (4.10.0)
+      json
     ref (2.0.0)
     require_all (2.0.0)
     responders (2.4.0)
@@ -348,6 +354,7 @@ DEPENDENCIES
   carrierwave-base64
   cloudinary
   coffee-rails (~> 4.1.0)
+  dotenv-rails
   factory_bot_rails
   file_validators
   friendly_id (~> 5.1.0)
@@ -370,6 +377,7 @@ DEPENDENCIES
   puma
   rails (~> 5.0.0)
   rails_best_practices (~> 1.17)
+  recaptcha
   responders
   sass-rails
   savon

@@ -25,7 +25,7 @@
   # POST /users
   def create
     @user = User.new(user_params)
-    if @user.save
+    if verify_recaptcha(model: @user) && @user.save
       UserMailer.registration_confirmation(@user).deliver_now
       redirect_to sign_in_path, success: "Please confirm your email address to continue."
     else
