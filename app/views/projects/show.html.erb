@@ -9,10 +9,14 @@
       style="max-width:250px;"/>
     </figure>
     <h1 class="page-title text-center"><%= @project.name %>
-      <% if @project.recent? %>
+      </h1>
+      <div class="text-center">
+          <p>This project is primarily owned by: <%=@project.owners[0].name%></p>
+          <% if @project.recent? %>
         <span class="badge badge-danger badge-sm">New</span>
       <% end %>
-    </h1>
+      </div>
+    
     <p class="tags text-center">
       <% @project.tags.each do |tag| %>
         <%= link_to projects_path(search: tag.to_s) do %>

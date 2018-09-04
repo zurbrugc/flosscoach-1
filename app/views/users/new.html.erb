@@ -10,8 +10,11 @@
       <div class="panel">
         <div class="panel-body">
           <div class="brand">
-            <%= image_tag "flosscoach-logo", class: "brand-img" %>
-            <h2 class="brand-text font-size-18"><%= site_name %> Register</h2>
+            <a href="/">
+              <%= image_tag "flosscoach-logo", class: "brand-img" %>
+            </a>
+              <h2 class="brand-text font-size-18"><%= site_name %> Register</h2>
+            
           </div>
           <% if @user.errors.any? %>
           <div role="alert" class="alert dark alert-danger alert-icon alert-dismissible">
@@ -29,6 +32,8 @@
           <% end %>
           <%= render 'form', user: @user %>
           <p>Have account already? Please go to <%= link_to "Sign In", sign_in_path  %></p>
+          <p>Back to <%= link_to 'homepage', root_url%></p>
+          <p><%= link_to 'Projects list', projects_url%></p>
         </div>
       </div>
       <%= render 'visitor/footer' %>
