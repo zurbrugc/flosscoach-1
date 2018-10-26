@@ -1,4 +1,3 @@
-
 <%if @project.status == "active"%>
   <%= render 'visitor/header' unless current_user %>
   <%= render 'visitor/menu' unless current_user %>
@@ -10,10 +9,14 @@
       style="max-width:250px;"/>
     </figure>
     <h1 class="page-title text-center"><%= @project.name %>
-      <% if @project.recent? %>
+      </h1>
+      <div class="text-center">
+          <p>This project is primarily owned by: <%=@project.owners[0].name%></p>
+          <% if @project.recent? %>
         <span class="badge badge-danger badge-sm">New</span>
       <% end %>
-    </h1>
+      </div>
+    
     <p class="tags text-center">
       <% @project.tags.each do |tag| %>
         <%= link_to projects_path(search: tag.to_s) do %>
@@ -65,19 +68,19 @@
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   
   <li class="nav-item">
-    <%= link_to 'About', project_path, class:'nav-link'%>
+    <%= link_to "About", project_path, class:'nav-link'%>
   </li>
 
   <li class="nav-item">
-    <%= link_to 'How to start', start_path, class:'nav-link'%>
+    <%= link_to "How to start", start_path, class:'nav-link'%>
   </li>
 
   <li class="nav-item">
-    <%= link_to 'Talk to the community', community_path, class:'nav-link'%>
+    <%= link_to ' Talk to the community', community_path, class:'nav-link' %>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link active" id="pills-workspace-tab" data-toggle="pill" role="tab">Setup your workspace</a>
+    <%= link_to 'Setup your workspace', workspace_path, class:'nav-link' %>
   </li>
 
   <li class="nav-item">
@@ -88,9 +91,10 @@
     <%= link_to 'Submit changes', changes_path, class:'nav-link' %>
   </li>
 
-  <li class="nav-item">
-    <%= link_to 'Success Stories', success_stories_path, class:'nav-link' %>
+  <li class="nav-item" style="margin-right: 10px;">
+    <a class="nav-link active" id="pills-changes-tab" data-toggle="pill" role="tab">Success Stories</a>
   </li>
+
 
   <li>
     <% if @project.owner?(current_user) %>
@@ -111,32 +115,40 @@
 </div>
 
 
+
+<!--MODIFICANDO A PARTIR DAQUI-->
 <div class="page-content container-fluid tab-content">
-  <div class="tab-pane fade" id="pills-about" role="tabpanel">
+  <div class="tab-pane fade show active" id="pills-about" role="tabpanel">
+        <% tab_pane(:success_stories) do %>
+        <%= render @project.widgets.from_tab(:success_stories) %>
+    <% end %>
+
+    <!--END OF CONTENT FOR TAB SUCCESS STORIES-->
   </div>
 
   <div class="tab-pane fade" id="pills-start" role="tabpanel">
   </div>
 
-
   <div class="tab-pane fade" id="pills-community" role="tabpanel">
+    
   </div>
 
-  <div class="tab-pane fade show active" id="pills-workspace" role="tabpanel">
-    <% tab_pane(:setup_your_workspace) do %>
-      <%= render @project.widgets.from_tab(:setup_your_workspace) %>
-    <% end %>
+
+  <div class="tab-pane fade" id="pills-workspace" role="tabpanel">    
+    
   </div>
+
 
   <div class="tab-pane fade" id="pills-code" role="tabpanel">
+    <%= link_to 'Deal with code', code_path %>
   </div>
 
+
   <div class="tab-pane fade" id="pills-changes" role="tabpanel">
+    <%= link_to 'Submit your changes', changes_path %>
   </div>
 
 </div>
-
-
 
 <%else%>
   <%= render 'visitor/header' unless current_user %>

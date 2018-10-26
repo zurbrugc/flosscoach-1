@@ -17,7 +17,7 @@
     </div>
     <div class="comment-actions">
       <a href="javascript:void(0)" class='btn-reply' role="button">Reply</a>
-      <%if current_user.id == comment.user_id%>
+      <%if current_user && current_user.id == comment.user_id%>
         <%= link_to 'Delete comment', widget_comment_path(id: comment.id, widget_id: comment.widget_id), method: :delete, data: {confirm: "Are you sure you want to delete it?"} %>
       <%end%>
     </div> 

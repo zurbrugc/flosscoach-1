@@ -3,9 +3,10 @@ class ProjectsController < ApplicationController
                                         :recent, :most_favorited]
   respond_to :html, :js, :json
   skip_before_action :verify_authenticity_token, only: [:update]
+
   before_action :authorize, except: [:index, :show, :start, :community,
                                      :workspace, :code, :changes,:recent,
-                                     :most_favorited]
+                                     :most_favorited, :success_stories]
   skip_before_action :set_project, only: [:index]
   # GET /projects
   def index
@@ -40,6 +41,10 @@ class ProjectsController < ApplicationController
   end
 
   def changes
+    github_issues
+  end
+
+  def success_stories
     github_issues
   end
   

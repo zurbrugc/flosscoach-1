@@ -49,6 +49,7 @@ class WidgetFactory
     widgets << self.build_widget(:default_widget,"Submitting your contribution", tab: :submit_your_changes, x: 0, y: 0, width: 12, height: 4)
     widgets << self.build_widget(:opinion_widget, "Opinion by the others newcomes", tab: :about, x: 0, y: 11, width: 12, height: 5, editable: false, deletable: false)
 
+    widgets << self.build_widget(:default_widget,"Success stories on this project", tab: :success_stories, x: 0, y: 0, width: 12, height: 4)
     widgets
   end
 

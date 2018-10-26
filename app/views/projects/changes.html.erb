@@ -88,6 +88,10 @@
     <a class="nav-link active" id="pills-changes-tab" data-toggle="pill" role="tab">Submit changes</a>
   </li>
 
+  <li class="nav-item">
+    <%= link_to 'Success Stories', success_stories_path, class:'nav-link' %>
+  </li>
+
   <li>
     <% if @project.owner?(current_user) %>
       <div class="nav nav-tabs dropdown btn btn-primary" style="margin-left: 10px;">

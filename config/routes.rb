@@ -65,5 +65,6 @@ Rails.application.routes.draw do
   get '/projects/:id/workspace', to: 'projects#workspace', as: 'workspace'
   get '/projects/:id/code',      to: 'projects#code',      as: 'code'
   get '/projects/:id/changes',   to: 'projects#changes',   as: 'changes'
+  get '/projects/:id/success_stories',   to: 'projects#success_stories',   as: 'success_stories'
   
 end

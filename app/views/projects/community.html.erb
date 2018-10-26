@@ -88,6 +88,10 @@
     <%= link_to 'Submit changes', changes_path, class:'nav-link' %>
   </li>
 
+  <li class="nav-item">
+    <%= link_to 'Success Stories', success_stories_path, class:'nav-link' %>
+  </li>
+
   <li>
     <% if @project.owner?(current_user) %>
       <div class="nav nav-tabs dropdown btn btn-primary">
