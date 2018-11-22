@@ -94,7 +94,8 @@ the present in the *config/database.yml* file
 Now that everything is ready, it's time to clone the repository of the project to run your local development server and start contributing
 ```bash
 cd ~
-git clone https://gitlab.com/flosscoach/flosscoach.git
+# Cloning the development branchcan be done like so: git clone -b <branch> <remote_repo>
+git clone -b development https://gitlab.com/flosscoach/flosscoach.git
 #Navigate to the newly created repository clone:
 cd flosscoach
 ```
@@ -104,5 +105,24 @@ rake db:migrate RAILS_ENV=development
 rails server -p 8000
 ```
 Finally done!! See your local server running on [localhost:8000](http://localhost:8000)
+
+## Step 6 - Merging your contributions
+After you have finished writting some code these are the steps for adding your contribution to FLOSScoach:
+
+### Step 6.1 - Add changes to GitLab
+```bash
+#cd to the project directory
+cd flossccoach
+#Add your local changes (. will add all changes done)
+git add .
+#Create a new commit
+git commit -m "Insert commit message here"
+#And then send it to the Gitlab repository 
+git push origin development
+#You will be prompted to insert your Gitlab login credentials then
+```
+### Step 6.2 Merging changes
+To merge the changes you've done on development to master branch you can follow the excelent instructions from [Gitlab official docs](https://docs.gitlab.com/ee/gitlab-basics/add-merge-request.html).
+It's quite simple to be done.
 
 
