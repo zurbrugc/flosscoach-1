@@ -7,7 +7,7 @@ We are a community aimed to help newcomers get into
 If you want to use [FLOSScoach portal](www.flosscoach.com) create an account, or login through Github and join our community!
 
 ## Build status
-Badge will be added here
+![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/flosscoach/flosscoach.svg)
 
 ## Features
 FLOSSCoach portal has individual project pages, foruns and messages where you can display all relevant information for newcomers in OSS so they can start contributing
