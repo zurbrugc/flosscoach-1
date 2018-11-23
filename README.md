@@ -10,8 +10,7 @@ If you want to use [FLOSScoach portal](www.flosscoach.com) create an account, or
 ![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/flosscoach/flosscoach.svg)
 
 ## Features
-FLOSSCoach portal has individual project pages, foruns and messages where you can display all relevant information for newcomers in OSS so they can start contributing
- 
+FLOSSCoach portal has individual project pages, foruns and messages where you can exchange relevant information about OSS with newcomers so they can start contributing
 ## Technologies
 FLOSScoach is build using:
 
