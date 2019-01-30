@@ -1,7 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
-require 'mina/nginx'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -35,10 +34,10 @@ set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
-  ruby_version = File.read('.ruby-version').strip
-  raise "Couldn't determine Ruby version: Do you have a file .ruby-version in your project root?" if ruby_version.empty?
+  #ruby_version = File.read('.ruby-version').strip
+  #raise "Couldn't determine Ruby version: Do you have a file .ruby-version in your project root?" if ruby_version.empty?
 
-  invoke :'rvm:use', ruby_version
+  #invoke :'rvm:use', ruby_version
 end
 
 # Put any custom commands you need to run at setup
@@ -60,9 +59,6 @@ task :deploy do
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
-
-    on :launch do
-    end
   end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
