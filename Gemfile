@@ -61,7 +61,5 @@ end
 group :development, :test do
     gem "factory_bot_rails"
     gem 'mina', require: false
-    gem 'mina-puma', require: false, github: 'untitledkingdom/mina-puma'
-    gem 'mina-nginx', :require => false
     gem "spring"
 end

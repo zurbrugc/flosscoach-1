@@ -1,6 +1,6 @@
-require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/rails'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -10,18 +10,20 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 set :application_name, 'flosscoach'
 set :application, fetch(:application_name)
-set :domain, 'flosscoach.com'
 set :user, fetch(:application_name)
-set :deploy_to, "/home/#{fetch(:user)}/app"
-set :repository, 'https://gitlab.com/flosscoach/flosscoach.git'
-set :branch, 'master'
 set :rvm_use_path, '/home/flosscoach/.rvm/scripts/rvm'
 set :current_path, '/home/flosscoach/app/current'
 
+set :domain, 'flosscoach.com'
+set :repository, 'https://gitlab.com/flosscoach/flosscoach.git'
+set :branch, 'master'
+set :deploy_to, "/home/#{fetch(:user)}/app"
+
+
 # Optional settings:
-set :user, 'flosscoach'          # Username in the server to SSH to.
-set :port, '22'           # SSH port number.
-set :forward_agent, true     # SSH forward_agent.
+#set :user, 'flosscoach'          # Username in the server to SSH to.
+#set :port, '22'           # SSH port number.
+#set :forward_agent, true     # SSH forward_agent.
 
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
@@ -34,10 +36,10 @@ set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
-  #ruby_version = File.read('.ruby-version').strip
-  #raise "Couldn't determine Ruby version: Do you have a file .ruby-version in your project root?" if ruby_version.empty?
+  ruby_version = File.read('.ruby-version').strip
+  raise "Couldn't determine Ruby version: Do you have a file .ruby-version in your project root?" if ruby_version.empty?
 
-  #invoke :'rvm:use', ruby_version
+  invoke :'rvm:use', ruby_version
 end
 
 # Put any custom commands you need to run at setup
