@@ -1,7 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
-require 'mina/puma'
 require 'mina/nginx'
 
 # Basic settings:
@@ -18,7 +17,6 @@ set :deploy_to, "/home/#{fetch(:user)}/app"
 set :repository, 'https://gitlab.com/flosscoach/flosscoach.git'
 set :branch, 'master'
 set :rvm_use_path, '/home/flosscoach/.rvm/scripts/rvm'
-set :nginx_socket_path, '/home/flosscoach/app/shared/tmp/sockets/puma.sock'
 set :current_path, '/home/flosscoach/app/current'
 
 # Optional settings:
@@ -64,11 +62,6 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      in_path(fetch(:current_path)) do
-        command %{mkdir -p tmp/}
-        command %{touch tmp/restart.txt}
-        invoke :'puma:phased_restart'
-      end
     end
   end
 
