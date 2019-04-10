@@ -3,12 +3,6 @@
   <div class="panel">
     <div class="panel-body">
       <%= form_tag users_path, :method => 'get', class: "page-search-form" do %>
-      <div class="input-search input-search-dark">
-        <i class="input-search-icon md-search" aria-hidden="true"></i>
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder:"Search users..." %>
-        <button type="button" class="input-search-close icon md-close" aria-label="Close"></button>
-      </div>
-
   
         <% end %>
 
